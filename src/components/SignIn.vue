@@ -1,6 +1,7 @@
 <template>
   <div class="w-full min-h-screen flex items-center justify-center">
     <div class="w-64">
+      <mastergoal-logo class="rounded-lg mb-8"></mastergoal-logo>
       <alert-box v-bind:message="alert.message" v-bind:type="alert.type"></alert-box>
       <FormulateForm v-on:submit="submit" name="signin" v-model="formData">
         <FormulateInput type="text" name="username" label="Username" validation="required" />
@@ -14,11 +15,13 @@
 <script>
 import AuthenticationAlertMixin from "@/mixins/AuthenticationAlertMixin.js";
 import AlertBox from "@/components/AlertBox.vue";
+import MastergoalLogo from "@/components/MastergoalLogo.vue";
 
 export default {
   name: "SignIn",
   components: {
     AlertBox,
+    MastergoalLogo,
   },
   mixins: [AuthenticationAlertMixin],
   data() {

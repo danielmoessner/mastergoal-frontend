@@ -2,12 +2,12 @@
   <transition name="fade">
     <general-box v-bind:heading="heading">
       <span
-        class="text-gray-100 block px-4 py-2 mb-4 bg-green-500 rounded-md block"
+        class="text-gray-100 block px-4 py-2 mb-4 bg-green-500 rounded-md"
         v-if="responsetext"
         v-html="responsetext"
       ></span>
       <span
-        class="text-gray-100 block px-4 py-2 mb-4 bg-red-500 rounded-md block"
+        class="text-gray-100 block px-4 py-2 mb-4 bg-red-500 rounded-md"
         v-if="errortext"
         v-html="errortext"
       ></span>

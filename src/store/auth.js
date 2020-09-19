@@ -30,9 +30,9 @@ const actions = {
 //       })
 //       .catch((error) => console.log(error));
 //   },
-  login({ commit, getters, dispatch, state }, authData) {
+  login({ commit, getters, dispatch, rootState }, authData) {
     axios
-      .post(state.api.baseURL + "/api-token-auth/", {
+      .post(rootState.api.baseURL + "/api-token-auth/", {
         username: authData.username,
         password: authData.password,
         returnSecureToken: true,
