@@ -1,6 +1,6 @@
 <template>
   <div class="w-full bg-white md:min-h-screen sticky top-0">
-    <mastergoal-logo v-on:click="open = !open"></mastergoal-logo>
+    <mastergoal-logo v-on:click.native="open = !open"></mastergoal-logo>
     <div class="w-full p-4 md:flex" v-bind:class="{ hidden: !open }">
       <ul class="flex flex-col w-full">
         <li class="my-px">

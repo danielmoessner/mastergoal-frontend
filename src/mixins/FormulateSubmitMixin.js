@@ -1,11 +1,16 @@
 import axios from "@/plugins/backendAxios.js";
 
 export default {
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+  },
   data: function() {
     return {
       url: "",
       formData: {},
-      name: "",
     };
   },
   methods: {
@@ -13,8 +18,8 @@ export default {
       axios
         .post(this.url, this.formData)
         .then((response) => {
-          this.$emit("response", response.data);
           this.$formulate.reset(this.name);
+          this.$emit("response", response.data);
         })
         .catch((err) => console.log(err));
     },

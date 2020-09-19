@@ -31,11 +31,12 @@
       </general-box>
       <general-box heading="Add todo for this week">
         <alert-box v-bind:message="this.message"></alert-box>
-        <add-week-todo-form v-on:response="created"></add-week-todo-form>
+        <add-week-todo-form name="addweektodoform" v-on:response="created"></add-week-todo-form>
       </general-box>
       <general-box heading="Add todo for next week">
         <alert-box v-bind:message="this.message2"></alert-box>
         <add-week-todo-form
+          name="addweektodoform2"
           v-on:response="created2"
           v-bind:weeks="1"
           label="What is there to be done next week?"
@@ -70,10 +71,14 @@ export default {
       return this.toDos.concat(this.todayDoneToDos);
     },
     activeToDos: function () {
-      return this.allToDos.filter((toDo) => { return toDo.status === "ACTIVE" });
+      return this.allToDos.filter((toDo) => {
+        return toDo.status === "ACTIVE";
+      });
     },
     doneToDos: function () {
-      return this.allToDos.filter((toDo) => { return toDo.status === "DONE" });
+      return this.allToDos.filter((toDo) => {
+        return toDo.status === "DONE";
+      });
     },
     toDosMinHeight: function () {
       return String(6 * 56 - 8) + "px";

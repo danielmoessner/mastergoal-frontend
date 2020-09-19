@@ -26,7 +26,6 @@ export default {
   data: function () {
     return {
       url: "/t/api/normal-todos/",
-      name: "addweektodo",
     };
   },
   computed: {
