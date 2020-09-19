@@ -70,10 +70,10 @@ export default {
       return this.toDos.concat(this.todayDoneToDos);
     },
     activeToDos: function () {
-      return this.allToDos.filter((toDo) => toDo.status === "ACTIVE");
+      return this.allToDos.filter((toDo) => { return toDo.status === "ACTIVE" });
     },
     doneToDos: function () {
-      return this.allToDos.filter((toDo) => toDo.status === "DONE");
+      return this.allToDos.filter((toDo) => { return toDo.status === "DONE" });
     },
     toDosMinHeight: function () {
       return String(6 * 56 - 8) + "px";
