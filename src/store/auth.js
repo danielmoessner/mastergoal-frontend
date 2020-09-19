@@ -16,23 +16,23 @@ const mutations = {
 };
 
 const actions = {
-  signup({ commit, getters }, authData) {
+//   signup({ commit, getters }, authData) {
+//     axios
+//       .post("http://127.0.0.1:8000/api-token-auth/", {
+//         username: authData.username,
+//         password: authData.password,
+//         returnSecureToken: true,
+//       })
+//       .then((res) => {
+//         localStorage.setItem("token", res.data.token);
+//         commit("authUser", res.data.token);
+//         router.push(getters.mainView);
+//       })
+//       .catch((error) => console.log(error));
+//   },
+  login({ commit, getters, dispatch, state }, authData) {
     axios
-      .post("http://127.0.0.1:8000/api-token-auth/", {
-        username: authData.username,
-        password: authData.password,
-        returnSecureToken: true,
-      })
-      .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        commit("authUser", res.data.token);
-        router.push(getters.mainView);
-      })
-      .catch((error) => console.log(error));
-  },
-  login({ commit, getters, dispatch }, authData) {
-    axios
-      .post("http://127.0.0.1:8000/api-token-auth/", {
+      .post(state.api.baseURL + "/api-token-auth/", {
         username: authData.username,
         password: authData.password,
         returnSecureToken: true,
