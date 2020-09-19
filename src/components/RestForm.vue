@@ -1,6 +1,8 @@
 <template>
   <form ref="form" v-on:submit.prevent="submit">
-    <bootstrap-form v-bind:form="form"></bootstrap-form>
+    <div class="rest-form">
+      <div class="form-horizontal" v-html="form"></div>
+    </div>
     <div class="flex justify-end">
       <submit-button></submit-button>
     </div>
@@ -9,12 +11,11 @@
 
 <script>
 import SubmitButton from "@/components/SubmitButton.vue";
-import BootstrapForm from "@/components/BootstrapForm.vue";
 import axios from "@/plugins/backendAxios.js";
 
 export default {
   name: "RestForm",
-  components: { SubmitButton, BootstrapForm },
+  components: { SubmitButton },
   props: {
     url: {
       required: true,
@@ -29,7 +30,7 @@ export default {
       type: String,
     },
   },
-  data: function() {
+  data: function () {
     return {
       form: "",
     };
@@ -38,7 +39,7 @@ export default {
     axios.get(this.url).then((response) => (this.form = response.data.form));
   },
   methods: {
-    submit: function() {
+    submit: function () {
       let formData = new FormData(this.$refs.form);
       axios({ url: this.submitUrl, method: this.method, data: formData })
         .then((response) => this.$emit("response", response.data))
@@ -47,3 +48,5 @@ export default {
   },
 };
 </script>
+
+<style scoped src="@/assets/bootstrap-form.css" />

@@ -44,7 +44,7 @@ export default {
   },
   computed: {
     detailUrl () {
-      return '/todo/' + this.todo.id
+      return '/t/todo/' + this.todo.id
     },
     timeToDeadlineSeconds() {
       if (this.todo.status !== "ACTIVE") return 0;

@@ -13,7 +13,7 @@
       ></span>
       <rest-form
         v-bind:url="url"
-        v-bind:submiturl="submiturl"
+        v-bind:submitUrl="submitUrl"
         method="POST"
         v-on:response="created"
         v-on:error="error"
@@ -44,7 +44,7 @@ export default {
       required: true,
       type: String,
     },
-    submiturl: {
+    submitUrl: {
       required: true,
       type: String,
     },

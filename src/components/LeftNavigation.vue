@@ -35,7 +35,10 @@
             d="M302.487 95.094L256 106.804l-46.487-11.7c.305-1.12.72-2.168 1.277-3.165l.534-.967L256 13.59l45.232 78.34c.53.997.962 2.046 1.254 3.165z"
             fill="#fff"
           />
-          <path d="M256 13.59l15.478 83.14.2 2.557 29.01-8.323z" fill="#d9d8d7" />
+          <path
+            d="M256 13.59l15.478 83.14.2 2.557 29.01-8.323z"
+            fill="#d9d8d7"
+          />
           <path d="M272.064 41.404L256 13.59l-16.053 27.815z" fill="#474f59" />
           <path d="M272.064 41.404L256 13.59l5.186 27.815z" fill="#353f49" />
           <path d="M208.94 99.3h31.377v308.948H208.94z" fill="#ff916e" />
@@ -62,33 +65,15 @@
         <span class="text-2xl font-semibold text-gray-100">Mastergoal</span>
       </div>
     </div>
-    <div class="w-full p-4 md:flex" v-bind:class="{ 'hidden': !open }">
+    <div class="w-full p-4 md:flex" v-bind:class="{ hidden: !open }">
       <ul class="flex flex-col w-full">
         <li class="my-px">
-          <a
-            href="#"
-            class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 bg-gray-100"
-          >
-            <span class="flex items-center justify-center text-lg text-gray-400">
-              <svg
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                class="h-6 w-6"
-              >
-                <path
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
-            <span class="ml-3">Overview</span>
-            <span
-              class="flex items-center justify-center text-sm text-gray-500 font-semibold bg-gray-200 h-6 px-2 rounded-full ml-auto"
-            >3</span>
-          </a>
+          <navigation-button
+            link="#"
+            text="Overview"
+            v-bind:notifications="3"
+            icon='<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />'
+          ></navigation-button>
         </li>
         <div v-for="group in navigation" v-bind:key="group.name">
           <navigation-heading v-bind:heading="group.name"></navigation-heading>
@@ -101,7 +86,12 @@
           </li>
         </div>
         <navigation-heading heading="User"></navigation-heading>
-        <navigation-button v-on:click.native="signout" link="#" text="Logout"></navigation-button>
+        <navigation-button
+          v-on:click.prevent.native="signout"
+          link="logout"
+          text="Logout"
+          v-bind:icon="logoutIcon"
+        ></navigation-button>
       </ul>
     </div>
   </div>
@@ -120,9 +110,11 @@ export default {
       type: Array,
     },
   },
-  data: function () {
+  data: function() {
     return {
       open: false,
+      logoutIcon:
+        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />',
     };
   },
   methods: {

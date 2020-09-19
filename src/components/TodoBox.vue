@@ -2,13 +2,13 @@
   <general-box v-bind:heading="heading" :style="{ 'height': todosMinHeight }">
     <div>
       <transition-group name="todo" tag="div" class="relative">
-        <to-do
+        <todo-item
           v-on:changed="todoChanged"
           v-for="todo in unarchivedTodos"
           :key="todo.url"
           v-bind:todo="todo"
           class="todo-item"
-        ></to-do>
+        ></todo-item>
       </transition-group>
     </div>
   </general-box>
@@ -16,13 +16,14 @@
 
 <script>
 import GeneralBox from "@/components/GeneralBox.vue";
-import ToDo from "@/compontens/ToDo.vue";
+import TodoItem from "@/components/TodoItem.vue";
+import axios from "@/plugins/backendAxios.js";
 
-module.exports = {
+export default {
   name: "TodoBox",
   components: {
     GeneralBox,
-    ToDo,
+    TodoItem,
   },
   props: {
     url: {
@@ -42,16 +43,14 @@ module.exports = {
   computed: {
     todosMinHeight: function () {
       return String(8 * 56 - 8) + "px";
-      return String(this.unarchivedTodos.length * 56 - 8) + "px";
+      // return String(this.unarchivedTodos.length * 56 - 8) + "px";
     },
     unarchivedTodos: function () {
       return this.todos.filter((todo) => !todo.is_archived);
     },
   },
   mounted() {
-    fetch(this.url)
-      .then((response) => response.json())
-      .then((data) => (this.todos = data));
+    axios.get(this.url).then((response) => (this.todos = response.data));
   },
   methods: {
     todoChanged: function (data) {

@@ -1,9 +1,9 @@
-import store from "../store.js";
+import store from "@/store/store.js";
 import axios from "axios";
 
 const backendAxios = () => {
   const defaultOptions = {
-    baseURL: store.state.baseURL,
+    baseURL: store.state.api.baseURL,
     method: "get",
     headers: {
       "Content-Type": "application/json",
@@ -15,7 +15,7 @@ const backendAxios = () => {
 
   // Set the AUTH token for any request
   instance.interceptors.request.use(function(config) {
-    const token = store.state.token;
+    const token = store.state.auth.token;
     config.headers.Authorization = "Token " + token;
     return config;
   });
