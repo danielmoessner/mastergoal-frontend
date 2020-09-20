@@ -1,16 +1,6 @@
 <template>
   <transition name="fade">
     <general-box v-bind:heading="heading">
-      <span
-        class="text-gray-100 block px-4 py-2 mb-4 bg-green-500 rounded-md"
-        v-if="responsetext"
-        v-html="responsetext"
-      ></span>
-      <span
-        class="text-gray-100 block px-4 py-2 mb-4 bg-red-500 rounded-md"
-        v-if="errortext"
-        v-html="errortext"
-      ></span>
       <rest-form
         v-bind:url="url"
         v-bind:submitUrl="submitUrl"
@@ -51,7 +41,8 @@ export default {
   },
   methods: {
     created: function (data) {
-      this.responsetext = "Todo '" + data.name + "' added.";
+      let message = "Todo '" + data.name + "' added.";
+      this.$store.dispatch("alert/success", message);
       this.$emit("response", data);
     },
     error: function (data) {

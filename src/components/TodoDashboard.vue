@@ -95,6 +95,7 @@ export default {
   },
   mounted() {
     this.fetch();
+    this.$store.dispatch("alert/success", "testing");
   },
   methods: {
     fetch: function () {
@@ -117,11 +118,13 @@ export default {
       }
     },
     created: function (data) {
-      this.message = "Todo '" + data.name + "' created";
+      let message = "Todo '" + data.name + "' created";
+      this.$store.dispatch("alert/success", message);
       this.toDos.push(data);
     },
     created2: function (data) {
-      this.message2 = "Todo '" + data.name + "' created";
+      let message = "Todo '" + data.name + "' created";
+      this.$store.dispatch("alert/success", message);
     },
   },
 };

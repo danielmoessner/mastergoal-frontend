@@ -5,6 +5,9 @@
     </aside>
     <main class="w-full md:w-3/4 lg:w-3/4 xl:w-5/6">
       <top-navigation></top-navigation>
+      <transition name="fade">
+        <alert-box v-if="alert.message" v-bind:message="alert.message" v-bind:type="alert.type"></alert-box>
+      </transition>
       <div class="p-8">
         <slot></slot>
       </div>
@@ -15,10 +18,11 @@
 <script>
 import LeftNavigation from "@/components/LeftNavigation.vue";
 import TopNavigation from "@/components/TopNavigation.vue";
+import AlertBox from "@/components/AlertBox.vue";
 
 export default {
   name: "BackendBox",
-  components: { LeftNavigation, TopNavigation },
+  components: { LeftNavigation, TopNavigation, AlertBox },
   data() {
     return {
       navigation: [
