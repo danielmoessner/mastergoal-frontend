@@ -16,25 +16,28 @@ const mutations = {
 };
 
 const actions = {
-//   signup({ commit, getters }, authData) {
-//     axios
-//       .post("http://127.0.0.1:8000/api-token-auth/", {
-//         username: authData.username,
-//         password: authData.password,
-//         returnSecureToken: true,
-//       })
-//       .then((res) => {
-//         localStorage.setItem("token", res.data.token);
-//         commit("authUser", res.data.token);
-//         router.push(getters.mainView);
-//       })
-//       .catch((error) => console.log(error));
-//   },
-  login({ commit, getters, dispatch, rootState }, authData) {
+  signup({ rootState, dispatch }, data) {
+    axios
+      .post(rootState.api.baseURL + "/u/api/register/", {
+        ...data.formData,
+        returnSecureToken: true,
+      })
+      .then((res) => {
+        let message =
+          "Welcome! You can now login with '" +
+          res.data.email +
+          "' and your password.";
+        dispatch("alert/success", message, { root: true });
+        this._vm.$formulate.reset(data.formName);
+      })
+      .catch((error) => {
+        this._vm.$formulate.handle(error.response.data, data.formName);
+      });
+  },
+  login({ commit, getters, rootState }, data) {
     axios
       .post(rootState.api.baseURL + "/api-token-auth/", {
-        username: authData.username,
-        password: authData.password,
+        ...data.formData,
         returnSecureToken: true,
       })
       .then((res) => {
@@ -42,9 +45,9 @@ const actions = {
         commit("authUser", res.data.token);
         router.push(getters.mainView);
       })
-      .catch(() => {
-        let message = "No user was found with this username and password.";
-        dispatch("alert/error", message, { root: true });
+      .catch((error) => {
+        console.log(data.formName);
+        this._vm.$formulate.handle(error.response.data, data.formName);
       });
   },
   signout({ commit }) {

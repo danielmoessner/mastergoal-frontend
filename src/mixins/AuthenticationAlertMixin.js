@@ -11,10 +11,5 @@ export default {
       clearAlert: "alert/clear",
     }),
   },
-  watch: {
-    $route() {
-      // clear alert on location change
-      this.clearAlert();
-    },
-  },
+
 };

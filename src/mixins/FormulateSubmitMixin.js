@@ -21,7 +21,7 @@ export default {
           this.$formulate.reset(this.name);
           this.$emit("response", response.data);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => this.$formulate.handle(err.response.data, this.name));
     },
   },
 };

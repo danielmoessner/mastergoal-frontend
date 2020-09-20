@@ -30,8 +30,24 @@ Vue.use(VueFormulate, {
   },
 });
 
-new Vue({
+Vue.mixin({
+  computed: {
+    alert() {
+      return this.$store.state.alert;
+    },
+  },
+  watch: {
+    $route() {
+      // clear alert on location change
+      this.$store.dispatch("alert/clear");
+    },
+  },
+});
+
+let app = new Vue({
   router,
   store,
   render: (h) => h(App),
 }).$mount("#app");
+
+store.$app = app;
