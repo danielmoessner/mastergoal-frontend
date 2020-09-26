@@ -95,7 +95,6 @@ export default {
   },
   mounted() {
     this.fetch();
-    this.$store.dispatch("alert/success", "testing");
   },
   methods: {
     fetch: function () {

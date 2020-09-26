@@ -8,6 +8,7 @@ import TodoDetail from "@/components/TodoDetail.vue";
 import Error404 from "@/components/Error404.vue";
 import TodoList from "@/components/TodoList.vue";
 import TodoAdd from "@/components/TodoAdd.vue";
+import SettingsPage from "@/components/SettingsPage.vue";
 
 store.dispatch("autoLogin");
 
@@ -59,6 +60,13 @@ const routes = [
   {
     path: "/t/add",
     component: TodoAdd,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/u/settings",
+    component: SettingsPage,
     meta: {
       requiresAuthenticationTrue: true,
     },
