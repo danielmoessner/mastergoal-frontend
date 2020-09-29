@@ -1,8 +1,21 @@
 <template>
   <formulate-form v-bind:name="name" v-on:submit="submit" v-model="formData">
-    <formulate-input name="name" type="text" v-bind:label="label" validation="required"></formulate-input>
-    <formulate-input name="activate" type="hidden" v-bind:value="this.lastmonday"></formulate-input>
-    <formulate-input name="deadline" type="hidden" v-bind:value="this.nextmonday"></formulate-input>
+    <formulate-input
+      name="name"
+      type="text"
+      v-bind:label="label"
+      validation="required"
+    ></formulate-input>
+    <formulate-input
+      name="activate"
+      type="hidden"
+      v-bind:value="this.lastmonday"
+    ></formulate-input>
+    <formulate-input
+      name="deadline"
+      type="hidden"
+      v-bind:value="this.nextmonday"
+    ></formulate-input>
     <formulate-input type="submit" label="Add"></formulate-input>
   </formulate-form>
 </template>
@@ -21,6 +34,10 @@ export default {
     label: {
       type: String,
       default: "What else is there to be done this week?",
+    },
+    name: {
+      type: String,
+      required: true,
     },
   },
   data: function () {

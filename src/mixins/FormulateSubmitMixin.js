@@ -1,22 +1,15 @@
 import axios from "@/plugins/backendAxios.js";
 
 export default {
-  props: {
-    name: {
-      type: String,
-      required: true,
-    },
-  },
   data: function() {
     return {
-      url: "",
       formData: {},
+      method: "POST",
     };
   },
   methods: {
     submit: function() {
-      axios
-        .post(this.url, this.formData)
+      axios({ method: this.method, url: this.url, data: this.formData })
         .then((response) => {
           this.$formulate.reset(this.name);
           this.$emit("response", response.data);

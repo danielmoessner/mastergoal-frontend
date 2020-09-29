@@ -9,6 +9,8 @@ import Error404 from "@/components/Error404.vue";
 import TodoList from "@/components/TodoList.vue";
 import TodoAdd from "@/components/TodoAdd.vue";
 import SettingsPage from "@/components/SettingsPage.vue";
+import SettingsGeneral from "@/components/SettingsGeneral.vue";
+import SettingsTodo from "@/components/SettingsTodo.vue";
 
 store.dispatch("autoLogin");
 
@@ -67,6 +69,20 @@ const routes = [
   {
     path: "/u/settings",
     component: SettingsPage,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/u/settings/general-settings",
+    component: SettingsGeneral,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/u/settings/todo-settings",
+    component: SettingsTodo,
     meta: {
       requiresAuthenticationTrue: true,
     },

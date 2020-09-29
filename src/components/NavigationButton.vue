@@ -1,7 +1,7 @@
 <template>
   <router-link
     v-bind:to="link"
-    class="flex flex-row items-center py-3 px-4 rounded-lg text-gray-600 hover:bg-gray-100 transition ease-in-out duration-100"
+    class="flex flex-row items-center py-3 px-4 rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-700 transition ease-in-out duration-100"
   >
     <div
       v-if="icon"
@@ -16,7 +16,9 @@
         stroke="currentColor"
         class="h-6 w-6"
         v-html="icon"
-      ><slot></slot></svg>
+      >
+        <slot></slot>
+      </svg>
     </div>
     <span class="" v-html="text"></span>
     <span
