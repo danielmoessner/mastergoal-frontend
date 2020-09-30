@@ -8,7 +8,7 @@
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
           <settings-item
             name="User settings"
-            link="#"
+            link="/u/settings/user-settings"
             v-bind:iconPaths="userIcon"
           ></settings-item>
           <settings-item
@@ -23,7 +23,7 @@
           ></settings-item>
           <settings-item
             name="Goal settings"
-            link="#"
+            link="/u/settings/goal-settings"
             v-bind:iconPaths="goalIcon"
           ></settings-item>
         </div>

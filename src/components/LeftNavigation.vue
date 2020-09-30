@@ -1,39 +1,67 @@
 <template>
-  <div class="w-full bg-white md:min-h-screen sticky top-0">
-    <mastergoal-logo v-on:click.native="open = !open"></mastergoal-logo>
-    <div class="w-full p-4 md:flex" v-bind:class="{ hidden: !open }">
-      <ul class="flex flex-col w-full">
-        <li class="my-px">
-          <navigation-button
-            link="#"
-            text="Overview"
-            v-bind:notifications="3"
-            v-bind:icon="overviewIcon"
-          ></navigation-button>
-        </li>
-        <div v-for="group in navigation" v-bind:key="group.name">
-          <navigation-heading v-bind:heading="group.name"></navigation-heading>
-          <li class="my-px" v-for="link in group.links" v-bind:key="link.name">
+  <div class="w-full md:min-h-screen sticky top-0 md:bg-white">
+    <mastergoal-logo v-on:click.native="toggle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        class="h-6 w-6 mr-2 text-gray-100 md:hidden"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h7"
+        />
+      </svg>
+    </mastergoal-logo>
+    <div
+      class="md:h-auto overflow-hidden transition-all ease-in-out duration-300 relative z-0"
+      ref="navigation"
+      v-bind:class="{ 'h-0': !open }"
+      v-bind:style="{ height: changingNavigationHeight }"
+    >
+      <div class="w-full p-4 md:flex bg-white">
+        <ul class="flex flex-col w-full">
+          <li class="my-px">
             <navigation-button
-              v-bind:link="link.url"
-              v-bind:text="link.name"
-              v-bind:icon="link.icon"
+              link="#"
+              text="Overview"
+              v-bind:notifications="3"
+              v-bind:icon="overviewIcon"
             ></navigation-button>
           </li>
-        </div>
-        <navigation-heading heading="User"></navigation-heading>
-        <navigation-button
-          link="/u/settings"
-          text="Settings"
-          v-bind:icon="settingsIcon"
-        ></navigation-button>
-        <navigation-button
-          v-on:click.prevent.native="signout"
-          link="#"
-          text="Logout"
-          v-bind:icon="logoutIcon"
-        ></navigation-button>
-      </ul>
+          <div v-for="group in navigation" v-bind:key="group.name">
+            <navigation-heading
+              v-bind:heading="group.name"
+            ></navigation-heading>
+            <li
+              class="my-px"
+              v-for="link in group.links"
+              v-bind:key="link.name"
+            >
+              <navigation-button
+                v-bind:link="link.url"
+                v-bind:text="link.name"
+                v-bind:icon="link.icon"
+              ></navigation-button>
+            </li>
+          </div>
+          <navigation-heading heading="User"></navigation-heading>
+          <navigation-button
+            link="/u/settings"
+            text="Settings"
+            v-bind:icon="settingsIcon"
+          ></navigation-button>
+          <navigation-button
+            v-on:click.prevent.native="signout"
+            link="#"
+            text="Logout"
+            v-bind:icon="logoutIcon"
+          ></navigation-button>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -52,9 +80,21 @@ export default {
       type: Array,
     },
   },
-  data: function () {
+  computed: {
+    navigationStyle() {
+      let height = this.navigationHeight;
+      if (this.open) height = 0;
+      return "transform: translateY(-" + height + "px);";
+    },
+    changingNavigationHeight() {
+      if (!this.open) return '';
+      return this.navigationHeight + "px";
+    },
+  },
+  data: function() {
     return {
-      open: false,
+      open: true,
+      navigationHeight: 'auto',
       overviewIcon:
         '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />',
       logoutIcon:
@@ -67,6 +107,25 @@ export default {
     signout() {
       this.$store.dispatch("signout");
     },
+    toggle() {
+      this.open = !this.open;
+      // this.$refs["navigation"].style.height = height;
+      // this.$refs["navigation"].classList += " collapsing";
+    },
+  },
+  mounted() {
+    this.navigationHeight = this.$refs["navigation"].clientHeight;
+    console.log(this.navigationHeight);
+    this.open = false;
   },
 };
 </script>
+
+<style>
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.35s ease;
+}
+</style>

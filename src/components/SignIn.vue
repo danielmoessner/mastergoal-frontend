@@ -1,14 +1,35 @@
 <template>
   <div class="w-full min-h-screen flex items-center justify-center">
-    <div class="w-64">
+    <div class="w-64 mb-64 mt-12">
       <mastergoal-logo class="rounded-lg mb-8"></mastergoal-logo>
-      <alert-box v-bind:message="alert.message" v-bind:type="alert.type"></alert-box>
-      <FormulateForm class="mb-12" v-on:submit="submit" v-bind:name="formName" v-model="formData">
-        <FormulateInput type="text" name="email" label="E-Mail" validation="required" />
-        <FormulateInput type="password" name="password" label="Password" validation="required" />
+      <alert-box
+        v-bind:message="alert.message"
+        v-bind:type="alert.type"
+      ></alert-box>
+      <FormulateForm
+        class="mb-12"
+        v-on:submit="submit"
+        v-bind:name="formName"
+        v-model="formData"
+      >
+        <FormulateInput
+          type="text"
+          name="email"
+          label="E-Mail"
+          validation="required"
+        />
+        <FormulateInput
+          type="password"
+          name="password"
+          label="Password"
+          validation="required"
+        />
         <FormulateInput type="submit" value="Login" />
       </FormulateForm>
-      <navigation-button link="/signup" text="Sign up instead"></navigation-button>
+      <navigation-button
+        link="/signup"
+        text="Sign up instead"
+      ></navigation-button>
     </div>
   </div>
 </template>

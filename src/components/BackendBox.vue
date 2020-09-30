@@ -3,7 +3,7 @@
     <aside class="w-full md:w-1/4 lg:w-1/4 xl:w-1/6">
       <left-navigation :navigation="navigation"></left-navigation>
     </aside>
-    <main class="w-full md:w-3/4 lg:w-3/4 xl:w-5/6">
+    <main class="w-full md:w-3/4 lg:w-3/4 xl:w-5/6 pb-64">
       <top-navigation></top-navigation>
       <transition name="fade">
         <alert-box v-if="alert.message" v-bind:message="alert.message" v-bind:type="alert.type"></alert-box>
