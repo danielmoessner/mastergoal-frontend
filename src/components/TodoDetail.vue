@@ -53,6 +53,7 @@
               }"
             ></form-button>
             <form-button
+              class="ml-4"
               v-on:response="changed"
               v-bind:text="'Set Done'"
               v-bind:link="todoUrl"
@@ -62,6 +63,7 @@
               }"
             ></form-button>
             <form-button
+              class="ml-4"
               v-on:response="changed"
               v-bind:text="'Set Failed'"
               v-bind:link="todoUrl"
@@ -85,6 +87,24 @@
         <p>
           Previous:
           <span v-html="todo.previous"></span>
+        </p>
+        <p>
+          Next:
+          <span>{{ todo.next }}</span>
+        </p>
+        <p>
+          Blocked:
+          <span>{{ todo.blocked }}</span>
+        </p>
+        <hr class="mt-2 mb-2" />
+        <p>
+          <form-button
+            v-on:response="deleted"
+            text="Delete"
+            v-bind:link="todoUrl"
+            v-bind:data="{}"
+            method="DELETE"
+          ></form-button>
         </p>
       </general-box>
       <general-box heading="Notes" v-if="todo.notes">
@@ -111,7 +131,7 @@ import GeneralBox from "@/components/GeneralBox.vue";
 import FormButton from "@/components/FormButton.vue";
 import RestForm from "@/components/RestForm.vue";
 import axios from "@/plugins/backendAxios.js";
-import BackendBox from '@/components/BackendBox.vue'
+import BackendBox from "@/components/BackendBox.vue";
 
 export default {
   name: "TodoDetail",
@@ -124,7 +144,7 @@ export default {
     FormButton,
     RestForm,
   },
-  data: function() {
+  data: function () {
     return {
       todo: {},
     };
@@ -149,7 +169,7 @@ export default {
       if (this.todo.deadline === null || this.todo.is_done) return 0;
       return (Date.parse(this.todo.deadline) - new Date()) / 1000;
     },
-    timeToDeadline: function() {
+    timeToDeadline: function () {
       if (this.todo.deadline === null || this.todo.is_done) return "";
       let delta = this.timeToDeadlineSeconds;
       let timeToDeadline = delta < 0 ? "Overdue: " : "";
@@ -171,8 +191,11 @@ export default {
     },
   },
   methods: {
-    changed: function(data) {
+    changed: function (data) {
       this.todo = data;
+    },
+    deleted: function () {
+      this.$router.push("/t/todos");
     },
   },
 };

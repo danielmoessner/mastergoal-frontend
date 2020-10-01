@@ -1,5 +1,5 @@
 <template>
-  <router-link v-bind:to="link" class="flex items-center p-2 text-gray-600 hover:text-gray-700">
+  <router-link v-bind:to="link" class="flex items-center p-2 text-gray-700 hover:text-gray-800">
     <div
       class="bg-gray-300 rounded-full w-10 h-10 mr-3 flex items-center justify-center"
     >
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-    name: "SettingsItem",
+    name: "OverviewItem",
     props: {
         name: {
             required: true,

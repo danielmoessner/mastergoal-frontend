@@ -1,5 +1,5 @@
 <template>
-  <div id="vue-main" class="flex bg-gray-100 w-full flex-wrap">
+  <div id="vue-main" class="flex bg-gray-200 w-full flex-wrap">
     <aside class="w-full md:w-1/4 lg:w-1/4 xl:w-1/6">
       <left-navigation :navigation="navigation"></left-navigation>
     </aside>
@@ -37,7 +37,7 @@ export default {
             },
             {
               name: "List",
-              url: "/t/all",
+              url: "/t/todos",
               icon:
                 '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />',
             },

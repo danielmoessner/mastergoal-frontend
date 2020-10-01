@@ -1,5 +1,5 @@
 <template>
-  <router-link class="p-2 text-gray-700" v-bind:to="link"
+  <router-link class="p-2 text-gray-600 last:text-gray-500" v-bind:to="link"
     ><div class="font-bold text-lg">{{ text }}</div>
   </router-link>
 </template>

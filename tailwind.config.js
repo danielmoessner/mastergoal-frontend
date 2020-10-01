@@ -1,4 +1,4 @@
-const { colors } = require('tailwindcss/defaultTheme')
+const { colors } = require("tailwindcss/defaultTheme");
 
 module.exports = {
   purge: ["./src/**/*.*"],
@@ -7,18 +7,20 @@ module.exports = {
       colors: {
         blue: {
           ...colors.blue,
-          '900': '#143c52'
-        }
-      }
+          "900": "#143c52",
+        },
+      },
     },
   },
   variants: {
-    borderWidth: ({ after }) => after(['first', 'last']),
-    margin:  ({ after }) => after(['first', 'last']),
+    borderWidth: ({ after }) => after(["first", "last"]),
+    margin: ({ after }) => after(["first", "last"]),
+    textColor: ({ after }) => after(["first", "last"]),
+    backgroundColor: ({ after }) => after(["odd", "even"]),
   },
   plugins: [],
   future: {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,
   },
-}
+};

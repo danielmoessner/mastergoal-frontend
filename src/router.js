@@ -13,6 +13,10 @@ import SettingsGeneral from "@/components/SettingsGeneral.vue";
 import SettingsTodo from "@/components/SettingsTodo.vue";
 import SettingsGoal from "@/components/SettingsGoal.vue";
 import SettingsUser from "@/components/SettingsUser.vue";
+import TodoListNormal from "@/components/TodoListNormal.vue";
+import TodoListNeverEnding from "@/components/TodoListNeverEnding.vue";
+import TodoListRepetitive from "@/components/TodoListRepetitive.vue";
+import TodoListPipeline from "@/components/TodoListPipeline.vue";
 
 store.dispatch("autoLogin");
 
@@ -48,15 +52,43 @@ const routes = [
     },
   },
   {
-    path: "/t/todo/:id",
-    component: TodoDetail,
+    path: "/t/todos",
+    component: TodoList,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/t/all",
-    component: TodoList,
+    path: "/t/todos/normal",
+    component: TodoListNormal,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/t/todos/never-ending",
+    component: TodoListNeverEnding,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/t/todos/repetitive",
+    component: TodoListRepetitive,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/t/todos/pipeline",
+    component: TodoListPipeline,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/t/todos/:id",
+    component: TodoDetail,
     meta: {
       requiresAuthenticationTrue: true,
     },

@@ -9,7 +9,7 @@
     >
       {{ heading }}
     </h2>
-    <div class="p-4 w-full" v-bind:class="{ 'pt-16': heading }">
+    <div class="w-full" v-bind:class="{ 'pt-16': heading, 'p-4': padding }">
       <slot></slot>
     </div>
   </div>
@@ -24,6 +24,10 @@ module.exports = {
       default: "",
     },
     overflow: {
+      type: Boolean,
+      default: true,
+    },
+    padding: {
       type: Boolean,
       default: true,
     },

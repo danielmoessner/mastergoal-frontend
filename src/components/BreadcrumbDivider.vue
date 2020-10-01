@@ -1,5 +1,5 @@
 <template>
-  <div class="text-lg text-gray-400 font-bold mx-1">/</div>
+  <div class="text-lg text-gray-500 font-bold mx-1">/</div>
 </template>
 
 <script>
