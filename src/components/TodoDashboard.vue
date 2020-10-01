@@ -1,7 +1,8 @@
 <template>
   <backend-box>
-    <heading-one text="Dashboard"></heading-one>
-
+    <breadcrumb-navigation>
+      <breadcrumb-link text="Dashboard" link="/t/dashboard"></breadcrumb-link>
+    </breadcrumb-navigation>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <general-box heading="Active todos" :style="{ 'height': toDosMinHeight }">
         <div>
@@ -50,8 +51,9 @@
 <script>
 import BackendBox from "@/components/BackendBox.vue";
 import GeneralBox from "@/components/GeneralBox.vue";
-import HeadingOne from "@/components/HeadingOne.vue";
 import TodoItem from "@/components/TodoItem.vue";
+import BreadcrumbNavigation from "@/components/BreadcrumbNavigation.vue";
+import BreadcrumbLink from "@/components/BreadcrumbLink.vue";
 import AddWeekTodoForm from "@/components/AddWeekTodoForm.vue";
 import AlertBox from "@/components/AlertBox.vue";
 import axios from "@/plugins/backendAxios.js";
@@ -61,10 +63,11 @@ export default {
   components: {
     BackendBox,
     GeneralBox,
-    HeadingOne,
     TodoItem,
     AddWeekTodoForm,
     AlertBox,
+    BreadcrumbLink,
+    BreadcrumbNavigation
   },
   computed: {
     allToDos: function () {

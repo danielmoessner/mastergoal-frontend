@@ -1,10 +1,10 @@
 <template>
   <backend-box>
     <breadcrumb-navigation>
-      <breadcrumb-link name="Settings" link="/u/settings"></breadcrumb-link>
+      <breadcrumb-link text="Settings" link="/u/settings"></breadcrumb-link>
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
-        name="General"
+        text="General"
         link="/u/settings/general-settings"
       ></breadcrumb-link>
     </breadcrumb-navigation>
@@ -80,7 +80,7 @@ export default {
     },
   },
   methods: {
-    submit: function() {
+    submit: function () {
       this.$store.dispatch("alert/clear");
       axios({ method: this.method, url: this.url, data: this.formData })
         .then((response) => {
@@ -97,7 +97,7 @@ export default {
       .then((response) => (this.user = response.data[0]));
   },
   watch: {
-    user: function(newValue) {
+    user: function (newValue) {
       axios
         .options(newValue.url)
         .then((response) => (this.userOptions = response.data));

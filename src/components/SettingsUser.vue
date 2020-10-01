@@ -1,10 +1,10 @@
 <template>
   <backend-box>
     <breadcrumb-navigation>
-      <breadcrumb-link name="Settings" link="/u/settings"></breadcrumb-link>
+      <breadcrumb-link text="Settings" link="/u/settings"></breadcrumb-link>
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
-        name="User"
+        text="User"
         link="/u/settings/user-settings"
       ></breadcrumb-link>
     </breadcrumb-navigation>

@@ -4,7 +4,7 @@
       <transition-group name="todo" tag="div" class="relative">
         <todo-item
           v-on:changed="todoChanged"
-          v-for="todo in unarchivedTodos"
+          v-for="todo in todos"
           :key="todo.url"
           v-bind:todo="todo"
           class="todo-item"
@@ -43,10 +43,6 @@ export default {
   computed: {
     todosMinHeight: function () {
       return String(8 * 56 - 8) + "px";
-      // return String(this.unarchivedTodos.length * 56 - 8) + "px";
-    },
-    unarchivedTodos: function () {
-      return this.todos.filter((todo) => !todo.is_archived);
     },
   },
   mounted() {

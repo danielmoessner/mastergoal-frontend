@@ -1,6 +1,6 @@
 <template>
   <router-link class="p-2 text-gray-700" v-bind:to="link"
-    ><div class="font-bold text-lg">{{ name }}</div>
+    ><div class="font-bold text-lg">{{ text }}</div>
   </router-link>
 </template>
 
@@ -12,7 +12,7 @@ export default {
       required: true,
       type: String,
     },
-    name: {
+    text: {
       required: true,
       type: String,
     },

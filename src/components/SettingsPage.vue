@@ -1,7 +1,7 @@
 <template>
   <backend-box>
     <breadcrumb-navigation>
-      <breadcrumb-link link="/u/settings" name="Settings"></breadcrumb-link>
+      <breadcrumb-link link="/u/settings" text="Settings"></breadcrumb-link>
     </breadcrumb-navigation>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <general-box v-bind:overflow="false">
