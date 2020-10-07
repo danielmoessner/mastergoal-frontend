@@ -24,6 +24,13 @@
           ></formulate-input>
           <formulate-input
             type="select"
+            label="Strategies"
+            name="strategy_main_choice"
+            id="strategy-main-choice"
+            v-bind:options="strategyOptions"
+          ></formulate-input>
+          <formulate-input
+            type="select"
             label="Tree goals"
             name="treeview_goal_choice"
             id="treeview-goal-choice"
@@ -82,6 +89,19 @@ export default {
       if (!this.userOptions) return [];
       let options = [];
       this.userOptions.actions.PUT.goal_view_goal_choice.choices.forEach(
+        (choice) =>
+          options.push({
+            id: choice.value,
+            value: choice.value,
+            label: choice.display_name,
+          })
+      );
+      return options;
+    },
+    strategyOptions() {
+      if (!this.userOptions) return [];
+      let options = [];
+      this.userOptions.actions.PUT.strategy_main_choice.choices.forEach(
         (choice) =>
           options.push({
             id: choice.value,
