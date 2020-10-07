@@ -1,5 +1,5 @@
 import axios from "axios";
-import router from "@/router.js";
+import router from "@/router/router.js";
 
 const state = {
   token: null,
@@ -46,7 +46,6 @@ const actions = {
         router.push(getters.mainView);
       })
       .catch((error) => {
-        console.log(data.formName);
         this._vm.$formulate.handle(error.response.data, data.formName);
       });
   },

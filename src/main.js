@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
-import router from "./router.js";
+import router from "@/router/router.js";
 import store from "@/store/store.js";
 import VueFormulate from "@braid/vue-formulate";
 import "@/assets/global.css";
