@@ -5,6 +5,11 @@ import GoalListGoals from "@/components/GoalListGoals.vue";
 import GoalListLinks from "@/components/GoalListLinks.vue";
 import GoalListMonitors from "@/components/GoalListMonitors.vue";
 import GoalListStrategies from "@/components/GoalListStrategies.vue";
+import GoalsAdd from '@/views/GoalsAdd.vue';
+import GoalsAddGoal from '@/views/GoalsAddGoal.vue';
+import GoalsAddMonitor from '@/views/GoalsAddMonitor.vue';
+import GoalsAddLink from '@/views/GoalsAddLink.vue';
+import GoalsAddStrategy from '@/views/GoalsAddStrategy.vue';
 
 export default [
   {
@@ -17,6 +22,41 @@ export default [
   {
     path: "/g/list",
     component: GoalList,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/g/add",
+    component: GoalsAdd,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/g/add/goal",
+    component: GoalsAddGoal,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/g/add/link",
+    component: GoalsAddLink,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/g/add/monitor",
+    component: GoalsAddMonitor,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/g/add/strategy",
+    component: GoalsAddStrategy,
     meta: {
       requiresAuthenticationTrue: true,
     },
