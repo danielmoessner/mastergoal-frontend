@@ -10,6 +10,9 @@ import GoalsAddGoal from '@/views/GoalsAddGoal.vue';
 import GoalsAddMonitor from '@/views/GoalsAddMonitor.vue';
 import GoalsAddLink from '@/views/GoalsAddLink.vue';
 import GoalsAddStrategy from '@/views/GoalsAddStrategy.vue';
+import GoalsLink from '@/views/GoalsLink.vue';
+import GoalsMonitor from '@/views/GoalsMonitor.vue';
+import GoalsStrategy from '@/views/GoalsStrategy.vue';
 
 export default [
   {
@@ -92,6 +95,27 @@ export default [
   {
     path: "/g/list/goals/:id",
     component: GoalDetail,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/g/list/monitors/:id",
+    component: GoalsMonitor,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/g/list/links/:id",
+    component: GoalsLink,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/g/list/strategies/:id",
+    component: GoalsStrategy,
     meta: {
       requiresAuthenticationTrue: true,
     },

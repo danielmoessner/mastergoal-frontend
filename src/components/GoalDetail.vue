@@ -8,7 +8,7 @@
       <breadcrumb-link
         v-if="goal"
         v-bind:text="goal.name"
-        v-bind:link="'/g/goals/' + goal.id"
+        v-bind:link="'/g/list/goals/' + goal.id"
       ></breadcrumb-link>
     </breadcrumb-navigation>
     <div class="grid gap-4 grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
@@ -62,18 +62,24 @@
           ></form-button>
         </div>
       </general-box>
-      <goal-item
-        v-bind:goal="subGoal"
-        v-for="subGoal in subGoals"
-        v-bind:key="subGoal.id"
-        type="Subgoal"
-      ></goal-item>
+      <monitor-item v-bind:monitor="monitor" v-if="monitor"></monitor-item>
       <goal-item
         v-bind:goal="masterGoal"
         v-for="masterGoal in masterGoals"
         v-bind:key="masterGoal.id"
         type="Mastergoal"
       ></goal-item>
+      <goal-item
+        v-bind:goal="subGoal"
+        v-for="subGoal in subGoals"
+        v-bind:key="subGoal.id"
+        type="Subgoal"
+      ></goal-item>
+      <strategy-item
+        v-bind:strategy="strategy"
+        v-for="strategy in strategies"
+        v-bind:key="strategy.url"
+      ></strategy-item>
     </div>
   </backend-box>
 </template>
@@ -87,6 +93,8 @@ import axios from "@/plugins/backendAxios.js";
 import GeneralBox from "@/components/GeneralBox.vue";
 import FormButton from "@/components/FormButton.vue";
 import GoalItem from "@/components/GoalItem.vue";
+import MonitorItem from "@/components/MonitorItem.vue";
+import StrategyItem from "@/components/StrategyItem.vue";
 
 export default {
   name: "GoalDetail",
@@ -98,6 +106,8 @@ export default {
     BreadcrumbNavigation,
     GeneralBox,
     GoalItem,
+    MonitorItem,
+    StrategyItem,
   },
   computed: {
     url() {
@@ -109,6 +119,8 @@ export default {
       goal: false,
       subGoals: [],
       masterGoals: [],
+      monitor: false,
+      strategies: [],
     };
   },
   mounted() {
@@ -117,6 +129,9 @@ export default {
   watch: {
     url() {
       this.fetch();
+    },
+    goal() {
+      axios.get(this.url).then((response) => (this.monitor = response.data));
     },
   },
   methods: {
@@ -131,6 +146,9 @@ export default {
       axios
         .get(this.url + "mastergoals/")
         .then((response) => (this.masterGoals = response.data));
+      axios
+        .get(this.url + "strategies")
+        .then((response) => (this.strategies = response.data));
     },
   },
 };

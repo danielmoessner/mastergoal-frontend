@@ -9,26 +9,16 @@
         <div class="block text-xs uppercase font-bold leading-tight">
           {{ type }}
         </div>
-        <div class="text-sm text-gray-600 block leading-tight font-light">
-          {{ goal.progress }} %
-        </div>
       </div>
-
       <div class="px-4 mb-4">
-        <div class="truncate leading-tight">{{ goal.name }}</div>
+        <div class="truncate leading-tight">{{ strategy.name }}</div>
       </div>
     </div>
     <div>
-      <div class="h-1 bg-gray-400">
-        <div
-          class="bg-blue-900 h-1"
-          v-bind:style="{ width: goal.progress + '%' }"
-        ></div>
-      </div>
       <navigation-button
         text="Open"
         class="w-full flex-shrink-0 rounded-tl-none rounded-tr-none"
-        v-bind:link="'/g/list/goals/' + goal.id"
+        v-bind:link="'/g/list/strategies/' + strategy.id"
       ></navigation-button>
     </div>
   </div>
@@ -38,18 +28,18 @@
 import NavigationButton from "@/components/NavigationButton.vue";
 
 export default {
-  name: "GoalItem",
+  name: "StrategyItem",
   components: {
     NavigationButton,
   },
   props: {
-    goal: {
+    strategy: {
       type: Object,
       required: true,
     },
     type: {
       type: String,
-      default: "Goal",
+      default: "Strategy",
     },
   },
 };
