@@ -12,6 +12,12 @@
       ></breadcrumb-link>
     </breadcrumb-navigation>
     <div class="grid gap-4 grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
+      <goal-item
+        v-bind:goal="masterGoal"
+        v-for="masterGoal in masterGoals"
+        v-bind:key="masterGoal.id"
+        type="Mastergoal"
+      ></goal-item>
       <general-box
         class="col-span-2 lg:col-span-2 xl:col-span-3"
         v-bind:overflow="false"
@@ -62,24 +68,19 @@
           ></form-button>
         </div>
       </general-box>
-      <monitor-item v-bind:monitor="monitor" v-if="monitor"></monitor-item>
-      <goal-item
-        v-bind:goal="masterGoal"
-        v-for="masterGoal in masterGoals"
-        v-bind:key="masterGoal.id"
-        type="Mastergoal"
-      ></goal-item>
+      <monitor-item v-bind:monitor="monitor" v-for="monitor in monitors" v-bind:key='monitor.url'></monitor-item>
+      <strategy-item
+        v-bind:strategy="strategy"
+        v-for="strategy in strategies"
+        v-bind:key="strategy.url"
+                    ></strategy-item> 
       <goal-item
         v-bind:goal="subGoal"
         v-for="subGoal in subGoals"
         v-bind:key="subGoal.id"
         type="Subgoal"
       ></goal-item>
-      <strategy-item
-        v-bind:strategy="strategy"
-        v-for="strategy in strategies"
-        v-bind:key="strategy.url"
-      ></strategy-item>
+     
     </div>
   </backend-box>
 </template>
@@ -119,7 +120,7 @@ export default {
       goal: false,
       subGoals: [],
       masterGoals: [],
-      monitor: false,
+      monitors: [],
       strategies: [],
     };
   },
@@ -131,7 +132,7 @@ export default {
       this.fetch();
     },
     goal() {
-      axios.get(this.url).then((response) => (this.monitor = response.data));
+      axios.get(this.goal.monitor).then((response) => (this.monitor = response.data));
     },
   },
   methods: {
@@ -149,6 +150,7 @@ export default {
       axios
         .get(this.url + "strategies")
         .then((response) => (this.strategies = response.data));
+      axios.get(this.url + 'monitors/').then(response => this.monitors = response.data)
     },
   },
 };

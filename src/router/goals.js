@@ -13,6 +13,7 @@ import GoalsAddStrategy from '@/views/GoalsAddStrategy.vue';
 import GoalsLink from '@/views/GoalsLink.vue';
 import GoalsMonitor from '@/views/GoalsMonitor.vue';
 import GoalsStrategy from '@/views/GoalsStrategy.vue';
+import GoalsStarred from '@/views/GoalsStarred.vue';
 
 export default [
   {
@@ -23,12 +24,15 @@ export default [
     },
   },
   {
-    path: "/g/list",
-    component: GoalList,
+    path: "/g/starred",
+    component: GoalsStarred,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
+  /*
+  ** Add Pages
+  */
   {
     path: "/g/add",
     component: GoalsAdd,
@@ -64,6 +68,16 @@ export default [
       requiresAuthenticationTrue: true,
     },
   },
+  /*
+  ** List Pages
+  */
+  {
+    path: "/g/list",
+    component: GoalList,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
   {
     path: "/g/list/goals",
     component: GoalListGoals,
@@ -92,6 +106,9 @@ export default [
       requiresAuthenticationTrue: true,
     },
   },
+  /*
+  ** Detail Pages
+  */
   {
     path: "/g/list/goals/:id",
     component: GoalDetail,

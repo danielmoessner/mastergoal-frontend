@@ -42,8 +42,16 @@
           <span>{{ link.progress }}</span>
         </p>
       </general-box>
-      <goal-item v-if="mastergoal" v-bind:goal="mastergoal" type="Mastergoal"></goal-item>
-      <goal-item v-if="subgoal" v-bind:goal="subgoal" type="Subgoal"></goal-item>
+      <goal-item
+        v-if="mastergoal"
+        v-bind:goal="mastergoal"
+        type="Mastergoal"
+      ></goal-item>
+      <goal-item
+        v-if="subgoal"
+        v-bind:goal="subgoal"
+        type="Subgoal"
+      ></goal-item>
     </div>
   </backend-box>
 </template>
