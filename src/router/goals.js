@@ -14,6 +14,7 @@ import GoalsLink from '@/views/GoalsLink.vue';
 import GoalsMonitor from '@/views/GoalsMonitor.vue';
 import GoalsStrategy from '@/views/GoalsStrategy.vue';
 import GoalsStarred from '@/views/GoalsStarred.vue';
+import GoalsTree from '@/views/GoalsTree.vue';
 
 export default [
   {
@@ -26,6 +27,13 @@ export default [
   {
     path: "/g/starred",
     component: GoalsStarred,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/g/tree",
+    component: GoalsTree,
     meta: {
       requiresAuthenticationTrue: true,
     },

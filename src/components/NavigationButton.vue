@@ -15,6 +15,7 @@
         viewBox="0 0 24 24"
         stroke="currentColor"
         class="h-6 w-6"
+        v-bind:class="svgClass"
         v-html="icon"
       >
         <slot></slot>
@@ -49,6 +50,10 @@ module.exports = {
     icon: {
       type: String,
       required: false,
+    },
+    svgClass: {
+      type: String,
+      default: "",
     },
   },
 };
