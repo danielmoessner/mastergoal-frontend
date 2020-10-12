@@ -38,6 +38,10 @@
           <span>{{ goal.impact }}</span>
         </p>
         <p>
+          Addition:
+          <span>{{ goal.addition }}</span>
+        </p>
+        <p>
           Deadline:
           <span>{{ goal.deadline }}</span>
         </p>

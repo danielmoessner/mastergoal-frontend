@@ -23,7 +23,7 @@
             <div class="block text-xs leading-tight">
               {{ type }}
             </div>
-            <div class="block text-xs leading-tight">{{ item.progress }}%</div>
+            <div class="block text-xs leading-tight" v-if="typeLowercase !== 'strategy'">{{ item.progress }}%</div>
           </div>
         </div>
       </div>
@@ -79,10 +79,11 @@ export default {
       type: String,
       default: "Goal",
     },
-    open: {
-      type: Boolean,
-      default: false,
-    },
+  },
+  data() {
+    return {
+      open: false
+    }
   },
   computed: {
     typeLowercase() {
