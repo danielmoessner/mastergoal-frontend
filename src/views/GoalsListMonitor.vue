@@ -18,7 +18,7 @@ import BreadcrumbDivider from '@/components/BreadcrumbDivider.vue';
 import MonitorTable from '@/components/MonitorTable.vue';
 
 export default {
-  name: "GoalList",
+  name: "GoalsListMonitor",
   components: {
     BackendBox,
     BreadcrumbNavigation,

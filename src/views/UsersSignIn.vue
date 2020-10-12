@@ -40,7 +40,7 @@ import MastergoalLogo from "@/components/MastergoalLogo.vue";
 import NavigationButton from "@/components/NavigationButton.vue";
 
 export default {
-  name: "SignIn",
+  name: "UsersSignIn",
   components: {
     AlertBox,
     MastergoalLogo,

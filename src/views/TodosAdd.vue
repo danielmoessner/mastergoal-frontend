@@ -33,7 +33,7 @@ import BackendBox from "@/components/BackendBox.vue";
 import AddTodoBox from "@/components/AddTodoBox.vue";
 
 export default {
-  name: "TodoAdd",
+  name: "TodosAdd",
   components: {
     HeadingOne,
     AddTodoBox,

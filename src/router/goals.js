@@ -1,10 +1,10 @@
-import GoalDashboard from "@/components/GoalDashboard.vue";
-import GoalDetail from "@/components/GoalDetail.vue";
-import GoalList from "@/components/GoalList.vue";
-import GoalListGoals from "@/components/GoalListGoals.vue";
-import GoalListLinks from "@/components/GoalListLinks.vue";
-import GoalListMonitors from "@/components/GoalListMonitors.vue";
-import GoalListStrategies from "@/components/GoalListStrategies.vue";
+import GoalDashboard from "@/views/GoalsDashboard.vue";
+import GoalsGoal from "@/views/GoalsGoal.vue";
+import GoalsList from "@/views/GoalsList.vue";
+import GoalsListGoal from "@/views/GoalsListGoal.vue";
+import GoalsListLink from "@/views/GoalsListLink.vue";
+import GoalsListMonitor from "@/views/GoalsListMonitor.vue";
+import GoalsListStrategy from "@/views/GoalsListStrategy.vue";
 import GoalsAdd from '@/views/GoalsAdd.vue';
 import GoalsAddGoal from '@/views/GoalsAddGoal.vue';
 import GoalsAddMonitor from '@/views/GoalsAddMonitor.vue';
@@ -81,35 +81,35 @@ export default [
   */
   {
     path: "/g/list",
-    component: GoalList,
+    component: GoalsList,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
     path: "/g/list/goals",
-    component: GoalListGoals,
+    component: GoalsListGoal,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
     path: "/g/list/strategies",
-    component: GoalListStrategies,
+    component: GoalsListStrategy,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
     path: "/g/list/monitors",
-    component: GoalListMonitors,
+    component: GoalsListMonitor,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
     path: "/g/list/links",
-    component: GoalListLinks,
+    component: GoalsListLink,
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -119,7 +119,7 @@ export default [
   */
   {
     path: "/g/list/goals/:id",
-    component: GoalDetail,
+    component: GoalsGoal,
     meta: {
       requiresAuthenticationTrue: true,
     },

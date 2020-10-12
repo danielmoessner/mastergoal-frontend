@@ -1,9 +1,9 @@
 <template>
   <backend-box>
     <breadcrumb-navigation>
-      <breadcrumb-link link="/t/list" text="Todos"></breadcrumb-link>
+      <breadcrumb-link link="/t/list" text="List"></breadcrumb-link>
       <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link link="/t/list/normal-todos" text="Normal-Todos"></breadcrumb-link>
+      <breadcrumb-link link="/t/list/pipeline-todos" text="Pipeline-Todos"></breadcrumb-link>
     </breadcrumb-navigation>
     <todo-table v-bind:todos="todos"></todo-table>
   </backend-box>
@@ -18,7 +18,7 @@ import axios from "@/plugins/backendAxios.js";
 import TodoTable from "@/components/TodoTable.vue";
 
 export default {
-  name: "TodoListNormal",
+  name: "TodosListPipeline",
   components: {
     TodoTable,
     BackendBox,
@@ -33,7 +33,7 @@ export default {
   },
   mounted() {
     axios
-      .get("/t/api/normal-todos/")
+      .get("/t/api/pipeline-todos/")
       .then((response) => (this.todos = response.data));
   },
 };

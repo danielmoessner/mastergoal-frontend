@@ -18,7 +18,7 @@ import BreadcrumbDivider from "@/components/BreadcrumbDivider.vue";
 import LinkTable from "@/components/LinkTable.vue";
 
 export default {
-  name: "GoalList",
+  name: "GoalsListLink",
   components: {
     BackendBox,
     BreadcrumbNavigation,

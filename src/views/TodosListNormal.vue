@@ -1,11 +1,11 @@
 <template>
   <backend-box>
     <breadcrumb-navigation>
-      <breadcrumb-link link="/g/list" text="List"></breadcrumb-link>
+      <breadcrumb-link link="/t/list" text="List"></breadcrumb-link>
       <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link link="/g/list/goals" text="Goals"></breadcrumb-link>
+      <breadcrumb-link link="/t/list/normal-todos" text="Normal-Todos"></breadcrumb-link>
     </breadcrumb-navigation>
-    <goal-table v-bind:goals="goals"></goal-table>
+    <todo-table v-bind:todos="todos"></todo-table>
   </backend-box>
 </template>
 
@@ -13,26 +13,28 @@
 import BackendBox from "@/components/BackendBox.vue";
 import BreadcrumbNavigation from "@/components/BreadcrumbNavigation.vue";
 import BreadcrumbLink from "@/components/BreadcrumbLink.vue";
-import GoalTable from "@/components/GoalTable.vue";
+import BreadcrumbDivider from "@/components/BreadcrumbDivider.vue";
 import axios from "@/plugins/backendAxios.js";
-import BreadcrumbDivider from '@/components/BreadcrumbDivider.vue';
+import TodoTable from "@/components/TodoTable.vue";
 
 export default {
-  name: "GoalList",
+  name: "TodosListNormal",
   components: {
+    TodoTable,
     BackendBox,
     BreadcrumbNavigation,
     BreadcrumbLink,
-    GoalTable,
-    BreadcrumbDivider
+    BreadcrumbDivider,
   },
   data() {
     return {
-      goals: [],
+      todos: [],
     };
   },
   mounted() {
-    axios.get("/g/api/goals/").then((response) => (this.goals = response.data));
+    axios
+      .get("/t/api/normal-todos/")
+      .then((response) => (this.todos = response.data));
   },
 };
 </script>

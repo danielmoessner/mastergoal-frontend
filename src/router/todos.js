@@ -1,11 +1,11 @@
-import TodoListNormal from "@/components/TodoListNormal.vue";
-import TodoListNeverEnding from "@/components/TodoListNeverEnding.vue";
-import TodoListRepetitive from "@/components/TodoListRepetitive.vue";
-import TodoListPipeline from "@/components/TodoListPipeline.vue";
-import TodoDetail from "@/components/TodoDetail.vue";
-import TodoDashboard from "@/components/TodoDashboard.vue";
-import TodoList from "@/components/TodoList.vue";
-import TodoAdd from "@/components/TodoAdd.vue";
+import TodoListNormal from "@/views/TodosListNormal.vue";
+import TodoListNeverEnding from "@/views/TodosListNeverEnding.vue";
+import TodoListRepetitive from "@/views/TodosListRepetitive.vue";
+import TodoListPipeline from "@/views/TodosListPipeline.vue";
+import TodoDetail from "@/views/TodosTodo.vue";
+import TodoDashboard from "@/views/TodosDashboard.vue";
+import TodoList from "@/views/TodosList.vue";
+import TodoAdd from "@/views/TodosAdd.vue";
 
 export default [
   {
@@ -15,6 +15,9 @@ export default [
       requiresAuthenticationTrue: true,
     },
   },
+  /*
+  ** List Pages
+  */
   {
     path: "/t/list",
     component: TodoList,
@@ -50,6 +53,9 @@ export default [
       requiresAuthenticationTrue: true,
     },
   },
+  /*
+  ** Detail Pages
+  */
   {
     path: "/t/list/todos/:id",
     component: TodoDetail,
@@ -57,6 +63,9 @@ export default [
       requiresAuthenticationTrue: true,
     },
   },
+  /*
+  ** Add Pages
+  */
   {
     path: "/t/add",
     component: TodoAdd,

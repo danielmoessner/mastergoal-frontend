@@ -40,7 +40,7 @@ import BreadcrumbLink from "@/components/BreadcrumbLink.vue";
 import OverviewItem from "@/components/OverviewItem.vue";
 
 export default {
-  name: "SettingsPage",
+  name: "UsersSettings",
   components: {
     OverviewItem,
     BackendBox,

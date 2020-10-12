@@ -1,10 +1,29 @@
-import SettingsPage from "@/components/SettingsPage.vue";
-import SettingsGeneral from "@/components/SettingsGeneral.vue";
-import SettingsTodo from "@/components/SettingsTodo.vue";
-import SettingsGoal from "@/components/SettingsGoal.vue";
-import SettingsUser from "@/components/SettingsUser.vue";
+import SettingsPage from "@/views/UsersSettings.vue";
+import SettingsGeneral from "@/views/UsersSettingsGeneral.vue";
+import SettingsTodo from "@/views/UsersSettingsTodo.vue";
+import SettingsGoal from "@/views/UsersSettingsGoal.vue";
+import SettingsUser from "@/views/UsersSettingsUser.vue";
+import SignIn from "@/views/UsersSignIn.vue";
+import SignUp from "@/views/UsersSignUp.vue";
 
 export default [
+  {
+    path: "/signup",
+    component: SignUp,
+    meta: {
+      requiresAuthenticationFalse: true,
+    },
+  },
+  {
+    path: "/signin",
+    component: SignIn,
+    meta: {
+      requiresAuthenticationFalse: true,
+    },
+  },
+  /*
+  ** Setting Pages
+  */
   {
     path: "/u/settings",
     component: SettingsPage,

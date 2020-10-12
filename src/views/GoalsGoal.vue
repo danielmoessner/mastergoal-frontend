@@ -98,7 +98,7 @@ import MonitorItem from "@/components/MonitorItem.vue";
 import StrategyItem from "@/components/StrategyItem.vue";
 
 export default {
-  name: "GoalDetail",
+  name: "GoalsGoal",
   components: {
     FormButton,
     BackendBox,

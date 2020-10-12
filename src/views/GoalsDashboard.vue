@@ -21,7 +21,7 @@ import axios from "@/plugins/backendAxios.js";
 import GoalItem from "@/components/GoalItem.vue";
 
 export default {
-  name: "GoalDashboard",
+  name: "GoalsDashboard",
   components: {
     BackendBox,
     BreadcrumbNavigation,

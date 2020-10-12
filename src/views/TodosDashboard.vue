@@ -59,7 +59,7 @@ import AlertBox from "@/components/AlertBox.vue";
 import axios from "@/plugins/backendAxios.js";
 
 export default {
-  name: "TodoDashboard",
+  name: "TodosDashboard",
   components: {
     BackendBox,
     GeneralBox,

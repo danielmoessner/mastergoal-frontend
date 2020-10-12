@@ -1,7 +1,7 @@
 <template>
   <backend-box>
     <breadcrumb-navigation>
-      <breadcrumb-link text="Todos" link="/t/list"></breadcrumb-link>
+      <breadcrumb-link text="List" link="/t/list"></breadcrumb-link>
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
         v-bind:text="breadcrumbText"
@@ -149,7 +149,7 @@ import axios from "@/plugins/backendAxios.js";
 import BackendBox from "@/components/BackendBox.vue";
 
 export default {
-  name: "TodoDetail",
+  name: "TodosTodo",
   components: {
     HeadingOne,
     BackendBox,
@@ -192,13 +192,13 @@ export default {
       if (!this.todo.type) return "";
       switch (this.todo.type) {
         case "NORMAL":
-          return "Normal";
+          return "Normal-Todos";
         case "REPETITIVE":
-          return "Repetitive";
+          return "Repetitive-Todos";
         case "NEVER_ENDING":
-          return "Never-ending";
+          return "Never-Ending-Todos";
         case "PIPELINE":
-          return "Pipeline";
+          return "Pipeline-Todos";
       }
       return "";
     },

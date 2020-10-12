@@ -66,7 +66,7 @@ import axios from "@/plugins/backendAxios.js";
 import GeneralBox from "@/components/GeneralBox.vue";
 
 export default {
-  name: "SettingsGeneral",
+  name: "UsersSettingsGoal",
   mixins: [],
   components: {
     BackendBox,
