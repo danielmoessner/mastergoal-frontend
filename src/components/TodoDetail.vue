@@ -1,17 +1,29 @@
 <template>
   <backend-box>
-    <div class="flex items-start justify-between">
-      <heading-one v-bind:text="toDoName">
+    <breadcrumb-navigation>
+      <breadcrumb-link text="Todos" link="/t/list"></breadcrumb-link>
+      <breadcrumb-divider></breadcrumb-divider>
+      <breadcrumb-link
+        v-bind:text="breadcrumbText"
+        v-bind:link="breadcrumbUrl"
+      ></breadcrumb-link>
+      <breadcrumb-divider></breadcrumb-divider>
+      <breadcrumb-link
+        v-if="todo.name"
+        v-bind:text="todo.name"
+        v-bind:link="'/t/list/todos/' + todo.id"
+      ></breadcrumb-link>
+    </breadcrumb-navigation>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-6">
+      <general-box :overflow="false">
+        <heading-one v-bind:text="toDoName" class="mb-0"> </heading-one>
         <p
-          class="text-lg font-normal tracking-normal mt-1"
+          class="text-lg font-normal tracking-normal -mt-5"
           v-bind:class="{ 'text-red-500': timeToDeadlineSeconds < 0 }"
           v-html="timeToDeadline"
         ></p>
-      </heading-one>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-6">
-      <general-box heading="General">
+        <hr class="mt-2 mb-2" />
         <p>
           Activate:
           <span v-html="todo.activate"></span>
@@ -128,6 +140,9 @@ import HeadingOne from "@/components/HeadingOne.vue";
 import GeneralBox from "@/components/GeneralBox.vue";
 // import UpdateButton from "@/components/UpdateButton.vue";
 // import DeleteButton from "@/components/DeleteButton.vue";
+import BreadcrumbNavigation from "@/components/BreadcrumbNavigation.vue";
+import BreadcrumbDivider from "@/components/BreadcrumbDivider.vue";
+import BreadcrumbLink from "@/components/BreadcrumbLink.vue";
 import FormButton from "@/components/FormButton.vue";
 import RestForm from "@/components/RestForm.vue";
 import axios from "@/plugins/backendAxios.js";
@@ -141,10 +156,13 @@ export default {
     GeneralBox,
     // UpdateButton,
     // DeleteButton,
+    BreadcrumbNavigation,
+    BreadcrumbDivider,
+    BreadcrumbLink,
     FormButton,
     RestForm,
   },
-  data: function () {
+  data: function() {
     return {
       todo: {},
     };
@@ -155,6 +173,34 @@ export default {
   computed: {
     url() {
       return "/t/api/todos/" + this.$route.params.id + "/";
+    },
+    breadcrumbUrl() {
+      if (!this.todo.type) return "#";
+      switch (this.todo.type) {
+        case "NORMAL":
+          return "/t/list/normal-todos";
+        case "REPETITIVE":
+          return "/t/list/repetitive-todos";
+        case "NEVER_ENDING":
+          return "/t/list/never-ending-todos";
+        case "PIPELINE":
+          return "/t/list/pipeline-todos";
+      }
+      return "#";
+    },
+    breadcrumbText() {
+      if (!this.todo.type) return "";
+      switch (this.todo.type) {
+        case "NORMAL":
+          return "Normal";
+        case "REPETITIVE":
+          return "Repetitive";
+        case "NEVER_ENDING":
+          return "Never-ending";
+        case "PIPELINE":
+          return "Pipeline";
+      }
+      return "";
     },
     toDoName() {
       return this.todo.name || "";
@@ -169,7 +215,7 @@ export default {
       if (this.todo.deadline === null || this.todo.is_done) return 0;
       return (Date.parse(this.todo.deadline) - new Date()) / 1000;
     },
-    timeToDeadline: function () {
+    timeToDeadline: function() {
       if (this.todo.deadline === null || this.todo.is_done) return "";
       let delta = this.timeToDeadlineSeconds;
       let timeToDeadline = delta < 0 ? "Overdue: " : "";
@@ -191,10 +237,10 @@ export default {
     },
   },
   methods: {
-    changed: function (data) {
+    changed: function(data) {
       this.todo = data;
     },
-    deleted: function () {
+    deleted: function() {
       this.$router.push("/t/todos");
     },
   },

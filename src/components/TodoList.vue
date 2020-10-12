@@ -1,29 +1,29 @@
 <template>
   <backend-box>
     <breadcrumb-navigation>
-      <breadcrumb-link link="/t/todos" text="Todos"></breadcrumb-link>
+      <breadcrumb-link link="/t/list" text="Todos"></breadcrumb-link>
     </breadcrumb-navigation>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <general-box v-bind:overflow="false">
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
           <overview-item
             name="Normal-Todos"
-            link="/t/todos/normal"
+            link="/t/list/normal-todos"
             v-bind:iconPaths="normalIconPaths"
           ></overview-item>
           <overview-item
             name="Never-Ending-Todos"
-            link="/t/todos/never-ending"
+            link="/t/list/never-ending-todos"
             v-bind:iconPaths="neverEndingIconPaths"
           ></overview-item>
           <overview-item
             name="Repetitive-Todos"
-            link="/t/todos/repetitive"
+            link="/t/list/repetitive-todos"
             v-bind:iconPaths="repetitiveIconPaths"
           ></overview-item>
           <overview-item
             name="Pipeline-Todos"
-            link="/t/todos/pipeline"
+            link="/t/list/pipeline-todos"
             v-bind:iconPaths="pipelineIconPaths"
           ></overview-item>
         </div>

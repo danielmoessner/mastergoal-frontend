@@ -16,42 +16,42 @@ export default [
     },
   },
   {
-    path: "/t/todos",
+    path: "/t/list",
     component: TodoList,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/t/todos/normal",
+    path: "/t/list/normal-todos",
     component: TodoListNormal,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/t/todos/never-ending",
+    path: "/t/list/never-ending-todos",
     component: TodoListNeverEnding,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/t/todos/repetitive",
+    path: "/t/list/repetitive-todos",
     component: TodoListRepetitive,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/t/todos/pipeline",
+    path: "/t/list/pipeline-todos",
     component: TodoListPipeline,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/t/todos/:id",
+    path: "/t/list/todos/:id",
     component: TodoDetail,
     meta: {
       requiresAuthenticationTrue: true,

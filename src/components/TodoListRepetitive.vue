@@ -1,9 +1,9 @@
 <template>
   <backend-box>
     <breadcrumb-navigation>
-      <breadcrumb-link link="/t/todos" text="Todos"></breadcrumb-link>
+      <breadcrumb-link link="/t/list" text="Todos"></breadcrumb-link>
       <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link link="/t/todos/repetitive" text="Repetitive-Todos"></breadcrumb-link>
+      <breadcrumb-link link="/t/list/repetitive-todos" text="Repetitive-Todos"></breadcrumb-link>
     </breadcrumb-navigation>
     <todo-table v-bind:todos="todos"></todo-table>
   </backend-box>

@@ -21,7 +21,7 @@
         ></span>
       </div>
     </div>
-    <navigation-button v-bind:text="'Open'" v-bind:link="detailUrl"></navigation-button>
+    <navigation-button v-bind:text="'Open'" v-bind:link="'/t/list/todos/' + todo.id"></navigation-button>
   </div>
 </template>
 
@@ -43,9 +43,6 @@ export default {
     NavigationButton,
   },
   computed: {
-    detailUrl () {
-      return '/t/todos/' + this.todo.id
-    },
     timeToDeadlineSeconds() {
       if (this.todo.status !== "ACTIVE") return 0;
       return (Date.parse(this.todo.deadline) - new Date()) / 1000;

@@ -58,7 +58,7 @@
             v-bind:icon="todosDashboardIcon"
           ></navigation-button>
           <navigation-button
-            link="/t/todos"
+            link="/t/list"
             text="List"
             v-bind:icon="listIcon"
           ></navigation-button>

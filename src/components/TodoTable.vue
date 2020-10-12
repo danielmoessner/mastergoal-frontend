@@ -57,7 +57,7 @@
           <td class="px-1 whitespace-no-wrap">
             <div class="flex items-center justify-end">
               <navigation-button
-                v-bind:link="'/t/todos/' + todo.id"
+                v-bind:link="'/t/list/todos/' + todo.id"
                 text="Open"
               ></navigation-button>
             </div>
