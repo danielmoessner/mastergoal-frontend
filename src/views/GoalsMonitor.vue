@@ -28,6 +28,10 @@
           Weight:
           <span>{{ monitor.weight }}</span>
         </p>
+        <p>
+          Notes:
+          <span>{{ monitor.notes }}</span>
+        </p>
         <div class="flex justify-between items-center w-full">
           <p>
             Step:
