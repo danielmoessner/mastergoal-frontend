@@ -14,6 +14,7 @@ module.exports = {
   },
   variants: {
     borderWidth: ({ after }) => after(["first", "last"]),
+    borderRadius: ({ after }) => after(["first", "last"]),
     margin: ({ after }) => after(["first", "last"]),
     textColor: ({ after }) => after(["first", "last"]),
     backgroundColor: ({ after }) => after(["odd", "even"]),
