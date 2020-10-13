@@ -83,7 +83,7 @@ export default {
         .post("/t/api/repetitive-todos/", this.formData)
         .then((response) =>
           this.$router.push(
-            "/t/list/repetitive-todos/" + response.data.id + "/"
+            "/t/list/todos/" + response.data.id + "/"
           )
         )
         .catch((err) => this.$formulate.handle(err.response.data, this.name));

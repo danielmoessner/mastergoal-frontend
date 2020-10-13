@@ -69,7 +69,7 @@ export default {
       axios
         .post("/t/api/normal-todos/", this.formData)
         .then((response) =>
-          this.$router.push("/t/list/normal-todos/" + response.data.id + '/')
+          this.$router.push("/t/list/todos/" + response.data.id + '/')
         )
         .catch((err) => this.$formulate.handle(err.response.data, this.name));
     },

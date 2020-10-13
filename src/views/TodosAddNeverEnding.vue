@@ -76,7 +76,7 @@ export default {
       axios
         .post("/t/api/never-ending-todos/", this.formData)
         .then((response) =>
-          this.$router.push("/t/list/never-ending-todos/" + response.data.id + '/')
+          this.$router.push("/t/list/todos/" + response.data.id + '/')
         )
         .catch((err) => this.$formulate.handle(err.response.data, this.name));
     },
