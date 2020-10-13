@@ -33,7 +33,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuthenticationTrue)) {
     if (!store.getters.isAuthenticated) {
       next({
-        path: "/signin",
+        path: "/signin/",
         query: { redirect: to.fullPath },
       });
     }
@@ -41,18 +41,18 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuthenticationFalse)) {
     if (store.getters.isAuthenticated) {
       next({
-        path: "/t/dashboard",
+        path: "/t/dashboard/",
       });
     }
   }
   if (to.matched.some((record) => record.meta.forceRedirect)) {
     if (store.getters.isAuthenticated) {
       next({
-        path: "/t/dashboard",
+        path: "/t/dashboard/",
       });
     } else {
       next({
-        path: "/signin",
+        path: "/signin/",
       });
     }
   }

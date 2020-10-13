@@ -1,6 +1,6 @@
 <template>
   <router-link
-    v-bind:to="link"
+    v-bind:to="completeLink"
     class="flex flex-row items-center py-3 px-4 rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-700 transition ease-in-out duration-100"
   >
     <div
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-module.exports = {
+export default {
   name: "NavigationButton",
   props: {
     link: {
@@ -54,6 +54,12 @@ module.exports = {
     svgClass: {
       type: String,
       default: "",
+    },
+  },
+  computed: {
+    completeLink() {
+      if (this.link.endsWith("/")) return this.link;
+      return this.link + "/";
     },
   },
 };

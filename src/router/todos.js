@@ -9,7 +9,7 @@ import TodoAdd from "@/views/TodosAdd.vue";
 
 export default [
   {
-    path: "/t/dashboard",
+    path: "/t/dashboard/",
     component: TodoDashboard,
     meta: {
       requiresAuthenticationTrue: true,
@@ -19,35 +19,35 @@ export default [
   ** List Pages
   */
   {
-    path: "/t/list",
+    path: "/t/list/",
     component: TodoList,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/t/list/normal-todos",
+    path: "/t/list/normal-todos/",
     component: TodoListNormal,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/t/list/never-ending-todos",
+    path: "/t/list/never-ending-todos/",
     component: TodoListNeverEnding,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/t/list/repetitive-todos",
+    path: "/t/list/repetitive-todos/",
     component: TodoListRepetitive,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/t/list/pipeline-todos",
+    path: "/t/list/pipeline-todos/",
     component: TodoListPipeline,
     meta: {
       requiresAuthenticationTrue: true,
@@ -57,7 +57,7 @@ export default [
   ** Detail Pages
   */
   {
-    path: "/t/list/todos/:id",
+    path: "/t/list/todos/:id/",
     component: TodoDetail,
     meta: {
       requiresAuthenticationTrue: true,
@@ -67,7 +67,7 @@ export default [
   ** Add Pages
   */
   {
-    path: "/t/add",
+    path: "/t/add/",
     component: TodoAdd,
     meta: {
       requiresAuthenticationTrue: true,

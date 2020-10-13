@@ -15,24 +15,25 @@ import GoalsMonitor from '@/views/GoalsMonitor.vue';
 import GoalsStrategy from '@/views/GoalsStrategy.vue';
 import GoalsStarred from '@/views/GoalsStarred.vue';
 import GoalsTree from '@/views/GoalsTree.vue';
+import GoalsGoalEdit from '@/views/GoalsGoalEdit.vue';
 
 export default [
   {
-    path: "/g/goals",
+    path: "/g/goals/",
     component: GoalDashboard,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/g/starred",
+    path: "/g/starred/",
     component: GoalsStarred,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/g/tree",
+    path: "/g/tree/",
     component: GoalsTree,
     meta: {
       requiresAuthenticationTrue: true,
@@ -42,35 +43,35 @@ export default [
   ** Add Pages
   */
   {
-    path: "/g/add",
+    path: "/g/add/",
     component: GoalsAdd,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/g/add/goal",
+    path: "/g/add/goal/",
     component: GoalsAddGoal,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/g/add/link",
+    path: "/g/add/link/",
     component: GoalsAddLink,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/g/add/monitor",
+    path: "/g/add/monitor/",
     component: GoalsAddMonitor,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/g/add/strategy",
+    path: "/g/add/strategy/",
     component: GoalsAddStrategy,
     meta: {
       requiresAuthenticationTrue: true,
@@ -80,35 +81,35 @@ export default [
   ** List Pages
   */
   {
-    path: "/g/list",
+    path: "/g/list/",
     component: GoalsList,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/g/list/goals",
+    path: "/g/list/goals/",
     component: GoalsListGoal,
     meta: {
       requiresAuthenticationTrue: true,
-    },
+    }
   },
   {
-    path: "/g/list/strategies",
+    path: "/g/list/strategies/",
     component: GoalsListStrategy,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/g/list/monitors",
+    path: "/g/list/monitors/",
     component: GoalsListMonitor,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/g/list/links",
+    path: "/g/list/links/",
     component: GoalsListLink,
     meta: {
       requiresAuthenticationTrue: true,
@@ -118,29 +119,39 @@ export default [
   ** Detail Pages
   */
   {
-    path: "/g/list/goals/:id",
+    path: "/g/list/goals/:id/",
     component: GoalsGoal,
     meta: {
       requiresAuthenticationTrue: true,
-    },
+    }
   },
   {
-    path: "/g/list/monitors/:id",
+    path: "/g/list/monitors/:id/",
     component: GoalsMonitor,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/g/list/links/:id",
+    path: "/g/list/links/:id/",
     component: GoalsLink,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/g/list/strategies/:id",
+    path: "/g/list/strategies/:id/",
     component: GoalsStrategy,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  /*
+  ** Edit Pages
+  */
+  {
+    path: "/g/list/goals/:id/edit/",
+    component: GoalsGoalEdit,
     meta: {
       requiresAuthenticationTrue: true,
     },

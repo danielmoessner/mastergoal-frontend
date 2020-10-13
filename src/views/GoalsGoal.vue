@@ -11,45 +11,35 @@
         v-bind:link="'/g/list/goals/' + goal.id"
       ></breadcrumb-link>
     </breadcrumb-navigation>
-    <div class="grid gap-4 grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
+    <detail-grid v-if="masterGoals.length">
       <goal-item
         v-bind:goal="masterGoal"
         v-for="masterGoal in masterGoals"
         v-bind:key="masterGoal.id"
         type="Mastergoal"
       ></goal-item>
+    </detail-grid>
+    <detail-grid>
       <general-box
         class="col-span-2 lg:col-span-2 xl:col-span-3"
         v-bind:overflow="false"
       >
-        <p>
-          Name:
-          <span>{{ goal.name }}</span>
-        </p>
-        <p>
-          Progress: <span>{{ goal.progress }}</span>
-        </p>
-        <p>
-          Why:
-          <span>{{ goal.why }}</span>
-        </p>
-        <p>
-          Impact:
-          <span>{{ goal.impact }}</span>
-        </p>
-        <p>
-          Addition:
-          <span>{{ goal.addition }}</span>
-        </p>
-        <p>
-          Deadline:
-          <span>{{ goal.deadline }}</span>
-        </p>
-        <div class="flex justify-between items-center w-full">
-          <p>
-            Archived:
-            <span>{{ goal.is_archived }}</span>
-          </p>
+        <heading-one
+          :title="goal.name"
+          :subtitle="goal.progress + ' %'"
+        ></heading-one>
+        <property-text property="Why" :text="goal.why"></property-text>
+        <property-text property="Impact" :text="goal.impact"></property-text>
+        <property-text
+          property="Addition"
+          :text="goal.addition"
+        ></property-text>
+        <property-text
+          property="Deadline"
+          :text="goal.deadline"
+        ></property-text>
+        <hr />
+        <property-short property="Archived" :text="goal.is_archived">
           <form-button
             v-on:response="changed"
             v-bind:text="'Toggle'"
@@ -57,12 +47,8 @@
             v-bind:link="goal.url"
             v-bind:data="{ is_archived: !goal.is_archived }"
           ></form-button>
-        </div>
-        <div class="flex justify-between items-center w-full">
-          <p>
-            Starred:
-            <span>{{ goal.is_starred }}</span>
-          </p>
+        </property-short>
+        <property-short property="Starred" :text="goal.is_starred">
           <form-button
             v-on:response="changed"
             v-bind:text="'Toggle'"
@@ -70,22 +56,32 @@
             v-bind:link="goal.url"
             v-bind:data="{ is_starred: !goal.is_starred }"
           ></form-button>
-        </div>
+        </property-short>
+        <hr />
+        <href-form-button to="edit" text="Edit"></href-form-button>
+        <href-form-button to="#" text="Delete"></href-form-button>
       </general-box>
-      <monitor-item v-bind:monitor="monitor" v-for="monitor in monitors" v-bind:key='monitor.url'></monitor-item>
+    </detail-grid>
+    <detail-grid v-if="monitors.length || strategies.length">
+      <monitor-item
+        v-bind:monitor="monitor"
+        v-for="monitor in monitors"
+        v-bind:key="monitor.url"
+      ></monitor-item>
       <strategy-item
         v-bind:strategy="strategy"
         v-for="strategy in strategies"
         v-bind:key="strategy.url"
-                    ></strategy-item> 
+      ></strategy-item>
+    </detail-grid>
+    <detail-grid v-if="subGoals.length">
       <goal-item
         v-bind:goal="subGoal"
         v-for="subGoal in subGoals"
         v-bind:key="subGoal.id"
         type="Subgoal"
       ></goal-item>
-     
-    </div>
+    </detail-grid>
   </backend-box>
 </template>
 
@@ -100,11 +96,18 @@ import FormButton from "@/components/FormButton.vue";
 import GoalItem from "@/components/GoalItem.vue";
 import MonitorItem from "@/components/MonitorItem.vue";
 import StrategyItem from "@/components/StrategyItem.vue";
+import HeadingOne from "@/components/HeadingOne.vue";
+import PropertyText from "@/components/PropertyText.vue";
+import PropertyShort from "@/components/PropertyShort.vue";
+import HrefFormButton from "@/components/HrefFormButton.vue";
+import DetailGrid from "@/components/DetailGrid.vue";
 
 export default {
   name: "GoalsGoal",
   components: {
     FormButton,
+    DetailGrid,
+    PropertyShort,
     BackendBox,
     BreadcrumbLink,
     BreadcrumbDivider,
@@ -112,7 +115,10 @@ export default {
     GeneralBox,
     GoalItem,
     MonitorItem,
+    PropertyText,
     StrategyItem,
+    HeadingOne,
+    HrefFormButton,
   },
   computed: {
     url() {
@@ -136,7 +142,9 @@ export default {
       this.fetch();
     },
     goal() {
-      axios.get(this.goal.monitor).then((response) => (this.monitor = response.data));
+      axios
+        .get(this.goal.monitor)
+        .then((response) => (this.monitor = response.data));
     },
   },
   methods: {
@@ -154,7 +162,9 @@ export default {
       axios
         .get(this.url + "strategies")
         .then((response) => (this.strategies = response.data));
-      axios.get(this.url + 'monitors/').then(response => this.monitors = response.data)
+      axios
+        .get(this.url + "monitors/")
+        .then((response) => (this.monitors = response.data));
     },
   },
 };

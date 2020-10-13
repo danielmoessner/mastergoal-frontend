@@ -5,6 +5,14 @@
 @import "tailwindcss/utilities";
 
 /*
+Overwrite base styles
+*/
+hr {
+  @apply .mt-2;
+  @apply .mb-2;
+}
+
+/*
 Vue Formulate Change the default look of general errors
 */
 .formulate-form-errors {

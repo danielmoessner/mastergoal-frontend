@@ -8,14 +8,14 @@ import SignUp from "@/views/UsersSignUp.vue";
 
 export default [
   {
-    path: "/signup",
+    path: "/signup/",
     component: SignUp,
     meta: {
       requiresAuthenticationFalse: true,
     },
   },
   {
-    path: "/signin",
+    path: "/signin/",
     component: SignIn,
     meta: {
       requiresAuthenticationFalse: true,
@@ -25,35 +25,35 @@ export default [
   ** Setting Pages
   */
   {
-    path: "/u/settings",
+    path: "/u/settings/",
     component: SettingsPage,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/u/settings/general-settings",
+    path: "/u/settings/general-settings/",
     component: SettingsGeneral,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/u/settings/todo-settings",
+    path: "/u/settings/todo-settings/",
     component: SettingsTodo,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/u/settings/goal-settings",
+    path: "/u/settings/goal-settings/",
     component: SettingsGoal,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/u/settings/user-settings",
+    path: "/u/settings/user-settings/",
     component: SettingsUser,
     meta: {
       requiresAuthenticationTrue: true,

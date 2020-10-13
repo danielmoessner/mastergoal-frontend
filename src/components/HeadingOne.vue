@@ -1,18 +1,43 @@
 <template>
   <h1 class="text-5xl font-bold text-blue-900 tracking-tight leading-none mb-6">
-    {{ text }}
-    <slot></slot>
+    {{ texttitle }}
+    <slot>
+      <p
+        v-if="subtitle"
+        class="text-lg font-normal tracking-normal"
+        v-bind:class="subtitleClass"
+      >
+        {{ subtitle }}
+      </p>
+    </slot>
   </h1>
 </template>
 
 <script>
-module.exports = {
-  name: "HOne",
+export default {
+  name: "HeadingOne",
   props: {
     text: {
       type: String,
-      required: true
-    }
-  }
-}
+      default: "",
+    },
+    title: {
+      type: String,
+      default: "",
+    },
+    subtitle: {
+      type: String,
+      default: "",
+    },
+    subtitleClass: {
+      type: String,
+      default: "",
+    },
+  },
+  computed: {
+    texttitle() {
+      return this.text || this.title || "";
+    },
+  },
+};
 </script>
