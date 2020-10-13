@@ -14,13 +14,14 @@ export default {
       default: "",
     },
     text: {
-      type: String,
+      type: [String, Boolean, Number],
       default: "",
     },
   },
   computed: {
     textNonEmpty() {
-      return this.text || "...";
+      if (this.text === null) return "...";
+      return this.text.toString() || "...";
     },
   },
 };

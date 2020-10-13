@@ -15,46 +15,45 @@
       ></breadcrumb-link>
     </breadcrumb-navigation>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-6">
-      <general-box :overflow="false">
-        <heading-one v-bind:text="toDoName" class="mb-0"> </heading-one>
-        <p
-          class="text-lg font-normal tracking-normal -mt-5"
-          v-bind:class="{ 'text-red-500': timeToDeadlineSeconds < 0 }"
-          v-html="timeToDeadline"
-        ></p>
-        <hr class="mt-2 mb-2" />
-        <p>
-          Activate:
-          <span v-html="todo.activate"></span>
-        </p>
-        <p>
-          Deadline:
-          <span v-html="todo.deadline"></span>
-        </p>
-        <p>
-          Completed:
-          <span v-html="todo.completed"></span>
-        </p>
-        <div class="flex justify-between items-center w-full">
-          <p>
-            Archived:
-            <span v-html="todo.is_archived"></span>
-          </p>
-          <form-button
-            v-on:response="changed"
-            v-bind:text="'Toggle'"
-            v-bind:link="todoUrl"
-            v-bind:data="{ is_archived: !todo.is_archived }"
-          ></form-button>
-        </div>
-        <hr class="mt-2 mb-2" />
-        <div class="flex justify-between items-center w-full">
-          <p>
-            Status:
-            <span v-html="todo.status"></span>
-          </p>
-          <p>
+    <detail-grid>
+      <general-box
+        v-if="todo"
+        class="col-span-2 md:col-span-3 xl:col-span-3"
+        :overflow="false"
+      >
+        <heading-one
+          v-bind:text="toDoName"
+          :subtitle="timeToDeadline"
+          :subtitleClass="timeToDeadlineSeconds < 0 ? 'text-red-500' : ''"
+        >
+        </heading-one>
+        <property-text property="Notes" :text="todo.notes"></property-text>
+        <property-text
+          property="Activate"
+          :text="todo.activate"
+        ></property-text>
+        <property-text
+          property="Deadline"
+          :text="todo.deadline"
+        ></property-text>
+        <property-text
+          v-if="todo.type === 'REPETITIVE' || todo.type === 'NEVER_ENDING'"
+          property="Duration"
+          :text="todo.duration"
+        ></property-text>
+        <property-text
+          v-if="todo.type === 'REPETITIVE'"
+          property="Repetitions"
+          :text="todo.repetitions"
+        ></property-text>
+        <property-text
+          v-if="todo.type === 'NEVER_ENDING'"
+          property="Blocked"
+          :text="todo.blocked"
+        ></property-text>
+        <hr />
+        <property-short property="Status" :short="todo.status">
+          <div>
             <form-button
               v-on:response="changed"
               v-bind:text="'Set Active'"
@@ -84,83 +83,77 @@
                 visibility: todo.status === 'FAILED' ? 'hidden' : 'visible',
               }"
             ></form-button>
-          </p>
-        </div>
-
-        <hr class="mt-2 mb-2" />
-        <p>
-          Duration:
-          <span v-html="todo.duration"></span>
-        </p>
-        <p>
-          Repetitions:
-          <span v-html="todo.repetitions"></span>
-        </p>
-        <p>
-          Previous:
-          <span v-html="todo.previous"></span>
-        </p>
-        <p>
-          Next:
-          <span>{{ todo.next }}</span>
-        </p>
-        <p>
-          Blocked:
-          <span>{{ todo.blocked }}</span>
-        </p>
-        <hr class="mt-2 mb-2" />
-        <p>
+          </div>
+        </property-short>
+        <property-short
+          property="Completed"
+          :short="todo.completed"
+        ></property-short>
+        <property-short
+          v-if="
+            todo.type === 'REPETITIVE' ||
+              todo.type === 'NEVER_ENDING' ||
+              todo.type === 'PIPELINE'
+          "
+          property="Previous"
+          :short="todo.previous"
+        ></property-short>
+        <property-short
+          v-if="todo.type === 'REPETITIVE' || todo.type === 'NEVER_ENDING'"
+          property="Next"
+          :short="todo.next"
+        ></property-short>
+        <hr />
+        <property-short property="Archived" :short="todo.is_archived">
           <form-button
-            v-on:response="deleted"
-            text="Delete"
+            v-on:response="changed"
+            v-bind:text="'Toggle'"
             v-bind:link="todoUrl"
-            v-bind:data="{}"
-            method="DELETE"
+            v-bind:data="{ is_archived: !todo.is_archived }"
           ></form-button>
-        </p>
+        </property-short>
+        <hr />
+        <href-form-button text="Edit" link="edit/"></href-form-button>
+        <form-button
+          v-on:response="deleted"
+          text="Delete"
+          v-bind:link="todoUrl"
+          v-bind:data="{}"
+          method="DELETE"
+        ></form-button>
       </general-box>
-      <general-box heading="Notes" v-if="todo.notes">
-        <p v-html="todo.notes"></p>
-      </general-box>
-      <general-box heading="Edit">
-        <rest-form
-          method="PUT"
-          v-on:response="changed"
-          v-if="todo.form_url && todo.url"
-          v-bind:url="todo.form_url"
-          v-bind:submitUrl="todo.url"
-        ></rest-form>
-      </general-box>
-    </div>
+    </detail-grid>
   </backend-box>
 </template>
 
 <script>
 import HeadingOne from "@/components/HeadingOne.vue";
 import GeneralBox from "@/components/GeneralBox.vue";
-// import UpdateButton from "@/components/UpdateButton.vue";
-// import DeleteButton from "@/components/DeleteButton.vue";
 import BreadcrumbNavigation from "@/components/BreadcrumbNavigation.vue";
 import BreadcrumbDivider from "@/components/BreadcrumbDivider.vue";
 import BreadcrumbLink from "@/components/BreadcrumbLink.vue";
 import FormButton from "@/components/FormButton.vue";
-import RestForm from "@/components/RestForm.vue";
 import axios from "@/plugins/backendAxios.js";
 import BackendBox from "@/components/BackendBox.vue";
+import PropertyText from "@/components/PropertyText.vue";
+import PropertyShort from "@/components/PropertyShort.vue";
+import DetailGrid from "@/components/DetailGrid.vue";
+import HrefFormButton from "@/components/HrefFormButton.vue";
 
 export default {
   name: "TodosTodo",
   components: {
-    HeadingOne,
     BackendBox,
     GeneralBox,
-    // UpdateButton,
-    // DeleteButton,
+    HeadingOne,
+    PropertyText,
+    PropertyShort,
+    DetailGrid,
+    HrefFormButton,
     BreadcrumbNavigation,
     BreadcrumbDivider,
     BreadcrumbLink,
     FormButton,
-    RestForm,
   },
   data: function() {
     return {

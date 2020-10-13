@@ -24,11 +24,16 @@
       >
         <heading-one :text="monitor.monitor" :subtitle="monitor.progress + ' %'"></heading-one>
         <property-text property="Notes" :text="monitor.text"></property-text>
-        <hr />
-        <property-short
+        
+        <property-text
           property="Weight"
-          :short="monitor.weight"
-        ></property-short>
+          :text="monitor.weight"
+        ></property-text>
+         <property-text
+          property="Steps"
+          :text="monitor.steps"
+        ></property-text>
+        <hr />
         <property-short property="Step" :short="monitor.step">
           <div>
             <form-button
@@ -48,10 +53,6 @@
             ></form-button>
           </div>
         </property-short>
-        <property-short
-          property="Steps"
-          :short="monitor.steps"
-        ></property-short>
         <hr>
         <property-short property="Archived" :short="monitor.is_archived">
           <form-button

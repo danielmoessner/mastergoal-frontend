@@ -28,6 +28,7 @@ export default {
   computed: {
     textshort() {
       let textshort = this.text || this.short;
+      if (textshort === null) return "...";
       textshort = textshort.toString();
       return textshort || "...";
     },

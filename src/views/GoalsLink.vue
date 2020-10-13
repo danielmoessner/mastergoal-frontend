@@ -24,9 +24,8 @@
         v-bind:overflow="false"
       >
         <heading-one :text="linkName"></heading-one>
-        <hr>
-        <property-short property="Weight" :short="link.weight"></property-short>
-        <hr>
+        <property-text property="Weight" :text="link.weight"></property-text>
+        <hr />
         <property-short property="Archived" :short="link.is_archived">
           <form-button
             v-on:response="changed"
@@ -36,7 +35,7 @@
             v-bind:data="{ is_archived: !link.is_archived }"
           ></form-button>
         </property-short>
-        <hr>
+        <hr />
         <href-form-button to="edit/" text="Edit"></href-form-button>
       </general-box>
     </detail-grid>
@@ -63,10 +62,12 @@ import DetailGrid from "@/components/DetailGrid.vue";
 import HrefFormButton from "@/components/HrefFormButton.vue";
 import PropertyShort from "@/components/PropertyShort.vue";
 import HeadingOne from "@/components/HeadingOne.vue";
+import PropertyText from "@/components/PropertyText.vue";
 
 export default {
   name: "GoalDetail",
   components: {
+    PropertyText,
     DetailGrid,
     HrefFormButton,
     PropertyShort,
