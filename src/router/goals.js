@@ -16,6 +16,9 @@ import GoalsStrategy from '@/views/GoalsStrategy.vue';
 import GoalsStarred from '@/views/GoalsStarred.vue';
 import GoalsTree from '@/views/GoalsTree.vue';
 import GoalsGoalEdit from '@/views/GoalsGoalEdit.vue';
+import GoalsStrategyEdit from '@/views/GoalsStrategyEdit.vue';
+import GoalsMonitorEdit from '@/views/GoalsMonitorEdit.vue';
+import GoalsLinkEdit from '@/views/GoalsLinkEdit.vue';
 
 export default [
   {
@@ -152,6 +155,27 @@ export default [
   {
     path: "/g/list/goals/:id/edit/",
     component: GoalsGoalEdit,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/g/list/strategies/:id/edit/",
+    component: GoalsStrategyEdit,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/g/list/monitors/:id/edit/",
+    component: GoalsMonitorEdit,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/g/list/links/:id/edit/",
+    component: GoalsLinkEdit,
     meta: {
       requiresAuthenticationTrue: true,
     },

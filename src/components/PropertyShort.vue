@@ -17,19 +17,19 @@ export default {
       default: "",
     },
     text: {
-      type: [String, Boolean],
-      default: "",
+      type: [String, Boolean, Number],
+      default: false,
     },
     short: {
-      type: [String, Boolean],
-      default: "",
+      type: [String, Boolean, Number],
+      default: false,
     },
   },
   computed: {
     textshort() {
-      let text = this.text.toString();
-      let short = this.short.toString();
-      return text || short || "...";
+      let textshort = this.text || this.short;
+      textshort = textshort.toString();
+      return textshort || "...";
     },
   },
 };

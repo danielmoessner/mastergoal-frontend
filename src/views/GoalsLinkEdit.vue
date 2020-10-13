@@ -3,58 +3,31 @@
     <breadcrumb-navigation>
       <breadcrumb-link text="List" link="/g/list"></breadcrumb-link>
       <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link text="Goals" link="/g/list/goals"></breadcrumb-link>
+      <breadcrumb-link text="links" link="/g/list/links"></breadcrumb-link>
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
-        v-if="goal"
-        v-bind:text="goal.name"
-        v-bind:link="'/g/list/goals/' + goal.id"
+        v-if="link"
+        v-bind:text="linkName"
+        v-bind:link="'/g/list/links/' + link.id"
       ></breadcrumb-link>
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
         text="Edit"
-        v-bind:link="'/g/list/goals/' + goal.id + '/edit/'"
+        v-bind:link="'/g/list/links/' + link.id + '/edit/'"
       ></breadcrumb-link>
     </breadcrumb-navigation>
     <detail-grid>
       <general-box
         v-bind:overflow="false"
-        class="col-span-2 md:col-span-3 xl:col-span-4"
+        class="col-span-2 lg:col-span-3 xl:col-span-3"
       >
         <formulate-form v-on:submit="submit" :name="name" v-model="formData">
           <formulate-input
-            type="text"
-            label="Name"
-            name="name"
-            id="name"
-            validation="required"
-          >
-          </formulate-input>
-          <formulate-input
-            type="textarea"
-            name="why"
-            id="why"
-            rows="6"
-            label="Why"
-            validation=""
-          >
-          </formulate-input>
-          <formulate-input
-            type="textarea"
-            name="impact"
-            rows="6"
-            id="impact"
-            label="Impact"
-            validation=""
-          >
-          </formulate-input>
-          <formulate-input
-            type="textarea"
-            name="addition"
-            rows="6"
-            id="addition"
-            label="Addition"
-            validation=""
+            type="number"
+            label="Weight"
+            name="weight"
+            id="weight"
+            validation="required|min:0"
           >
           </formulate-input>
           <formulate-input type="submit" value="Save"> </formulate-input>
@@ -74,7 +47,7 @@ import DetailGrid from "@/components/DetailGrid.vue";
 import GeneralBox from "@/components/GeneralBox.vue";
 
 export default {
-  name: "GoalsGoalEdit",
+  name: "GoalsLinkEdit",
   components: {
     GeneralBox,
     BackendBox,
@@ -85,14 +58,17 @@ export default {
   },
   data() {
     return {
-      goal: false,
-      name: "edit-goal-form",
+      link: false,
+      name: "edit-link-form",
       formData: {},
     };
   },
   computed: {
     url() {
-      return "/g/api/goals/" + this.$route.params.id + "/";
+      return "/g/api/links/" + this.$route.params.id + "/";
+    },
+    linkName() {
+      return this.link.mastergoal.name + " --> " + this.link.subgoal.name;
     },
   },
   mounted() {
@@ -101,15 +77,15 @@ export default {
   methods: {
     fetch() {
       axios.get(this.url).then((response) => {
-        this.goal = response.data;
+        this.link = response.data;
         this.formData = response.data;
       });
     },
     submit() {
       axios
-        .put(this.goal.url, this.formData)
+        .put(this.link.url, this.formData)
         .then((response) =>
-          this.$router.push("/g/list/goals/" + response.data.id + '/')
+          this.$router.push("/g/list/links/" + response.data.id + "/")
         )
         .catch((err) => this.$formulate.handle(err.response.data, this.name));
     },

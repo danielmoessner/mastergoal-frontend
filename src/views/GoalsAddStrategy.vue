@@ -84,7 +84,7 @@ export default {
       axios
         .post("/g/api/strategies/", this.formData)
         .then((response) =>
-          this.$router.push("/g/list/strategies/" + response.data.id)
+          this.$router.push("/g/list/strategies/" + response.data.id + '/')
         )
         .catch((err) => this.$formulate.handle(err.response.data, this.name));
     },

@@ -7,28 +7,26 @@
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
         v-if="link"
-        v-bind:text="'Link'"
+        v-bind:text="linkName"
         v-bind:link="'/g/list/links/' + link.id"
       ></breadcrumb-link>
     </breadcrumb-navigation>
-    <div class="grid gap-4 grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
+    <detail-grid>
+      <goal-item
+        v-if="mastergoal"
+        v-bind:goal="mastergoal"
+        type="Mastergoal"
+      ></goal-item>
+    </detail-grid>
+    <detail-grid>
       <general-box
         class="col-span-2 lg:col-span-2 xl:col-span-3"
         v-bind:overflow="false"
       >
-        <p>
-          Weight:
-          <span>{{ link.weight }}</span>
-        </p>
-        <p>
-          Proportion:
-          <span>{{ link.proportion }}</span>
-        </p>
-        <div class="flex justify-between items-center w-full">
-          <p>
-            Archived:
-            <span>{{ link.is_archived }}</span>
-          </p>
+        <heading-one :text="linkName"></heading-one>
+        <hr>
+        <property-short property="Weight" :short="link.weight"></property-short>
+        <property-short property="Archived" :short="link.is_archived">
           <form-button
             v-on:response="changed"
             text="Toggle"
@@ -36,23 +34,18 @@
             v-bind:link="link.url"
             v-bind:data="{ is_archived: !link.is_archived }"
           ></form-button>
-        </div>
-        <p>
-          Progress:
-          <span>{{ link.progress }}</span>
-        </p>
+        </property-short>
+        <hr>
+        <href-form-button to="edit/" text="Edit"></href-form-button>
       </general-box>
-      <goal-item
-        v-if="mastergoal"
-        v-bind:goal="mastergoal"
-        type="Mastergoal"
-      ></goal-item>
+    </detail-grid>
+    <detail-grid>
       <goal-item
         v-if="subgoal"
         v-bind:goal="subgoal"
         type="Subgoal"
       ></goal-item>
-    </div>
+    </detail-grid>
   </backend-box>
 </template>
 
@@ -65,13 +58,21 @@ import axios from "@/plugins/backendAxios.js";
 import GeneralBox from "@/components/GeneralBox.vue";
 import FormButton from "@/components/FormButton.vue";
 import GoalItem from "@/components/GoalItem.vue";
+import DetailGrid from "@/components/DetailGrid.vue";
+import HrefFormButton from "@/components/HrefFormButton.vue";
+import PropertyShort from "@/components/PropertyShort.vue";
+import HeadingOne from "@/components/HeadingOne.vue";
 
 export default {
   name: "GoalDetail",
   components: {
+    DetailGrid,
+    HrefFormButton,
+    PropertyShort,
     FormButton,
     BackendBox,
     BreadcrumbLink,
+    HeadingOne,
     BreadcrumbDivider,
     BreadcrumbNavigation,
     GeneralBox,
@@ -81,12 +82,22 @@ export default {
     url() {
       return "/g/api/links/" + this.$route.params.id + "/";
     },
+    mastergoal() {
+      if (!this.link) return false;
+      return this.link.mastergoal;
+    },
+    subgoal() {
+      if (!this.link) return false;
+      return this.link.subgoal;
+    },
+    linkName() {
+      if (!this.link) return "";
+      return this.link.mastergoal.name + " --> " + this.link.subgoal.name;
+    },
   },
   data() {
     return {
       link: false,
-      mastergoal: false,
-      subgoal: false,
     };
   },
   mounted() {
@@ -95,14 +106,6 @@ export default {
   watch: {
     url() {
       this.fetch();
-    },
-    link() {
-      axios
-        .get(this.link.sub_goal)
-        .then((response) => (this.subgoal = response.data));
-      axios
-        .get(this.link.master_goal)
-        .then((response) => (this.mastergoal = response.data));
     },
   },
   methods: {
