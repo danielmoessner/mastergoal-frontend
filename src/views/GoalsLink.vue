@@ -26,6 +26,7 @@
         <heading-one :text="linkName"></heading-one>
         <hr>
         <property-short property="Weight" :short="link.weight"></property-short>
+        <hr>
         <property-short property="Archived" :short="link.is_archived">
           <form-button
             v-on:response="changed"

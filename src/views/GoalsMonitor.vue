@@ -14,30 +14,23 @@
         v-bind:link="'/g/list/monitors/' + monitor.id"
       ></breadcrumb-link>
     </breadcrumb-navigation>
-    <div class="grid gap-4 grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
+    <detail-grid>
       <goal-item v-bind:goal="goal" type="Goal" v-if="goal"></goal-item>
+    </detail-grid>
+    <detail-grid>
       <general-box
         class="col-span-2 lg:col-span-2 xl:col-span-3"
         v-bind:overflow="false"
       >
-        <p>
-          Name:
-          <span>{{ monitor.monitor }}</span>
-        </p>
-        <p>
-          Weight:
-          <span>{{ monitor.weight }}</span>
-        </p>
-        <p>
-          Notes:
-          <span>{{ monitor.notes }}</span>
-        </p>
-        <div class="flex justify-between items-center w-full">
-          <p>
-            Step:
-            <span>{{ monitor.step }}</span>
-          </p>
-          <p>
+        <heading-one :text="monitor.monitor" :subtitle="monitor.progress + ' %'"></heading-one>
+        <property-text property="Notes" :text="monitor.text"></property-text>
+        <hr />
+        <property-short
+          property="Weight"
+          :short="monitor.weight"
+        ></property-short>
+        <property-short property="Step" :short="monitor.step">
+          <div>
             <form-button
               v-on:response="changed"
               text="Up"
@@ -53,21 +46,14 @@
               v-bind:link="monitor.url"
               v-bind:data="{ step: monitor.step - 1 }"
             ></form-button>
-          </p>
-        </div>
-        <p>
-          Steps:
-          <span>{{ monitor.steps }}</span>
-        </p>
-        <p>
-          Progress:
-          <span>{{ monitor.progress }}</span>
-        </p>
-        <div class="flex justify-between items-center w-full">
-          <p>
-            Archived:
-            <span>{{ monitor.is_archived }}</span>
-          </p>
+          </div>
+        </property-short>
+        <property-short
+          property="Steps"
+          :short="monitor.steps"
+        ></property-short>
+        <hr>
+        <property-short property="Archived" :short="monitor.is_archived">
           <form-button
             v-on:response="changed"
             text="Toggle"
@@ -75,9 +61,11 @@
             v-bind:link="monitor.url"
             v-bind:data="{ is_archived: !monitor.is_archived }"
           ></form-button>
-        </div>
+        </property-short>
+        <hr />
+        <href-form-button text="Edit" to="edit/"></href-form-button>
       </general-box>
-    </div>
+    </detail-grid>
   </backend-box>
 </template>
 
@@ -90,10 +78,20 @@ import axios from "@/plugins/backendAxios.js";
 import GeneralBox from "@/components/GeneralBox.vue";
 import FormButton from "@/components/FormButton.vue";
 import GoalItem from "@/components/GoalItem.vue";
+import HeadingOne from "@/components/HeadingOne.vue";
+import DetailGrid from "@/components/DetailGrid.vue";
+import HrefFormButton from "@/components/HrefFormButton.vue";
+import PropertyText from "@/components/PropertyText.vue";
+import PropertyShort from "@/components/PropertyShort.vue";
 
 export default {
   name: "GoalsMonitor",
   components: {
+    PropertyShort,
+    PropertyText,
+    HrefFormButton,
+    DetailGrid,
+    HeadingOne,
     FormButton,
     BackendBox,
     BreadcrumbLink,

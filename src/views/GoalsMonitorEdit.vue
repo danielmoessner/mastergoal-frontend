@@ -4,19 +4,19 @@
       <breadcrumb-link text="List" link="/g/list"></breadcrumb-link>
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
-        text="Strategies"
-        link="/g/list/strategies"
+        text="monitors"
+        link="/g/list/monitors"
       ></breadcrumb-link>
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
-        v-if="strategy"
-        v-bind:text="strategy.name"
-        v-bind:link="'/g/list/strategies/' + strategy.id"
+        v-if="monitor"
+        v-bind:text="monitor.monitor"
+        v-bind:link="'/g/list/monitors/' + monitor.id"
       ></breadcrumb-link>
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
         text="Edit"
-        v-bind:link="'/g/list/strategies/' + strategy.id + '/edit/'"
+        v-bind:link="'/g/list/monitors/' + monitor.id + '/edit/'"
       ></breadcrumb-link>
     </breadcrumb-navigation>
     <detail-grid>
@@ -28,18 +28,25 @@
           <formulate-input
             type="text"
             label="Name"
-            name="name"
+            name="monitor"
             id="name"
             validation="required"
           >
           </formulate-input>
           <formulate-input
-            type="textarea"
-            name="description"
-            id="description"
-            rows="6"
-            label="Description"
-            validation=""
+            type="number"
+            name="weight"
+            id="weight"
+            label="Weight"
+            validation="required|min:0"
+          >
+          </formulate-input>
+          <formulate-input
+            type="number"
+            name="steps"
+            id="steps"
+            label="Steps"
+            validation="required|min:0"
           >
           </formulate-input>
           <formulate-input type="submit" value="Save"> </formulate-input>
@@ -59,7 +66,7 @@ import DetailGrid from "@/components/DetailGrid.vue";
 import GeneralBox from "@/components/GeneralBox.vue";
 
 export default {
-  name: "GoalsStrategyEdit",
+  name: "GoalsMonitorEdit",
   components: {
     GeneralBox,
     BackendBox,
@@ -70,14 +77,14 @@ export default {
   },
   data() {
     return {
-      strategy: false,
-      name: "edit-strategy-form",
+      monitor: false,
+      name: "edit-monitor-form",
       formData: {},
     };
   },
   computed: {
     url() {
-      return "/g/api/strategies/" + this.$route.params.id + "/";
+      return "/g/api/monitors/" + this.$route.params.id + "/";
     },
   },
   mounted() {
@@ -86,15 +93,15 @@ export default {
   methods: {
     fetch() {
       axios.get(this.url).then((response) => {
-        this.strategy = response.data;
+        this.monitor = response.data;
         this.formData = response.data;
       });
     },
     submit() {
       axios
-        .put(this.strategy.url, this.formData)
+        .put(this.monitor.url, this.formData)
         .then((response) =>
-          this.$router.push("/g/list/strategies/" + response.data.id + "/")
+          this.$router.push("/g/list/monitors/" + response.data.id + "/")
         )
         .catch((err) => this.$formulate.handle(err.response.data, this.name));
     },
