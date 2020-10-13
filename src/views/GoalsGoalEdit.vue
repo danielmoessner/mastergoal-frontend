@@ -57,6 +57,22 @@
             validation=""
           >
           </formulate-input>
+          <formulate-input
+            type="textarea"
+            name="addition"
+            rows="6"
+            id="addition"
+            label="Addition"
+            validation=""
+          >
+          </formulate-input>
+          <formulate-input
+            type="datetime-local"
+            name="deadline"
+            id="deadline"
+            label="Deadline"
+          >
+          </formulate-input>
           <formulate-input type="submit" value="Save"> </formulate-input>
         </formulate-form>
       </general-box>
@@ -109,7 +125,7 @@ export default {
       axios
         .put(this.goal.url, this.formData)
         .then((response) =>
-          this.$router.push("/g/list/goals/" + response.data.id + '/')
+          this.$router.push("/g/list/goals/" + response.data.id + "/")
         )
         .catch((err) => this.$formulate.handle(err.response.data, this.name));
     },
