@@ -9,7 +9,7 @@
       <general-box v-bind:overflow="false"
         ><formulate-form
           v-on:submit="submit"
-          name="add-monitor"
+          :name="name"
           v-model="formData"
         >
           <formulate-input

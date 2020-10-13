@@ -25,6 +25,7 @@
         v-bind:overflow="false"
       >
         <heading-one
+          v-if="goal"
           :title="goal.name"
           :subtitle="goal.progress + ' %'"
         ></heading-one>
@@ -58,7 +59,7 @@
           ></form-button>
         </property-short>
         <hr />
-        <href-form-button to="edit" text="Edit"></href-form-button>
+        <href-form-button to="edit/" text="Edit"></href-form-button>
         <href-form-button to="#" text="Delete"></href-form-button>
       </general-box>
     </detail-grid>
