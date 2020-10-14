@@ -13,5 +13,9 @@ export default {
     link() {
       return this.item;
     },
+    linkName() {
+      if (!this.link) return "";
+      return this.link.mastergoal.name + " --> " + this.link.subgoal.name;
+    },
   },
 };

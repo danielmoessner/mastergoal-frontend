@@ -1,9 +1,9 @@
 <template>
   <backend-box>
-    <goals-monitor-breadcrumb :goal="goal">
+    <goals-monitor-breadcrumb :monitor="monitor">
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
-        v-bind:link="'/g/list/monitors/' + goal.id + '/delete/'"
+        v-bind:link="'/g/list/monitors/' + monitor.id + '/delete/'"
         text="Delete"
       ></breadcrumb-link>
     </goals-monitor-breadcrumb>

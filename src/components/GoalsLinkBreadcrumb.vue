@@ -30,5 +30,11 @@ export default {
       required: true,
     },
   },
+  computed: {
+    linkName() {
+      if (!this.link) return "";
+      return this.link.mastergoal.name + " --> " + this.link.subgoal.name;
+    },
+  },
 };
 </script>

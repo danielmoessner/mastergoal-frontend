@@ -14,7 +14,7 @@
           <div class="flex items-end w-full justify-end">
             <navigation-button
               class="pt-2 pb-2"
-              :link="'/g/list/strategy/' + $route.params.id + '/'"
+              :link="'/g/list/strategies/' + $route.params.id + '/'"
               text="Cancel"
             ></navigation-button>
             <submit-button v-on:click.native.prevent="deleteStrategy" class="ml-2" text="Yes, delete"></submit-button>

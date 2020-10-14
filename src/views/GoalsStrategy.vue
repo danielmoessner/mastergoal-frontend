@@ -35,7 +35,7 @@
         </property-short>
         <hr />
         <href-form-button to="edit/" text="Edit"></href-form-button>
-        <href-form-button to="#" text="Delete"></href-form-button>
+        <href-form-button to="delete/" text="Delete"></href-form-button>
       </general-box>
     </detail-grid>
   </backend-box>

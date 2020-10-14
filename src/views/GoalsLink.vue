@@ -73,10 +73,6 @@ export default {
       if (!this.link) return false;
       return this.link.subgoal;
     },
-    linkName() {
-      if (!this.link) return "";
-      return this.link.mastergoal.name + " --> " + this.link.subgoal.name;
-    },
   },
   methods: {
     changed(data) {

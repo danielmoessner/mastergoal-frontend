@@ -20,6 +20,9 @@ import GoalsStrategyEdit from "@/views/GoalsStrategyEdit.vue";
 import GoalsMonitorEdit from "@/views/GoalsMonitorEdit.vue";
 import GoalsLinkEdit from "@/views/GoalsLinkEdit.vue";
 import GoalsGoalDelete from "@/views/GoalsGoalDelete.vue";
+import GoalsMonitorDelete from "@/views/GoalsMonitorDelete.vue";
+import GoalsStrategyDelete from "@/views/GoalsStrategyDelete.vue";
+import GoalsLinkDelete from "@/views/GoalsLinkDelete.vue";
 
 export default [
   {
@@ -182,13 +185,34 @@ export default [
     },
   },
   /*
-  ** Delete Pages
-  */
- {
-  path: "/g/list/goals/:id/delete/",
-  component: GoalsGoalDelete,
-  meta: {
-    requiresAuthenticationTrue: true,
+   ** Delete Pages
+   */
+  {
+    path: "/g/list/goals/:id/delete/",
+    component: GoalsGoalDelete,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
   },
-},
+  {
+    path: "/g/list/monitors/:id/delete/",
+    component: GoalsMonitorDelete,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/g/list/strategies/:id/delete/",
+    component: GoalsStrategyDelete,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  {
+    path: "/g/list/links/:id/delete/",
+    component: GoalsLinkDelete,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
 ];

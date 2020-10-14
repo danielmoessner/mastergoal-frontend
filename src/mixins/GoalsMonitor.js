@@ -1,10 +1,10 @@
-import GoalsGoalBreadcrumb from "@/components/GoalsGoalBreadcrumb.vue";
+import GoalsMonitorBreadcrumb from "@/components/GoalsMonitorBreadcrumb.vue";
 import GoalsItem from "@/mixins/GoalsItem.js";
 
 export default {
   mixins: [GoalsItem],
   components: {
-    GoalsGoalBreadcrumb,
+    GoalsMonitorBreadcrumb,
   },
   computed: {
     url() {
