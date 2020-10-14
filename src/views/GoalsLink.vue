@@ -1,16 +1,6 @@
 <template>
   <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link text="List" link="/g/list"></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link text="Links" link="/g/list/links"></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        v-if="link"
-        v-bind:text="linkName"
-        v-bind:link="'/g/list/links/' + link.id"
-      ></breadcrumb-link>
-    </breadcrumb-navigation>
+    <goals-link-breadcrumb :link="link"></goals-link-breadcrumb>
     <detail-grid>
       <goal-item
         v-if="mastergoal"
@@ -37,6 +27,7 @@
         </property-short>
         <hr />
         <href-form-button to="edit/" text="Edit"></href-form-button>
+        <href-form-button to="delete/" text="Delete"></href-form-button>
       </general-box>
     </detail-grid>
     <detail-grid>
@@ -50,11 +41,6 @@
 </template>
 
 <script>
-import BackendBox from "@/components/BackendBox.vue";
-import BreadcrumbNavigation from "@/components/BreadcrumbNavigation.vue";
-import BreadcrumbDivider from "@/components/BreadcrumbDivider.vue";
-import BreadcrumbLink from "@/components/BreadcrumbLink.vue";
-import axios from "@/plugins/backendAxios.js";
 import GeneralBox from "@/components/GeneralBox.vue";
 import FormButton from "@/components/FormButton.vue";
 import GoalItem from "@/components/GoalItem.vue";
@@ -63,27 +49,22 @@ import HrefFormButton from "@/components/HrefFormButton.vue";
 import PropertyShort from "@/components/PropertyShort.vue";
 import HeadingOne from "@/components/HeadingOne.vue";
 import PropertyText from "@/components/PropertyText.vue";
+import GoalsLink from "@/mixins/GoalsLink.js";
 
 export default {
   name: "GoalDetail",
+  mixins: [GoalsLink],
   components: {
     PropertyText,
     DetailGrid,
     HrefFormButton,
     PropertyShort,
     FormButton,
-    BackendBox,
-    BreadcrumbLink,
     HeadingOne,
-    BreadcrumbDivider,
-    BreadcrumbNavigation,
     GeneralBox,
     GoalItem,
   },
   computed: {
-    url() {
-      return "/g/api/links/" + this.$route.params.id + "/";
-    },
     mastergoal() {
       if (!this.link) return false;
       return this.link.mastergoal;
@@ -97,25 +78,9 @@ export default {
       return this.link.mastergoal.name + " --> " + this.link.subgoal.name;
     },
   },
-  data() {
-    return {
-      link: false,
-    };
-  },
-  mounted() {
-    this.fetch();
-  },
-  watch: {
-    url() {
-      this.fetch();
-    },
-  },
   methods: {
     changed(data) {
-      this.link = data;
-    },
-    fetch() {
-      axios.get(this.url).then((response) => (this.link = response.data));
+      this.item = data;
     },
   },
 };

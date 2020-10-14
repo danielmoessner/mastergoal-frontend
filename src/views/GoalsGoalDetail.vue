@@ -125,7 +125,7 @@ export default {
   },
   methods: {
     changed(data) {
-      this.goal = data;
+      this.item = data;
     },
     fetch() {
       axios

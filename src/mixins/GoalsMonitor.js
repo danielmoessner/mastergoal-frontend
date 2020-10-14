@@ -8,9 +8,9 @@ export default {
   },
   computed: {
     url() {
-      return "/g/api/goals/" + this.$route.params.id + "/";
+      return "/g/api/monitors/" + this.$route.params.id + "/";
     },
-    goal() {
+    monitor() {
       return this.item;
     },
   },

@@ -1,19 +1,6 @@
 <template>
   <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link text="List" link="/g/list"></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        text="Monitors"
-        link="/g/list/monitors"
-      ></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        v-if="monitor"
-        v-bind:text="monitor.name"
-        v-bind:link="'/g/list/monitors/' + monitor.id"
-      ></breadcrumb-link>
-    </breadcrumb-navigation>
+    <goals-monitor-breadcrumb :monitor="monitor"></goals-monitor-breadcrumb>
     <detail-grid>
       <goal-item v-bind:goal="goal" type="Goal" v-if="goal"></goal-item>
     </detail-grid>
@@ -22,17 +9,14 @@
         class="col-span-2 lg:col-span-2 xl:col-span-3"
         v-bind:overflow="false"
       >
-        <heading-one :text="monitor.name" :subtitle="monitor.progress + ' %'"></heading-one>
+        <heading-one
+          :text="monitor.name"
+          :subtitle="monitor.progress + ' %'"
+        ></heading-one>
         <property-text property="Notes" :text="monitor.text"></property-text>
-        
-        <property-text
-          property="Weight"
-          :text="monitor.weight"
-        ></property-text>
-         <property-text
-          property="Steps"
-          :text="monitor.steps"
-        ></property-text>
+
+        <property-text property="Weight" :text="monitor.weight"></property-text>
+        <property-text property="Steps" :text="monitor.steps"></property-text>
         <hr />
         <property-short property="Step" :short="monitor.step">
           <div>
@@ -53,7 +37,7 @@
             ></form-button>
           </div>
         </property-short>
-        <hr>
+        <hr />
         <property-short property="Archived" :short="monitor.is_archived">
           <form-button
             v-on:response="changed"
@@ -65,16 +49,13 @@
         </property-short>
         <hr />
         <href-form-button text="Edit" to="edit/"></href-form-button>
+        <href-form-button text="Delete" to="delete/"></href-form-button>
       </general-box>
     </detail-grid>
   </backend-box>
 </template>
 
 <script>
-import BackendBox from "@/components/BackendBox.vue";
-import BreadcrumbNavigation from "@/components/BreadcrumbNavigation.vue";
-import BreadcrumbDivider from "@/components/BreadcrumbDivider.vue";
-import BreadcrumbLink from "@/components/BreadcrumbLink.vue";
 import axios from "@/plugins/backendAxios.js";
 import GeneralBox from "@/components/GeneralBox.vue";
 import FormButton from "@/components/FormButton.vue";
@@ -84,9 +65,11 @@ import DetailGrid from "@/components/DetailGrid.vue";
 import HrefFormButton from "@/components/HrefFormButton.vue";
 import PropertyText from "@/components/PropertyText.vue";
 import PropertyShort from "@/components/PropertyShort.vue";
+import GoalsMonitor from "@/mixins/GoalsMonitor.js";
 
 export default {
   name: "GoalsMonitor",
+  mixins: [GoalsMonitor],
   components: {
     PropertyShort,
     PropertyText,
@@ -94,31 +77,15 @@ export default {
     DetailGrid,
     HeadingOne,
     FormButton,
-    BackendBox,
-    BreadcrumbLink,
-    BreadcrumbDivider,
-    BreadcrumbNavigation,
     GeneralBox,
     GoalItem,
   },
-  computed: {
-    url() {
-      return "/g/api/monitors/" + this.$route.params.id + "/";
-    },
-  },
   data() {
     return {
-      monitor: false,
       goal: false,
     };
   },
-  mounted() {
-    this.fetch();
-  },
   watch: {
-    url() {
-      this.fetch();
-    },
     monitor() {
       axios
         .get(this.monitor.goal)
@@ -127,10 +94,7 @@ export default {
   },
   methods: {
     changed(data) {
-      this.monitor = data;
-    },
-    fetch() {
-      axios.get(this.url).then((response) => (this.monitor = response.data));
+      this.item = data;
     },
   },
 };

@@ -1,19 +1,6 @@
 <template>
   <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link text="List" link="/g/list"></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        text="Strategies"
-        link="/g/list/strategies"
-      ></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        v-if="strategy"
-        v-bind:text="strategy.name"
-        v-bind:link="'/g/list/strategies/' + strategy.id"
-      ></breadcrumb-link>
-    </breadcrumb-navigation>
+    <goals-strategy-breadcrumb :strategy="strategy"></goals-strategy-breadcrumb>
     <detail-grid>
       <goal-item v-bind:goal="goal" v-if="goal"></goal-item>
     </detail-grid>
@@ -55,10 +42,6 @@
 </template>
 
 <script>
-import BackendBox from "@/components/BackendBox.vue";
-import BreadcrumbNavigation from "@/components/BreadcrumbNavigation.vue";
-import BreadcrumbDivider from "@/components/BreadcrumbDivider.vue";
-import BreadcrumbLink from "@/components/BreadcrumbLink.vue";
 import axios from "@/plugins/backendAxios.js";
 import GeneralBox from "@/components/GeneralBox.vue";
 import FormButton from "@/components/FormButton.vue";
@@ -68,9 +51,11 @@ import HeadingOne from "@/components/HeadingOne.vue";
 import HrefFormButton from "@/components/HrefFormButton.vue";
 import PropertyText from "@/components/PropertyText.vue";
 import PropertyShort from "@/components/PropertyShort.vue";
+import GoalsStrategy from "@/mixins/GoalsStrategy.js";
 
 export default {
   name: "GoalDetail",
+  mixins: [GoalsStrategy],
   components: {
     HeadingOne,
     PropertyText,
@@ -79,30 +64,14 @@ export default {
     DetailGrid,
     GoalItem,
     FormButton,
-    BackendBox,
-    BreadcrumbLink,
-    BreadcrumbDivider,
-    BreadcrumbNavigation,
     GeneralBox,
-  },
-  computed: {
-    url() {
-      return "/g/api/strategies/" + this.$route.params.id + "/";
-    },
   },
   data() {
     return {
-      strategy: false,
       goal: false,
     };
   },
-  mounted() {
-    this.fetch();
-  },
   watch: {
-    url() {
-      this.fetch();
-    },
     strategy() {
       axios
         .get(this.strategy.goal)
@@ -111,10 +80,7 @@ export default {
   },
   methods: {
     changed(data) {
-      this.strategy = data;
-    },
-    fetch() {
-      axios.get(this.url).then((response) => (this.strategy = response.data));
+      this.item = data;
     },
   },
 };
