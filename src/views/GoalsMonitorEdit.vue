@@ -28,7 +28,7 @@
           <formulate-input
             type="text"
             label="Name"
-            name="monitor"
+            name="name"
             id="name"
             validation="required"
           >

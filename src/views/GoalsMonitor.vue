@@ -10,7 +10,7 @@
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
         v-if="monitor"
-        v-bind:text="monitor.monitor"
+        v-bind:text="monitor.name"
         v-bind:link="'/g/list/monitors/' + monitor.id"
       ></breadcrumb-link>
     </breadcrumb-navigation>
@@ -22,7 +22,7 @@
         class="col-span-2 lg:col-span-2 xl:col-span-3"
         v-bind:overflow="false"
       >
-        <heading-one :text="monitor.monitor" :subtitle="monitor.progress + ' %'"></heading-one>
+        <heading-one :text="monitor.name" :subtitle="monitor.progress + ' %'"></heading-one>
         <property-text property="Notes" :text="monitor.text"></property-text>
         
         <property-text

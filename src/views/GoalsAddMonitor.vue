@@ -23,7 +23,7 @@
           </formulate-input>
           <formulate-input
             type="text"
-            name="monitor"
+            name="name"
             label="Name"
             id="name"
             validation="required"
