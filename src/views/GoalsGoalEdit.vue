@@ -1,21 +1,12 @@
 <template>
   <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link text="List" link="/g/list"></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link text="Goals" link="/g/list/goals"></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        v-if="goal"
-        v-bind:text="goal.name"
-        v-bind:link="'/g/list/goals/' + goal.id"
-      ></breadcrumb-link>
+    <goals-goal-breadcrumb :goal="goal">
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
         text="Edit"
         v-bind:link="'/g/list/goals/' + goal.id + '/edit/'"
       ></breadcrumb-link>
-    </breadcrumb-navigation>
+    </goals-goal-breadcrumb>
     <detail-grid>
       <general-box
         v-bind:overflow="false"
@@ -81,46 +72,36 @@
 </template>
 
 <script>
-import BackendBox from "@/components/BackendBox.vue";
-import BreadcrumbNavigation from "@/components/BreadcrumbNavigation.vue";
 import BreadcrumbDivider from "@/components/BreadcrumbDivider.vue";
 import BreadcrumbLink from "@/components/BreadcrumbLink.vue";
 import axios from "@/plugins/backendAxios.js";
 import DetailGrid from "@/components/DetailGrid.vue";
 import GeneralBox from "@/components/GeneralBox.vue";
+import GoalsGoalBreadcrumb from "@/components/GoalsGoalBreadcrumb.vue";
+import GoalsGoal from "@/mixins/GoalsGoal.js";
 
 export default {
   name: "GoalsGoalEdit",
+  mixins: [GoalsGoal],
   components: {
+    GoalsGoalBreadcrumb,
     GeneralBox,
-    BackendBox,
-    BreadcrumbNavigation,
     BreadcrumbDivider,
     BreadcrumbLink,
     DetailGrid,
   },
   data() {
     return {
-      goal: false,
       name: "edit-goal-form",
       formData: {},
     };
   },
-  computed: {
-    url() {
-      return "/g/api/goals/" + this.$route.params.id + "/";
+  watch: {
+    goal() {
+      this.formData = this.goal;
     },
-  },
-  mounted() {
-    this.fetch();
   },
   methods: {
-    fetch() {
-      axios.get(this.url).then((response) => {
-        this.goal = response.data;
-        this.formData = response.data;
-      });
-    },
     submit() {
       axios
         .put(this.goal.url, this.formData)

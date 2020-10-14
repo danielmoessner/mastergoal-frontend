@@ -1,16 +1,6 @@
 <template>
   <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link text="List" link="/g/list"></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link text="Goals" link="/g/list/goals"></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        v-if="goal"
-        v-bind:text="goal.name"
-        v-bind:link="'/g/list/goals/' + goal.id"
-      ></breadcrumb-link>
-    </breadcrumb-navigation>
+    <goals-goal-breadcrumb :goal="goal"></goals-goal-breadcrumb>
     <detail-grid v-if="masterGoals.length">
       <goal-item
         v-bind:goal="masterGoal"
@@ -60,7 +50,7 @@
         </property-short>
         <hr />
         <href-form-button to="edit/" text="Edit"></href-form-button>
-        <href-form-button to="#" text="Delete"></href-form-button>
+        <href-form-button to="delete/" text="Delete"></href-form-button>
       </general-box>
     </detail-grid>
     <detail-grid v-if="monitors.length || strategies.length">
@@ -87,10 +77,6 @@
 </template>
 
 <script>
-import BackendBox from "@/components/BackendBox.vue";
-import BreadcrumbNavigation from "@/components/BreadcrumbNavigation.vue";
-import BreadcrumbDivider from "@/components/BreadcrumbDivider.vue";
-import BreadcrumbLink from "@/components/BreadcrumbLink.vue";
 import axios from "@/plugins/backendAxios.js";
 import GeneralBox from "@/components/GeneralBox.vue";
 import FormButton from "@/components/FormButton.vue";
@@ -102,17 +88,17 @@ import PropertyText from "@/components/PropertyText.vue";
 import PropertyShort from "@/components/PropertyShort.vue";
 import HrefFormButton from "@/components/HrefFormButton.vue";
 import DetailGrid from "@/components/DetailGrid.vue";
+import GoalsGoalBreadcrumb from "@/components/GoalsGoalBreadcrumb.vue";
+import GoalsGoal from "@/mixins/GoalsGoal.js";
 
 export default {
   name: "GoalsGoal",
+  mixins: [GoalsGoal],
   components: {
+    GoalsGoalBreadcrumb,
     FormButton,
     DetailGrid,
     PropertyShort,
-    BackendBox,
-    BreadcrumbLink,
-    BreadcrumbDivider,
-    BreadcrumbNavigation,
     GeneralBox,
     GoalItem,
     MonitorItem,
@@ -121,14 +107,8 @@ export default {
     HeadingOne,
     HrefFormButton,
   },
-  computed: {
-    url() {
-      return "/g/api/goals/" + this.$route.params.id + "/";
-    },
-  },
   data() {
     return {
-      goal: false,
       subGoals: [],
       masterGoals: [],
       monitors: [],
@@ -142,18 +122,12 @@ export default {
     url() {
       this.fetch();
     },
-    goal() {
-      axios
-        .get(this.goal.monitor)
-        .then((response) => (this.monitor = response.data));
-    },
   },
   methods: {
     changed(data) {
       this.goal = data;
     },
     fetch() {
-      axios.get(this.url).then((response) => (this.goal = response.data));
       axios
         .get(this.url + "subgoals/")
         .then((response) => (this.subGoals = response.data));

@@ -1,24 +1,25 @@
 import GoalDashboard from "@/views/GoalsDashboard.vue";
-import GoalsGoal from "@/views/GoalsGoal.vue";
+import GoalsGoalDetail from "@/views/GoalsGoalDetail.vue";
 import GoalsList from "@/views/GoalsList.vue";
 import GoalsListGoal from "@/views/GoalsListGoal.vue";
 import GoalsListLink from "@/views/GoalsListLink.vue";
 import GoalsListMonitor from "@/views/GoalsListMonitor.vue";
 import GoalsListStrategy from "@/views/GoalsListStrategy.vue";
-import GoalsAdd from '@/views/GoalsAdd.vue';
-import GoalsAddGoal from '@/views/GoalsAddGoal.vue';
-import GoalsAddMonitor from '@/views/GoalsAddMonitor.vue';
-import GoalsAddLink from '@/views/GoalsAddLink.vue';
-import GoalsAddStrategy from '@/views/GoalsAddStrategy.vue';
-import GoalsLink from '@/views/GoalsLink.vue';
-import GoalsMonitor from '@/views/GoalsMonitor.vue';
-import GoalsStrategy from '@/views/GoalsStrategy.vue';
-import GoalsStarred from '@/views/GoalsStarred.vue';
-import GoalsTree from '@/views/GoalsTree.vue';
-import GoalsGoalEdit from '@/views/GoalsGoalEdit.vue';
-import GoalsStrategyEdit from '@/views/GoalsStrategyEdit.vue';
-import GoalsMonitorEdit from '@/views/GoalsMonitorEdit.vue';
-import GoalsLinkEdit from '@/views/GoalsLinkEdit.vue';
+import GoalsAdd from "@/views/GoalsAdd.vue";
+import GoalsAddGoal from "@/views/GoalsAddGoal.vue";
+import GoalsAddMonitor from "@/views/GoalsAddMonitor.vue";
+import GoalsAddLink from "@/views/GoalsAddLink.vue";
+import GoalsAddStrategy from "@/views/GoalsAddStrategy.vue";
+import GoalsLink from "@/views/GoalsLink.vue";
+import GoalsMonitor from "@/views/GoalsMonitor.vue";
+import GoalsStrategy from "@/views/GoalsStrategy.vue";
+import GoalsStarred from "@/views/GoalsStarred.vue";
+import GoalsTree from "@/views/GoalsTree.vue";
+import GoalsGoalEdit from "@/views/GoalsGoalEdit.vue";
+import GoalsStrategyEdit from "@/views/GoalsStrategyEdit.vue";
+import GoalsMonitorEdit from "@/views/GoalsMonitorEdit.vue";
+import GoalsLinkEdit from "@/views/GoalsLinkEdit.vue";
+import GoalsGoalDelete from "@/views/GoalsGoalDelete.vue";
 
 export default [
   {
@@ -43,8 +44,8 @@ export default [
     },
   },
   /*
-  ** Add Pages
-  */
+   ** Add Pages
+   */
   {
     path: "/g/add/",
     component: GoalsAdd,
@@ -81,8 +82,8 @@ export default [
     },
   },
   /*
-  ** List Pages
-  */
+   ** List Pages
+   */
   {
     path: "/g/list/",
     component: GoalsList,
@@ -95,7 +96,7 @@ export default [
     component: GoalsListGoal,
     meta: {
       requiresAuthenticationTrue: true,
-    }
+    },
   },
   {
     path: "/g/list/strategies/",
@@ -119,14 +120,14 @@ export default [
     },
   },
   /*
-  ** Detail Pages
-  */
+   ** Detail Pages
+   */
   {
     path: "/g/list/goals/:id/",
-    component: GoalsGoal,
+    component: GoalsGoalDetail,
     meta: {
       requiresAuthenticationTrue: true,
-    }
+    },
   },
   {
     path: "/g/list/monitors/:id/",
@@ -150,8 +151,8 @@ export default [
     },
   },
   /*
-  ** Edit Pages
-  */
+   ** Edit Pages
+   */
   {
     path: "/g/list/goals/:id/edit/",
     component: GoalsGoalEdit,
@@ -180,4 +181,14 @@ export default [
       requiresAuthenticationTrue: true,
     },
   },
+  /*
+  ** Delete Pages
+  */
+ {
+  path: "/g/list/goals/:id/delete/",
+  component: GoalsGoalDelete,
+  meta: {
+    requiresAuthenticationTrue: true,
+  },
+},
 ];
