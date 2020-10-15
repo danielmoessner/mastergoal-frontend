@@ -40,10 +40,10 @@
       <tbody class="bg-white divide-y divide-gray-200">
         <tr v-for="link in links" v-bind:key="link.id">
           <td class="px-6 py-4">
-            {{ link.master_goal.name }}
+            {{ link.mastergoal.name }}
           </td>
           <td class="px-6 py-4 whitespace-no-wrap">
-            {{ link.sub_goal.name }}
+            {{ link.subgoal.name }}
           </td>
           <td class="px-6 py-4 whitespace-no-wrap">{{ link.weight }}</td>
           <td class="px-6 py-4 whitespace-no-wrap">{{ link.proportion }}</td>

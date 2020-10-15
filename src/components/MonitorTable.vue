@@ -50,7 +50,7 @@
       <tbody class="bg-white divide-y divide-gray-200">
         <tr v-for="monitor in monitors" v-bind:key="monitor.id">
           <td class="px-6 py-4">
-            {{ monitor.monitor }}
+            {{ monitor.name }}
           </td>
           <td class="px-6 py-4 whitespace-no-wrap">
             {{ monitor.goal }}
