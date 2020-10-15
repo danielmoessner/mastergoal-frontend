@@ -30,11 +30,6 @@
           <th
             class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
           >
-            Progress
-          </th>
-          <th
-            class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-          >
             Archived
           </th>
           <th
@@ -45,14 +40,13 @@
       <tbody class="bg-white divide-y divide-gray-200">
         <tr v-for="link in links" v-bind:key="link.id">
           <td class="px-6 py-4">
-            {{ link.master_goal }}
+            {{ link.master_goal.name }}
           </td>
           <td class="px-6 py-4 whitespace-no-wrap">
-            {{ link.sub_goal }}
+            {{ link.sub_goal.name }}
           </td>
           <td class="px-6 py-4 whitespace-no-wrap">{{ link.weight }}</td>
           <td class="px-6 py-4 whitespace-no-wrap">{{ link.proportion }}</td>
-          <td class="px-6 py-4 whitespace-no-wrap">{{ link.progress }}</td>
           <td class="px-6 py-4 whitespace-no-wrap">{{ link.is_archived }}</td>
           <td class="px-1 whitespace-no-wrap">
             <div class="flex items-center justify-end">

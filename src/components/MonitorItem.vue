@@ -15,7 +15,7 @@
       </div>
 
       <div class="px-4 mb-4">
-        <div class="truncate leading-tight">{{ monitor.monitor }}</div>
+        <div class="truncate leading-tight">{{ monitor.name }}</div>
       </div>
     </div>
     <div>
