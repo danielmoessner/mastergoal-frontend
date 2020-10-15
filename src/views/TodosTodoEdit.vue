@@ -1,24 +1,12 @@
 <template>
   <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link text="List" link="/t/list"></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        v-bind:text="breadcrumbText"
-        v-bind:link="breadcrumbUrl"
-      ></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        v-if="todo.name"
-        v-bind:text="todo.name"
-        v-bind:link="'/t/list/todos/' + todo.id"
-      ></breadcrumb-link>
+    <todos-todo-breadcrumb :todo="todo" :todoListUrl="todoListUrl">
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
         text="Edit"
         v-bind:link="'/t/list/todos/' + todo.id + '/edit/'"
       ></breadcrumb-link>
-    </breadcrumb-navigation>
+    </todos-todo-breadcrumb>
     <detail-grid>
       <general-box
         v-bind:overflow="false"
@@ -95,73 +83,37 @@
 
 <script>
 import BackendBox from "@/components/BackendBox.vue";
-import BreadcrumbNavigation from "@/components/BreadcrumbNavigation.vue";
 import BreadcrumbDivider from "@/components/BreadcrumbDivider.vue";
 import BreadcrumbLink from "@/components/BreadcrumbLink.vue";
 import axios from "@/plugins/backendAxios.js";
 import DetailGrid from "@/components/DetailGrid.vue";
 import GeneralBox from "@/components/GeneralBox.vue";
+import TodosTodoBreadcrumb from "@/components/TodosTodoBreadcrumb.vue";
+import TodosTodo from "@/mixins/TodosTodo.js";
 
 export default {
   name: "TodosTodoEdit",
+  mixins: [TodosTodo],
   components: {
     GeneralBox,
     BackendBox,
-    BreadcrumbNavigation,
+    TodosTodoBreadcrumb,
     BreadcrumbDivider,
     BreadcrumbLink,
     DetailGrid,
   },
   data() {
     return {
-      todo: false,
       name: "edit-todo-form",
       formData: {},
     };
   },
-  computed: {
-    url() {
-      return "/t/api/todos/" + this.$route.params.id + "/";
+  watch: {
+    todo() {
+      this.formData = this.todo;
     },
-    breadcrumbUrl() {
-      if (!this.todo.type) return "#";
-      switch (this.todo.type) {
-        case "NORMAL":
-          return "/t/list/normal-todos";
-        case "REPETITIVE":
-          return "/t/list/repetitive-todos";
-        case "NEVER_ENDING":
-          return "/t/list/never-ending-todos";
-        case "PIPELINE":
-          return "/t/list/pipeline-todos";
-      }
-      return "#";
-    },
-    breadcrumbText() {
-      if (!this.todo.type) return "";
-      switch (this.todo.type) {
-        case "NORMAL":
-          return "Normal-Todos";
-        case "REPETITIVE":
-          return "Repetitive-Todos";
-        case "NEVER_ENDING":
-          return "Never-Ending-Todos";
-        case "PIPELINE":
-          return "Pipeline-Todos";
-      }
-      return "";
-    },
-  },
-  mounted() {
-    this.fetch();
   },
   methods: {
-    fetch() {
-      axios.get(this.url).then((response) => {
-        this.todo = response.data;
-        this.formData = response.data;
-      });
-    },
     submit() {
       axios
         .put(this.todo.url, this.formData)

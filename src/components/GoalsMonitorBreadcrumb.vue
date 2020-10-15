@@ -9,6 +9,7 @@
       v-bind:text="monitor.name"
       v-bind:link="'/g/list/monitors/' + monitor.id"
     ></breadcrumb-link>
+    <slot></slot>
   </breadcrumb-navigation>
 </template>
 

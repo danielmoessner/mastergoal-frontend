@@ -9,6 +9,7 @@
       v-bind:text="linkName"
       v-bind:link="'/g/list/links/' + link.id"
     ></breadcrumb-link>
+    <slot></slot>
   </breadcrumb-navigation>
 </template>
 

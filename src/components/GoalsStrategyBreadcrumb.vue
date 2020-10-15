@@ -12,6 +12,7 @@
       v-bind:text="strategy.name"
       v-bind:link="'/g/list/strategies/' + strategy.id"
     ></breadcrumb-link>
+    <slot></slot>
   </breadcrumb-navigation>
 </template>
 
