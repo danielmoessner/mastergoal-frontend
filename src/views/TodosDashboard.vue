@@ -4,9 +4,15 @@
       <breadcrumb-link text="Dashboard" link="/t/dashboard"></breadcrumb-link>
     </breadcrumb-navigation>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <general-box heading="Active todos" :style="{ 'height': toDosMinHeight }">
+      <scroll-box :style="{ height: toDosMinHeight }">
+        <heading-one title="Active todos"></heading-one>
         <div>
-          <transition-group name="todo" tag="div" id="to-dos-1" class="relative">
+          <transition-group
+            name="todo"
+            tag="div"
+            id="to-dos-1"
+            class="relative"
+          >
             <todo-item
               v-on:changed="toDoChanged"
               v-for="todo in activeToDos"
@@ -16,10 +22,18 @@
             ></todo-item>
           </transition-group>
         </div>
-      </general-box>
-      <general-box heading="Todos done today" :style="{ 'height': toDosMinHeight }">
+      </scroll-box>
+      <scroll-box
+        :style="{ height: toDosMinHeight }"
+      >
+      <heading-one title="Todos done"></heading-one>
         <div>
-          <transition-group name="todo" tag="div" id="to-dos-2" class="relative">
+          <transition-group
+            name="todo"
+            tag="div"
+            id="to-dos-2"
+            class="relative"
+          >
             <todo-item
               v-on:changed="toDoChanged"
               v-for="todo in doneToDos"
@@ -29,13 +43,14 @@
             ></todo-item>
           </transition-group>
         </div>
+      </scroll-box>
+      <general-box>
+        <add-week-todo-form
+          name="addweektodoform"
+          v-on:response="created"
+        ></add-week-todo-form>
       </general-box>
-      <general-box heading="Add todo for this week">
-        <alert-box v-bind:message="this.message"></alert-box>
-        <add-week-todo-form name="addweektodoform" v-on:response="created"></add-week-todo-form>
-      </general-box>
-      <general-box heading="Add todo for next week">
-        <alert-box v-bind:message="this.message2"></alert-box>
+      <general-box>
         <add-week-todo-form
           name="addweektodoform2"
           v-on:response="created2"
@@ -47,48 +62,49 @@
   </backend-box>
 </template>
 
-
 <script>
 import BackendBox from "@/components/BackendBox.vue";
 import GeneralBox from "@/components/GeneralBox.vue";
+import ScrollBox from "@/components/ScrollBox.vue";
 import TodoItem from "@/components/TodoItem.vue";
 import BreadcrumbNavigation from "@/components/BreadcrumbNavigation.vue";
 import BreadcrumbLink from "@/components/BreadcrumbLink.vue";
 import AddWeekTodoForm from "@/components/AddWeekTodoForm.vue";
-import AlertBox from "@/components/AlertBox.vue";
 import axios from "@/plugins/backendAxios.js";
+import HeadingOne from "@/components/HeadingOne.vue";
 
 export default {
   name: "TodosDashboard",
   components: {
+    HeadingOne,
     BackendBox,
+    ScrollBox,
     GeneralBox,
     TodoItem,
     AddWeekTodoForm,
-    AlertBox,
     BreadcrumbLink,
-    BreadcrumbNavigation
+    BreadcrumbNavigation,
   },
   computed: {
-    allToDos: function () {
+    allToDos: function() {
       return this.toDos.concat(this.todayDoneToDos);
     },
-    activeToDos: function () {
+    activeToDos: function() {
       return this.allToDos.filter((toDo) => {
         return toDo.status === "ACTIVE";
       });
     },
-    doneToDos: function () {
+    doneToDos: function() {
       return this.allToDos.filter((toDo) => {
         return toDo.status === "DONE";
       });
     },
-    toDosMinHeight: function () {
+    toDosMinHeight: function() {
       return String(6 * 56 - 8) + "px";
       // return String(this.allToDos.length * 56 - 8) + 'px'
     },
   },
-  data: function () {
+  data: function() {
     return {
       toDos: [],
       todayDoneToDos: [],
@@ -100,7 +116,7 @@ export default {
     this.fetch();
   },
   methods: {
-    fetch: function () {
+    fetch: function() {
       axios
         .get("/t/api/todos/main/")
         .then((response) => (this.toDos = response.data));
@@ -108,7 +124,7 @@ export default {
         .get("/t/api/todos/done_today/")
         .then((response) => (this.todayDoneToDos = response.data));
     },
-    toDoChanged: function (data) {
+    toDoChanged: function(data) {
       let index = this.toDos.findIndex((toDo) => toDo.url === data.url);
       if (index !== -1) {
         this.toDos.splice(index, 1, data);
@@ -119,12 +135,12 @@ export default {
         }
       }
     },
-    created: function (data) {
+    created: function(data) {
       let message = "Todo '" + data.name + "' created";
       this.$store.dispatch("alert/success", message);
       this.toDos.push(data);
     },
-    created2: function (data) {
+    created2: function(data) {
       let message = "Todo '" + data.name + "' created";
       this.$store.dispatch("alert/success", message);
     },

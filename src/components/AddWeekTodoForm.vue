@@ -16,7 +16,7 @@
       type="hidden"
       v-bind:value="this.nextmonday"
     ></formulate-input>
-    <formulate-input type="submit" label="Add"></formulate-input>
+    <formulate-input type="submit" label="Add todo"></formulate-input>
   </formulate-form>
 </template>
 
