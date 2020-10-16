@@ -41,15 +41,6 @@
             validation="required|number"
           >
           </formulate-input>
-          <formulate-input
-            type="number"
-            name="proportion"
-            label="Proportion"
-            value="100"
-            id="proportion"
-            validation="required|number"
-          >
-          </formulate-input>
           <formulate-input type="submit" value="Add"> </formulate-input>
         </formulate-form>
       </general-box>
