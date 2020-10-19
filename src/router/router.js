@@ -5,6 +5,7 @@ import Error404 from "@/views/GeneralError404.vue";
 import usersRoutes from "@/router/users.js";
 import todosRoutes from "@/router/todos.js";
 import goalsRoutes from "@/router/goals.js";
+import notesRoutes from "@/router/notes.js";
 
 store.dispatch("autoLogin");
 
@@ -21,6 +22,7 @@ const routes = [
   ...todosRoutes,
   ...usersRoutes,
   ...goalsRoutes,
+  ...notesRoutes,
   {
     path: "*",
     component: Error404,

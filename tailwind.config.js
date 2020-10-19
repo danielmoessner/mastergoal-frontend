@@ -19,7 +19,7 @@ module.exports = {
     textColor: ({ after }) => after(["first", "last"]),
     backgroundColor: ({ after }) => after(["odd", "even"]),
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
   future: {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,
