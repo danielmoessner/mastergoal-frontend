@@ -4,7 +4,11 @@ import moment from "moment";
 const state = {
   todos: [],
   fetched: false,
-  time: moment(),
+  time: moment().valueOf(),
+  urls: {
+    todos: "/t/api/todos/",
+    normalTodo: "/t/api/normal-todos/",
+  },
 };
 
 const mutations = {
@@ -20,6 +24,16 @@ const mutations = {
       state.todos.splice(index, 1, todo);
     }
   },
+  addTodo(state, todo) {
+    console.log("ADDING TODO");
+    state.todos.push(todo);
+  },
+  changeTimeToNextWeek(state) {
+    state.time = moment(state.time).add(1, "week").valueOf();
+  },
+  changeTimeToPreviousWeek(state) {
+    state.time = moment(state.time).subtract(1, "week").valueOf();
+  },
 };
 
 const actions = {
@@ -28,7 +42,7 @@ const actions = {
       return;
     }
     axios
-      .get("/t/api/todos/all/")
+      .get(context.state.urls.todos)
       .then((response) => context.commit("setTodos", response.data));
     context.commit("setLastFetch");
   },
@@ -43,6 +57,25 @@ const actions = {
         console.log(error);
       });
   },
+  changeTimeToNextWeek(context) {
+    context.commit("changeTimeToNextWeek");
+  },
+  changeTimeToPreviousWeek(context) {
+    context.commit("changeTimeToPreviousWeek");
+  },
+  createNormalTodo: (context, data) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(context.state.urls.normalTodo, data)
+        .then((response) => {
+          context.commit("addTodo", response.data);
+          resolve();
+        })
+        .catch((error) => {
+          reject(error.response.data);
+        });
+    });
+  },
 };
 
 const getters = {
@@ -50,7 +83,7 @@ const getters = {
     return state.todos;
   },
   todosDoneThisWeek: (state, getters) => {
-    const now = moment();
+    const now = state.time;
     return getters.todos.filter((todo) => {
       const date = moment(todo.completed);
       return (
@@ -60,7 +93,7 @@ const getters = {
     });
   },
   todosActiveThisWeek: (state, getters) => {
-    const now = moment();
+    const now = state.time;
     return getters.todos.filter((todo) => {
       const activate = moment(todo.activate);
       const deadline = moment(todo.deadline);
@@ -75,26 +108,40 @@ const getters = {
     });
   },
   todosThisWeek: (state, getters) => {
-    const now = moment();
+    const now = moment(state.time);
     return getters.todos.filter((todo) => {
       const activate = moment(todo.activate);
       const deadline = moment(todo.deadline);
-      return (
+      const relevantThisWeek =
         (activate.isoWeek() <= now.isoWeek() &&
           activate.isoWeekYear() <= now.isoWeekYear()) ||
         (deadline.isoWeek() <= now.isoWeek() &&
-          deadline.isoWeekYear() <= now.isoWeekYear())
-      );
+          deadline.isoWeekYear() <= now.isoWeekYear());
+      const completed = todo.completed ? moment(todo.completed) : false;
+      const completedThisWeek =
+        completed &&
+        completed.isoWeek() === now.isoWeek() &&
+        completed.isoWeekYear() === now.isoWeekYear();
+      return relevantThisWeek && (!completed || completedThisWeek);
     });
   },
   fetched: (state, getters) => {
     return state.fetched;
   },
   week: (state, getters) => {
-    return state.time.isoWeek();
+    return moment(getters.time).isoWeek();
   },
   year: (state, getters) => {
-    return state.time.isoWeekYear();
+    return moment(getters.time).isoWeekYear();
+  },
+  time: (state, getters) => {
+    return moment(state.time);
+  },
+  timeActivate: (state, getters) => {
+    return moment(state.time).startOf("week");
+  },
+  timeDeadline: (state, getters) => {
+    return moment(state.time).endOf("week");
   },
 };
 

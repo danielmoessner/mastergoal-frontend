@@ -18,7 +18,7 @@ const mutations = {
 const actions = {
   signup({ rootState, dispatch }, data) {
     axios
-      .post(rootState.api.baseURL + "/u/api/register/", {
+      .post(import.meta.env.VITE_API_URL + "/u/api/register/", {
         ...data.formData,
         returnSecureToken: true,
       })
@@ -37,7 +37,7 @@ const actions = {
   login({ commit, getters, rootState }, data) {
     return new Promise((resolve, reject) => {
       axios
-        .post(rootState.api.baseURL + "/api-token-auth/", {
+        .post(import.meta.env.VITE_API_URL + "/api-token-auth/", {
           ...data,
           returnSecureToken: true,
         })

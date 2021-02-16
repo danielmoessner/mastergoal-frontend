@@ -6,11 +6,7 @@
         v-bind:message="alert.message"
         v-bind:type="alert.type"
       ></alert-box>
-      <dynamic-form
-        @submit="onSubmit"
-        :schema="loginFormSchema"
-        :nonFieldErrors="nonFieldErrors"
-      />
+      <dynamic-form @submit="onSubmit" :form="loginForm" />
       <!-- <FormulateForm
         class="mb-12"
         v-on:submit="submit"
@@ -32,6 +28,7 @@
         <FormulateInput type="submit" value="Login" />
       </FormulateForm> -->
       <navigation-button
+        class="mt-10"
         link="/signup"
         text="Sign up instead"
       ></navigation-button>
@@ -59,11 +56,11 @@ export default {
     return {
       formData: {},
       formName: "signinform",
-      nonFieldErrors: [],
-      loginFormSchema: {
+      loginForm: {
+        nonFieldErrors: [],
         fields: [
           {
-            label: "Email",
+            label: "E-Mail",
             name: "email",
             as: "input",
             type: "email",
@@ -83,6 +80,7 @@ export default {
           email: "",
           password: "",
         },
+        submit: "Login",
       },
     };
   },
@@ -91,19 +89,9 @@ export default {
       this.$store.dispatch("alert/clear");
       this.$store.dispatch("login", values).catch((error) => {
         console.log("error", error);
-        this.nonFieldErrors = error.non_field_errors;
+        this.loginForm.nonFieldErrors = error.non_field_errors;
       });
     },
-  },
-  mounted() {
-    // this.$store
-    //   .dispatch("test")
-    //   .then((result) => {
-    //     console.log("result: ", result);
-    //   })
-    //   .catch((error) => {
-    //     console.log("error: ", error);
-    //   });
   },
 };
 </script>
