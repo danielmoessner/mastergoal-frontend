@@ -6,7 +6,7 @@
           class="pl-1 border-0 p-0 text-lg focus:ring-0 focus:outline-none border-b-2 border-transparent -mb-1 focus:border-pink-300 border-opacity-50 w-full"
           type="text"
           v-model="name"
-          placeholder="Todo"
+          placeholder="Add Todo"
           name="name"
         />
       </div>

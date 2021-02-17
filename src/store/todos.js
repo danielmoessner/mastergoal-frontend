@@ -8,6 +8,9 @@ const state = {
   urls: {
     todos: "/t/api/todos/",
     normalTodo: "/t/api/normal-todos/",
+    neverEndingTodo: "/t/api/never-ending-todos/",
+    repetitiveTodo: "/t/api/repetitive-todos/",
+    pipelineTodo: "/t/api/pipeline-todos/",
   },
 };
 
@@ -63,18 +66,44 @@ const actions = {
   changeTimeToPreviousWeek(context) {
     context.commit("changeTimeToPreviousWeek");
   },
-  createNormalTodo: (context, data) => {
+  createTodo(context, payload) {
     return new Promise((resolve, reject) => {
       axios
-        .post(context.state.urls.normalTodo, data)
+        .post(payload.url, payload.data)
         .then((response) => {
           context.commit("addTodo", response.data);
           resolve();
         })
-        .catch((error) => {
-          reject(error.response.data);
-        });
+        .catch((error) => reject(error.response.data));
     });
+  },
+  createNormalTodo(context, data) {
+    const payload = {
+      url: context.state.urls.normalTodo,
+      data: data,
+    };
+    return context.dispatch("createTodo", payload);
+  },
+  createNeverEndingTodo(context, data) {
+    const payload = {
+      url: context.state.urls.neverEndingTodo,
+      data: data,
+    };
+    return context.dispatch("createTodo", payload);
+  },
+  createRepetitiveTodo(context, data) {
+    const payload = {
+      url: context.state.urls.repetitiveTodo,
+      data: data,
+    };
+    return context.dispatch("createTodo", payload);
+  },
+  createPipelineTodo(context, data) {
+    const payload = {
+      url: context.state.urls.pipelineTodo,
+      data: data,
+    };
+    return context.dispatch("createTodo", payload);
   },
 };
 
@@ -113,8 +142,7 @@ const getters = {
       const activate = moment(todo.activate);
       const deadline = moment(todo.deadline);
       const relevantThisWeek =
-        (activate.isoWeek() <= now.isoWeek() &&
-          activate.isoWeekYear() <= now.isoWeekYear()) ||
+        activate <= now ||
         (deadline.isoWeek() <= now.isoWeek() &&
           deadline.isoWeekYear() <= now.isoWeekYear());
       const completed = todo.completed ? moment(todo.completed) : false;
@@ -122,7 +150,8 @@ const getters = {
         completed &&
         completed.isoWeek() === now.isoWeek() &&
         completed.isoWeekYear() === now.isoWeekYear();
-      return relevantThisWeek && (!completed || completedThisWeek);
+      const unCompleted = !completed;
+      return (relevantThisWeek && unCompleted) || completedThisWeek;
     });
   },
   fetched: (state, getters) => {
@@ -138,10 +167,10 @@ const getters = {
     return moment(state.time);
   },
   timeActivate: (state, getters) => {
-    return moment(state.time).startOf("week");
+    return moment(state.time).startOf("isoWeek");
   },
   timeDeadline: (state, getters) => {
-    return moment(state.time).endOf("week");
+    return moment(state.time).endOf("isoWeek");
   },
 };
 

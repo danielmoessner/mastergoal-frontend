@@ -10,45 +10,7 @@
     </breadcrumb-navigation>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <general-box v-bind:overflow="false">
-        <formulate-form v-on:submit="submit" :name="name" v-model="formData">
-          <formulate-input
-            type="text"
-            name="name"
-            label="Name"
-            id="name"
-            validation="required"
-          >
-          </formulate-input>
-          <formulate-input
-            type="datetime-local"
-            id="activate"
-            name="activate"
-            label="Activate"
-          >
-          </formulate-input>
-          <formulate-input
-            type="datetime-local"
-            id="deadline"
-            name="deadline"
-            label="Deadline"
-          >
-          </formulate-input>
-          <formulate-input
-            type="text"
-            id="duration"
-            name="duration"
-            label="Duration"
-          >
-          </formulate-input>
-          <formulate-input
-            type="number"
-            id="repetitions"
-            name="repetitions"
-            label="Repetitions"
-          >
-          </formulate-input>
-          <formulate-input type="submit" value="Add"> </formulate-input>
-        </formulate-form>
+        <dynamic-form :form="form" :action="'todos/createRepetitiveTodo'" />
       </general-box>
     </div>
   </backend-box>
@@ -60,7 +22,7 @@ import BreadcrumbNavigation from "../components/BreadcrumbNavigation.vue";
 import BreadcrumbLink from "../components/BreadcrumbLink.vue";
 import GeneralBox from "../components/GeneralBox.vue";
 import BreadcrumbDivider from "../components/BreadcrumbDivider.vue";
-import axios from "../plugins/backendAxios.js";
+import DynamicForm from "../components/DynamicForm.vue";
 
 export default {
   name: "TodosAddNormal",
@@ -70,22 +32,55 @@ export default {
     BreadcrumbNavigation,
     BreadcrumbLink,
     BreadcrumbDivider,
+    DynamicForm,
   },
   data() {
     return {
-      formData: {},
-      name: "add-repetitive-todo-form",
+      form: {
+        fields: {
+          name: {
+            type: "text",
+            label: "Name",
+            name: "name",
+            as: "input",
+          },
+          activate: {
+            type: "datetime-local",
+            name: "activate",
+            as: "input",
+            label: "Activate",
+          },
+          deadline: {
+            type: "datetime-local",
+            name: "deadline",
+            as: "input",
+            label: "Deadline",
+          },
+          duration: {
+            type: "text",
+            name: "duration",
+            label: "Repeat",
+            placeholder: "7 days",
+            as: "input",
+          },
+          repetitions: {
+            type: "number",
+            name: "repetitions",
+            label: "Repetitions",
+            placeholder: "10",
+            as: "input",
+          },
+          notes: {
+            name: "notes",
+            as: "textarea",
+            label: "Notes",
+          },
+        },
+        values: {},
+        success: "Todo added",
+        submit: "Add",
+      },
     };
-  },
-  methods: {
-    submit() {
-      axios
-        .post("/t/api/repetitive-todos/", this.formData)
-        .then((response) =>
-          this.$router.push("/t/list/todos/" + response.data.id + "/")
-        )
-        .catch((err) => this.$formulate.handle(err.response.data, this.name));
-    },
   },
 };
 </script>

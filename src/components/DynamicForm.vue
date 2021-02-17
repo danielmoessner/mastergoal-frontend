@@ -1,15 +1,11 @@
 <template>
-  <v-form
-    :validation-schema="form.validation"
-    :initial-values="form.values"
-    @submit="onSubmit"
-  >
+  <v-form :initial-values="form.values" @submit="onSubmit">
     <div></div>
     <div class="grid grid-cols-1 gap-4">
-      <div v-if="form.nonFieldErrors.length">
+      <div v-if="nonFieldErrors && nonFieldErrors.length">
         <p
           class="text-red-700 text-sm leading-tight mt-2"
-          v-for="(error, index) in form.nonFieldErrors"
+          v-for="(error, index) in nonFieldErrors"
           :key="index"
         >
           {{ error }}
@@ -25,6 +21,7 @@
         <v-field
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
           :as="as"
+          :label="label"
           :id="name"
           :name="name"
           v-bind="attrs"
@@ -40,8 +37,11 @@
             </component>
           </template>
         </v-field>
-        <p class="text-red-700 text-sm leading-tight" v-if="form.errors[name]">
-          {{ form.errors[name][0] }}
+        <p
+          class="text-red-700 text-sm leading-tight ml-1.5 mt-1"
+          v-if="errors[name]"
+        >
+          {{ errors[name][0] }}
         </p>
       </div>
       <div class="pt-1 flex items-center">
@@ -51,7 +51,7 @@
         >
           {{ form.submit }}
         </button>
-        <p class="ml-4 text-green-700" v-if="form.success">
+        <p class="ml-4 text-green-700" v-if="showSuccess">
           {{ form.success }}
         </p>
       </div>
@@ -63,9 +63,20 @@
 import { Form, Field, ErrorMessage } from "vee-validate";
 
 export default {
+  data() {
+    return {
+      showSuccess: false,
+      nonFieldErrors: [],
+      errors: {},
+    };
+  },
   props: {
     form: {
       type: Object,
+      required: true,
+    },
+    action: {
+      type: String,
       required: true,
     },
   },
@@ -75,14 +86,26 @@ export default {
     VField: Field,
     ErrorMessage: ErrorMessage,
   },
-  emits: ["submit"],
   methods: {
     onSubmit(values, { resetForm }) {
-      this.$emit("submit", values);
       resetForm();
-      this.form.errors = {};
-      this.form.nonFieldErrors = [];
-      this.form.success = "";
+      this.showSuccess = false;
+      // this.errors = {};
+      // this.nonFieldErrors = [];
+
+      this.$store
+        .dispatch(this.action, values)
+        .then(() => {
+          this.errors = {};
+          this.nonFieldErrors = [];
+          this.form.values = {};
+          this.showSuccess = true;
+        })
+        .catch((errors) => {
+          this.errors = errors;
+          this.nonFieldErrors = errors.non_field_errors;
+          this.form.values = values;
+        });
     },
   },
 };

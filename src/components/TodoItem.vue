@@ -55,7 +55,7 @@
           class="block text-xs text-gray-800 leading-tight"
           v-bind:class="{ 'text-red-500': deadlineIsBeforeToday }"
           v-html="timeToDeadline"
-          v-if="timeToDeadline"
+          v-if="deadline"
         ></span>
       </div>
     </div>
@@ -85,13 +85,15 @@ export default {
   },
   computed: {
     deadline() {
-      return moment(this.todo.deadline);
+      return this.todo.deadline ? moment(this.todo.deadline) : null;
     },
     deadlineIsBeforeToday() {
+      if (!this.deadline) return null;
       return this.deadline.isBefore(moment());
     },
     timeToDeadline() {
       if (this.todo.status !== "ACTIVE") return "";
+      if (!this.deadline) return "";
       const timeToDeadline = this.deadline.fromNow(true);
       const timeToDeadlineString = this.deadlineIsBeforeToday
         ? `Overdue for ${timeToDeadline}`
