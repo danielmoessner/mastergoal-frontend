@@ -1,6 +1,7 @@
 <template>
   <backend-box>
     <todos-todo-breadcrumb
+      v-if="todo"
       :todo="todo"
       :todoListUrl="todoListUrl"
     ></todos-todo-breadcrumb>
@@ -43,35 +44,9 @@
         <hr />
         <property-short property="Status" :short="todo.status">
           <div>
-            <form-button
-              v-on:response="changed"
-              v-bind:text="'Set Active'"
-              v-bind:link="todo.url"
-              v-bind:data="{ status: 'ACTIVE' }"
-              v-bind:style="{
-                visibility: todo.status === 'ACTIVE' ? 'hidden' : 'visible',
-              }"
-            ></form-button>
-            <form-button
-              class="ml-4"
-              v-on:response="changed"
-              v-bind:text="'Set Done'"
-              v-bind:link="todo.url"
-              v-bind:data="{ status: 'DONE' }"
-              v-bind:style="{
-                visibility: todo.status === 'DONE' ? 'hidden' : 'visible',
-              }"
-            ></form-button>
-            <form-button
-              class="ml-4"
-              v-on:response="changed"
-              v-bind:text="'Set Failed'"
-              v-bind:link="todo.url"
-              v-bind:data="{ status: 'FAILED' }"
-              v-bind:style="{
-                visibility: todo.status === 'FAILED' ? 'hidden' : 'visible',
-              }"
-            ></form-button>
+            <div @click="setTodoStatus('ACTIVE')">set active</div>
+            <div @click="setTodoStatus('FAILED')">set failed</div>
+            <div @click="setTodoStatus('DONE')">set done</div>
           </div>
         </property-short>
         <property-short
@@ -94,12 +69,6 @@
         ></property-short>
         <hr />
         <property-short property="Archived" :short="todo.is_archived">
-          <form-button
-            v-on:response="changed"
-            v-bind:text="'Toggle'"
-            v-bind:link="todo.url"
-            v-bind:data="{ is_archived: !todo.is_archived }"
-          ></form-button>
         </property-short>
         <hr />
         <href-form-button text="Edit" link="edit/"></href-form-button>
@@ -110,17 +79,21 @@
 </template>
 
 <script>
-import HeadingOne from "../components/HeadingOne.vue";
-import FormButton from "../components/FormButton.vue";
-import PropertyText from "../components/PropertyText.vue";
-import PropertyShort from "../components/PropertyShort.vue";
-import HrefFormButton from "../components/HrefFormButton.vue";
-import TodosTodoBreadcrumb from "../components/TodosTodoBreadcrumb.vue";
-import TodosTodo from "../mixins/TodosTodo.js";
+import HeadingOne from "../../components/HeadingOne.vue";
+import FormButton from "../../components/FormButton.vue";
+import PropertyText from "../../components/PropertyText.vue";
+import PropertyShort from "../../components/PropertyShort.vue";
+import HrefFormButton from "../../components/HrefFormButton.vue";
+import TodosTodoBreadcrumb from "../../components/TodosTodoBreadcrumb.vue";
+import BackendBox from "../../components/BackendBox.vue";
+import DetailGrid from "../../components/DetailGrid.vue";
+import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
+import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
+import GeneralBox from "../../components/GeneralBox.vue";
 
 export default {
   name: "TodosTodoDetail",
-  mixins: [TodosTodo],
+  mixins: [],
   components: {
     TodosTodoBreadcrumb,
     HeadingOne,
@@ -128,11 +101,22 @@ export default {
     PropertyShort,
     HrefFormButton,
     FormButton,
+    GeneralBox,
+    BreadcrumbDivider,
+    BreadcrumbLink,
+    DetailGrid,
+    BackendBox,
   },
   computed: {
+    todo() {
+      return this.$store.getters["todos/todo"](this.$route.params.id);
+    },
     timeToDeadlineSeconds() {
       if (this.todo.deadline === null || this.todo.is_done) return 0;
       return (Date.parse(this.todo.deadline) - new Date()) / 1000;
+    },
+    todoListUrl() {
+      return this.$store.getters["todos/todoListUrl"](this.todo);
     },
     timeToDeadline: function () {
       if (this.todo.deadline === null || this.todo.is_done) return "";
@@ -156,8 +140,14 @@ export default {
     },
   },
   methods: {
-    changed: function (data) {
-      this.todo = data;
+    setTodoStatus(status) {
+      const payload = {
+        url: this.todo.url,
+        data: {
+          status: status,
+        },
+      };
+      this.$store.dispatch("todos/patchTodo", payload);
     },
   },
 };

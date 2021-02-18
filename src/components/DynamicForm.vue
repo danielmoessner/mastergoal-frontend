@@ -1,5 +1,5 @@
 <template>
-  <v-form :initial-values="form.values" @submit="onSubmit">
+  <v-form :initial-values="initialValues" @submit="onSubmit">
     <div></div>
     <div class="grid grid-cols-1 gap-4">
       <div v-if="nonFieldErrors && nonFieldErrors.length">
@@ -27,6 +27,7 @@
           v-bind="attrs"
         >
           <template v-if="children && children.length">
+            <option selected value>---------</option>
             <component
               v-for="({ tag, text, ...childAttrs }, idx) in children"
               :key="idx"
@@ -70,6 +71,12 @@ export default {
       errors: {},
     };
   },
+  computed: {
+    initialValues() {
+      // create a copy to avaid side effect because initial might be reactive
+      return Object.assign({}, this.form.initial);
+    },
+  },
   props: {
     form: {
       type: Object,
@@ -90,8 +97,6 @@ export default {
     onSubmit(values, { resetForm }) {
       resetForm();
       this.showSuccess = false;
-      // this.errors = {};
-      // this.nonFieldErrors = [];
 
       this.$store
         .dispatch(this.action, values)

@@ -1,29 +1,29 @@
 <template>
   <backend-box>
     <breadcrumb-navigation>
-      <breadcrumb-link link="/t/list" text="List"></breadcrumb-link>
+      <breadcrumb-link link="/t/add" text="Add"></breadcrumb-link>
     </breadcrumb-navigation>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <general-box v-bind:overflow="false">
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
           <overview-item
-            name="Normal-Todos"
-            link="/t/list/normal-todos"
+            name="Normal-Todo"
+            link="/t/add/normal-todo"
             v-bind:iconPaths="normalIconPaths"
           ></overview-item>
           <overview-item
-            name="Never-Ending-Todos"
-            link="/t/list/never-ending-todos"
+            name="Never-Ending-Todo"
+            link="/t/add/never-ending-todo"
             v-bind:iconPaths="neverEndingIconPaths"
           ></overview-item>
           <overview-item
-            name="Repetitive-Todos"
-            link="/t/list/repetitive-todos"
+            name="Repetitive-Todo"
+            link="/t/add/repetitive-todo"
             v-bind:iconPaths="repetitiveIconPaths"
           ></overview-item>
           <overview-item
-            name="Pipeline-Todos"
-            link="/t/list/pipeline-todos"
+            name="Pipeline-Todo"
+            link="/t/add/pipeline-todo"
             v-bind:iconPaths="pipelineIconPaths"
           ></overview-item>
         </div>
@@ -33,14 +33,14 @@
 </template>
 
 <script>
-import BackendBox from "../components/BackendBox.vue";
-import BreadcrumbNavigation from "../components/BreadcrumbNavigation.vue";
-import BreadcrumbLink from "../components/BreadcrumbLink.vue";
-import OverviewItem from "../components/OverviewItem.vue";
-import GeneralBox from "../components/GeneralBox.vue";
+import BackendBox from "../../components/BackendBox.vue";
+import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
+import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
+import OverviewItem from "../../components/OverviewItem.vue";
+import GeneralBox from "../../components/GeneralBox.vue";
 
 export default {
-  name: "TodosList",
+  name: "TodosAdd",
   components: {
     GeneralBox,
     OverviewItem,

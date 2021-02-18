@@ -1,70 +1,16 @@
-import TodosListNormal from "../views/TodosListNormal.vue";
-import TodosListNeverEnding from "../views/TodosListNeverEnding.vue";
-import TodosListRepetitive from "../views/TodosListRepetitive.vue";
-import TodosListPipeline from "../views/TodosListPipeline.vue";
-import TodosTodo from "../views/TodosTodoDetail.vue";
-import TodosDashboard from "../views/TodosDashboard.vue";
-import TodosList from "../views/TodosList.vue";
-import TodosAdd from "../views/TodosAdd.vue";
-import TodosTodoEdit from "../views/TodosTodoEdit.vue";
-import TodosAddNormal from "../views/TodosAddNormal.vue";
-import TodosAddRepetitive from "../views/TodosAddRepetitive.vue";
-import TodosAddNeverEnding from "../views/TodosAddNeverEnding.vue";
-import TodosAddPipeline from "../views/TodosAddPipeline.vue";
-import TodosTodoDelete from "../views/TodosTodoDelete.vue";
+import Detail from "../views/todos/Detail.vue";
+import Dashboard from "../views/todos/Dashboard.vue";
+import ListDashboard from "../views/todos/ListDashboard.vue";
+import CreateDashboard from "../views/todos/CreateDashboard.vue";
+import Update from "../views/todos/Update.vue";
+import Create from "../views/todos/Create.vue";
+import List from "../views/todos/List.vue";
+import Delete from "../views/todos/Delete.vue";
 
 export default [
   {
     path: "/t/dashboard/",
-    component: TodosDashboard,
-    meta: {
-      requiresAuthenticationTrue: true,
-    },
-  },
-  /*
-   ** List Pages
-   */
-  {
-    path: "/t/list/",
-    component: TodosList,
-    meta: {
-      requiresAuthenticationTrue: true,
-    },
-  },
-  {
-    path: "/t/list/normal-todos/",
-    component: TodosListNormal,
-    meta: {
-      requiresAuthenticationTrue: true,
-    },
-  },
-  {
-    path: "/t/list/never-ending-todos/",
-    component: TodosListNeverEnding,
-    meta: {
-      requiresAuthenticationTrue: true,
-    },
-  },
-  {
-    path: "/t/list/repetitive-todos/",
-    component: TodosListRepetitive,
-    meta: {
-      requiresAuthenticationTrue: true,
-    },
-  },
-  {
-    path: "/t/list/pipeline-todos/",
-    component: TodosListPipeline,
-    meta: {
-      requiresAuthenticationTrue: true,
-    },
-  },
-  /*
-   ** Detail Pages
-   */
-  {
-    path: "/t/list/todos/:id/",
-    component: TodosTodo,
+    component: Dashboard,
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -74,35 +20,41 @@ export default [
    */
   {
     path: "/t/add/",
-    component: TodosAdd,
+    component: CreateDashboard,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/t/add/normal-todo/",
-    component: TodosAddNormal,
+    path: "/t/add/:type/",
+    component: Create,
+    meta: {
+      requiresAuthenticationTrue: true,
+    },
+  },
+  /*
+   ** List Pages
+   */
+  {
+    path: "/t/list/",
+    component: ListDashboard,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
-    path: "/t/add/repetitive-todo/",
-    component: TodosAddRepetitive,
+    path: "/t/list/:type/",
+    component: List,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
+  /*
+   ** Detail Pages
+   */
   {
-    path: "/t/add/never-ending-todo/",
-    component: TodosAddNeverEnding,
-    meta: {
-      requiresAuthenticationTrue: true,
-    },
-  },
-  {
-    path: "/t/add/pipeline-todo/",
-    component: TodosAddPipeline,
+    path: "/t/list/todos/:id/",
+    component: Detail,
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -112,7 +64,7 @@ export default [
    */
   {
     path: "/t/list/todos/:id/edit/",
-    component: TodosTodoEdit,
+    component: Update,
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -122,7 +74,7 @@ export default [
    */
   {
     path: "/t/list/todos/:id/delete/",
-    component: TodosTodoDelete,
+    component: Delete,
     meta: {
       requiresAuthenticationTrue: true,
     },

@@ -54,12 +54,12 @@
 </template>
 
 <script>
-import BackendBox from "../components/BackendBox.vue";
-import TodoItem from "../components/TodoItem.vue";
-import BreadcrumbNavigation from "../components/BreadcrumbNavigation.vue";
-import BreadcrumbLink from "../components/BreadcrumbLink.vue";
+import BackendBox from "../../components/BackendBox.vue";
+import TodoItem from "../../components/TodoItem.vue";
+import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
+import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import { mapGetters } from "vuex";
-import AddTodoForm from "../components/AddTodoForm.vue";
+import AddTodoForm from "../../components/AddTodoForm.vue";
 
 export default {
   name: "TodosDashboard",

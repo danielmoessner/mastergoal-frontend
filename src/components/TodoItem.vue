@@ -103,11 +103,13 @@ export default {
   },
   methods: {
     change: function () {
-      const data = {
+      const payload = {
         url: this.todo.url,
-        status: this.checked ? "DONE" : "ACTIVE",
+        data: {
+          status: this.checked ? "DONE" : "ACTIVE",
+        },
       };
-      this.$store.dispatch("todos/patchTodo", data);
+      this.$store.dispatch("todos/patchTodo", payload);
     },
   },
 };

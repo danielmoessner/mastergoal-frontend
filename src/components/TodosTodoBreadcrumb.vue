@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     breadcrumbText() {
-      if (!this.todo.type) return "";
+      if (!this.todo || !this.todo.type) return "";
       switch (this.todo.type) {
         case "NORMAL":
           return "Normal-Todos";
