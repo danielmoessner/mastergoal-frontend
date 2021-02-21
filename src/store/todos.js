@@ -184,10 +184,11 @@ const getters = {
     return getters.todos.filter((todo) => {
       const activate = moment(todo.activate);
       const deadline = moment(todo.deadline);
-      const relevantThisWeek =
-        activate <= now ||
-        (deadline.isoWeek() <= now.isoWeek() &&
-          deadline.isoWeekYear() <= now.isoWeekYear());
+      // const relevantThisWeek =
+      //   activate <= now ||
+      //   (deadline.isoWeek() <= now.isoWeek() &&
+      //     deadline.isoWeekYear() <= now.isoWeekYear());
+      const relevantThisWeek = activate <= now;
       const completed = todo.completed ? moment(todo.completed) : false;
       const completedThisWeek =
         completed &&

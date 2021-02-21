@@ -34,11 +34,6 @@
           </th>
           <th
             class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-          >
-            Archived
-          </th>
-          <th
-            class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
           ></th>
         </tr>
       </thead>
@@ -53,12 +48,15 @@
           <td class="px-6 py-4 whitespace-no-wrap">{{ todo.activate }}</td>
           <td class="px-6 py-4 whitespace-no-wrap">{{ todo.deadline }}</td>
           <td class="px-6 py-4 whitespace-no-wrap">{{ todo.completed }}</td>
-          <td class="px-6 py-4 whitespace-no-wrap">{{ todo.archived }}</td>
           <td class="px-1 whitespace-no-wrap">
             <div class="flex items-center justify-end">
               <navigation-button
-                v-bind:link="'/t/list/todos/' + todo.id"
-                text="Open"
+                v-bind:link="'/t/list/todos/' + todo.id + '/edit/'"
+                text="Edit"
+              ></navigation-button>
+              <navigation-button
+                v-bind:link="'/t/list/todos/' + todo.id + '/delete/'"
+                text="Delete"
               ></navigation-button>
             </div>
           </td>

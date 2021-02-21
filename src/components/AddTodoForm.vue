@@ -7,7 +7,7 @@
     >
       <div class="lg:pl-4 lg:flex-1">
         <input
-          class="border border-gray-300 py-1.5 px-4 rounded p-0 text-lg w-full ring-opacity-50 focus:border-pink-300 focus:outline-none focus:ring-offset-2 focus:ring focus:ring-pink-300 lg:border-transparent lg:rounded-none lg:p-0 lg:border-0 lg:focus:ring-0 lg:pl-1 lg:border-b-2 lg:-mb-1"
+          class="border border-gray-300 py-1.5 px-4 rounded p-0 text-lg w-full ring-opacity-50 focus:border-gray-300 focus:outline-none focus:ring-offset-2 focus:ring focus:ring-gray-300 lg:border-transparent lg:rounded-none lg:p-0 lg:border-0 lg:focus:ring-0 lg:pl-1 lg:border-b-2 lg:-mb-1"
           type="text"
           v-model="name"
           placeholder="Add Todo"
@@ -25,7 +25,7 @@
               v-model="withoutDeadline"
               name="deadline"
               type="checkbox"
-              class="rounded w-5 h-5 border-gray-300 text-pink-600 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-300 focus:ring-opacity-50 cursor-pointer"
+              class="rounded w-5 h-5 border-gray-300 text-gray-500 shadow-sm focus:border-gray-300 focus:ring focus:ring-gray-300 focus:ring-opacity-50 cursor-pointer"
             />
             <span class="ml-2 cursor-pointer text-gray-800"
               >Without Deadline</span
@@ -38,14 +38,14 @@
               v-model="primary"
               name="primary"
               type="checkbox"
-              class="rounded w-5 h-5 border-gray-300 text-pink-600 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-300 focus:ring-opacity-50 cursor-pointer"
+              class="rounded w-5 h-5 border-gray-300 text-gray-500 shadow-sm focus:border-gray-300 focus:ring focus:ring-gray-300 focus:ring-opacity-50 cursor-pointer"
             />
             <span class="ml-2 cursor-pointer text-gray-800">Primary</span>
           </label>
         </div>
       </div>
       <input
-        class="h-12 px-8 rounded-lg text-pink-700 mt-6 cursor-pointer hover:bg-gray-100 font-bold bg-transparent bg-gray-50 ring-inset ring-opacity-50 focus:outline-none focus:ring-pink-300 focus:ring-2 lg:mt-0 lg:rounded-l-none lg:ml-auto"
+        class="h-12 px-8 rounded-lg text-gray-600 mt-6 cursor-pointer border-gray-300 border font-medium bg-transparent hover:bg-gray-100 focus:ring-inset focus:outline-none focus:ring-gray-300 focus:ring-2 lg:mt-0 lg:rounded-l-none lg:ml-auto lg:border-l lg:border-gray-100"
         type="submit"
         value="Add"
       />
