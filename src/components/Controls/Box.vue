@@ -18,11 +18,11 @@ export default {
   components: {},
   props: {
     heading: {
-      type: String,
+      type: [Number, String],
       required: true,
     },
     text: {
-      type: String,
+      type: [Number, String],
       required: true,
     },
   },

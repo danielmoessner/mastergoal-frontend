@@ -5,22 +5,46 @@
     </breadcrumb-navigation>
     <controls :content="controls">
       <div class="p-4 flex-1"></div>
-      <div class="p-4">
-        <span
-          class="text-pink-600 font-bold tracking-wide cursor-pointer hover:underline"
-          @click="() => $store.dispatch('todos/changeTimeToPreviousWeek')"
+      <button
+        type="button"
+        class="p-4 flex items-center justify-center cursor-pointer hover:bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-inset"
+        @click="() => $store.dispatch('todos/changeTimeToPreviousWeek')"
+      >
+        <svg
+          class="w-6 h-6"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
-          Previous Week
-        </span>
-      </div>
-      <div class="p-4">
-        <span
-          @click="() => $store.dispatch('todos/changeTimeToNextWeek')"
-          class="text-pink-600 font-bold tracking-wide cursor-pointer hover:underline"
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+      <button
+        type="button"
+        @click="() => $store.dispatch('todos/changeTimeToNextWeek')"
+        class="rounded-r-lg p-4 flex items-center justify-center cursor-pointer hover:bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-inset"
+      >
+        <svg
+          class="w-6 h-6"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
-          Next Week
-        </span>
-      </div>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
     </controls>
     <div>
       <todo-item

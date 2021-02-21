@@ -37,11 +37,9 @@ const mutations = {
       state.todos.splice(index, 1);
     }
   },
-  changeTimeToNextWeek(state) {
-    state.time = moment(state.time).add(1, "week").valueOf();
-  },
-  changeTimeToPreviousWeek(state) {
-    state.time = moment(state.time).subtract(1, "week").valueOf();
+  changeTime(state, time) {
+    // time should be a moment object
+    state.time = time.valueOf();
   },
 };
 
@@ -49,7 +47,6 @@ const actions = {
   fetchTodos(context) {
     axios.get(context.state.api.state).then((response) => {
       let apiState = response.data.status;
-      console.log(apiState);
       if (apiState !== context.state.apiState) {
         axios
           .get(context.state.api.todos)
@@ -70,10 +67,24 @@ const actions = {
       });
   },
   changeTimeToNextWeek(context) {
-    context.commit("changeTimeToNextWeek");
+    let time = moment(state.time).add(1, "week").startOf("isoWeek");
+    const now = moment();
+    if (
+      time.isoWeek() == now.isoWeek() &&
+      time.isoWeekYear() == now.isoWeekYear()
+    )
+      time = now;
+    context.commit("changeTime", time);
   },
   changeTimeToPreviousWeek(context) {
-    context.commit("changeTimeToPreviousWeek");
+    let time = moment(state.time).subtract(1, "week").startOf("isoWeek");
+    const now = moment();
+    if (
+      time.isoWeek() == now.isoWeek() &&
+      time.isoWeekYear() == now.isoWeekYear()
+    )
+      time = now;
+    context.commit("changeTime", time);
   },
   createTodo(context, payload) {
     return new Promise((resolve, reject) => {

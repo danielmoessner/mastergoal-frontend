@@ -6,27 +6,7 @@
         v-bind:message="alert.message"
         v-bind:type="alert.type"
       ></alert-box>
-      <dynamic-form @submit="onSubmit" :form="loginForm" />
-      <!-- <FormulateForm
-        class="mb-12"
-        v-on:submit="submit"
-        v-bind:name="formName"
-        v-model="formData"
-      >
-        <FormulateInput
-          type="text"
-          name="email"
-          label="E-Mail"
-          validation="required"
-        />
-        <FormulateInput
-          type="password"
-          name="password"
-          label="Password"
-          validation="required"
-        />
-        <FormulateInput type="submit" value="Login" />
-      </FormulateForm> -->
+      <dynamic-form action="login" :form="loginForm" />
       <navigation-button
         class="mt-10"
         link="/signup"
@@ -54,10 +34,7 @@ export default {
   mixins: [],
   data() {
     return {
-      formData: {},
-      formName: "signinform",
       loginForm: {
-        nonFieldErrors: [],
         fields: [
           {
             label: "E-Mail",
@@ -72,14 +49,6 @@ export default {
             type: "password",
           },
         ],
-        validation: yup.object().shape({
-          email: yup.string().email().required(),
-          password: yup.string().required(),
-        }),
-        values: {
-          email: "",
-          password: "",
-        },
         submit: "Login",
       },
     };
