@@ -109,7 +109,6 @@ export default {
   },
   watch: {
     initial: function (newVal, oldVal) {
-      console.log("hello");
       this.data = Object.assign({}, this.initial);
     },
   },
