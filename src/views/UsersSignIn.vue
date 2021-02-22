@@ -6,7 +6,12 @@
         v-bind:message="alert.message"
         v-bind:type="alert.type"
       ></alert-box>
-      <dynamic-form action="login" :form="loginForm" />
+      <dynamic-form
+        :fields="$store.getters.loginFields"
+        action="login"
+        submit="Login"
+        success=""
+      />
       <navigation-button
         class="mt-10"
         link="/signup"
@@ -21,7 +26,6 @@ import AlertBox from "../components/AlertBox.vue";
 import MastergoalLogo from "../components/MastergoalLogo.vue";
 import NavigationButton from "../components/NavigationButton.vue";
 import DynamicForm from "../components/DynamicForm.vue";
-import * as yup from "yup";
 
 export default {
   name: "UsersSignIn",
@@ -30,37 +34,6 @@ export default {
     MastergoalLogo,
     NavigationButton,
     DynamicForm,
-  },
-  mixins: [],
-  data() {
-    return {
-      loginForm: {
-        fields: [
-          {
-            label: "E-Mail",
-            name: "email",
-            as: "input",
-            type: "email",
-          },
-          {
-            label: "Password",
-            name: "password",
-            as: "input",
-            type: "password",
-          },
-        ],
-        submit: "Login",
-      },
-    };
-  },
-  methods: {
-    onSubmit(values) {
-      this.$store.dispatch("alert/clear");
-      this.$store.dispatch("login", values).catch((error) => {
-        console.log("error", error);
-        this.loginForm.nonFieldErrors = error.non_field_errors;
-      });
-    },
   },
 };
 </script>

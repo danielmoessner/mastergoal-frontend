@@ -4,6 +4,18 @@ import router from "../router";
 const state = {
   token: null,
   mainView: "/t/dashboard",
+  loginFields: [
+    {
+      label: "E-Mail",
+      name: "email",
+      type: "email",
+    },
+    {
+      label: "Password",
+      name: "password",
+      type: "password",
+    },
+  ],
 };
 
 const mutations = {
@@ -80,6 +92,9 @@ const getters = {
   },
   token(state) {
     return state.token;
+  },
+  loginFields(state) {
+    return state.loginFields;
   },
 };
 

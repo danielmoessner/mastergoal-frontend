@@ -50,6 +50,7 @@ export default {
   },
   data() {
     return {
+      value: "dfsdfs",
       todoIcon:
         '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />',
       userIcon:
@@ -59,6 +60,9 @@ export default {
       generalIcon:
         ' <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />',
     };
+  },
+  mounted() {
+    this.$store.dispatch("users/fetchUser");
   },
 };
 </script>

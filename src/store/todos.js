@@ -6,13 +6,137 @@ const state = {
   apiState: false,
   time: moment().valueOf(),
   api: {
-    todos: "/t/api/todos/",
-    normalTodo: "/t/api/normal-todos/",
-    neverEndingTodo: "/t/api/never-ending-todos/",
-    repetitiveTodo: "/t/api/repetitive-todos/",
-    pipelineTodo: "/t/api/pipeline-todos/",
-    state: "/t/api/state/",
+    todos: "/todos/",
+    normalTodo: "/normal-todos/",
+    neverEndingTodo: "/never-ending-todos/",
+    repetitiveTodo: "/repetitive-todos/",
+    pipelineTodo: "/pipeline-todos/",
+    state: "/todos/state/",
   },
+  todoFields: [
+    {
+      type: "hidden",
+      name: "url",
+      create: false,
+      readOnly: false,
+    },
+    {
+      type: "text",
+      label: "Name",
+      name: "name",
+      create: true,
+      readOnly: false,
+    },
+    {
+      label: "Status",
+      name: "status",
+      type: "select",
+      create: false,
+      readOnly: false,
+      children: [
+        {
+          value: "ACTIVE",
+          text: "Active",
+        },
+        {
+          value: "DONE",
+          text: "Done",
+        },
+        {
+          value: "FAILED",
+          text: "Failed",
+        },
+      ],
+    },
+    {
+      name: "notes",
+      as: "textarea",
+      label: "Notes",
+      create: false,
+      readOnly: false,
+    },
+    {
+      name: "completed",
+      label: "Completed",
+      create: false,
+      readOnly: true,
+    },
+  ],
+  normalTodoFields: [
+    {
+      type: "datetime-local",
+      name: "activate",
+      label: "Activate",
+      create: true,
+      readOnly: false,
+    },
+    {
+      type: "datetime-local",
+      name: "deadline",
+      label: "Deadline",
+      create: true,
+      readOnly: false,
+    },
+  ],
+  neverEndingTodoFields: [
+    {
+      type: "datetime-local",
+      name: "activate",
+      label: "Activate",
+      create: false,
+      readOnly: false,
+    },
+    {
+      type: "text",
+      name: "duration",
+      label: "Duration",
+      placeholder: "7 days",
+      create: true,
+      readOnly: false,
+    },
+  ],
+  repetitiveTodoFields: [
+    {
+      type: "datetime-local",
+      name: "activate",
+      label: "Activate",
+      create: true,
+      readOnly: false,
+    },
+    {
+      type: "datetime-local",
+      name: "deadline",
+      label: "Deadline",
+      create: true,
+      readOnly: false,
+    },
+    {
+      type: "text",
+      name: "duration",
+      label: "Repeat",
+      placeholder: "7 days",
+      create: true,
+      readOnly: false,
+    },
+    {
+      type: "number",
+      name: "repetitions",
+      label: "Repetitions",
+      placeholder: "10",
+      create: true,
+      readOnly: false,
+    },
+  ],
+  pipelineTodoFields: [
+    {
+      label: "Previous",
+      name: "previous",
+      type: "select",
+      create: true,
+      readOnly: false,
+      children: [],
+    },
+  ],
 };
 
 const mutations = {
@@ -217,161 +341,26 @@ const getters = {
     return moment(state.time).endOf("isoWeek");
   },
   todoDefaultFields: (state, getters) => {
-    return [
-      {
-        type: "hidden",
-        name: "url",
-        as: "input",
-        create: false,
-        readOnly: false,
-      },
-      {
-        type: "text",
-        label: "Name",
-        name: "name",
-        as: "input",
-        create: true,
-        readOnly: false,
-      },
-      {
-        label: "Status",
-        name: "status",
-        as: "select",
-        create: false,
-        readOnly: false,
-        children: [
-          {
-            tag: "option",
-            value: "ACTIVE",
-            text: "Active",
-          },
-          {
-            tag: "option",
-            value: "DONE",
-            text: "Done",
-          },
-          {
-            tag: "option",
-            value: "FAILED",
-            text: "Failed",
-          },
-        ],
-      },
-      {
-        name: "notes",
-        as: "textarea",
-        label: "Notes",
-        create: false,
-        readOnly: false,
-      },
-      {
-        name: "completed",
-        label: "Completed",
-        create: false,
-        readOnly: true,
-      },
-    ];
+    return state.todoFields;
   },
   normalTodoFields: (state, getters) => {
-    const fields = [
-      {
-        type: "datetime-local",
-        name: "activate",
-        as: "input",
-        label: "Activate",
-        create: true,
-        readOnly: false,
-      },
-      {
-        type: "datetime-local",
-        name: "deadline",
-        as: "input",
-        label: "Deadline",
-        create: true,
-        readOnly: false,
-      },
-    ];
-    return getters.todoDefaultFields.concat(fields);
+    return state.todoFields.concat(state.normalTodoFields);
   },
   neverEndingTodoFields: (state, getters) => {
-    const fields = [
-      {
-        type: "datetime-local",
-        name: "activate",
-        as: "input",
-        label: "Activate",
-        create: false,
-        readOnly: false,
-      },
-      {
-        type: "text",
-        name: "duration",
-        label: "Duration",
-        placeholder: "7 days",
-        as: "input",
-        create: true,
-        readOnly: false,
-      },
-    ];
-    return getters.todoDefaultFields.concat(fields);
+    return state.todoFields.concat(state.neverEndingTodoFields);
   },
   repetitiveTodoFields: (state, getters) => {
-    const fields = [
-      {
-        type: "datetime-local",
-        name: "activate",
-        as: "input",
-        label: "Activate",
-        create: true,
-        readOnly: false,
-      },
-      {
-        type: "datetime-local",
-        name: "deadline",
-        as: "input",
-        label: "Deadline",
-        create: true,
-        readOnly: false,
-      },
-      {
-        type: "text",
-        name: "duration",
-        label: "Repeat",
-        placeholder: "7 days",
-        as: "input",
-        create: true,
-        readOnly: false,
-      },
-      {
-        type: "number",
-        name: "repetitions",
-        label: "Repetitions",
-        placeholder: "10",
-        as: "input",
-        create: true,
-        readOnly: false,
-      },
-    ];
-    return getters.todoDefaultFields.concat(fields);
+    return state.todoFields.concat(state.repetitiveTodoFields);
   },
   pipelineTodoFields: (state, getters) => {
-    const fields = [
-      {
-        label: "Previous",
-        name: "previous",
-        as: "select",
-        create: true,
-        readOnly: false,
-        children: getters.todos.map((todo) => {
-          return {
-            tag: "option",
-            value: `${import.meta.env.VITE_API_URL}/t/api/todos/${todo.id}/`,
-            text: todo.name,
-          };
-        }),
-      },
-    ];
-    return getters.todoDefaultFields.concat(fields);
+    const pipelineTodoFields = state.pipelineTodoFields;
+    pipelineTodoFields[0].children = getters.todos.map((todo) => {
+      return {
+        value: `${import.meta.env.VITE_API_URL}${state.api.todos}${todo.id}/`,
+        text: todo.name,
+      };
+    });
+    return state.todoFields.concat(pipelineTodoFields);
   },
   todoFormFields: (state, getters) => (type) => {
     switch (type) {

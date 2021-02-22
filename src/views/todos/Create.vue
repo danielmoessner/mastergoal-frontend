@@ -10,7 +10,12 @@
     </breadcrumb-navigation>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <general-box v-bind:overflow="false">
-        <dynamic-form :action="action" :form="form" />
+        <dynamic-form
+          :action="action"
+          :fields="fields"
+          success="Todo added"
+          submit="Add"
+        />
       </general-box>
     </div>
   </backend-box>
@@ -54,15 +59,14 @@ export default {
       }
       this.$router.push("/404");
     },
-    form() {
-      return {
-        fields: this.$store.getters["todos/todoFormFields"](
-          this.$route.params.type
-        ).filter((field) => field.create),
-        success: "Todo added",
-        submit: "Add",
-      };
+    fields() {
+      return this.$store.getters["todos/todoFormFields"](
+        this.$route.params.type
+      ).filter((field) => field.create);
     },
+  },
+  mounted() {
+    this.$store.dispatch("todos/fetchTodos");
   },
 };
 </script>
