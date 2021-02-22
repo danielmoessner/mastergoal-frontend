@@ -1,6 +1,6 @@
 <template>
   <backend-box>
-    <todos-todo-breadcrumb :todo="todo" :todoListUrl="todoListUrl">
+    <todos-todo-breadcrumb v-if="todo" :todo="todo" :todoListUrl="todoListUrl">
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
         text="Edit"
@@ -12,7 +12,14 @@
         v-bind:overflow="false"
         class="col-span-2 md:col-span-3 xl:col-span-4"
       >
-        <dynamic-form :form="form" action="todos/updateTodo" />
+        <dynamic-form
+          v-if="todo"
+          :fields="$store.getters['todos/todoFormFields'](todo.type)"
+          :initial="todo"
+          submit="Save"
+          success="Todo changed"
+          action="todos/updateTodo"
+        />
       </general-box>
     </detail-grid>
   </backend-box>
@@ -45,14 +52,9 @@ export default {
     todoListUrl() {
       return this.$store.getters["todos/todoListUrl"](this.todo);
     },
-    form() {
-      return {
-        fields: this.$store.getters["todos/todoFormFields"](this.todo.type),
-        submit: "Save",
-        success: "Todo changed",
-        initial: this.todo,
-      };
-    },
+  },
+  mounted() {
+    this.$store.dispatch("todos/fetchTodos");
   },
 };
 </script>

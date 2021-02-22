@@ -50,7 +50,7 @@ const state = {
     },
     {
       name: "notes",
-      as: "textarea",
+      type: "textarea",
       label: "Notes",
       create: false,
       readOnly: false,

@@ -13,6 +13,7 @@
       <div
         v-for="{ name, label, children, type, required, placeholder } in fields"
         :key="name"
+        :class="{ hidden: type === 'hidden' }"
       >
         <dynamic-input
           :label="label"
@@ -108,8 +109,12 @@ export default {
   },
   watch: {
     initial: function (newVal, oldVal) {
+      console.log("hello");
       this.data = Object.assign({}, this.initial);
     },
+  },
+  mounted() {
+    this.data = Object.assign({}, this.initial);
   },
 };
 </script>

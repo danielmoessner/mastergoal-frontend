@@ -21,6 +21,15 @@
       :id="name"
       class="block rounded w-5 h-5 border-pink-300 text-pink-500 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-300 focus:ring-opacity-50 cursor-pointer"
     />
+    <textarea
+      v-if="useTextarea"
+      @input="emit"
+      :placeholder="placeholder"
+      :value="modelValue"
+      :required="required"
+      :id="name"
+      class="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+    />
     <select
       v-if="useSelect"
       @change="emit"
@@ -61,7 +70,8 @@ export default {
       type: String,
     },
     label: {
-      required: true,
+      required: false,
+      default: "Label",
       type: String,
     },
     component: {
@@ -94,8 +104,11 @@ export default {
     useCheckbox() {
       return this.type === "checkbox";
     },
+    useTextarea() {
+      return this.type === "textarea";
+    },
     useInput() {
-      return !this.useSelect && !this.useCheckbox;
+      return !this.useSelect && !this.useCheckbox && !this.useTextarea;
     },
   },
   methods: {

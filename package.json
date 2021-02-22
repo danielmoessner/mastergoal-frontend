@@ -15,11 +15,9 @@
     "moment": "^2.29.1",
     "postcss": "^8.2.6",
     "tailwindcss": "^2.0.3",
-    "vee-validate": "^4.1.18",
     "vue": "^3.0.5",
     "vue-router": "^4.0.3",
-    "vuex": "^4.0.0",
-    "yup": "^0.32.8"
+    "vuex": "^4.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.1.4",
