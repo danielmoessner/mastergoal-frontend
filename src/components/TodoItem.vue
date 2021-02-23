@@ -89,22 +89,22 @@
             </svg>
             <span class="ml-1">{{ getDuration(todo.duration) }}</span>
           </div>
-        </div>
-        <div
-          v-if="showReactivate"
-          class="flex text-xs text-gray-500 leading-tight"
-        >
-          <svg
-            class="w-4 h-4 text-gray-400"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
+          <div
+            v-if="showReactivate"
+            class="flex text-xs text-gray-500 leading-tight"
           >
-            <path
-              d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798l-5.445-3.63z"
-            />
-          </svg>
-          <span class="ml-1">{{ getReactivate(todo.duration) }}</span>
+            <svg
+              class="w-4 h-4 text-gray-400"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798l-5.445-3.63z"
+              />
+            </svg>
+            <span class="ml-1">{{ getReactivate(todo.duration) }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -213,7 +213,7 @@ export default {
     getReactivate(duration) {
       const days = moment.duration(duration).asDays();
       if (days === 1) return "Reappears a day after completion";
-      return `Reappears ${days} days after completion`;
+      return `Reappears ${Math.round(days * 100) / 100} days after completion`;
     },
   },
 };
