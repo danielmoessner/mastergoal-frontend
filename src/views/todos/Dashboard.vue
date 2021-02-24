@@ -59,7 +59,7 @@
 
 <script>
 import BackendBox from "../../components/BackendBox.vue";
-import TodoItem from "../../components/TodoItem.vue";
+import TodoItem from "../../components/todo/Index.vue";
 import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import { mapGetters } from "vuex";

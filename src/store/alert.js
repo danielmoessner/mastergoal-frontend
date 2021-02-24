@@ -1,7 +1,7 @@
-const state = {
+const state = () => ({
   type: "",
   message: "",
-};
+});
 
 const actions = {
   success({ commit }, message) {

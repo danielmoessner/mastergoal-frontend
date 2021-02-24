@@ -1,41 +1,41 @@
-import NotesDashboard from "../views/NotesDashboard.vue";
-import NotesNoteDetail from "../views/NotesNoteDetail.vue";
-import NotesNoteEdit from "../views/NotesNoteEdit.vue";
-import NotesNoteDelete from "../views/NotesNoteDelete.vue";
-import NotesAddNote from "../views/NotesAddNote.vue";
+import Dashboard from "../views/notes/Dashboard.vue";
+import Detail from "../views/notes/Detail.vue";
+import Update from "../views/notes/Update.vue";
+import Delete from "../views/notes/Delete.vue";
+import Create from "../views/notes/Create.vue";
 
 export default [
   {
     path: "/n/dashboard/",
-    component: NotesDashboard,
+    component: Dashboard,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
     path: "/n/add/",
-    component: NotesAddNote,
+    component: Create,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
     path: "/n/:id/",
-    component: NotesNoteDetail,
+    component: Detail,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
     path: "/n/:id/edit/",
-    component: NotesNoteEdit,
+    component: Update,
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
     path: "/n/:id/delete/",
-    component: NotesNoteDelete,
+    component: Delete,
     meta: {
       requiresAuthenticationTrue: true,
     },

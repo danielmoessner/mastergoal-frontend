@@ -1,13 +1,13 @@
 <template>
   <backend-box>
-    <notes-note-breadcrumb :note="note">
+    <notes-note-breadcrumb v-if="note" :note="note">
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
         text="Delete"
         :link="'/n/' + $route.params.id + '/delete/'"
       ></breadcrumb-link>
     </notes-note-breadcrumb>
-    <detail-grid>
+    <detail-grid v-if="note">
       <general-box class="col-span-2 md:col-span-3" :overflow="false">
         <div class="flex-col flex justify-start items-start">
           <p class="mb-4">Are you sure you want to delete '{{ note.name }}'?</p>
@@ -30,24 +30,39 @@
 </template>
 
 <script>
-import NotesNote from "../mixins/NotesNote.js";
-import NavigationButton from "../components/NavigationButton.vue";
-import SubmitButton from "../components/SubmitButton.vue";
-import axios from "../plugins/backendAxios.js";
+import HrefFormButton from "../../components/HrefFormButton.vue";
+import NotesNoteBreadcrumb from "../../components/NotesNoteBreadcrumb.vue";
+import BackendBox from "../../components/BackendBox.vue";
+import DetailGrid from "../../components/DetailGrid.vue";
+import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
+import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
+import GeneralBox from "../../components/GeneralBox.vue";
+import SubmitButton from "../../components/SubmitButton.vue";
 
 export default {
-  name: "NotesNoteDelete",
-  mixins: [NotesNote],
   components: {
-    NavigationButton,
     SubmitButton,
+    HrefFormButton,
+    NotesNoteBreadcrumb,
+    GeneralBox,
+    BreadcrumbDivider,
+    BreadcrumbLink,
+    DetailGrid,
+    BackendBox,
+  },
+  computed: {
+    note() {
+      return this.$store.getters["notes/note"](this.$route.params.id);
+    },
+  },
+  mounted() {
+    this.$store.dispatch("notes/fetchNotes");
   },
   methods: {
     deleteNote() {
-      axios
-        .delete(this.note.url)
-        .then(() => this.$router.push("/n/dashboard/"))
-        .catch((error) => console.log(error));
+      this.$store
+        .dispatch("notes/deleteNote", this.note.url)
+        .then(() => this.$router.push("/n/dashboard/"));
     },
   },
 };

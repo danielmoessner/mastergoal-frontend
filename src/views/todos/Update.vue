@@ -18,7 +18,7 @@
           :initial="todo"
           submit="Save"
           success="Todo changed"
-          action="todos/updateTodo"
+          action="todos/patchTodo"
         />
       </general-box>
     </detail-grid>

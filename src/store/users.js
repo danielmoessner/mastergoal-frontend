@@ -1,7 +1,7 @@
 import axios from "../plugins/backendAxios";
 import router from "../router";
 
-const state = {
+const state = () => ({
   token: null,
   api: {
     users: "/users/",
@@ -71,7 +71,7 @@ const state = {
       label: "Show archived objects",
     },
   ],
-};
+});
 
 const mutations = {
   authUser(state, token) {

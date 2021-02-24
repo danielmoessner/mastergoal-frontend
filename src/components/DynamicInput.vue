@@ -50,11 +50,29 @@
         {{ text }}
       </option>
     </select>
+    <editor
+      v-if="useTinymce"
+      v-model="content"
+      :name="name"
+      :id="name"
+      :placeholder="placeholder"
+      api-key="no-api-key"
+    />
   </div>
 </template>
 
 <script>
+import Editor from "@tinymce/tinymce-vue";
+
 export default {
+  components: {
+    Editor,
+  },
+  data() {
+    return {
+      content: "",
+    };
+  },
   props: {
     label: {
       required: true,
@@ -106,8 +124,16 @@ export default {
     useTextarea() {
       return this.type === "textarea";
     },
+    useTinymce() {
+      return this.type === "tinymce";
+    },
     useInput() {
-      return !this.useSelect && !this.useCheckbox && !this.useTextarea;
+      return (
+        !this.useSelect &&
+        !this.useCheckbox &&
+        !this.useTextarea &&
+        !this.useTinymce
+      );
     },
   },
   methods: {
@@ -117,6 +143,22 @@ export default {
     emitCheckbox(event) {
       this.$emit("update:modelValue", event.target.checked);
     },
+    emitTinymce(newVal) {
+      this.$emit("update:modelValue", newVal);
+    },
+  },
+  watch: {
+    content: function (newVal, oldVal) {
+      this.emitTinymce(newVal);
+    },
+    modelValue: function (newVal, oldVal) {
+      this.content = newVal;
+    },
+  },
+  mounted() {
+    // if (this.type === "tinymce") {
+    //   this.content = this.modelValue;
+    // }
   },
 };
 </script>

@@ -1,7 +1,7 @@
 import axios from "../plugins/backendAxios";
 import moment from "moment";
 
-const state = {
+const state = () => ({
   todos: [],
   apiState: false,
   time: moment().valueOf(),
@@ -137,7 +137,7 @@ const state = {
       children: [],
     },
   ],
-};
+});
 
 const mutations = {
   setTodos(state, todos) {
@@ -179,37 +179,6 @@ const actions = {
       }
     });
   },
-  todoChanged(context, todo) {
-    context.commit("changeTodo", todo);
-  },
-  patchTodo(context, data) {
-    axios
-      .patch(data.url, data)
-      .then((response) => context.commit("changeTodo", response.data))
-      .catch((error) => {
-        reject(error.response.data);
-      });
-  },
-  changeTimeToNextWeek(context) {
-    let time = moment(state.time).add(1, "week").startOf("isoWeek");
-    const now = moment();
-    if (
-      time.isoWeek() == now.isoWeek() &&
-      time.isoWeekYear() == now.isoWeekYear()
-    )
-      time = now;
-    context.commit("changeTime", time);
-  },
-  changeTimeToPreviousWeek(context) {
-    let time = moment(state.time).subtract(1, "week").startOf("isoWeek");
-    const now = moment();
-    if (
-      time.isoWeek() == now.isoWeek() &&
-      time.isoWeekYear() == now.isoWeekYear()
-    )
-      time = now;
-    context.commit("changeTime", time);
-  },
   createTodo(context, payload) {
     return new Promise((resolve, reject) => {
       axios
@@ -221,18 +190,7 @@ const actions = {
         .catch((error) => reject(error.response.data));
     });
   },
-  patchTodo(context, payload) {
-    return new Promise((resolve, reject) => {
-      axios
-        .patch(payload.url, payload.data)
-        .then((response) => {
-          context.commit("changeTodo", response.data);
-          resolve();
-        })
-        .catch((error) => reject(error.response.data));
-    });
-  },
-  updateTodo(context, data) {
+  patchTodo(context, data) {
     return new Promise((resolve, reject) => {
       axios
         .patch(data.url, data)
@@ -281,6 +239,26 @@ const actions = {
       data: data,
     };
     return context.dispatch("createTodo", payload);
+  },
+  changeTimeToNextWeek(context) {
+    let time = moment(state.time).add(1, "week").startOf("isoWeek");
+    const now = moment();
+    if (
+      time.isoWeek() == now.isoWeek() &&
+      time.isoWeekYear() == now.isoWeekYear()
+    )
+      time = now;
+    context.commit("changeTime", time);
+  },
+  changeTimeToPreviousWeek(context) {
+    let time = moment(state.time).subtract(1, "week").startOf("isoWeek");
+    const now = moment();
+    if (
+      time.isoWeek() == now.isoWeek() &&
+      time.isoWeekYear() == now.isoWeekYear()
+    )
+      time = now;
+    context.commit("changeTime", time);
   },
 };
 
