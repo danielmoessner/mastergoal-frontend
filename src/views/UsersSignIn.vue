@@ -7,8 +7,8 @@
         v-bind:type="alert.type"
       ></alert-box>
       <dynamic-form
-        :fields="$store.getters.loginFields"
-        action="login"
+        :fields="$store.getters['users/loginFormFields']"
+        action="users/login"
         submit="Login"
         success=""
       />

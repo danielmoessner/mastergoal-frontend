@@ -187,7 +187,7 @@ const actions = {
       .patch(data.url, data)
       .then((response) => context.commit("changeTodo", response.data))
       .catch((error) => {
-        reject(error.response.datal);
+        reject(error.response.data);
       });
   },
   changeTimeToNextWeek(context) {

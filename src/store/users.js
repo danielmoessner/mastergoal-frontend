@@ -1,12 +1,15 @@
 import axios from "../plugins/backendAxios";
+import router from "../router";
 
 const state = {
+  token: null,
   api: {
-    users: "/u/api/users/",
-    changePassword: "/u/api/change-password/",
+    users: "/users/",
+    authToken: "/users/auth_token/",
+    changePassword: "/users/change_password/",
   },
   user: {},
-  passwordFields: [
+  passwordChangeFields: [
     {
       type: "password",
       name: "old_password",
@@ -35,6 +38,17 @@ const state = {
       as: "input",
     },
   ],
+  passwordField: [
+    {
+      type: "password",
+      name: "password",
+      required: true,
+      readOnly: false,
+      create: false,
+      label: "Password",
+      as: "input",
+    },
+  ],
   userFields: [
     {
       type: "email",
@@ -60,12 +74,65 @@ const state = {
 };
 
 const mutations = {
+  authUser(state, token) {
+    state.token = token;
+  },
+  clearAuth(state) {
+    state.token = null;
+  },
   setUser(state, user) {
     state.user = user;
   },
 };
 
 const actions = {
+  signup({ dispatch, state }, data) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(`${import.meta.env.VITE_API_URL}${state.api.users}`, {
+          ...data,
+          returnSecureToken: true,
+        })
+        .then((response) => {
+          let message = `Welcome! You can now login with ${response.data.email} and your password.`;
+          dispatch("alert/success", message, { root: true });
+          resolve();
+        })
+        .catch((error) => {
+          reject(error.response.data);
+        });
+    });
+  },
+  login({ commit, state }, data) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(state.api.authToken, {
+          ...data,
+          returnSecureToken: true,
+        })
+        .then((response) => {
+          localStorage.setItem("token", response.data.token);
+          commit("authUser", response.data.token);
+          router.push("/t/dashboard/");
+          resolve();
+        })
+        .catch((error) => {
+          reject(error.response.data);
+        });
+    });
+  },
+  signout({ commit }) {
+    commit("clearAuth");
+    localStorage.removeItem("token");
+    router.push("/signin");
+  },
+  autoLogin({ commit }) {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return;
+    }
+    commit("authUser", token);
+  },
   fetchUser(context) {
     axios.get(context.state.api.users).then((response) => {
       context.commit("setUser", response.data[0]);
@@ -95,6 +162,12 @@ const actions = {
 };
 
 const getters = {
+  isAuthenticated(state) {
+    return !!state.token;
+  },
+  token(state) {
+    return state.token;
+  },
   user(state, getters) {
     return state.user;
   },
@@ -105,7 +178,17 @@ const getters = {
     return state.userFields;
   },
   passwordFormFields(state, getters) {
-    return state.passwordFields;
+    return state.passwordChangeFields;
+  },
+  loginFormFields(state, getters) {
+    return state.userFields.concat(state.passwordField);
+  },
+  signUpFormFields(state, getters) {
+    return state.userFields.concat(state.passwordField);
+  },
+  headersToken(state, getters) {
+    if (state.token !== null) return `Token ${state.token}`;
+    return "";
   },
 };
 

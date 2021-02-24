@@ -15,8 +15,7 @@ let instance = axios.create(defaultOptions);
 
 // set the auth token for any request
 instance.interceptors.request.use(function (config) {
-  const token = store.state.auth.token;
-  config.headers.Authorization = "Token " + token;
+  config.headers.Authorization = store.getters["users/headersToken"];
   return config;
 });
 

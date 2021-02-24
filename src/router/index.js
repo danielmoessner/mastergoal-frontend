@@ -25,7 +25,7 @@ const router = createRouter({ history: createWebHistory(), routes });
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuthenticationTrue)) {
-    if (!store.getters.isAuthenticated) {
+    if (!store.getters["users/isAuthenticated"]) {
       next({
         path: "/signin/",
         query: { redirect: to.fullPath },
@@ -33,14 +33,14 @@ router.beforeEach((to, from, next) => {
     }
   }
   if (to.matched.some((record) => record.meta.requiresAuthenticationFalse)) {
-    if (store.getters.isAuthenticated) {
+    if (store.getters["users/isAuthenticated"]) {
       next({
         path: "/t/dashboard/",
       });
     }
   }
   if (to.matched.some((record) => record.meta.forceRedirect)) {
-    if (store.getters.isAuthenticated) {
+    if (store.getters["users/isAuthenticated"]) {
       next({
         path: "/t/dashboard/",
       });

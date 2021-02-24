@@ -54,6 +54,6 @@ app.mixin({
 
 app.mount("#app");
 
-store.dispatch("autoLogin");
+store.dispatch("users/autoLogin");
 
 // setup();

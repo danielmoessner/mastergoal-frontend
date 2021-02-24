@@ -141,7 +141,7 @@ export default {
   },
   methods: {
     signout() {
-      this.$store.dispatch("signout");
+      this.$store.dispatch("users/signout");
     },
     toggle() {
       this.open = !this.open;

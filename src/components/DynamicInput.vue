@@ -11,6 +11,7 @@
       :value="modelValue"
       :required="required"
       :id="name"
+      :name="name"
       class="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
     />
     <input
@@ -19,6 +20,7 @@
       :type="type"
       :checked="modelValue"
       :id="name"
+      :name="name"
       class="block rounded w-5 h-5 border-pink-300 text-pink-500 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-300 focus:ring-opacity-50 cursor-pointer"
     />
     <textarea
@@ -28,12 +30,14 @@
       :value="modelValue"
       :required="required"
       :id="name"
+      :name="name"
       class="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
     />
     <select
       v-if="useSelect"
       @change="emit"
       :required="required"
+      :name="name"
       class="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
     >
       <option selected value="">---------</option>
@@ -51,11 +55,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      // value: "",
-    };
-  },
   props: {
     label: {
       required: true,

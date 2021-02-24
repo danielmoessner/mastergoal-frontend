@@ -46,14 +46,16 @@
           />
         </svg>
       </div>
-      <div class="flex flex-col max-w-full">
+      <div
+        class="flex flex-col max-w-full overflow-x-scroll md:overflow-x-auto"
+      >
         <div class="block text-gray-900 leading-tight truncate">
           {{ todo.name }}
           <span v-if="todo.type === 'REPETITIVE'">{{ todo.repetitions }}</span>
         </div>
         <div class="flex flex-row space-x-5">
           <div
-            class="flex text-xs text-gray-500 leading-tight"
+            class="flex text-xs text-gray-500 leading-tight whitespace-nowrap"
             v-bind:class="{ 'text-red-500': deadlineIsBeforeToday }"
             v-if="showDeadline"
           >
@@ -73,7 +75,7 @@
           </div>
           <div
             v-if="showDuration"
-            class="flex text-xs text-gray-500 leading-tight"
+            class="flex text-xs text-gray-500 leading-tight whitespace-nowrap"
           >
             <svg
               class="w-4 h-4 text-gray-400"
@@ -91,7 +93,7 @@
           </div>
           <div
             v-if="showReactivate"
-            class="flex text-xs text-gray-500 leading-tight"
+            class="flex text-xs text-gray-500 leading-tight whitespace-nowrap"
           >
             <svg
               class="w-4 h-4 text-gray-400"
