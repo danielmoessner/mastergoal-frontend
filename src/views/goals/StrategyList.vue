@@ -13,15 +13,14 @@
 </template>
 
 <script>
-import BackendBox from "../components/BackendBox.vue";
-import BreadcrumbNavigation from "../components/BreadcrumbNavigation.vue";
-import BreadcrumbLink from "../components/BreadcrumbLink.vue";
-import axios from "../plugins/backendAxios.js";
-import BreadcrumbDivider from "../components/BreadcrumbDivider.vue";
-import StrategyTable from "../components/StrategyTable.vue";
+import BackendBox from "../../components/BackendBox.vue";
+import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
+import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
+import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
+import StrategyTable from "../../components/StrategyTable.vue";
+import { mapGetters } from "vuex";
 
 export default {
-  name: "GoalsListStrategy",
   components: {
     BackendBox,
     BreadcrumbNavigation,
@@ -29,15 +28,13 @@ export default {
     StrategyTable,
     BreadcrumbDivider,
   },
-  data() {
-    return {
-      strategies: [],
-    };
+  computed: {
+    ...mapGetters({
+      strategies: "goals/strategies",
+    }),
   },
   mounted() {
-    axios
-      .get("/g/api/strategies/")
-      .then((response) => (this.strategies = response.data));
+    this.$store.dispatch("goals/fetchStrategies");
   },
 };
 </script>

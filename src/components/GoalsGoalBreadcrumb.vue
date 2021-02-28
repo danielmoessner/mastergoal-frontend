@@ -5,7 +5,6 @@
     <breadcrumb-link text="Goals" link="/g/list/goals"></breadcrumb-link>
     <breadcrumb-divider></breadcrumb-divider>
     <breadcrumb-link
-      v-if="goal"
       v-bind:text="goal.name"
       v-bind:link="'/g/list/goals/' + goal.id"
     ></breadcrumb-link>

@@ -2,9 +2,6 @@ import axios from "../plugins/backendAxios";
 import moment from "moment";
 
 const state = () => ({
-  todos: [],
-  apiState: false,
-  time: moment().valueOf(),
   api: {
     todos: "/todos/",
     normalTodo: "/normal-todos/",
@@ -13,6 +10,10 @@ const state = () => ({
     pipelineTodo: "/pipeline-todos/",
     state: "/todos/state/",
   },
+  /*
+  // Todos
+  */
+  todos: [],
   todoFields: [
     {
       type: "hidden",
@@ -137,14 +138,145 @@ const state = () => ({
       children: [],
     },
   ],
+  /*
+  // Other
+  */
+  time: moment().valueOf(),
+  apiState: false,
 });
 
+const getters = {
+  /*
+  // Todos
+  */
+  todos: (state, getters) => {
+    return state.todos;
+  },
+  normalTodos: (state, getters) => {
+    return getters.todos.filter((todo) => todo.type === "NORMAL");
+  },
+  pipelineTodos: (state, getters) => {
+    return getters.todos.filter((todo) => todo.type === "PIPELINE");
+  },
+  neverEndingTodos: (state, getters) => {
+    return getters.todos.filter((todo) => todo.type === "NEVER_ENDING");
+  },
+  repetitiveTodos: (state, getters) => {
+    return getters.todos.filter((todo) => todo.type === "REPETITIVE");
+  },
+  todo: (state, getters) => (id) => {
+    return getters.todos.find((todo) => todo.id.toString() === id);
+  },
+  todosThisWeek: (state, getters) => {
+    const now = moment(state.time);
+    return getters.todos.filter((todo) => {
+      const activate = moment(todo.activate);
+      const deadline = moment(todo.deadline);
+      // const relevantThisWeek =
+      //   activate <= now ||
+      //   (deadline.isoWeek() <= now.isoWeek() &&
+      //     deadline.isoWeekYear() <= now.isoWeekYear());
+      const relevantThisWeek = activate <= now;
+      const completed = todo.completed ? moment(todo.completed) : false;
+      const completedThisWeek =
+        completed &&
+        completed.isoWeek() === now.isoWeek() &&
+        completed.isoWeekYear() === now.isoWeekYear();
+      const unCompleted = !completed;
+      return (relevantThisWeek && unCompleted) || completedThisWeek;
+    });
+  },
+  todoDefaultFields: (state, getters) => {
+    return state.todoFields;
+  },
+  normalTodoFields: (state, getters) => {
+    return state.todoFields.concat(state.normalTodoFields);
+  },
+  neverEndingTodoFields: (state, getters) => {
+    return state.todoFields.concat(state.neverEndingTodoFields);
+  },
+  repetitiveTodoFields: (state, getters) => {
+    return state.todoFields.concat(state.repetitiveTodoFields);
+  },
+  pipelineTodoFields: (state, getters) => {
+    const pipelineTodoFields = state.pipelineTodoFields;
+    pipelineTodoFields[0].children = getters.todos.map((todo) => {
+      return {
+        value: `${import.meta.env.VITE_API_URL}${state.api.todos}${todo.id}/`,
+        text: todo.name,
+      };
+    });
+    return state.todoFields.concat(pipelineTodoFields);
+  },
+  todoFormFields: (state, getters) => (type) => {
+    switch (type) {
+      case "NORMAL":
+      case "normal-todo":
+        return getters.normalTodoFields.filter((field) => !field.readOnly);
+      case "REPETITIVE":
+      case "repetitive-todo":
+        return getters.repetitiveTodoFields.filter((field) => !field.readOnly);
+      case "NEVER_ENDING":
+      case "never-ending-todo":
+        return getters.neverEndingTodoFields.filter((field) => !field.readOnly);
+      case "PIPELINE":
+      case "pipeline-todo":
+        return getters.pipelineTodoFields.filter((field) => !field.readOnly);
+      default:
+        return [];
+    }
+  },
+  todoListUrl: (state, getters) => (todo) => {
+    const defaultUrl = "#";
+    if (!todo || !todo.type) return defaultUrl;
+    switch (todo.type) {
+      case "NORMAL":
+      case "normal-todo":
+        return "/t/list/normal-todos";
+      case "REPETITIVE":
+      case "repetitive-todo":
+        return "/t/list/repetitive-todos";
+      case "NEVER_ENDING":
+      case "never-ending-todo":
+        return "/t/list/never-ending-todos";
+      case "PIPELINE":
+      case "pipeline-todo":
+        return "/t/list/pipeline-todos";
+    }
+    return defaultUrl;
+  },
+  /*
+  // Other
+  */
+  week: (state, getters) => {
+    return moment(getters.time).isoWeek();
+  },
+  year: (state, getters) => {
+    return moment(getters.time).isoWeekYear();
+  },
+  time: (state, getters) => {
+    return moment(state.time);
+  },
+  timeActivate: (state, getters) => {
+    return moment(state.time).startOf("isoWeek");
+  },
+  timeDeadline: (state, getters) => {
+    return moment(state.time).endOf("isoWeek");
+  },
+};
+
 const mutations = {
+  /*
+  // Todos
+  */
+  setApiState(state) {
+    state.apiState = state;
+  },
   setTodos(state, todos) {
     state.todos = todos;
   },
-  setApiState(state) {
-    state.apiState = state;
+  addTodo(state, todo) {
+    state.todos.push(todo);
   },
   changeTodo(state, todo) {
     let index = state.todos.findIndex((todoItem) => todoItem.url === todo.url);
@@ -152,15 +284,15 @@ const mutations = {
       state.todos.splice(index, 1, todo);
     }
   },
-  addTodo(state, todo) {
-    state.todos.push(todo);
-  },
   removeTodo(state, url) {
     let index = state.todos.findIndex((todoItem) => todoItem.url === url);
     if (index !== -1) {
       state.todos.splice(index, 1);
     }
   },
+  /*
+  // Other
+  */
   changeTime(state, time) {
     // time should be a moment object
     state.time = time.valueOf();
@@ -168,6 +300,9 @@ const mutations = {
 };
 
 const actions = {
+  /*
+  // Todos
+  */
   fetchTodos(context) {
     axios.get(context.state.api.state).then((response) => {
       let apiState = response.data.status;
@@ -240,6 +375,9 @@ const actions = {
     };
     return context.dispatch("createTodo", payload);
   },
+  /*
+  // Other
+  */
   changeTimeToNextWeek(context) {
     let time = moment(state.time).add(1, "week").startOf("isoWeek");
     const now = moment();
@@ -259,123 +397,6 @@ const actions = {
     )
       time = now;
     context.commit("changeTime", time);
-  },
-};
-
-const getters = {
-  todos: (state, getters) => {
-    return state.todos;
-  },
-  normalTodos: (state, getters) => {
-    return getters.todos.filter((todo) => todo.type === "NORMAL");
-  },
-  pipelineTodos: (state, getters) => {
-    return getters.todos.filter((todo) => todo.type === "PIPELINE");
-  },
-  neverEndingTodos: (state, getters) => {
-    return getters.todos.filter((todo) => todo.type === "NEVER_ENDING");
-  },
-  repetitiveTodos: (state, getters) => {
-    return getters.todos.filter((todo) => todo.type === "REPETITIVE");
-  },
-  todo: (state, getters) => (id) => {
-    return getters.todos.find((todo) => todo.id.toString() === id);
-  },
-  todosThisWeek: (state, getters) => {
-    const now = moment(state.time);
-    return getters.todos.filter((todo) => {
-      const activate = moment(todo.activate);
-      const deadline = moment(todo.deadline);
-      // const relevantThisWeek =
-      //   activate <= now ||
-      //   (deadline.isoWeek() <= now.isoWeek() &&
-      //     deadline.isoWeekYear() <= now.isoWeekYear());
-      const relevantThisWeek = activate <= now;
-      const completed = todo.completed ? moment(todo.completed) : false;
-      const completedThisWeek =
-        completed &&
-        completed.isoWeek() === now.isoWeek() &&
-        completed.isoWeekYear() === now.isoWeekYear();
-      const unCompleted = !completed;
-      return (relevantThisWeek && unCompleted) || completedThisWeek;
-    });
-  },
-  fetched: (state, getters) => {
-    return state.fetched;
-  },
-  week: (state, getters) => {
-    return moment(getters.time).isoWeek();
-  },
-  year: (state, getters) => {
-    return moment(getters.time).isoWeekYear();
-  },
-  time: (state, getters) => {
-    return moment(state.time);
-  },
-  timeActivate: (state, getters) => {
-    return moment(state.time).startOf("isoWeek");
-  },
-  timeDeadline: (state, getters) => {
-    return moment(state.time).endOf("isoWeek");
-  },
-  todoDefaultFields: (state, getters) => {
-    return state.todoFields;
-  },
-  normalTodoFields: (state, getters) => {
-    return state.todoFields.concat(state.normalTodoFields);
-  },
-  neverEndingTodoFields: (state, getters) => {
-    return state.todoFields.concat(state.neverEndingTodoFields);
-  },
-  repetitiveTodoFields: (state, getters) => {
-    return state.todoFields.concat(state.repetitiveTodoFields);
-  },
-  pipelineTodoFields: (state, getters) => {
-    const pipelineTodoFields = state.pipelineTodoFields;
-    pipelineTodoFields[0].children = getters.todos.map((todo) => {
-      return {
-        value: `${import.meta.env.VITE_API_URL}${state.api.todos}${todo.id}/`,
-        text: todo.name,
-      };
-    });
-    return state.todoFields.concat(pipelineTodoFields);
-  },
-  todoFormFields: (state, getters) => (type) => {
-    switch (type) {
-      case "NORMAL":
-      case "normal-todo":
-        return getters.normalTodoFields.filter((field) => !field.readOnly);
-      case "REPETITIVE":
-      case "repetitive-todo":
-        return getters.repetitiveTodoFields.filter((field) => !field.readOnly);
-      case "NEVER_ENDING":
-      case "never-ending-todo":
-        return getters.neverEndingTodoFields.filter((field) => !field.readOnly);
-      case "PIPELINE":
-      case "pipeline-todo":
-        return getters.pipelineTodoFields.filter((field) => !field.readOnly);
-      default:
-        return [];
-    }
-  },
-  todoListUrl: (state, getters) => (todo) => {
-    const defaultUrl = "#";
-    if (!todo || !todo.type) return defaultUrl;
-    switch (todo.type) {
-      case "NORMAL":
-      case "normal-todo":
-        return "/t/list/normal-todos";
-      case "REPETITIVE":
-      case "repetitive-todo":
-        return "/t/list/repetitive-todos";
-      case "NEVER_ENDING":
-      case "never-ending-todo":
-        return "/t/list/never-ending-todos";
-      case "PIPELINE":
-      case "pipeline-todo":
-        return "/t/list/pipeline-todos";
-    }
-    return defaultUrl;
   },
 };
 

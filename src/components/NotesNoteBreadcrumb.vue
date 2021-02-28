@@ -3,7 +3,6 @@
     <breadcrumb-link text="Dasboard" link="/n/dashboard"></breadcrumb-link>
     <breadcrumb-divider></breadcrumb-divider>
     <breadcrumb-link
-      v-if="note"
       :text="note.name"
       :link="'/n/' + $route.params.id + '/'"
     ></breadcrumb-link>

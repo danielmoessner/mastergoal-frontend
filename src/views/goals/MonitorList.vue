@@ -13,15 +13,14 @@
 </template>
 
 <script>
-import BackendBox from "../components/BackendBox.vue";
-import BreadcrumbNavigation from "../components/BreadcrumbNavigation.vue";
-import BreadcrumbLink from "../components/BreadcrumbLink.vue";
-import axios from "../plugins/backendAxios.js";
-import BreadcrumbDivider from "../components/BreadcrumbDivider.vue";
-import MonitorTable from "../components/MonitorTable.vue";
+import BackendBox from "../../components/BackendBox.vue";
+import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
+import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
+import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
+import MonitorTable from "../../components/MonitorTable.vue";
+import { mapGetters } from "vuex";
 
 export default {
-  name: "GoalsListMonitor",
   components: {
     BackendBox,
     BreadcrumbNavigation,
@@ -29,15 +28,13 @@ export default {
     MonitorTable,
     BreadcrumbDivider,
   },
-  data() {
-    return {
-      monitors: [],
-    };
+  computed: {
+    ...mapGetters({
+      monitors: "goals/monitors",
+    }),
   },
   mounted() {
-    axios
-      .get("/g/api/monitors/")
-      .then((response) => (this.monitors = response.data));
+    this.$store.dispatch("goals/fetchMonitors");
   },
 };
 </script>

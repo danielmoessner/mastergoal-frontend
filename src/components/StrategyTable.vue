@@ -20,16 +20,6 @@
           <th
             class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
           >
-            Weight
-          </th>
-          <th
-            class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-          >
-            Rolling
-          </th>
-          <th
-            class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-          >
             Starred
           </th>
           <th
@@ -50,8 +40,6 @@
           <td class="px-6 py-4 whitespace-no-wrap">
             {{ strategy.goal }}
           </td>
-          <td class="px-6 py-4 whitespace-no-wrap">{{ strategy.weight }}</td>
-          <td class="px-6 py-4 whitespace-no-wrap">{{ strategy.rolling }}</td>
           <td class="px-6 py-4 whitespace-no-wrap">
             {{ strategy.is_starred }}
           </td>

@@ -1,5 +1,5 @@
 <template>
-  <backend-box>
+  <backend-box v-if="note">
     <notes-note-breadcrumb :note="note">
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
@@ -10,7 +10,6 @@
     <detail-grid>
       <general-box class="col-span-2 md:col-span-6">
         <dynamic-form
-          v-if="note"
           :fields="$store.getters['notes/noteFormFields']"
           :initial="note"
           action="notes/patchNote"

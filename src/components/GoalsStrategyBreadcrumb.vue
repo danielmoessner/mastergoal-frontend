@@ -8,7 +8,6 @@
     ></breadcrumb-link>
     <breadcrumb-divider></breadcrumb-divider>
     <breadcrumb-link
-      v-if="strategy"
       v-bind:text="strategy.name"
       v-bind:link="'/g/list/strategies/' + strategy.id"
     ></breadcrumb-link>

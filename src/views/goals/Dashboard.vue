@@ -16,29 +16,26 @@
 </template>
 
 <script>
-import BackendBox from "../components/BackendBox.vue";
-import BreadcrumbNavigation from "../components/BreadcrumbNavigation.vue";
-import BreadcrumbLink from "../components/BreadcrumbLink.vue";
-import axios from "../plugins/backendAxios.js";
-import GoalItem from "../components/GoalItem.vue";
+import BackendBox from "../../components/BackendBox.vue";
+import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
+import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
+import GoalItem from "../../components/GoalItem.vue";
+import { mapGetters } from "vuex";
 
 export default {
-  name: "GoalsDashboard",
   components: {
     BackendBox,
     BreadcrumbNavigation,
     BreadcrumbLink,
     GoalItem,
   },
-  data() {
-    return {
-      goals: [],
-    };
+  computed: {
+    ...mapGetters({
+      goals: "goals/goals",
+    }),
   },
   mounted() {
-    axios
-      .get("/g/api/goals/main/")
-      .then((response) => (this.goals = response.data));
+    this.$store.dispatch("goals/fetchGoals");
   },
 };
 </script>

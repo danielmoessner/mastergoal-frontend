@@ -4,6 +4,7 @@ import { alert } from "./alert";
 import { todos } from "./todos";
 import { users } from "./users";
 import { notes } from "./notes";
+import { goals } from "./goals";
 
 export default createStore({
   modules: {
@@ -11,5 +12,6 @@ export default createStore({
     todos,
     users,
     notes,
+    goals,
   },
 });

@@ -109,7 +109,7 @@ export default {
       default: false,
     },
     modelValue: {
-      type: [String, Boolean],
+      type: [String, Boolean, Number],
       required: "",
     },
   },

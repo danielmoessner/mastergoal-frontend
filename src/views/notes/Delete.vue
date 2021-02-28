@@ -1,13 +1,13 @@
 <template>
-  <backend-box>
-    <notes-note-breadcrumb v-if="note" :note="note">
+  <backend-box v-if="note">
+    <notes-note-breadcrumb :note="note">
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
         text="Delete"
         :link="'/n/' + $route.params.id + '/delete/'"
       ></breadcrumb-link>
     </notes-note-breadcrumb>
-    <detail-grid v-if="note">
+    <detail-grid>
       <general-box class="col-span-2 md:col-span-3" :overflow="false">
         <div class="flex-col flex justify-start items-start">
           <p class="mb-4">Are you sure you want to delete '{{ note.name }}'?</p>

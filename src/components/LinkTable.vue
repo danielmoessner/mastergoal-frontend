@@ -25,11 +25,6 @@
           <th
             class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
           >
-            Proportion
-          </th>
-          <th
-            class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-          >
             Archived
           </th>
           <th
@@ -46,7 +41,6 @@
             {{ link.subgoal.name }}
           </td>
           <td class="px-6 py-4 whitespace-no-wrap">{{ link.weight }}</td>
-          <td class="px-6 py-4 whitespace-no-wrap">{{ link.proportion }}</td>
           <td class="px-6 py-4 whitespace-no-wrap">{{ link.is_archived }}</td>
           <td class="px-1 whitespace-no-wrap">
             <div class="flex items-center justify-end">

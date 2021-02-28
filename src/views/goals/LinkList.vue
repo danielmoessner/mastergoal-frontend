@@ -10,15 +10,14 @@
 </template>
 
 <script>
-import BackendBox from "../components/BackendBox.vue";
-import BreadcrumbNavigation from "../components/BreadcrumbNavigation.vue";
-import BreadcrumbLink from "../components/BreadcrumbLink.vue";
-import axios from "../plugins/backendAxios.js";
-import BreadcrumbDivider from "../components/BreadcrumbDivider.vue";
-import LinkTable from "../components/LinkTable.vue";
+import BackendBox from "../../components/BackendBox.vue";
+import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
+import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
+import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
+import LinkTable from "../../components/LinkTable.vue";
+import { mapGetters } from "vuex";
 
 export default {
-  name: "GoalsListLink",
   components: {
     BackendBox,
     BreadcrumbNavigation,
@@ -26,13 +25,13 @@ export default {
     LinkTable,
     BreadcrumbDivider,
   },
-  data() {
-    return {
-      links: [],
-    };
+  computed: {
+    ...mapGetters({
+      links: "goals/links",
+    }),
   },
   mounted() {
-    axios.get("/g/api/links/").then((response) => (this.links = response.data));
+    this.$store.dispatch("goals/fetchLinks");
   },
 };
 </script>

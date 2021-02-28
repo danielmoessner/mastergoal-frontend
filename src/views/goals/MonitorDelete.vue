@@ -1,5 +1,5 @@
 <template>
-  <backend-box>
+  <backend-box v-if="monitor">
     <goals-monitor-breadcrumb :monitor="monitor">
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
@@ -32,27 +32,40 @@
 </template>
 
 <script>
-import GoalsMonitor from "../mixins/GoalsMonitor";
-import NavigationButton from "../components/NavigationButton.vue";
-import SubmitButton from "../components/SubmitButton.vue";
-import axios from "../plugins/backendAxios.js";
+import NavigationButton from "../../components/NavigationButton.vue";
+import SubmitButton from "../../components/SubmitButton.vue";
+import BackendBox from "../../components/BackendBox.vue";
+import DetailGrid from "../../components/DetailGrid.vue";
+import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
+import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
+import GeneralBox from "../../components/GeneralBox.vue";
+import GoalsMonitorBreadcrumb from "../../components/GoalsMonitorBreadcrumb.vue";
 
 export default {
-  name: "GoalsMonitorDelete",
-  mixins: [GoalsMonitor],
   components: {
+    GoalsMonitorBreadcrumb,
+    BackendBox,
+    DetailGrid,
+    BreadcrumbLink,
+    BreadcrumbDivider,
+    GeneralBox,
     NavigationButton,
     SubmitButton,
   },
+  computed: {
+    monitor() {
+      return this.$store.getters["goals/monitor"](this.$route.params.id);
+    },
+  },
   methods: {
     deleteMonitor() {
-      axios
-        .delete(this.monitor.url)
-        .then(() => this.$router.push("/g/list/monitors/"))
-        .catch((error) => console.log(error));
+      this.$store
+        .dispatch("goals/deleteMonitor", this.monitor.url)
+        .then(() => this.$router.push("/g/goals/"));
     },
+  },
+  mounted() {
+    this.$store.dispatch("goals/fetchMonitors");
   },
 };
 </script>
-
-<style></style>

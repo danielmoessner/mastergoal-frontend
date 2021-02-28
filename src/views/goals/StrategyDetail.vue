@@ -1,8 +1,8 @@
 <template>
-  <backend-box>
+  <backend-box v-if="strategy">
     <goals-strategy-breadcrumb :strategy="strategy"></goals-strategy-breadcrumb>
     <detail-grid>
-      <goal-item v-bind:goal="goal" v-if="goal"></goal-item>
+      <goal-item v-bind:goal="goal"></goal-item>
     </detail-grid>
     <detail-grid>
       <general-box
@@ -17,18 +17,14 @@
         <hr />
         <property-short property="Archived" :short="strategy.is_archived">
           <form-button
-            v-on:response="changed"
             text="Toggle"
-            v-if="strategy"
             v-bind:link="strategy.url"
             v-bind:data="{ is_archived: !strategy.is_archived }"
           ></form-button>
         </property-short>
         <property-short property="Starred" :short="strategy.is_starred">
           <form-button
-            v-on:response="changed"
             text="Toggle"
-            v-if="strategy"
             v-bind:link="strategy.url"
             v-bind:data="{ is_starred: !strategy.is_starred }"
           ></form-button>
@@ -42,46 +38,45 @@
 </template>
 
 <script>
-import axios from "../plugins/backendAxios.js";
-import GeneralBox from "../components/GeneralBox.vue";
-import FormButton from "../components/FormButton.vue";
-import GoalItem from "../components/GoalItem.vue";
-import DetailGrid from "../components/DetailGrid.vue";
-import HeadingOne from "../components/HeadingOne.vue";
-import HrefFormButton from "../components/HrefFormButton.vue";
-import PropertyText from "../components/PropertyText.vue";
-import PropertyShort from "../components/PropertyShort.vue";
-import GoalsStrategy from "../mixins/GoalsStrategy.js";
+import FormButton from "../../components/FormButton.vue";
+import GoalItem from "../../components/GoalItem.vue";
+import DetailGrid from "../../components/DetailGrid.vue";
+import HeadingOne from "../../components/HeadingOne.vue";
+import HrefFormButton from "../../components/HrefFormButton.vue";
+import PropertyText from "../../components/PropertyText.vue";
+import PropertyShort from "../../components/PropertyShort.vue";
+import BackendBox from "../../components/BackendBox.vue";
+import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
+import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
+import GeneralBox from "../../components/GeneralBox.vue";
+import GoalsStrategyBreadcrumb from "../../components/GoalsStrategyBreadcrumb.vue";
 
 export default {
-  name: "GoalDetail",
-  mixins: [GoalsStrategy],
   components: {
+    GoalsStrategyBreadcrumb,
+    BreadcrumbDivider,
+    BreadcrumbLink,
+    DetailGrid,
+    BackendBox,
     HeadingOne,
     PropertyText,
     PropertyShort,
     HrefFormButton,
-    DetailGrid,
     GoalItem,
     FormButton,
     GeneralBox,
   },
-  data() {
-    return {
-      goal: false,
-    };
-  },
-  watch: {
+  computed: {
     strategy() {
-      axios
-        .get(this.strategy.goal)
-        .then((response) => (this.goal = response.data));
+      return this.$store.getters["goals/strategy"](this.$route.params.id);
+    },
+    goal() {
+      return this.$store.getters["goals/goal"](this.strategy.goal);
     },
   },
-  methods: {
-    changed(data) {
-      this.item = data;
-    },
+  mounted() {
+    this.$store.dispatch("goals/fetchGoals");
+    this.$store.dispatch("goals/fetchStrategies");
   },
 };
 </script>

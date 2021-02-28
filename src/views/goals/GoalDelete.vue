@@ -1,5 +1,5 @@
 <template>
-  <backend-box>
+  <backend-box v-if="goal">
     <goals-goal-breadcrumb :goal="goal">
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
@@ -30,25 +30,40 @@
 </template>
 
 <script>
-import GoalsGoal from "../mixins/GoalsGoal";
-import NavigationButton from "../components/NavigationButton.vue";
-import SubmitButton from "../components/SubmitButton.vue";
-import axios from "../plugins/backendAxios.js";
+import NavigationButton from "../../components/NavigationButton.vue";
+import SubmitButton from "../../components/SubmitButton.vue";
+import BackendBox from "../../components/BackendBox.vue";
+import DetailGrid from "../../components/DetailGrid.vue";
+import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
+import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
+import GeneralBox from "../../components/GeneralBox.vue";
+import GoalsGoalBreadcrumb from "../../components/GoalsGoalBreadcrumb.vue";
 
 export default {
-  name: "GoalsGoalDelete",
-  mixins: [GoalsGoal],
   components: {
+    GoalsGoalBreadcrumb,
+    BackendBox,
+    DetailGrid,
+    BreadcrumbLink,
+    BreadcrumbDivider,
+    GeneralBox,
     NavigationButton,
     SubmitButton,
   },
+  computed: {
+    goal() {
+      return this.$store.getters["goals/goal"](this.$route.params.id);
+    },
+  },
   methods: {
     deleteGoal() {
-      axios
-        .delete(this.goal.url)
-        .then(() => this.$router.push("/g/list/goals/"))
-        .catch((error) => console.log(error));
+      this.$store
+        .dispatch("goals/deleteGoal", this.goal.url)
+        .then(() => this.$router.push("/g/goals/"));
     },
+  },
+  mounted() {
+    this.$store.dispatch("goals/fetchGoals");
   },
 };
 </script>

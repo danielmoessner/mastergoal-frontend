@@ -33,11 +33,11 @@
 </template>
 
 <script>
-import BackendBox from "../components/BackendBox.vue";
-import BreadcrumbNavigation from "../components/BreadcrumbNavigation.vue";
-import BreadcrumbLink from "../components/BreadcrumbLink.vue";
-import OverviewItem from "../components/OverviewItem.vue";
-import GeneralBox from "../components/GeneralBox.vue";
+import BackendBox from "../../components/BackendBox.vue";
+import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
+import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
+import OverviewItem from "../../components/OverviewItem.vue";
+import GeneralBox from "../../components/GeneralBox.vue";
 
 export default {
   name: "GoalsList",

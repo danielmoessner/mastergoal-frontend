@@ -1,23 +1,23 @@
 <template>
-  <backend-box v-if="todo">
-    <todos-todo-breadcrumb :todo="todo" :todoListUrl="todoListUrl">
+  <backend-box v-if="goal">
+    <goals-goal-breadcrumb :goal="goal">
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
         text="Edit"
-        v-bind:link="`/t/list/todos/${todo.id}/edit/`"
+        v-bind:link="'/g/list/goals/' + goal.id + '/edit/'"
       ></breadcrumb-link>
-    </todos-todo-breadcrumb>
+    </goals-goal-breadcrumb>
     <detail-grid>
       <general-box
         v-bind:overflow="false"
         class="col-span-2 md:col-span-3 xl:col-span-4"
       >
         <dynamic-form
-          :fields="$store.getters['todos/todoFormFields'](todo.type)"
-          :initial="todo"
+          action="goals/patchGoal"
+          success="Goal saved"
           submit="Save"
-          success="Todo changed"
-          action="todos/patchTodo"
+          :initial="goal"
+          :fields="$store.getters['goals/goalFormFields']"
         />
       </general-box>
     </detail-grid>
@@ -25,35 +25,31 @@
 </template>
 
 <script>
-import BackendBox from "../../components/BackendBox.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import DetailGrid from "../../components/DetailGrid.vue";
 import GeneralBox from "../../components/GeneralBox.vue";
-import TodosTodoBreadcrumb from "../../components/TodosTodoBreadcrumb.vue";
+import GoalsGoalBreadcrumb from "../../components/GoalsGoalBreadcrumb.vue";
 import DynamicForm from "../../components/DynamicForm.vue";
+import BackendBox from "../../components/BackendBox.vue";
 
 export default {
-  name: "TodosTodoEdit",
   components: {
-    GeneralBox,
+    GoalsGoalBreadcrumb,
     BackendBox,
-    TodosTodoBreadcrumb,
+    GeneralBox,
     BreadcrumbDivider,
     BreadcrumbLink,
     DetailGrid,
     DynamicForm,
   },
   computed: {
-    todo() {
-      return this.$store.getters["todos/todo"](this.$route.params.id);
-    },
-    todoListUrl() {
-      return this.$store.getters["todos/todoListUrl"](this.todo);
+    goal() {
+      return this.$store.getters["goals/goal"](this.$route.params.id);
     },
   },
   mounted() {
-    this.$store.dispatch("todos/fetchTodos");
+    this.$store.dispatch("goals/fetchGoals");
   },
 };
 </script>

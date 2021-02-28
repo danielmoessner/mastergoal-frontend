@@ -1,13 +1,11 @@
 <template>
-  <backend-box>
+  <backend-box v-if="todo">
     <todos-todo-breadcrumb
-      v-if="todo"
       :todo="todo"
       :todoListUrl="todoListUrl"
     ></todos-todo-breadcrumb>
     <detail-grid>
       <general-box
-        v-if="todo"
         class="col-span-2 md:col-span-3 xl:col-span-3"
         :overflow="false"
       >

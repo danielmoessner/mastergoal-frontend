@@ -8,7 +8,6 @@
     ></breadcrumb-link>
     <breadcrumb-divider></breadcrumb-divider>
     <breadcrumb-link
-      v-if="todo.name"
       v-bind:text="todo.name"
       v-bind:link="'/t/list/todos/' + todo.id"
     ></breadcrumb-link>

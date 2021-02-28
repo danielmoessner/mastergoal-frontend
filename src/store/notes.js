@@ -63,34 +63,34 @@ const actions = {
         .then((response) => context.commit("setNotes", response.data));
     }
   },
-  createNote(context, data) {
+  createNote({ state, commit }, data) {
     return new Promise((resolve, reject) => {
       axios
-        .post(context.state.api.notes, data)
+        .post(state.api.notes, data)
         .then((response) => {
-          context.commit("addNote", response.data);
+          commit("addNote", response.data);
           resolve();
         })
         .catch((error) => reject(error.response.data));
     });
   },
-  patchNote(context, data) {
+  patchNote({ commit }, data) {
     return new Promise((resolve, reject) => {
       axios
         .patch(data.url, data)
         .then((response) => {
-          context.commit("changeNote", response.data);
+          commit("changeNote", response.data);
           resolve();
         })
         .catch((error) => reject(error.response.data));
     });
   },
-  deleteNote(context, url) {
+  deleteNote({ commit }, url) {
     return new Promise((resolve, reject) => {
       axios
         .delete(url)
         .then((response) => {
-          context.commit("removeNote", url);
+          commit("removeNote", url);
           resolve();
         })
         .catch((error) => reject(error.response.data));
