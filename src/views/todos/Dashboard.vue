@@ -83,6 +83,9 @@ export default {
       year: "todos/year",
       time: "todos/time",
     }),
+    test() {
+      return this.$store.state.todos.time;
+    },
     done() {
       const all = this.todosThisWeek.length;
       const done = this.todosThisWeek.filter((todo) => todo.status === "DONE")

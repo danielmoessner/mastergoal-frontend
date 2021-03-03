@@ -141,7 +141,7 @@ const state = () => ({
   /*
   // Other
   */
-  time: moment().valueOf(),
+  time: moment().format(),
   apiState: false,
 });
 
@@ -153,25 +153,25 @@ const getters = {
     return state.todos;
   },
   normalTodos: (state, getters) => {
-    return getters.todos.filter((todo) => todo.type === "NORMAL");
+    return state.todos.filter((todo) => todo.type === "NORMAL");
   },
   pipelineTodos: (state, getters) => {
-    return getters.todos.filter((todo) => todo.type === "PIPELINE");
+    return state.todos.filter((todo) => todo.type === "PIPELINE");
   },
   neverEndingTodos: (state, getters) => {
-    return getters.todos.filter((todo) => todo.type === "NEVER_ENDING");
+    return state.todos.filter((todo) => todo.type === "NEVER_ENDING");
   },
   repetitiveTodos: (state, getters) => {
-    return getters.todos.filter((todo) => todo.type === "REPETITIVE");
+    return state.todos.filter((todo) => todo.type === "REPETITIVE");
   },
   todo: (state, getters) => (id) => {
-    return getters.todos.find((todo) => todo.id.toString() === id);
+    return state.todos.find((todo) => todo.id.toString() === id);
   },
   todosThisWeek: (state, getters) => {
     const now = moment(state.time);
-    return getters.todos.filter((todo) => {
+    return state.todos.filter((todo) => {
       const activate = moment(todo.activate);
-      const deadline = moment(todo.deadline);
+      // const deadline = moment(todo.deadline);
       // const relevantThisWeek =
       //   activate <= now ||
       //   (deadline.isoWeek() <= now.isoWeek() &&
@@ -200,7 +200,7 @@ const getters = {
   },
   pipelineTodoFields: (state, getters) => {
     const pipelineTodoFields = state.pipelineTodoFields;
-    pipelineTodoFields[0].children = getters.todos.map((todo) => {
+    pipelineTodoFields[0].children = state.todos.map((todo) => {
       return {
         value: `${import.meta.env.VITE_API_URL}${state.api.todos}${todo.id}/`,
         text: todo.name,
@@ -249,10 +249,10 @@ const getters = {
   // Other
   */
   week: (state, getters) => {
-    return moment(getters.time).isoWeek();
+    return moment(state.time).isoWeek();
   },
   year: (state, getters) => {
-    return moment(getters.time).isoWeekYear();
+    return moment(state.time).isoWeekYear();
   },
   time: (state, getters) => {
     return moment(state.time);
@@ -295,7 +295,7 @@ const mutations = {
   */
   changeTime(state, time) {
     // time should be a moment object
-    state.time = time.valueOf();
+    state.time = time.format();
   },
 };
 
@@ -378,7 +378,7 @@ const actions = {
   /*
   // Other
   */
-  changeTimeToNextWeek(context) {
+  changeTimeToNextWeek({ state, commit }) {
     let time = moment(state.time).add(1, "week").startOf("isoWeek");
     const now = moment();
     if (
@@ -386,17 +386,17 @@ const actions = {
       time.isoWeekYear() == now.isoWeekYear()
     )
       time = now;
-    context.commit("changeTime", time);
+    commit("changeTime", time);
   },
-  changeTimeToPreviousWeek(context) {
-    let time = moment(state.time).subtract(1, "week").startOf("isoWeek");
+  changeTimeToPreviousWeek({ state, commit }) {
+    let time = moment(state.time).subtract(1, "week"); //.startOf("isoWeek");
     const now = moment();
     if (
       time.isoWeek() == now.isoWeek() &&
       time.isoWeekYear() == now.isoWeekYear()
     )
       time = now;
-    context.commit("changeTime", time);
+    commit("changeTime", time);
   },
 };
 
