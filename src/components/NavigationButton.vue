@@ -1,7 +1,7 @@
 <template>
   <router-link
     v-bind:to="completeLink"
-    class="flex flex-row items-center py-3 px-4 rounded-lg text-gray-600 bg-white hover:bg-gray-100 hover:text-gray-700 transition ease-in-out duration-100"
+    class="flex flex-row items-center py-2 px-2 rounded-lg text-gray-600 hover:bg-gray-300 hover:text-gray-700 transition ease-in-out duration-100"
   >
     <div
       v-if="icon"
@@ -65,6 +65,6 @@ export default {
 
 <style lang="css" scoped>
 .router-link-exact-active {
-  @apply bg-gray-100;
+  @apply bg-gray-300;
 }
 </style>

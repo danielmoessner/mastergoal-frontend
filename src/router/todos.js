@@ -1,4 +1,3 @@
-import Detail from "../views/todos/Detail.vue";
 import Dashboard from "../views/todos/Dashboard.vue";
 import ListDashboard from "../views/todos/ListDashboard.vue";
 import CreateDashboard from "../views/todos/CreateDashboard.vue";
@@ -45,16 +44,6 @@ export default [
   {
     path: "/t/list/:type/",
     component: List,
-    meta: {
-      requiresAuthenticationTrue: true,
-    },
-  },
-  /*
-   ** Detail Pages
-   */
-  {
-    path: "/t/list/todos/:id/",
-    component: Detail,
     meta: {
       requiresAuthenticationTrue: true,
     },

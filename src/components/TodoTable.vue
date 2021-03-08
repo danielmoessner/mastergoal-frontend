@@ -49,15 +49,13 @@
           <td class="px-6 py-4 whitespace-no-wrap">{{ todo.deadline }}</td>
           <td class="px-6 py-4 whitespace-no-wrap">{{ todo.completed }}</td>
           <td class="px-1 whitespace-no-wrap">
-            <div class="flex items-center justify-end">
-              <navigation-button
-                v-bind:link="'/t/list/todos/' + todo.id + '/edit/'"
-                text="Edit"
-              ></navigation-button>
-              <navigation-button
-                v-bind:link="'/t/list/todos/' + todo.id + '/delete/'"
-                text="Delete"
-              ></navigation-button>
+            <div class="flex items-center space-x-2">
+              <TertiaryButton :to="`/t/list/todos/${todo.id}/edit/`">
+                Edit
+              </TertiaryButton>
+              <TertiaryButton :to="`/t/list/todos/${todo.id}/delete/`">
+                Delete
+              </TertiaryButton>
             </div>
           </td>
         </tr>
@@ -69,12 +67,14 @@
 <script>
 import GeneralBox from "../components/GeneralBox.vue";
 import NavigationButton from "../components/NavigationButton.vue";
+import TertiaryButton from "../components/Button/Tertiary.vue";
 
 export default {
   name: "TodoTable",
   components: {
     GeneralBox,
     NavigationButton,
+    TertiaryButton,
   },
   props: {
     todos: {

@@ -8,16 +8,14 @@
         :text="breadcrumbText"
       ></breadcrumb-link>
     </breadcrumb-navigation>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <general-box v-bind:overflow="false">
-        <dynamic-form
-          :action="action"
-          :fields="fields"
-          success="Todo added"
-          submit="Add"
-        />
-      </general-box>
-    </div>
+    <general-box v-bind:overflow="false">
+      <dynamic-form
+        :action="action"
+        :fields="fields"
+        success="Todo added"
+        submit="Add"
+      />
+    </general-box>
   </backend-box>
 </template>
 

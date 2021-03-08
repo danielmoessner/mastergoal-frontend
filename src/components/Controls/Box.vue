@@ -1,5 +1,5 @@
 <template>
-  <div class="py-4 px-6">
+  <div class="px-4 py-2 md:py-4 md:px-6">
     <h2
       class="tracking-wide text-xs md:text-sm font-bold text-gray-600 whitespace-nowrap"
     >

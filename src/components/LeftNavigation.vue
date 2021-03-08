@@ -1,14 +1,12 @@
 <template>
-  <div
-    class="w-full md:min-h-screen sticky top-0 md:bg-white"
-    v-bind:class="{ 'bg-white': open }"
-  >
+  <div class="w-full md:min-h-screen sticky top-0">
     <mastergoal-logo v-on:click.native="toggle">
       <svg
+        v-if="!open"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
-        class="h-6 w-6 mr-2 text-gray-100 md:hidden"
+        class="h-6 w-6 mr-2 text-gray-100 md:hidden cursor-pointer"
         stroke="currentColor"
       >
         <path
@@ -18,15 +16,30 @@
           d="M4 6h16M4 12h16M4 18h7"
         />
       </svg>
+      <svg
+        class="h-6 w-6 mr-2 text-gray-100 md:hidden cursor-pointer"
+        v-if="open"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
     </mastergoal-logo>
     <div
-      class="md:h-auto overflow-hidden transition-all ease-in-out duration-300 relative z-0"
+      class="overflow-hidden transition-all ease-in-out duration-300 relative z-0 rounded-lg bg-white md:mb-0 md:bg-transparent md:h-auto"
       ref="navigation"
       v-bind:class="{ 'h-0': !open }"
       v-bind:style="{ height: changingNavigationHeight }"
     >
-      <div class="w-full p-4 md:flex bg-white">
-        <ul class="flex flex-col w-full">
+      <div class="w-full p-4 md:flex">
+        <ul class="flex flex-col w-full space-y-1">
           <li class="my-px">
             <navigation-button
               link="/#/"

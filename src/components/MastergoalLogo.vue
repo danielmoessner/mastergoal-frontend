@@ -1,9 +1,8 @@
 <template>
   <div
-    class="flex w-full px-4 py-4 md:justify-center bg-blue-900 rounded-br-lg md:rounded-r-lg items-center justify-between"
+    class="flex w-full h-12 px-4 md:justify-center bg-gray-800 rounded-br-lg md:rounded-r-lg items-center justify-between relative"
   >
-    <div class="h-8 flex items-center">
-      <mastergoal-svg-logo></mastergoal-svg-logo>
+    <div class="md:absolute inset-0 w-full h-full flex items-center pl-4">
       <span class="text-2xl font-semibold text-gray-100">Mastergoal</span>
     </div>
     <slot></slot>

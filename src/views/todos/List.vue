@@ -9,6 +9,14 @@
       ></breadcrumb-link>
     </breadcrumb-navigation>
     <todo-table v-bind:todos="todos"></todo-table>
+    <div>
+      <Todo
+        verbose
+        v-for="todo in todos"
+        v-bind:key="todo.url"
+        v-bind:todo="todo"
+      />
+    </div>
   </backend-box>
 </template>
 
@@ -18,10 +26,12 @@ import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import TodoTable from "../../components/TodoTable.vue";
+import Todo from "../../components/Todo/Index.vue";
 
 export default {
   name: "TodosListNormal",
   components: {
+    Todo,
     TodoTable,
     BackendBox,
     BreadcrumbNavigation,

@@ -12,7 +12,7 @@
       :required="required"
       :id="name"
       :name="name"
-      class="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+      class="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
     />
     <input
       v-if="useCheckbox"
@@ -21,7 +21,7 @@
       :checked="modelValue"
       :id="name"
       :name="name"
-      class="block rounded w-5 h-5 border-pink-300 text-pink-500 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-300 focus:ring-opacity-50 cursor-pointer"
+      class="block rounded w-5 h-5 border-gray-300 text-gray-500 shadow-sm focus:border-gray-300 focus:ring focus:ring-gray-300 focus:ring-opacity-50 cursor-pointer"
     />
     <textarea
       v-if="useTextarea"
@@ -31,14 +31,14 @@
       :required="required"
       :id="name"
       :name="name"
-      class="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+      class="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
     />
     <select
       v-if="useSelect"
       @change="emit"
       :required="required"
       :name="name"
-      class="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50"
+      class="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
     >
       <option selected value="">---------</option>
       <option

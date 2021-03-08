@@ -32,12 +32,7 @@
         </p>
       </div>
       <div class="pt-1 flex items-center">
-        <button
-          class="px-7 py-1.5 bg-pink-700 text-white rounded-md ring-transparent ring-2 focus:outline-none focus:ring-pink-300 ring-opacity-50 border-pink-600 border-2"
-          type="submit"
-        >
-          {{ submit }}
-        </button>
+        <Button type="submit" is="button">{{ submit }}</Button>
         <p class="ml-4 text-green-700" v-if="showSuccess">
           {{ success }}
         </p>
@@ -48,6 +43,7 @@
 
 <script>
 import DynamicInput from "./DynamicInput.vue";
+import Button from "./Button/Primary.vue";
 
 export default {
   data() {
@@ -83,6 +79,7 @@ export default {
   },
   components: {
     DynamicInput,
+    Button,
   },
   methods: {
     handleSubmit() {

@@ -1,10 +1,9 @@
 <template>
   <div id="vue-main" class="flex bg-gray-200 w-full flex-wrap">
-    <aside class="w-full md:w-1/4 lg:w-1/4 xl:w-1/6">
+    <aside class="w-full md:w-64">
       <left-navigation></left-navigation>
     </aside>
-    <main class="w-full md:w-3/4 lg:w-3/4 xl:w-5/6 pb-64">
-      <top-navigation></top-navigation>
+    <main class="w-full md:flex-1">
       <transition name="fade">
         <alert-box
           v-if="alert.message"
@@ -12,7 +11,7 @@
           v-bind:type="alert.type"
         ></alert-box>
       </transition>
-      <div class="p-8">
+      <div class="p-4 md:p-8 max-w-2xl w-full mx-auto">
         <slot></slot>
       </div>
     </main>

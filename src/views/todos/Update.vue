@@ -7,20 +7,18 @@
         v-bind:link="`/t/list/todos/${todo.id}/edit/`"
       ></breadcrumb-link>
     </todos-todo-breadcrumb>
-    <detail-grid>
-      <general-box
-        v-bind:overflow="false"
-        class="col-span-2 md:col-span-3 xl:col-span-4"
-      >
-        <dynamic-form
-          :fields="$store.getters['todos/todoFormFields'](todo.type)"
-          :initial="todo"
-          submit="Save"
-          success="Todo changed"
-          action="todos/patchTodo"
-        />
-      </general-box>
-    </detail-grid>
+    <general-box
+      v-bind:overflow="false"
+      class="col-span-2 md:col-span-3 xl:col-span-4"
+    >
+      <dynamic-form
+        :fields="$store.getters['todos/todoFormFields'](todo.type)"
+        :initial="todo"
+        submit="Save"
+        success="Todo changed"
+        action="todos/patchTodo"
+      />
+    </general-box>
   </backend-box>
 </template>
 

@@ -1,6 +1,8 @@
 <template>
-  <router-link class="p-2 text-gray-600 last:text-gray-500" v-bind:to="completeLink"
-    ><div class="font-bold text-lg">{{ text }}</div>
+  <router-link
+    class="p-2 text-gray-700 last:text-gray-500"
+    v-bind:to="completeLink"
+    ><div class="text-base">{{ text }}</div>
   </router-link>
 </template>
 

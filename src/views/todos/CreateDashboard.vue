@@ -3,32 +3,30 @@
     <breadcrumb-navigation>
       <breadcrumb-link link="/t/add" text="Add"></breadcrumb-link>
     </breadcrumb-navigation>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <general-box v-bind:overflow="false">
-        <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
-          <overview-item
-            name="Normal-Todo"
-            link="/t/add/normal-todo"
-            v-bind:iconPaths="normalIconPaths"
-          ></overview-item>
-          <overview-item
-            name="Never-Ending-Todo"
-            link="/t/add/never-ending-todo"
-            v-bind:iconPaths="neverEndingIconPaths"
-          ></overview-item>
-          <overview-item
-            name="Repetitive-Todo"
-            link="/t/add/repetitive-todo"
-            v-bind:iconPaths="repetitiveIconPaths"
-          ></overview-item>
-          <overview-item
-            name="Pipeline-Todo"
-            link="/t/add/pipeline-todo"
-            v-bind:iconPaths="pipelineIconPaths"
-          ></overview-item>
-        </div>
-      </general-box>
-    </div>
+    <general-box v-bind:overflow="false">
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+        <overview-item
+          name="Normal-Todo"
+          link="/t/add/normal-todo"
+          v-bind:iconPaths="normalIconPaths"
+        ></overview-item>
+        <overview-item
+          name="Never-Ending-Todo"
+          link="/t/add/never-ending-todo"
+          v-bind:iconPaths="neverEndingIconPaths"
+        ></overview-item>
+        <overview-item
+          name="Repetitive-Todo"
+          link="/t/add/repetitive-todo"
+          v-bind:iconPaths="repetitiveIconPaths"
+        ></overview-item>
+        <overview-item
+          name="Pipeline-Todo"
+          link="/t/add/pipeline-todo"
+          v-bind:iconPaths="pipelineIconPaths"
+        ></overview-item>
+      </div>
+    </general-box>
   </backend-box>
 </template>
 
@@ -51,7 +49,7 @@ export default {
   data() {
     return {
       neverEndingIconPaths:
-        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />',
+        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.933 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.333-4zM19.933 12.8a1 1 0 000-1.6l-5.333-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.333-4z" />',
       pipelineIconPaths:
         '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />',
       repetitiveIconPaths:
