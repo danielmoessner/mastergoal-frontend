@@ -40,7 +40,7 @@
     >
       <div class="w-full p-4 md:flex">
         <ul class="flex flex-col w-full space-y-1">
-          <li class="my-px">
+          <li class="my-px" v-show="false">
             <navigation-button
               link="/#/"
               text="Overview"

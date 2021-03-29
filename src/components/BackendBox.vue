@@ -22,11 +22,10 @@
 
 <script>
 import LeftNavigation from "../components/LeftNavigation.vue";
-import TopNavigation from "../components/TopNavigation.vue";
 import AlertBox from "../components/AlertBox.vue";
 
 export default {
   name: "BackendBox",
-  components: { LeftNavigation, TopNavigation, AlertBox },
+  components: { LeftNavigation, AlertBox },
 };
 </script>
