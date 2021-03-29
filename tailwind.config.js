@@ -17,7 +17,7 @@ module.exports = {
     borderRadius: ({ after }) => after(["first", "last"]),
     margin: ({ after }) => after(["first", "last"]),
     textColor: ({ after }) => after(["first", "last"]),
-    backgroundColor: ({ after }) => after(["odd", "even"]),
+    backgroundColor: ({ after }) => after(["odd", "even", "active"]),
   },
   plugins: [require("@tailwindcss/typography"), require("@tailwindcss/forms")],
   future: {

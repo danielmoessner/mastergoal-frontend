@@ -15,20 +15,18 @@
         v-bind:link="'/g/list/links/' + link.id + '/edit/'"
       ></breadcrumb-link>
     </breadcrumb-navigation>
-    <detail-grid>
-      <general-box
-        v-bind:overflow="false"
-        class="col-span-2 lg:col-span-3 xl:col-span-3"
-      >
-        <dynamic-form
-          action="goals/patchLink"
-          success="Link saved"
-          submit="Save"
-          :initial="link"
-          :fields="$store.getters['goals/linkFormFields']"
-        />
-      </general-box>
-    </detail-grid>
+    <general-box
+      v-bind:overflow="false"
+      class="col-span-2 lg:col-span-3 xl:col-span-3"
+    >
+      <dynamic-form
+        action="goals/patchLink"
+        success="Link saved"
+        submit="Save"
+        :initial="link"
+        :fields="$store.getters['goals/linkFormFields']"
+      />
+    </general-box>
   </backend-box>
 </template>
 

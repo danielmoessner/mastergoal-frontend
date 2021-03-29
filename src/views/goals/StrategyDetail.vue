@@ -5,10 +5,7 @@
       <goal-item v-bind:goal="goal"></goal-item>
     </detail-grid>
     <detail-grid>
-      <general-box
-        class="col-span-2 lg:col-span-2 xl:col-span-3"
-        v-bind:overflow="false"
-      >
+      <general-box class="col-span-2 lg:col-span-3" v-bind:overflow="false">
         <heading-one :text="strategy.name"></heading-one>
         <property-text
           property="Description"

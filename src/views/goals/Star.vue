@@ -3,7 +3,7 @@
     <breadcrumb-navigation>
       <breadcrumb-link text="Starred" link="/g/starred"></breadcrumb-link>
     </breadcrumb-navigation>
-    <div class="grid gap-4 grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
+    <div class="grid gap-4 grid-cols-2 lg:grid-cols-3">
       <goal-item
         v-bind:goal="goal"
         v-for="goal in goals"

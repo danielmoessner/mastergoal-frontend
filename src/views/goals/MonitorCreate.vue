@@ -5,16 +5,14 @@
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link link="/g/add/monitor" text="Monitor"></breadcrumb-link>
     </breadcrumb-navigation>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <general-box v-bind:overflow="false">
-        <dynamic-form
-          action="goals/createMonitor"
-          success="Monitor added"
-          submit="Create"
-          :fields="$store.getters['goals/monitorCreateFormFields']"
-        />
-      </general-box>
-    </div>
+    <general-box v-bind:overflow="false">
+      <dynamic-form
+        action="goals/createMonitor"
+        success="Monitor added"
+        submit="Create"
+        :fields="$store.getters['goals/monitorCreateFormFields']"
+      />
+    </general-box>
   </backend-box>
 </template>
 

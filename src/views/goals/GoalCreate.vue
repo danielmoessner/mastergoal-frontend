@@ -5,16 +5,14 @@
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link link="/g/add/goal" text="Goal"></breadcrumb-link>
     </breadcrumb-navigation>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <general-box v-bind:overflow="false">
-        <dynamic-form
-          action="goals/createGoal"
-          success="Goal added"
-          submit="Create"
-          :fields="$store.getters['goals/goalCreateFormFields']"
-        />
-      </general-box>
-    </div>
+    <general-box v-bind:overflow="false">
+      <dynamic-form
+        action="goals/createGoal"
+        success="Goal added"
+        submit="Create"
+        :fields="$store.getters['goals/goalCreateFormFields']"
+      />
+    </general-box>
   </backend-box>
 </template>
 

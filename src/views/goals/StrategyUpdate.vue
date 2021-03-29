@@ -18,20 +18,18 @@
         v-bind:link="'/g/list/strategies/' + strategy.id + '/edit/'"
       ></breadcrumb-link>
     </breadcrumb-navigation>
-    <detail-grid>
-      <general-box
-        v-bind:overflow="false"
-        class="col-span-2 lg:col-span-3 xl:col-span-3"
-      >
-        <dynamic-form
-          action="goals/patchStrategy"
-          success="Strategy saved"
-          submit="Save"
-          :initial="strategy"
-          :fields="$store.getters['goals/strategyFormFields']"
-        />
-      </general-box>
-    </detail-grid>
+    <general-box
+      v-bind:overflow="false"
+      class="col-span-2 lg:col-span-3 xl:col-span-3"
+    >
+      <dynamic-form
+        action="goals/patchStrategy"
+        success="Strategy saved"
+        submit="Save"
+        :initial="strategy"
+        :fields="$store.getters['goals/strategyFormFields']"
+      />
+    </general-box>
   </backend-box>
 </template>
 

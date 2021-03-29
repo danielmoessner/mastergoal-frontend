@@ -2,7 +2,8 @@
   <button
     type="button"
     @click="open = !open"
-    class="text-gray-400 h-12 flex w-12 items-center justify-center cursor-pointer rounded-r-lg border-l border-gray-100 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-inset"
+    :class="{ 'bg-gray-100': open }"
+    class="text-gray-400 h-12 flex w-12 items-center justify-center cursor-pointer rounded-r-lg border-l border-gray-100 hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-inset"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"

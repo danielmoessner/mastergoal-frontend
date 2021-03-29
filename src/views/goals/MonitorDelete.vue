@@ -7,27 +7,25 @@
         text="Delete"
       ></breadcrumb-link>
     </goals-monitor-breadcrumb>
-    <detail-grid>
-      <general-box class="col-span-2 md:col-span-3" :overflow="false">
-        <div class="flex-col flex justify-start items-start">
-          <p class="mb-4">
-            Are you sure you want to delete '{{ monitor.name }}'?
-          </p>
-          <div class="flex items-end w-full justify-end">
-            <navigation-button
-              class="pt-2 pb-2"
-              :link="'/g/list/monitors/' + $route.params.id + '/'"
-              text="Cancel"
-            ></navigation-button>
-            <submit-button
-              v-on:click.native.prevent="deleteMonitor"
-              class="ml-2"
-              text="Yes, delete"
-            ></submit-button>
-          </div>
+    <general-box class="col-span-2 md:col-span-3" :overflow="false">
+      <div class="flex-col flex justify-start items-start">
+        <p class="mb-4">
+          Are you sure you want to delete '{{ monitor.name }}'?
+        </p>
+        <div class="flex items-end w-full justify-end">
+          <navigation-button
+            class="pt-2 pb-2"
+            :link="'/g/list/monitors/' + $route.params.id + '/'"
+            text="Cancel"
+          ></navigation-button>
+          <submit-button
+            v-on:click.native.prevent="deleteMonitor"
+            class="ml-2"
+            text="Yes, delete"
+          ></submit-button>
         </div>
-      </general-box>
-    </detail-grid>
+      </div>
+    </general-box>
   </backend-box>
 </template>
 

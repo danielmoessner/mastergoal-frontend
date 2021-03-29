@@ -3,6 +3,7 @@
     <div class="flex flex-row h-12">
       <Input @setDone="setStatus('DONE')" :todo="todo" />
       <Body :todo="todo" />
+      <Info v-if="verbose" :todo="todo" />
       <Menu @setFailed="setStatus('FAILED')" :todo="todo" />
     </div>
   </div>
@@ -13,6 +14,7 @@ import NavigationButton from "../../components/NavigationButton.vue";
 import Input from "./Input.vue";
 import Body from "./Body.vue";
 import Menu from "./Menu.vue";
+import Info from "./Info.vue";
 
 export default {
   name: "TodoItem",
@@ -20,6 +22,10 @@ export default {
     todo: {
       type: Object,
       required: true,
+    },
+    verbose: {
+      type: Boolean,
+      default: false,
     },
   },
   data: function () {
@@ -29,6 +35,7 @@ export default {
   },
   components: {
     NavigationButton,
+    Info,
     Input,
     Body,
     Menu,

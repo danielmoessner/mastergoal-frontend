@@ -3,32 +3,30 @@
     <breadcrumb-navigation>
       <breadcrumb-link link="/t/list" text="List"></breadcrumb-link>
     </breadcrumb-navigation>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <general-box v-bind:overflow="false">
-        <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
-          <overview-item
-            name="Goals"
-            link="/g/list/goals"
-            v-bind:iconPaths="goalsIcon"
-          ></overview-item>
-          <overview-item
-            name="Monitors"
-            link="/g/list/monitors"
-            v-bind:iconPaths="monitorsIcon"
-          ></overview-item>
-          <overview-item
-            name="Strategies"
-            link="/g/list/strategies"
-            v-bind:iconPaths="strategiesIcon"
-          ></overview-item>
-          <overview-item
-            name="Links"
-            link="/g/list/links"
-            v-bind:iconPaths="linksIcon"
-          ></overview-item>
-        </div>
-      </general-box>
-    </div>
+    <general-box>
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+        <overview-item
+          name="Goals"
+          link="/g/list/goals"
+          v-bind:iconPaths="goalsIcon"
+        ></overview-item>
+        <overview-item
+          name="Monitors"
+          link="/g/list/monitors"
+          v-bind:iconPaths="monitorsIcon"
+        ></overview-item>
+        <overview-item
+          name="Strategies"
+          link="/g/list/strategies"
+          v-bind:iconPaths="strategiesIcon"
+        ></overview-item>
+        <overview-item
+          name="Links"
+          link="/g/list/links"
+          v-bind:iconPaths="linksIcon"
+        ></overview-item>
+      </div>
+    </general-box>
   </backend-box>
 </template>
 
@@ -40,7 +38,6 @@ import OverviewItem from "../../components/OverviewItem.vue";
 import GeneralBox from "../../components/GeneralBox.vue";
 
 export default {
-  name: "GoalsList",
   components: {
     GeneralBox,
     OverviewItem,

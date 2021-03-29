@@ -18,20 +18,18 @@
         v-bind:link="'/g/list/monitors/' + monitor.id + '/edit/'"
       ></breadcrumb-link>
     </breadcrumb-navigation>
-    <detail-grid>
-      <general-box
-        v-bind:overflow="false"
-        class="col-span-2 lg:col-span-3 xl:col-span-3"
-      >
-        <dynamic-form
-          action="goals/patchMonitor"
-          success="Monitor saved"
-          submit="Save"
-          :initial="monitor"
-          :fields="$store.getters['goals/monitorFormFields']"
-        />
-      </general-box>
-    </detail-grid>
+    <general-box
+      v-bind:overflow="false"
+      class="col-span-2 lg:col-span-3 xl:col-span-3"
+    >
+      <dynamic-form
+        action="goals/patchMonitor"
+        success="Monitor saved"
+        submit="Save"
+        :initial="monitor"
+        :fields="$store.getters['goals/monitorFormFields']"
+      />
+    </general-box>
   </backend-box>
 </template>
 

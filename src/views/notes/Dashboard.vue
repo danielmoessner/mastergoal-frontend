@@ -3,14 +3,14 @@
     <breadcrumb-navigation>
       <breadcrumb-link link="/n/dashboard" text="Dashboard"></breadcrumb-link>
     </breadcrumb-navigation>
-    <detail-grid>
+    <div class="space-y-2 mb-4">
       <note-item v-for="note in notes" :key="note.url" :note="note"></note-item>
-      <navigation-button
-        link="/n/add/"
-        text="Add a note"
-        v-bind:icon="addIcon"
-      ></navigation-button>
-    </detail-grid>
+    </div>
+    <navigation-button
+      link="/n/add/"
+      text="Add a note"
+      v-bind:icon="addIcon"
+    ></navigation-button>
   </backend-box>
 </template>
 

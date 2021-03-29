@@ -3,32 +3,30 @@
     <breadcrumb-navigation>
       <breadcrumb-link link="/g/add" text="Add"></breadcrumb-link>
     </breadcrumb-navigation>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <general-box v-bind:overflow="false">
-        <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
-          <overview-item
-            name="Goal"
-            link="/g/add/goal"
-            v-bind:iconPaths="goalsIcon"
-          ></overview-item>
-          <overview-item
-            name="Monitor"
-            link="/g/add/monitor"
-            v-bind:iconPaths="monitorsIcon"
-          ></overview-item>
-          <overview-item
-            name="Strategy"
-            link="/g/add/strategy"
-            v-bind:iconPaths="strategiesIcon"
-          ></overview-item>
-          <overview-item
-            name="Link"
-            link="/g/add/link"
-            v-bind:iconPaths="linksIcon"
-          ></overview-item>
-        </div>
-      </general-box>
-    </div>
+    <general-box>
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+        <overview-item
+          name="Goal"
+          link="/g/add/goal"
+          v-bind:iconPaths="goalsIcon"
+        ></overview-item>
+        <overview-item
+          name="Monitor"
+          link="/g/add/monitor"
+          v-bind:iconPaths="monitorsIcon"
+        ></overview-item>
+        <overview-item
+          name="Strategy"
+          link="/g/add/strategy"
+          v-bind:iconPaths="strategiesIcon"
+        ></overview-item>
+        <overview-item
+          name="Link"
+          link="/g/add/link"
+          v-bind:iconPaths="linksIcon"
+        ></overview-item>
+      </div>
+    </general-box>
   </backend-box>
 </template>
 

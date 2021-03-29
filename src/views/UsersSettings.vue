@@ -3,32 +3,30 @@
     <breadcrumb-navigation>
       <breadcrumb-link link="/u/settings" text="Settings"></breadcrumb-link>
     </breadcrumb-navigation>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <general-box v-bind:overflow="false">
-        <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
-          <overview-item
-            name="User settings"
-            link="/u/settings/user-settings"
-            v-bind:iconPaths="userIcon"
-          ></overview-item>
-          <overview-item
-            name="General settings"
-            link="/u/settings/general-settings"
-            v-bind:iconPaths="generalIcon"
-          ></overview-item>
-          <overview-item
-            name="Todo settings"
-            link="/u/settings/todo-settings"
-            v-bind:iconPaths="todoIcon"
-          ></overview-item>
-          <overview-item
-            name="Goal settings"
-            link="/u/settings/goal-settings"
-            v-bind:iconPaths="goalIcon"
-          ></overview-item>
-        </div>
-      </general-box>
-    </div>
+    <general-box v-bind:overflow="false">
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+        <overview-item
+          name="User settings"
+          link="/u/settings/user-settings"
+          v-bind:iconPaths="userIcon"
+        ></overview-item>
+        <overview-item
+          name="General settings"
+          link="/u/settings/general-settings"
+          v-bind:iconPaths="generalIcon"
+        ></overview-item>
+        <overview-item
+          name="Todo settings"
+          link="/u/settings/todo-settings"
+          v-bind:iconPaths="todoIcon"
+        ></overview-item>
+        <overview-item
+          name="Goal settings"
+          link="/u/settings/goal-settings"
+          v-bind:iconPaths="goalIcon"
+        ></overview-item>
+      </div>
+    </general-box>
   </backend-box>
 </template>
 

@@ -7,20 +7,15 @@
         v-bind:link="'/g/list/goals/' + goal.id + '/edit/'"
       ></breadcrumb-link>
     </goals-goal-breadcrumb>
-    <detail-grid>
-      <general-box
-        v-bind:overflow="false"
-        class="col-span-2 md:col-span-3 xl:col-span-4"
-      >
-        <dynamic-form
-          action="goals/patchGoal"
-          success="Goal saved"
-          submit="Save"
-          :initial="goal"
-          :fields="$store.getters['goals/goalFormFields']"
-        />
-      </general-box>
-    </detail-grid>
+    <general-box class="col-span-2 md:col-span-3 xl:col-span-4">
+      <dynamic-form
+        action="goals/patchGoal"
+        success="Goal saved"
+        submit="Save"
+        :initial="goal"
+        :fields="$store.getters['goals/goalFormFields']"
+      />
+    </general-box>
   </backend-box>
 </template>
 

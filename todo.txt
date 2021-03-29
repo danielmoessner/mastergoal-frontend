@@ -1,0 +1,20 @@
+- goal liste schöner
+- strategy liste schöner
+- link liste schöner
+- notes editor austauschen zu quill vllt
+- notes namen einfacher (erste zeile)
+- goal detail schöner eigenschaften einfacher anzeigen
+- baum struktur in javascript schöner vllt? plugin?
+- edit und delete buttons schöner bei goals und notes
+- monitor detail einfachen aktionen schöner steps up and down
+- archived vereinfachen vllt mit button
+- todo settings formular oder gleich ganz weg?
+  - hier müsste man denke ich show old todos oder so dieses setting einbinden
+- goal settings formular oder gleich ganz weg?
+- philosophieren welche funktionen noch cool wären:
+  - personal life plan
+  - visionboard
+  - achievements
+- goals app mit hero on a mission verbinden?
+- breadcrumbs verbessern?
+

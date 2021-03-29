@@ -10,10 +10,7 @@
       ></goal-item>
     </detail-grid>
     <detail-grid>
-      <general-box
-        class="col-span-2 lg:col-span-2 xl:col-span-3"
-        v-bind:overflow="false"
-      >
+      <general-box class="col-span-3" v-bind:overflow="false">
         <heading-one
           :title="goal.name"
           :subtitle="goal.progress + ' %'"

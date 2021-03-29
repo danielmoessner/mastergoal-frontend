@@ -8,8 +8,7 @@
         :text="breadcrumbText"
       ></breadcrumb-link>
     </breadcrumb-navigation>
-    <todo-table v-bind:todos="todos"></todo-table>
-    <div>
+    <div class="">
       <Todo
         verbose
         v-for="todo in todos"
@@ -25,14 +24,11 @@ import BackendBox from "../../components/BackendBox.vue";
 import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
-import TodoTable from "../../components/TodoTable.vue";
 import Todo from "../../components/Todo/Index.vue";
 
 export default {
-  name: "TodosListNormal",
   components: {
     Todo,
-    TodoTable,
     BackendBox,
     BreadcrumbNavigation,
     BreadcrumbLink,

@@ -11,8 +11,10 @@
           v-bind:type="alert.type"
         ></alert-box>
       </transition>
-      <div class="p-4 md:p-8 max-w-2xl w-full mx-auto">
-        <slot></slot>
+      <div class="p-4 md:p-8">
+        <div class="max-w-2xl w-full mx-auto">
+          <slot></slot>
+        </div>
       </div>
     </main>
   </div>
