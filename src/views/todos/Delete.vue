@@ -7,7 +7,7 @@
         text="Delete"
       ></breadcrumb-link>
     </todos-todo-breadcrumb>
-    <general-box class="col-span-2 md:col-span-3" :overflow="false">
+    <general-box>
       <div class="flex-col flex justify-start items-start">
         <p class="mb-4">Are you sure you want to delete '{{ todo.name }}'?</p>
         <div class="flex space-x-2">
@@ -33,7 +33,7 @@ import BackendBox from "../../components/BackendBox.vue";
 import DetailGrid from "../../components/DetailGrid.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
-import GeneralBox from "../../components/GeneralBox.vue";
+import GeneralBox from "../../components/Box/GeneralBox.vue";
 import PrimaryButton from "../../components/Button/Primary.vue";
 import SecondaryButton from "../../components/Button/Secondary.vue";
 

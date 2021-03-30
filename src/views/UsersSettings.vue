@@ -32,7 +32,7 @@
 
 <script>
 import BackendBox from "../components/BackendBox.vue";
-import GeneralBox from "../components/GeneralBox.vue";
+import GeneralBox from "../components/Box/GeneralBox.vue";
 import BreadcrumbNavigation from "../components/BreadcrumbNavigation.vue";
 import BreadcrumbLink from "../components/BreadcrumbLink.vue";
 import OverviewItem from "../components/OverviewItem.vue";

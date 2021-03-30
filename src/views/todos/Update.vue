@@ -27,7 +27,7 @@ import BackendBox from "../../components/BackendBox.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import DetailGrid from "../../components/DetailGrid.vue";
-import GeneralBox from "../../components/GeneralBox.vue";
+import GeneralBox from "../../components/Box/GeneralBox.vue";
 import TodosTodoBreadcrumb from "../../components/TodosTodoBreadcrumb.vue";
 import DynamicForm from "../../components/DynamicForm.vue";
 

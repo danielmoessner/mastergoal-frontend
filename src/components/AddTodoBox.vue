@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import GeneralBox from "../components/GeneralBox.vue";
+import GeneralBox from "./Box/GeneralBox.vue";
 import RestForm from "../components/RestForm.vue";
 
 export default {

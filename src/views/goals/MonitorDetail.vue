@@ -5,10 +5,7 @@
       <goal-item v-bind:goal="goal" type="Goal"></goal-item>
     </detail-grid>
     <detail-grid>
-      <general-box
-        class="col-span-2 lg:col-span-3"
-        v-bind:overflow="false"
-      >
+      <general-box class="col-span-2 lg:col-span-3" v-bind:overflow="false">
         <heading-one
           :text="monitor.name"
           :subtitle="monitor.progress + ' %'"
@@ -51,7 +48,7 @@
 
 <script>
 import GoalsMonitorBreadcrumb from "../../components/GoalsMonitorBreadcrumb.vue";
-import GeneralBox from "../../components/GeneralBox.vue";
+import GeneralBox from "../../components/Box/GeneralBox.vue";
 import FormButton from "../../components/FormButton.vue";
 import GoalItem from "../../components/GoalItem.vue";
 import HeadingOne from "../../components/HeadingOne.vue";

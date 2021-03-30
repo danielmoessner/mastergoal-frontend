@@ -45,7 +45,7 @@ import PropertyShort from "../../components/PropertyShort.vue";
 import BackendBox from "../../components/BackendBox.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
-import GeneralBox from "../../components/GeneralBox.vue";
+import GeneralBox from "../../components/Box/GeneralBox.vue";
 import GoalsStrategyBreadcrumb from "../../components/GoalsStrategyBreadcrumb.vue";
 
 export default {
