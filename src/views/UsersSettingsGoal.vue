@@ -63,7 +63,7 @@ import BreadcrumbNavigation from "../components/BreadcrumbNavigation.vue";
 import BreadcrumbLink from "../components/BreadcrumbLink.vue";
 import BreadcrumbDivider from "../components/BreadcrumbDivider.vue";
 import axios from "../plugins/backendAxios.js";
-import GeneralBox from "../components/Box/GeneralBox.vue";
+import GeneralBox from "../components/Box/General.vue";
 
 export default {
   name: "UsersSettingsGoal",

@@ -23,7 +23,7 @@ import DetailGrid from "../../components/DetailGrid.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import GoalsGoalBreadcrumb from "../../components/GoalsGoalBreadcrumb.vue";
-import DeleteBox from "../../components/Box/DeleteBox.vue";
+import DeleteBox from "../../components/Box/Delete.vue";
 
 export default {
   components: {

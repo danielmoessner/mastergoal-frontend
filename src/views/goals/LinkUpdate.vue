@@ -37,7 +37,7 @@ import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import DynamicForm from "../../components/DynamicForm.vue";
 import DetailGrid from "../../components/DetailGrid.vue";
-import GeneralBox from "../../components/Box/GeneralBox.vue";
+import GeneralBox from "../../components/Box/General.vue";
 
 export default {
   name: "GoalsLinkEdit",

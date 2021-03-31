@@ -33,7 +33,7 @@ import BackendBox from "../../components/BackendBox.vue";
 import DetailGrid from "../../components/DetailGrid.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
-import GeneralBox from "../../components/Box/GeneralBox.vue";
+import GeneralBox from "../../components/Box/General.vue";
 import PrimaryButton from "../../components/Button/Primary.vue";
 import SecondaryButton from "../../components/Button/Secondary.vue";
 

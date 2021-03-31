@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import GeneralBox from "./Box/GeneralBox.vue";
+import GeneralBox from "./Box/General.vue";
 
 export default {
   name: "ScrollBox",

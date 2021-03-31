@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import GeneralBox from "./Box/GeneralBox.vue";
+import GeneralBox from "./Box/General.vue";
 import NavigationButton from "../components/NavigationButton.vue";
 
 export default {

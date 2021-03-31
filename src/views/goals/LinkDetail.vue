@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import GeneralBox from "../../components/Box/GeneralBox.vue";
+import GeneralBox from "../../components/Box/General.vue";
 import FormButton from "../../components/FormButton.vue";
 import GoalItem from "../../components/GoalItem.vue";
 import MonitorItem from "../../components/MonitorItem.vue";

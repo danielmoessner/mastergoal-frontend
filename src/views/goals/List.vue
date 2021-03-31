@@ -35,7 +35,7 @@ import BackendBox from "../../components/BackendBox.vue";
 import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import OverviewItem from "../../components/OverviewItem.vue";
-import GeneralBox from "../../components/Box/GeneralBox.vue";
+import GeneralBox from "../../components/Box/General.vue";
 
 export default {
   components: {
