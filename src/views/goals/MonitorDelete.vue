@@ -7,25 +7,11 @@
         text="Delete"
       ></breadcrumb-link>
     </goals-monitor-breadcrumb>
-    <general-box class="col-span-2 md:col-span-3" :overflow="false">
-      <div class="flex-col flex justify-start items-start">
-        <p class="mb-4">
-          Are you sure you want to delete '{{ monitor.name }}'?
-        </p>
-        <div class="flex items-end w-full justify-end">
-          <navigation-button
-            class="pt-2 pb-2"
-            :link="'/g/list/monitors/' + $route.params.id + '/'"
-            text="Cancel"
-          ></navigation-button>
-          <submit-button
-            v-on:click.native.prevent="deleteMonitor"
-            class="ml-2"
-            text="Yes, delete"
-          ></submit-button>
-        </div>
-      </div>
-    </general-box>
+    <delete-box
+      @click="deleteMonitor()"
+      :object="monitor.name"
+      :to="`/g/list/monitors/${monitor.id}/`"
+    />
   </backend-box>
 </template>
 
@@ -38,9 +24,11 @@ import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import GeneralBox from "../../components/Box/General.vue";
 import GoalsMonitorBreadcrumb from "../../components/GoalsMonitorBreadcrumb.vue";
+import DeleteBox from "../../components/Box/Delete.vue";
 
 export default {
   components: {
+    DeleteBox,
     GoalsMonitorBreadcrumb,
     BackendBox,
     DetailGrid,

@@ -1,9 +1,5 @@
 <template>
-  <general-box
-    :overflow="false"
-    :padding="false"
-    class="overflow-hidden bg-gray overflow-x-auto"
-  >
+  <general-box :padding="false" class="overflow-hidden bg-gray overflow-x-auto">
     <table class="min-w-full divide-y divide-gray-200">
       <thead class="bg-gray-100">
         <tr>

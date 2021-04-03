@@ -18,5 +18,4 @@
 - goals app mit hero on a mission verbinden?
 - breadcrumbs verbessern?
 
-- monitor detail, link detail, strategy detail
-- component für die description list im detail component
+- link detail

@@ -50,20 +50,13 @@
           v-if="goal.why || goal.impact || goal.addition"
           v-slot:content
         >
-          <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-            <div v-if="goal.why" class="sm:col-span-2">
-              <dt class="text-sm font-medium text-gray-500">Why</dt>
-              <dd class="mt-1 text-gray-900">{{ goal.why }}</dd>
-            </div>
-            <div v-if="goal.impact" class="sm:col-span-2">
-              <dt class="text-sm font-medium text-gray-500">Impact</dt>
-              <dd class="mt-1 text-gray-900">{{ goal.impact }}</dd>
-            </div>
-            <div v-if="goal.addition" class="sm:col-span-2">
-              <dt class="text-sm font-medium text-gray-500">Impact</dt>
-              <dd class="mt-1 text-gray-900">{{ goal.addition }}</dd>
-            </div>
-          </dl>
+          <Descriptive
+            :data="[
+              ['Why', goal.why],
+              ['Impact', goal.impact],
+              ['Addition', goal.addition],
+            ]"
+          />
         </template>
       </DetailBox>
       <monitor-item
@@ -106,6 +99,7 @@ import Delete from "../../components/Action/Delete.vue";
 import Edit from "../../components/Action/Edit.vue";
 import DetailBox from "../../components/Box/Detail.vue";
 import Info from "../../components/Info.vue";
+import Descriptive from "../../components/Table/Descriptive.vue";
 
 export default {
   components: {
@@ -115,6 +109,7 @@ export default {
     Star,
     Delete,
     Archive,
+    Descriptive,
     BreadcrumbDivider,
     BreadcrumbLink,
     BackendBox,

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white shadow rounded-lg col-span-3">
+  <div class="bg-white shadow rounded-lg col-span-2 lg:col-span-3">
     <div class="px-4 py-5 sm:px-6">
       <div class="flex justify-between">
         <h1 class="text-2xl font-medium text-gray-900">
