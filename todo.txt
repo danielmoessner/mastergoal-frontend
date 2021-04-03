@@ -6,7 +6,6 @@
 - goal detail schöner eigenschaften einfacher anzeigen
 - baum struktur in javascript schöner vllt? plugin?
 - edit und delete buttons schöner bei goals und notes
-- monitor detail einfachen aktionen schöner steps up and down
 - archived vereinfachen vllt mit button
 - todo settings formular oder gleich ganz weg?
   - hier müsste man denke ich show old todos oder so dieses setting einbinden
@@ -19,3 +18,8 @@
 - breadcrumbs verbessern?
 
 - link detail
+- user app in folder
+
+- die kleinen items schöner / anders
+
+- vllt die goals listen direkt entfernen?
