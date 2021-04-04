@@ -8,7 +8,7 @@
         text="Strategies"
       ></breadcrumb-link>
     </breadcrumb-navigation>
-    <strategy-table v-bind:strategies="strategies"></strategy-table>
+    <strategy-table :strategies="strategies"></strategy-table>
   </backend-box>
 </template>
 

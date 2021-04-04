@@ -2,9 +2,10 @@
   <a
     href="#"
     class="cursor-pointer text-blue-700 hover:text-blue-900 transition ease-in-out duration-100"
-    v-on:click.prevent="submit"
-    v-html="text"
-  ></a>
+    @click.prevent="submit"
+  >
+    {text}
+  </a>
 </template>
 
 <script>

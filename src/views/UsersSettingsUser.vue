@@ -9,7 +9,7 @@
       ></breadcrumb-link>
     </breadcrumb-navigation>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <general-box v-bind:overflow="false">
+      <general-box :overflow="false">
         <dynamic-form
           :fields="$store.getters['users/userFormFields']"
           :initial="$store.getters['users/user']"
@@ -18,9 +18,9 @@
           action="users/patchUser"
         />
       </general-box>
-      <general-box v-bind:overflow="false">
+      <general-box :overflow="false">
         <dynamic-form
-          :fields="this.$store.getters['users/passwordFormFields']"
+          :fields="$store.getters['users/passwordFormFields']"
           submit="Save"
           success="New Password Saved"
           action="users/changeUserPassword"
@@ -40,7 +40,6 @@ import DynamicForm from "../components/DynamicForm.vue";
 
 export default {
   name: "UsersSettingsUser",
-  mixins: [],
   components: {
     BackendBox,
     BreadcrumbNavigation,
@@ -49,6 +48,7 @@ export default {
     GeneralBox,
     DynamicForm,
   },
+  mixins: [],
   mounted() {
     this.$store.dispatch("users/fetchUser");
   },

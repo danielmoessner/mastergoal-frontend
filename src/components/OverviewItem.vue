@@ -1,8 +1,12 @@
 <template>
-  <router-link v-bind:to="link" class="flex items-center p-2 text-gray-700 hover:text-gray-800">
+  <router-link
+    :to="link"
+    class="flex items-center p-2 text-gray-700 hover:text-gray-800"
+  >
     <div
       class="bg-gray-300 rounded-full w-10 h-10 mr-3 flex items-center justify-center"
     >
+      <!-- eslint-disable -->
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -10,8 +14,8 @@
         viewBox="0 0 24 24"
         stroke="currentColor"
         v-html="iconPaths"
-      >
-      </svg>
+      ></svg>
+      <!-- eslint-enable -->
     </div>
     <div class="">{{ name }}</div>
   </router-link>
@@ -19,20 +23,20 @@
 
 <script>
 export default {
-    name: "OverviewItem",
-    props: {
-        name: {
-            required: true,
-            type: String
-        },
-        iconPaths: {
-            required: true,
-            type: String
-        },
-        link: {
-            required: true,
-            type: String
-        }
-    }
+  name: "OverviewItem",
+  props: {
+    name: {
+      required: true,
+      type: String,
+    },
+    iconPaths: {
+      required: true,
+      type: String,
+    },
+    link: {
+      required: true,
+      type: String,
+    },
+  },
 };
 </script>

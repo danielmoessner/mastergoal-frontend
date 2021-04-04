@@ -9,46 +9,46 @@
       ></breadcrumb-link>
     </breadcrumb-navigation>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <general-box v-bind:overflow="false">
+      <general-box :overflow="false">
         <formulate-form
-          v-bind:name="name"
-          v-on:submit="submit"
           v-model="formData"
+          :name="name"
+          @submit="submit"
         >
           <formulate-input
+            id="goal-view-goal-choice"
             type="select"
             label="Goals"
             name="goal_view_goal_choice"
-            id="goal-view-goal-choice"
-            v-bind:options="goalsOptions"
+            :options="goalsOptions"
           ></formulate-input>
           <formulate-input
+            id="strategy-main-choice"
             type="select"
             label="Strategies"
             name="strategy_main_choice"
-            id="strategy-main-choice"
-            v-bind:options="strategyOptions"
+            :options="strategyOptions"
           ></formulate-input>
           <formulate-input
+            id="treeview-goal-choice"
             type="select"
             label="Tree goals"
             name="treeview_goal_choice"
-            id="treeview-goal-choice"
-            v-bind:options="treeGoalOptions"
+            :options="treeGoalOptions"
           ></formulate-input>
           <formulate-input
+            id="treeview-monitor-choice"
             type="select"
             label="Tree monitors"
             name="treeview_monitor_choice"
-            id="treeview-monitor-choice"
-            v-bind:options="treeMonitorOptions"
+            :options="treeMonitorOptions"
           ></formulate-input>
           <formulate-input
+            id="treeview-strategy-choice"
             type="select"
             label="Tree strategies"
             name="treeview_strategy_choice"
-            id="treeview-strategy-choice"
-            v-bind:options="treeStrategyOptions"
+            :options="treeStrategyOptions"
           ></formulate-input>
           <formulate-input type="submit" value="Save"></formulate-input>
         </formulate-form>
@@ -67,7 +67,6 @@ import GeneralBox from "../components/Box/General.vue";
 
 export default {
   name: "UsersSettingsGoal",
-  mixins: [],
   components: {
     BackendBox,
     BreadcrumbNavigation,
@@ -75,6 +74,7 @@ export default {
     BreadcrumbDivider,
     GeneralBox,
   },
+  mixins: [],
   data() {
     return {
       user: {},
@@ -154,6 +154,19 @@ export default {
       return this.user.url;
     },
   },
+  watch: {
+    user: function (newValue) {
+      axios
+        .options(newValue.url)
+        .then((response) => (this.userOptions = response.data));
+      this.formData = newValue;
+    },
+  },
+  mounted() {
+    axios
+      .get("/u/api/users/")
+      .then((response) => (this.user = response.data[0]));
+  },
   methods: {
     submit: function () {
       this.$store.dispatch("alert/clear");
@@ -164,19 +177,6 @@ export default {
           this.$store.dispatch("alert/success", "Goal settings saved.");
         })
         .catch((err) => this.$formulate.handle(err.response.data, this.name));
-    },
-  },
-  mounted() {
-    axios
-      .get("/u/api/users/")
-      .then((response) => (this.user = response.data[0]));
-  },
-  watch: {
-    user: function (newValue) {
-      axios
-        .options(newValue.url)
-        .then((response) => (this.userOptions = response.data));
-      this.formData = newValue;
     },
   },
 };

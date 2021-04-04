@@ -25,7 +25,6 @@ import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import GeneralBox from "../../components/Box/General.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import DetailGrid from "../../components/DetailGrid.vue";
-import SubmitButton from "../../components/SubmitButton.vue";
 import DynamicForm from "../../components/DynamicForm.vue";
 
 export default {
@@ -37,7 +36,6 @@ export default {
     BackendBox,
     BreadcrumbNavigation,
     BreadcrumbLink,
-    SubmitButton,
     BreadcrumbDivider,
   },
   mounted() {

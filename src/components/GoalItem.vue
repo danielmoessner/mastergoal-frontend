@@ -22,13 +22,13 @@
       <div class="h-1 bg-gray-400">
         <div
           class="bg-blue-900 h-1"
-          v-bind:style="{ width: goal.progress + '%' }"
+          :style="{ width: goal.progress + '%' }"
         ></div>
       </div>
       <navigation-button
         text="Open"
         class="w-full flex-shrink-0 rounded-tl-none rounded-tr-none"
-        v-bind:link="'/g/list/goals/' + goal.id"
+        :link="'/g/list/goals/' + goal.id"
       ></navigation-button>
     </div>
   </div>

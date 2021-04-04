@@ -5,14 +5,14 @@
     </breadcrumb-navigation>
     <div class="grid gap-4 grid-cols-2 lg:grid-cols-3">
       <goal-item
-        v-bind:goal="goal"
         v-for="goal in goals"
-        v-bind:key="goal.url"
+        :key="goal.url"
+        :goal="goal"
       ></goal-item>
       <strategy-item
-        v-bind:strategy="strategy"
         v-for="strategy in strategies"
-        v-bind:key="strategy.url"
+        :key="strategy.url"
+        :strategy="strategy"
       ></strategy-item>
     </div>
   </backend-box>

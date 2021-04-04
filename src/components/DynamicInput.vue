@@ -5,40 +5,40 @@
     </label>
     <input
       v-if="useInput"
-      @input="emit"
+      :id="name"
       :type="type"
       :placeholder="placeholder"
       :value="modelValue"
       :required="required"
-      :id="name"
       :name="name"
       class="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
+      @input="emit"
     />
     <input
       v-if="useCheckbox"
-      @change="emitCheckbox"
+      :id="name"
       :type="type"
       :checked="modelValue"
-      :id="name"
       :name="name"
       class="block rounded w-5 h-5 border-gray-300 text-gray-500 shadow-sm focus:border-gray-300 focus:ring focus:ring-gray-300 focus:ring-opacity-50 cursor-pointer"
+      @change="emitCheckbox"
     />
     <textarea
       v-if="useTextarea"
-      @input="emit"
+      :id="name"
       :placeholder="placeholder"
       :value="modelValue"
       :required="required"
-      :id="name"
       :name="name"
       class="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
+      @input="emit"
     />
     <select
       v-if="useSelect"
-      @change="emit"
       :required="required"
       :name="name"
       class="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
+      @change="emit"
     >
       <option selected value="">---------</option>
       <option
@@ -52,9 +52,9 @@
     </select>
     <editor
       v-if="useTinymce"
+      :id="name"
       v-model="content"
       :name="name"
-      :id="name"
       :placeholder="placeholder"
       api-key="no-api-key"
     />
@@ -68,16 +68,7 @@ export default {
   components: {
     Editor,
   },
-  data() {
-    return {
-      content: "",
-    };
-  },
   props: {
-    label: {
-      required: true,
-      type: String,
-    },
     name: {
       required: true,
       type: String,
@@ -102,7 +93,9 @@ export default {
     children: {
       type: Array,
       required: false,
-      default: [],
+      default() {
+        return [];
+      },
     },
     required: {
       type: Boolean,
@@ -110,10 +103,15 @@ export default {
     },
     modelValue: {
       type: [String, Boolean, Number],
-      required: "",
+      default: "",
     },
   },
   emits: ["update:modelValue"],
+  data() {
+    return {
+      content: "",
+    };
+  },
   computed: {
     useSelect() {
       return this.type === "select";
@@ -136,6 +134,19 @@ export default {
       );
     },
   },
+  watch: {
+    content: function (newVal) {
+      this.emitTinymce(newVal);
+    },
+    modelValue: function (newVal) {
+      this.content = newVal;
+    },
+  },
+  mounted() {
+    // if (this.type === "tinymce") {
+    //   this.content = this.modelValue;
+    // }
+  },
   methods: {
     emit(event) {
       this.$emit("update:modelValue", event.target.value);
@@ -146,19 +157,6 @@ export default {
     emitTinymce(newVal) {
       this.$emit("update:modelValue", newVal);
     },
-  },
-  watch: {
-    content: function (newVal, oldVal) {
-      this.emitTinymce(newVal);
-    },
-    modelValue: function (newVal, oldVal) {
-      this.content = newVal;
-    },
-  },
-  mounted() {
-    // if (this.type === "tinymce") {
-    //   this.content = this.modelValue;
-    // }
   },
 };
 </script>

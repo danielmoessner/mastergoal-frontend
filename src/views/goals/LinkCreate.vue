@@ -5,7 +5,7 @@
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link link="/g/add/link" text="Link"></breadcrumb-link>
     </breadcrumb-navigation>
-    <general-box v-bind:overflow="false">
+    <general-box :overflow="false">
       <dynamic-form
         action="goals/createLink"
         success="Link added"

@@ -9,7 +9,7 @@
     <navigation-button
       link="/n/add/"
       text="Add a note"
-      v-bind:icon="addIcon"
+      :icon="addIcon"
     ></navigation-button>
   </backend-box>
 </template>
@@ -18,7 +18,6 @@
 import BackendBox from "../../components/BackendBox.vue";
 import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
-import DetailGrid from "../../components/DetailGrid.vue";
 import NoteItem from "../../components/NoteItem.vue";
 import NavigationButton from "../../components/NavigationButton.vue";
 import { mapGetters } from "vuex";
@@ -31,7 +30,6 @@ export default {
     NoteItem,
     BreadcrumbNavigation,
     BreadcrumbLink,
-    DetailGrid,
   },
   data() {
     return {

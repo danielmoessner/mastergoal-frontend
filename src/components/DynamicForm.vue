@@ -3,9 +3,9 @@
     <div class="grid grid-cols-1 gap-4">
       <div v-if="nonFieldErrors && nonFieldErrors.length">
         <p
-          class="text-red-700 text-sm leading-tight mt-2"
           v-for="(error, index) in nonFieldErrors"
           :key="index"
+          class="text-red-700 text-sm leading-tight mt-2"
         >
           {{ error }}
         </p>
@@ -16,24 +16,24 @@
         :class="{ hidden: type === 'hidden' }"
       >
         <dynamic-input
+          v-model="data[name]"
           :label="label"
           :name="name"
           :type="type"
           :required="required"
           :children="children"
           :placeholder="placeholder"
-          v-model="data[name]"
         />
         <p
-          class="text-red-700 text-sm leading-tight ml-1.5 mt-1"
           v-if="errors[name]"
+          class="text-red-700 text-sm leading-tight ml-1.5 mt-1"
         >
           {{ errors[name][0] }}
         </p>
       </div>
       <div class="pt-1 flex items-center">
-        <Button type="submit" is="button">{{ submit }}</Button>
-        <p class="ml-4 text-green-700" v-if="showSuccess">
+        <Button is="button" type="submit">{{ submit }}</Button>
+        <p v-if="showSuccess" class="ml-4 text-green-700">
           {{ success }}
         </p>
       </div>
@@ -46,13 +46,9 @@ import DynamicInput from "./DynamicInput.vue";
 import Button from "./Button/Primary.vue";
 
 export default {
-  data() {
-    return {
-      showSuccess: false,
-      nonFieldErrors: [],
-      errors: {},
-      data: {},
-    };
+  components: {
+    DynamicInput,
+    Button,
   },
   props: {
     fields: {
@@ -61,7 +57,9 @@ export default {
     },
     initial: {
       type: Object,
-      default: {},
+      default() {
+        return {};
+      },
       required: false,
     },
     success: {
@@ -77,9 +75,21 @@ export default {
       required: true,
     },
   },
-  components: {
-    DynamicInput,
-    Button,
+  data() {
+    return {
+      showSuccess: false,
+      nonFieldErrors: [],
+      errors: {},
+      data: {},
+    };
+  },
+  watch: {
+    initial: function () {
+      this.data = Object.assign({}, this.initial);
+    },
+  },
+  mounted() {
+    this.data = Object.assign({}, this.initial);
   },
   methods: {
     handleSubmit() {
@@ -103,14 +113,6 @@ export default {
           this.nonFieldErrors = errors.non_field_errors;
         });
     },
-  },
-  watch: {
-    initial: function (newVal, oldVal) {
-      this.data = Object.assign({}, this.initial);
-    },
-  },
-  mounted() {
-    this.data = Object.assign({}, this.initial);
   },
 };
 </script>

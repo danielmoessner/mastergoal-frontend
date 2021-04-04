@@ -4,14 +4,14 @@
     <detail-grid>
       <goal-item
         v-if="mastergoal"
-        v-bind:goal="mastergoal"
+        :goal="mastergoal"
         type="Mastergoal"
       ></goal-item>
     </detail-grid>
     <detail-grid>
       <general-box
         class="col-span-2 lg:col-span-2 xl:col-span-3"
-        v-bind:overflow="false"
+        :overflow="false"
       >
         <heading-one
           :text="`${mastergoal.name} --> ${subgoal.name}`"
@@ -21,8 +21,8 @@
         <property-short property="Archived" :short="link.is_archived">
           <form-button
             text="Toggle"
-            v-bind:link="link.url"
-            v-bind:data="{ is_archived: !link.is_archived }"
+            :link="link.url"
+            :data="{ is_archived: !link.is_archived }"
           ></form-button>
         </property-short>
         <hr />
@@ -31,11 +31,7 @@
       </general-box>
     </detail-grid>
     <detail-grid>
-      <goal-item
-        v-if="subgoal"
-        v-bind:goal="subgoal"
-        type="Subgoal"
-      ></goal-item>
+      <goal-item v-if="subgoal" :goal="subgoal" type="Subgoal"></goal-item>
     </detail-grid>
   </backend-box>
 </template>
@@ -44,34 +40,24 @@
 import GeneralBox from "../../components/Box/General.vue";
 import FormButton from "../../components/FormButton.vue";
 import GoalItem from "../../components/GoalItem.vue";
-import MonitorItem from "../../components/MonitorItem.vue";
-import StrategyItem from "../../components/StrategyItem.vue";
 import HeadingOne from "../../components/HeadingOne.vue";
 import PropertyText from "../../components/PropertyText.vue";
 import PropertyShort from "../../components/PropertyShort.vue";
 import HrefFormButton from "../../components/HrefFormButton.vue";
 import DetailGrid from "../../components/DetailGrid.vue";
-import GoalsGoalBreadcrumb from "../../components/GoalsGoalBreadcrumb.vue";
 import BackendBox from "../../components/BackendBox.vue";
-import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
-import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import GoalsLinkBreadcrumb from "../../components/GoalsLinkBreadcrumb.vue";
 
 export default {
   components: {
     GoalsLinkBreadcrumb,
-    BreadcrumbDivider,
-    BreadcrumbLink,
     BackendBox,
-    GoalsGoalBreadcrumb,
     FormButton,
     DetailGrid,
     PropertyShort,
     GeneralBox,
     GoalItem,
-    MonitorItem,
     PropertyText,
-    StrategyItem,
     HeadingOne,
     HrefFormButton,
   },

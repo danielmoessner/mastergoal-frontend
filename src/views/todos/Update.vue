@@ -1,14 +1,14 @@
 <template>
   <backend-box v-if="todo">
-    <todos-todo-breadcrumb :todo="todo" :todoListUrl="todoListUrl">
+    <todos-todo-breadcrumb :todo="todo" :todo-list-url="todoListUrl">
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
         text="Edit"
-        v-bind:link="`/t/list/todos/${todo.id}/edit/`"
+        :link="`/t/list/todos/${todo.id}/edit/`"
       ></breadcrumb-link>
     </todos-todo-breadcrumb>
     <general-box
-      v-bind:overflow="false"
+      :overflow="false"
       class="col-span-2 md:col-span-3 xl:col-span-4"
     >
       <dynamic-form
@@ -26,7 +26,6 @@
 import BackendBox from "../../components/BackendBox.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
-import DetailGrid from "../../components/DetailGrid.vue";
 import GeneralBox from "../../components/Box/General.vue";
 import TodosTodoBreadcrumb from "../../components/TodosTodoBreadcrumb.vue";
 import DynamicForm from "../../components/DynamicForm.vue";
@@ -39,7 +38,6 @@ export default {
     TodosTodoBreadcrumb,
     BreadcrumbDivider,
     BreadcrumbLink,
-    DetailGrid,
     DynamicForm,
   },
   computed: {

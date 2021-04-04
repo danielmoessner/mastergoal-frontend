@@ -5,23 +5,27 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "lint": "eslint --ext .vue . ; exit 0;",
+    "fix": "eslint --fix --ext .vue .; exit 0;"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/typography": "^0.4.0",
     "@tinymce/tinymce-vue": "^4.0.0",
+    "@vitejs/plugin-vue": "^1.1.4",
+    "@vue/compiler-sfc": "^3.0.5",
     "axios": "^0.20.0-0",
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-vue": "^7.8.0",
     "moment": "^2.29.1",
     "postcss": "^8.2.6",
     "tailwindcss": "^2.0.3",
+    "vite": "^2.0.2",
+    "vite-plugin-eslint": "^1.1.0",
     "vue": "^3.0.5",
     "vue-router": "^4.0.4",
     "vuex": "^4.0.0"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^1.1.4",
-    "@vue/compiler-sfc": "^3.0.5",
-    "vite": "^2.0.2"
   }
 }

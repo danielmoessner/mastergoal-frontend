@@ -8,7 +8,7 @@
         :text="breadcrumbText"
       ></breadcrumb-link>
     </breadcrumb-navigation>
-    <general-box v-bind:overflow="false">
+    <general-box :overflow="false">
       <dynamic-form
         :action="action"
         :fields="fields"
@@ -55,7 +55,7 @@ export default {
         case "pipeline-todo":
           return "todos/createPipelineTodo";
       }
-      this.$router.push("/404");
+      return "null";
     },
     fields() {
       return this.$store.getters["todos/todoFormFields"](
@@ -65,6 +65,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("todos/fetchTodos");
+    if (this.type === "null") this.$router.push("/404");
   },
 };
 </script>

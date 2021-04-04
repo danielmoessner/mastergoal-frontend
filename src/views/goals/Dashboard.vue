@@ -7,9 +7,9 @@
       class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-2 xl:grid-cols-3"
     >
       <goal-item
-        :goal="goal"
         v-for="goal in goals"
-        v-bind:key="goal.id"
+        :key="goal.id"
+        :goal="goal"
       ></goal-item>
     </div>
   </backend-box>

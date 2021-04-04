@@ -1,20 +1,20 @@
 <template>
-  <formulate-form v-bind:name="name" v-on:submit="submit" v-model="formData">
+  <formulate-form v-model="formData" :name="name" @submit="submit">
     <formulate-input
       name="name"
       type="text"
-      v-bind:label="label"
+      :label="label"
       validation="required"
     ></formulate-input>
     <formulate-input
       name="activate"
       type="hidden"
-      v-bind:value="this.lastmonday"
+      :value="lastmonday"
     ></formulate-input>
     <formulate-input
       name="deadline"
       type="hidden"
-      v-bind:value="this.nextmonday"
+      :value="nextmonday"
     ></formulate-input>
     <formulate-input type="submit" label="Add todo"></formulate-input>
   </formulate-form>
@@ -24,7 +24,6 @@
 import FormulateSubmitMixin from "../mixins/FormulateSubmitMixin.js";
 
 export default {
-  name: "AddWeekTodoForm.vue",
   mixins: [FormulateSubmitMixin],
   props: {
     weeks: {

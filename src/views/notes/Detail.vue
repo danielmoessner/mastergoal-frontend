@@ -3,7 +3,8 @@
     <notes-note-breadcrumb :note="note"> </notes-note-breadcrumb>
     <detail-grid>
       <general-box class="col-span-2 md:col-span-4">
-        <article v-html="note.content" class="prose"></article>
+        <!-- eslint-disable-next-line vue/no-v-html -->
+        <article class="prose" v-html="note.content"></article>
         <hr />
         <href-form-button
           :to="'/n/' + $route.params.id + '/edit/'"
@@ -23,8 +24,6 @@ import HrefFormButton from "../../components/HrefFormButton.vue";
 import NotesNoteBreadcrumb from "../../components/NotesNoteBreadcrumb.vue";
 import BackendBox from "../../components/BackendBox.vue";
 import DetailGrid from "../../components/DetailGrid.vue";
-import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
-import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import GeneralBox from "../../components/Box/General.vue";
 
 export default {
@@ -32,8 +31,6 @@ export default {
     HrefFormButton,
     NotesNoteBreadcrumb,
     GeneralBox,
-    BreadcrumbDivider,
-    BreadcrumbLink,
     DetailGrid,
     BackendBox,
   },

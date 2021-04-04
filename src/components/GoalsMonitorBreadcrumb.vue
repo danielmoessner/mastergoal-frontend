@@ -5,8 +5,8 @@
     <breadcrumb-link text="Monitors" link="/g/list/monitors"></breadcrumb-link>
     <breadcrumb-divider></breadcrumb-divider>
     <breadcrumb-link
-      v-bind:text="monitor.name"
-      v-bind:link="'/g/list/monitors/' + monitor.id"
+      :text="monitor.name"
+      :link="'/g/list/monitors/' + monitor.id"
     ></breadcrumb-link>
     <slot></slot>
   </breadcrumb-navigation>

@@ -33,7 +33,7 @@
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">
-        <tr v-for="strategy in strategies" v-bind:key="strategy.id">
+        <tr v-for="strategy in strategies" :key="strategy.id">
           <td class="px-6 py-4">
             {{ strategy.name }}
           </td>
@@ -49,7 +49,7 @@
           <td class="px-1 whitespace-no-wrap">
             <div class="flex items-center justify-end">
               <navigation-button
-                v-bind:link="'/g/list/strategies/' + strategy.id"
+                :link="'/g/list/strategies/' + strategy.id"
                 text="Open"
               ></navigation-button>
             </div>

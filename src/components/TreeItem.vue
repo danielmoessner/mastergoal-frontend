@@ -1,7 +1,7 @@
 <template>
   <div
     class="rounded-lg overflow-hidden border mt-3 mb-1 border-gray-400 transition-all ease-in-out duration-500"
-    v-bind:class="{
+    :class="{
       'mb-5': depth === 0,
       'mr-1': depth > 0,
       'border-gray-600': open,
@@ -9,11 +9,11 @@
   >
     <div
       class="w-full flex items-stretch justify-between text-gray-600"
-      v-bind:class="{ 'text-gray-700': open, 'mb-0': open }"
+      :class="{ 'text-gray-700': open, 'mb-0': open }"
     >
       <div
         class="flex justify-start items-center w-full pl-4 py-2 cursor-pointer mr-8"
-        v-on:click="toggle"
+        @click="toggle"
       >
         <div class="flex flex-col">
           <div class="block leading-tight truncate text-lg">
@@ -24,41 +24,41 @@
               {{ type }}
             </div>
             <div
-              class="block text-xs leading-tight"
               v-if="typeLowercase !== 'strategy'"
+              class="block text-xs leading-tight"
             >
               {{ item.progress }}%
             </div>
           </div>
         </div>
       </div>
-      <navigation-button v-bind:link="url" text="Open"></navigation-button>
+      <navigation-button :link="url" text="Open"></navigation-button>
     </div>
     <tree-item
-      class="ml-4"
-      v-bind:depth="depth + 1"
       v-for="monitor in item.monitors"
-      v-bind:item="monitor"
-      v-bind:key="monitor.url"
-      v-bind:class="{ hidden: !open }"
+      :key="monitor.url"
+      class="ml-4"
+      :depth="depth + 1"
+      :item="monitor"
+      :class="{ hidden: !open }"
       type="Monitor"
     ></tree-item>
     <tree-item
-      class="ml-4"
-      v-bind:depth="depth + 1"
       v-for="strategy in item.strategies"
-      v-bind:item="strategy"
-      v-bind:key="strategy.url"
-      v-bind:class="{ hidden: !open }"
+      :key="strategy.url"
+      class="ml-4"
+      :depth="depth + 1"
+      :item="strategy"
+      :class="{ hidden: !open }"
       type="Strategy"
     ></tree-item>
     <tree-item
-      class="ml-4"
-      v-bind:depth="depth + 1"
       v-for="goal in item.subgoals"
-      v-bind:item="goal"
-      v-bind:key="goal.url"
-      v-bind:class="{ hidden: !open }"
+      :key="goal.url"
+      class="ml-4"
+      :depth="depth + 1"
+      :item="goal"
+      :class="{ hidden: !open }"
     ></tree-item>
   </div>
 </template>

@@ -5,7 +5,7 @@
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link link="/g/add/strategy" text="Strategy"></breadcrumb-link>
     </breadcrumb-navigation>
-    <general-box v-bind:overflow="false">
+    <general-box :overflow="false">
       <dynamic-form
         action="goals/createStrategy"
         success="Strategy added"

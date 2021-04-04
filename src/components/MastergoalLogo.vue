@@ -14,10 +14,5 @@
 </template>
 
 <script>
-import MastergoalSvgLogo from "../components/MastergoalSvgLogo.vue";
-
-export default {
-  name: "MastergoalLogo",
-  components: { MastergoalSvgLogo },
-};
+export default {};
 </script>

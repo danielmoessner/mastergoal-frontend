@@ -3,12 +3,10 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: [
-    "plugin:vue/vue3-recommended",
-    "eslint:recommended",
-    "prettier",
-    "prettier/vue",
-    "@vue/typescript",
-  ],
+  extends: ["plugin:vue/vue3-recommended", "eslint:recommended", "prettier"],
   plugins: ["vue"],
+  rules: {
+    "no-unused-vars": "warn",
+    "vue/no-unused-components": "warn",
+  },
 };

@@ -5,7 +5,7 @@
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link link="/g/list/links" text="Links"></breadcrumb-link>
     </breadcrumb-navigation>
-    <link-table v-bind:links="links"></link-table>
+    <link-table :links="links"></link-table>
   </backend-box>
 </template>
 

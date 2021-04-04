@@ -1,9 +1,8 @@
 <template>
   <li class="my-px">
-    <span
-      class="flex font-medium text-sm text-gray-400 mt-6 mb-2 uppercase"
-      v-html="heading"
-    ></span>
+    <div class="flex font-medium text-sm text-gray-400 mt-6 mb-2 uppercase">
+      {{ heading }}
+    </div>
   </li>
 </template>
 
@@ -11,7 +10,10 @@
 export default {
   name: "NavigationHeading",
   props: {
-    heading: String,
+    heading: {
+      type: String,
+      required: true,
+    },
   },
 };
 </script>

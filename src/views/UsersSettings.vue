@@ -3,27 +3,27 @@
     <breadcrumb-navigation>
       <breadcrumb-link link="/u/settings" text="Settings"></breadcrumb-link>
     </breadcrumb-navigation>
-    <general-box v-bind:overflow="false">
+    <general-box :overflow="false">
       <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
         <overview-item
           name="User settings"
           link="/u/settings/user-settings"
-          v-bind:iconPaths="userIcon"
+          :icon-paths="userIcon"
         ></overview-item>
         <overview-item
           name="General settings"
           link="/u/settings/general-settings"
-          v-bind:iconPaths="generalIcon"
+          :icon-paths="generalIcon"
         ></overview-item>
         <overview-item
           name="Todo settings"
           link="/u/settings/todo-settings"
-          v-bind:iconPaths="todoIcon"
+          :icon-paths="todoIcon"
         ></overview-item>
         <overview-item
           name="Goal settings"
           link="/u/settings/goal-settings"
-          v-bind:iconPaths="goalIcon"
+          :icon-paths="goalIcon"
         ></overview-item>
       </div>
     </general-box>

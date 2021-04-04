@@ -8,22 +8,22 @@
         <overview-item
           name="Goals"
           link="/g/list/goals"
-          v-bind:iconPaths="goalsIcon"
+          :icon-paths="goalsIcon"
         ></overview-item>
         <overview-item
           name="Monitors"
           link="/g/list/monitors"
-          v-bind:iconPaths="monitorsIcon"
+          :icon-paths="monitorsIcon"
         ></overview-item>
         <overview-item
           name="Strategies"
           link="/g/list/strategies"
-          v-bind:iconPaths="strategiesIcon"
+          :icon-paths="strategiesIcon"
         ></overview-item>
         <overview-item
           name="Links"
           link="/g/list/links"
-          v-bind:iconPaths="linksIcon"
+          :icon-paths="linksIcon"
         ></overview-item>
       </div>
     </general-box>

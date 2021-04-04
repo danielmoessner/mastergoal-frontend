@@ -1,5 +1,5 @@
 <template>
-  <Wrapper @click="clicked()" :selected="selected" abbr="Star">
+  <Wrapper :selected="selected" abbr="Star" @click="clicked()">
     <svg
       class="w-6 h-6"
       xmlns="http://www.w3.org/2000/svg"

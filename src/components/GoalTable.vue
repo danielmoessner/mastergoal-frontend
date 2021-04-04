@@ -34,7 +34,7 @@
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">
-        <tr v-for="goal in goals" v-bind:key="goal.id">
+        <tr v-for="goal in goals" :key="goal.id">
           <td class="px-6 py-4">
             {{ goal.name }}
           </td>
@@ -45,7 +45,7 @@
           <td class="px-1 whitespace-no-wrap">
             <div class="flex items-center justify-end">
               <navigation-button
-                v-bind:link="'/g/list/goals/' + goal.id"
+                :link="'/g/list/goals/' + goal.id"
                 text="Open"
               ></navigation-button>
             </div>

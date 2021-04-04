@@ -1,15 +1,15 @@
 <template>
   <div class="mt-4 bg-white rounded-lg overflow-hidden">
     <form
-      @submit.prevent="onSubmit"
       class="flex flex-col p-4 lg:h-12 lg:p-0 lg:flex-row lg:items-center"
       action=""
+      @submit.prevent="onSubmit"
     >
       <div class="lg:pl-4 lg:flex-1">
         <input
+          v-model="name"
           class="border border-gray-300 py-1.5 px-4 rounded p-0 text-lg w-full ring-opacity-50 focus:border-gray-300 focus:outline-none focus:ring-offset-2 focus:ring focus:ring-gray-300 lg:border-transparent lg:rounded-none lg:p-0 lg:border-0 lg:focus:ring-0 lg:pl-1 lg:border-b-2 lg:-mb-1"
           type="text"
-          v-model="name"
           placeholder="Add Todo"
           name="name"
         />
@@ -54,14 +54,11 @@
 </template>
 
 <script>
-import DynamicForm from "./DynamicForm.vue";
 import { mapGetters } from "vuex";
 
 export default {
   name: "AddTodoForm",
-  components: {
-    DynamicForm,
-  },
+  components: {},
   data() {
     return {
       name: "",

@@ -9,12 +9,7 @@
       ></breadcrumb-link>
     </breadcrumb-navigation>
     <div class="">
-      <Todo
-        verbose
-        v-for="todo in todos"
-        v-bind:key="todo.url"
-        v-bind:todo="todo"
-      />
+      <Todo v-for="todo in todos" :key="todo.url" verbose :todo="todo" />
     </div>
   </backend-box>
 </template>
@@ -52,7 +47,7 @@ export default {
         case "pipeline-todos":
           return "pipelineTodo";
       }
-      this.$router.push("/404");
+      return "null";
     },
     todos() {
       return this.$store.getters[`todos/${this.type}s`];
@@ -60,6 +55,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("todos/fetchTodos");
+    if (this.type === "null") this.$router.push("/404");
   },
 };
 </script>

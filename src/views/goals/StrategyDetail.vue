@@ -2,15 +2,15 @@
   <backend-box v-if="strategy">
     <goals-strategy-breadcrumb :strategy="strategy"></goals-strategy-breadcrumb>
     <detail-grid>
-      <goal-item v-bind:goal="goal"></goal-item>
+      <goal-item :goal="goal"></goal-item>
       <DetailBox :heading="strategy.name">
-        <template v-slot:actions>
-          <Star @click="star()" :selected="strategy.is_starred" />
-          <Archive @click="archive()" :selected="strategy.is_archived" />
+        <template #actions>
+          <Star :selected="strategy.is_starred" @click="star()" />
+          <Archive :selected="strategy.is_archived" @click="archive()" />
           <Edit to="edit/" />
           <Delete to="delete/" />
         </template>
-        <template v-if="strategy.description" v-slot:content>
+        <template v-if="strategy.description" #content>
           <Descriptive :data="[['Description', strategy.description]]" />
         </template>
       </DetailBox>
@@ -22,15 +22,12 @@
 import GoalItem from "../../components/GoalItem.vue";
 import DetailGrid from "../../components/DetailGrid.vue";
 import BackendBox from "../../components/BackendBox.vue";
-import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
-import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import GoalsStrategyBreadcrumb from "../../components/GoalsStrategyBreadcrumb.vue";
 import Star from "../../components/Action/Star.vue";
 import Archive from "../../components/Action/Archive.vue";
 import Delete from "../../components/Action/Delete.vue";
 import Edit from "../../components/Action/Edit.vue";
 import DetailBox from "../../components/Box/Detail.vue";
-import Info from "../../components/Info.vue";
 import Descriptive from "../../components/Table/Descriptive.vue";
 
 export default {
@@ -40,11 +37,8 @@ export default {
     Delete,
     Edit,
     DetailBox,
-    Info,
     Descriptive,
     GoalsStrategyBreadcrumb,
-    BreadcrumbDivider,
-    BreadcrumbLink,
     DetailGrid,
     BackendBox,
     GoalItem,

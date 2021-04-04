@@ -18,7 +18,7 @@
       <navigation-button
         text="Open"
         class="w-full flex-shrink-0 rounded-tl-none rounded-tr-none"
-        v-bind:link="'/g/list/strategies/' + strategy.id"
+        :link="'/g/list/strategies/' + strategy.id"
       ></navigation-button>
     </div>
   </div>

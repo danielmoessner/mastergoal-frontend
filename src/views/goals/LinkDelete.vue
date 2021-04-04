@@ -3,7 +3,7 @@
     <goals-link-breadcrumb :link="link">
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
-        v-bind:link="'/g/list/links/' + link.id + '/delete/'"
+        :link="'/g/list/links/' + link.id + '/delete/'"
         text="Delete"
       ></breadcrumb-link>
     </goals-link-breadcrumb>
@@ -18,9 +18,9 @@
               text="Cancel"
             ></navigation-button>
             <submit-button
-              v-on:click.native.prevent="deleteLink"
               class="ml-2"
               text="Yes, delete"
+              @click.prevent="deleteLink"
             ></submit-button>
           </div>
         </div>
@@ -55,15 +55,15 @@ export default {
       return this.$store.getters["goals/link"](this.$route.params.id);
     },
   },
+  mounted() {
+    this.$store.dispatch("goals/fetchLinks");
+  },
   methods: {
     deleteLink() {
       this.$store
         .dispatch("goals/deleteLink", this.link.url)
         .then(() => this.$router.push("/g/goals/"));
     },
-  },
-  mounted() {
-    this.$store.dispatch("goals/fetchLinks");
   },
 };
 </script>

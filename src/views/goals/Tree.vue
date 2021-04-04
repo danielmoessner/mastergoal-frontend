@@ -4,11 +4,11 @@
       <breadcrumb-link text="Tree" link="/g/tree"></breadcrumb-link>
     </breadcrumb-navigation>
     <div class="grid gap-4 grid-cols-1 lg:grid-cols-1 xl:grid-cols-1">
-      <general-box v-bind:overflow="false">
+      <general-box :overflow="false">
         <tree-item
-          v-bind:item="item"
           v-for="item in tree"
-          v-bind:key="item.url"
+          :key="item.url"
+          :item="item"
         ></tree-item>
       </general-box>
     </div>
@@ -37,13 +37,13 @@ export default {
       tree: [],
     };
   },
+  mounted() {
+    this.fetch();
+  },
   methods: {
     fetch() {
       axios.get("/goals/tree/").then((response) => (this.tree = response.data));
     },
-  },
-  mounted() {
-    this.fetch();
   },
 };
 </script>

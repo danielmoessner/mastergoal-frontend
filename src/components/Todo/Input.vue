@@ -2,11 +2,11 @@
   <div class="h-12 w-12 flex justify-center items-center">
     <input
       v-if="todo.status === 'ACTIVE'"
-      v-on:change="setDone"
       name="completed"
       value="true"
       class="w-4 h-4 cursor-pointer"
       type="checkbox"
+      @change="setDone"
     />
     <svg
       v-if="todo.status === 'DONE'"

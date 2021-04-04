@@ -27,8 +27,8 @@
       </button>
       <button
         type="button"
-        @click="() => $store.dispatch('todos/changeTimeToNextWeek')"
         class="rounded-r-lg p-4 flex items-center justify-center cursor-pointer hover:bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-inset"
+        @click="() => $store.dispatch('todos/changeTimeToNextWeek')"
       >
         <svg
           class="w-6 h-6"
@@ -49,8 +49,8 @@
     <div>
       <todo-item
         v-for="todo in todosThisWeek"
-        v-bind:key="todo.url"
-        v-bind:todo="todo"
+        :key="todo.url"
+        :todo="todo"
       />
     </div>
     <add-todo-form />

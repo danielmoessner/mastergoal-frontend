@@ -5,8 +5,8 @@
     <breadcrumb-link text="Goals" link="/g/list/goals"></breadcrumb-link>
     <breadcrumb-divider></breadcrumb-divider>
     <breadcrumb-link
-      v-bind:text="goal.name"
-      v-bind:link="'/g/list/goals/' + goal.id"
+      :text="goal.name"
+      :link="'/g/list/goals/' + goal.id"
     ></breadcrumb-link>
     <slot></slot>
   </breadcrumb-navigation>

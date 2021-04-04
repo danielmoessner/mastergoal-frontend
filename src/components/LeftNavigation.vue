@@ -1,6 +1,6 @@
 <template>
   <div class="w-full md:min-h-screen sticky top-0">
-    <mastergoal-logo v-on:click.native="toggle">
+    <mastergoal-logo @click="toggle">
       <svg
         v-if="!open"
         xmlns="http://www.w3.org/2000/svg"
@@ -17,8 +17,8 @@
         />
       </svg>
       <svg
-        class="h-6 w-6 mr-2 text-gray-100 md:hidden cursor-pointer"
         v-if="open"
+        class="h-6 w-6 mr-2 text-gray-100 md:hidden cursor-pointer"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -33,78 +33,78 @@
       </svg>
     </mastergoal-logo>
     <div
-      class="overflow-hidden transition-all ease-in-out duration-300 relative z-0 rounded-lg bg-white md:mb-0 md:bg-transparent md:h-auto"
       ref="navigation"
-      v-bind:class="{ 'h-0': !open }"
-      v-bind:style="{ height: changingNavigationHeight }"
+      class="overflow-hidden transition-all ease-in-out duration-300 relative z-0 rounded-lg bg-white md:mb-0 md:bg-transparent md:h-auto"
+      :class="{ 'h-0': !open }"
+      :style="{ height: changingNavigationHeight }"
     >
       <div class="w-full p-4 md:flex">
         <ul class="flex flex-col w-full space-y-1">
-          <li class="my-px" v-show="false">
+          <li v-show="false" class="my-px">
             <navigation-button
               link="/#/"
               text="Overview"
-              v-bind:notifications="3"
-              v-bind:icon="overviewIcon"
+              :notifications="3"
+              :icon="overviewIcon"
             ></navigation-button>
           </li>
           <navigation-heading heading="Todos"></navigation-heading>
           <navigation-button
             link="/t/dashboard"
             text="Dashboard"
-            v-bind:icon="todosDashboardIcon"
+            :icon="todosDashboardIcon"
           ></navigation-button>
           <navigation-button
             link="/t/list"
             text="List"
-            v-bind:icon="listIcon"
+            :icon="listIcon"
           ></navigation-button>
           <navigation-button
             link="/t/add"
             text="Add"
-            v-bind:icon="addIcon"
+            :icon="addIcon"
           ></navigation-button>
           <navigation-heading heading="Goals"></navigation-heading>
           <navigation-button
             link="/g/goals"
             text="Goals"
-            v-bind:icon="goalsDashboardIcon"
+            :icon="goalsDashboardIcon"
           ></navigation-button>
           <navigation-button
             link="/g/starred"
             text="Starred"
-            v-bind:icon="goalsStarredIcon"
+            :icon="goalsStarredIcon"
           ></navigation-button>
           <navigation-button
             link="/g/tree"
             text="Tree"
-            svgClass="transform rotate-90"
-            v-bind:icon="goalsTreeIcon"
+            svg-class="transform rotate-90"
+            :icon="goalsTreeIcon"
           ></navigation-button>
           <navigation-button
             link="/g/list"
             text="List"
-            v-bind:icon="listIcon"
+            :icon="listIcon"
           ></navigation-button>
-          <navigation-button link="/g/add" text="Add" v-bind:icon="addIcon">
+          <navigation-button link="/g/add" text="Add" :icon="addIcon">
           </navigation-button>
           <navigation-heading heading="Notes"></navigation-heading>
           <navigation-button
             link="/n/dashboard/"
             text="Dashboard"
-            v-bind:icon="notesDashboardIcon"
+            :icon="notesDashboardIcon"
           ></navigation-button>
           <navigation-heading heading="User"></navigation-heading>
           <navigation-button
             link="/u/settings"
             text="Settings"
-            v-bind:icon="settingsIcon"
+            :icon="settingsIcon"
           ></navigation-button>
           <navigation-button
-            v-on:click.prevent.native="signout"
             link="/#/"
             text="Logout"
-            v-bind:icon="logoutIcon"
+            :icon="logoutIcon"
+            @click.prevent="signout"
           ></navigation-button>
         </ul>
       </div>
@@ -120,12 +120,6 @@ import MastergoalLogo from "../components/MastergoalLogo.vue";
 export default {
   name: "LeftNavigation",
   components: { NavigationButton, NavigationHeading, MastergoalLogo },
-  computed: {
-    changingNavigationHeight() {
-      if (!this.open) return "";
-      return this.navigationHeight + "px";
-    },
-  },
   data: function () {
     return {
       open: true,
@@ -152,6 +146,16 @@ export default {
         '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />',
     };
   },
+  computed: {
+    changingNavigationHeight() {
+      if (!this.open) return "";
+      return this.navigationHeight + "px";
+    },
+  },
+  mounted() {
+    this.navigationHeight = this.$refs["navigation"].clientHeight;
+    this.open = false;
+  },
   methods: {
     signout() {
       this.$store.dispatch("users/signout");
@@ -159,10 +163,6 @@ export default {
     toggle() {
       this.open = !this.open;
     },
-  },
-  mounted() {
-    this.navigationHeight = this.$refs["navigation"].clientHeight;
-    this.open = false;
   },
 };
 </script>

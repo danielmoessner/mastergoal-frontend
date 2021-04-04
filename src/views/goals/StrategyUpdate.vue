@@ -9,17 +9,17 @@
       ></breadcrumb-link>
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
-        v-bind:text="strategy.name"
-        v-bind:link="'/g/list/strategies/' + strategy.id"
+        :text="strategy.name"
+        :link="'/g/list/strategies/' + strategy.id"
       ></breadcrumb-link>
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
         text="Edit"
-        v-bind:link="'/g/list/strategies/' + strategy.id + '/edit/'"
+        :link="'/g/list/strategies/' + strategy.id + '/edit/'"
       ></breadcrumb-link>
     </breadcrumb-navigation>
     <general-box
-      v-bind:overflow="false"
+      :overflow="false"
       class="col-span-2 lg:col-span-3 xl:col-span-3"
     >
       <dynamic-form
@@ -38,7 +38,6 @@ import BackendBox from "../../components/BackendBox.vue";
 import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
-import DetailGrid from "../../components/DetailGrid.vue";
 import GeneralBox from "../../components/Box/General.vue";
 import DynamicForm from "../../components/DynamicForm.vue";
 
@@ -49,7 +48,6 @@ export default {
     BreadcrumbNavigation,
     BreadcrumbDivider,
     BreadcrumbLink,
-    DetailGrid,
     DynamicForm,
   },
   computed: {

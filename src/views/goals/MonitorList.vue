@@ -8,7 +8,7 @@
         text="Monitors"
       ></breadcrumb-link>
     </breadcrumb-navigation>
-    <monitor-table v-bind:monitors="monitors"></monitor-table>
+    <monitor-table :monitors="monitors"></monitor-table>
   </backend-box>
 </template>
 

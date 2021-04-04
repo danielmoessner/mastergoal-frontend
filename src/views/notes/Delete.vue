@@ -18,9 +18,9 @@
               text="Cancel"
             ></navigation-button>
             <submit-button
-              v-on:click.native.prevent="deleteNote"
               class="ml-2"
               text="Yes, delete"
+              @click.prevent="deleteNote"
             ></submit-button>
           </div>
         </div>
@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import HrefFormButton from "../../components/HrefFormButton.vue";
 import NotesNoteBreadcrumb from "../../components/NotesNoteBreadcrumb.vue";
 import BackendBox from "../../components/BackendBox.vue";
 import DetailGrid from "../../components/DetailGrid.vue";
@@ -42,7 +41,6 @@ import SubmitButton from "../../components/SubmitButton.vue";
 export default {
   components: {
     SubmitButton,
-    HrefFormButton,
     NotesNoteBreadcrumb,
     GeneralBox,
     BreadcrumbDivider,

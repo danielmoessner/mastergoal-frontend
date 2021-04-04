@@ -5,7 +5,7 @@
       <p
         v-if="subtitle"
         class="text-lg font-normal tracking-normal mt-1"
-        v-bind:class="subtitleClass"
+        :class="subtitleClass"
       >
         {{ subtitle }}
       </p>

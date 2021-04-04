@@ -9,7 +9,7 @@
       ></breadcrumb-link>
     </breadcrumb-navigation>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <general-box v-bind:overflow="false">
+      <general-box :overflow="false">
         <dynamic-form
           :fields="$store.getters['users/generalFormFields']"
           :initial="$store.getters['users/user']"

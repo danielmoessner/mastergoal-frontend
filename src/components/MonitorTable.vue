@@ -48,7 +48,7 @@
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">
-        <tr v-for="monitor in monitors" v-bind:key="monitor.id">
+        <tr v-for="monitor in monitors" :key="monitor.id">
           <td class="px-6 py-4">
             {{ monitor.name }}
           </td>
@@ -65,7 +65,7 @@
           <td class="px-1 whitespace-no-wrap">
             <div class="flex items-center justify-end">
               <navigation-button
-                v-bind:link="'/g/list/monitors/' + monitor.id"
+                :link="'/g/list/monitors/' + monitor.id"
                 text="Open"
               ></navigation-button>
             </div>

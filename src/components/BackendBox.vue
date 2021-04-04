@@ -7,8 +7,8 @@
       <transition name="fade">
         <alert-box
           v-if="alert.message"
-          v-bind:message="alert.message"
-          v-bind:type="alert.type"
+          :message="alert.message"
+          :type="alert.type"
         ></alert-box>
       </transition>
       <div class="p-4 md:p-8">

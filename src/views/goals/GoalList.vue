@@ -5,7 +5,7 @@
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link link="/g/list/goals" text="Goals"></breadcrumb-link>
     </breadcrumb-navigation>
-    <goal-table v-bind:goals="goals"></goal-table>
+    <goal-table :goals="goals"></goal-table>
   </backend-box>
 </template>
 

@@ -9,9 +9,9 @@
       </div>
       <div class="flex flex-row space-x-5">
         <div
-          class="flex text-xs text-gray-500 leading-tight whitespace-nowrap"
-          v-bind:class="{ 'text-red-500': deadlineIsBeforeToday }"
           v-if="showDeadline"
+          class="flex text-xs text-gray-500 leading-tight whitespace-nowrap"
+          :class="{ 'text-red-500': deadlineIsBeforeToday }"
         >
           <svg
             class="w-4 h-4"

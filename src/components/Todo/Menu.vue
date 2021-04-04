@@ -1,9 +1,9 @@
 <template>
   <button
     type="button"
-    @click="open = !open"
     :class="{ 'bg-gray-100': open }"
     class="text-gray-400 h-12 flex w-12 items-center justify-center cursor-pointer rounded-r-lg border-l border-gray-100 hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-inset"
+    @click="open = !open"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -34,8 +34,8 @@
     </router-link>
     <button
       type="button"
-      @click="setFailed"
       class="px-2 py-1 hover:bg-gray-100 text-gray-500 hover:text-gray-700 cursor-pointer rounded text-sm focus:outline-none"
+      @click="setFailed"
     >
       Set failed
     </button>
@@ -50,12 +50,12 @@ export default {
       required: true,
     },
   },
+  emits: ["setFailed"],
   data() {
     return {
       open: false,
     };
   },
-  emits: ["setFailed"],
   methods: {
     setFailed() {
       this.open = false;

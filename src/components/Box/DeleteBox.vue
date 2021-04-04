@@ -3,11 +3,7 @@
     <div class="flex-col flex justify-start items-start">
       <p class="mb-4">Are you sure you want to delete '{{ object }}'?</p>
       <div class="flex space-x-2">
-        <PrimaryButton
-          v-on:click.native.prevent="emit()"
-          is="button"
-          type="button"
-        >
+        <PrimaryButton is="button" type="button" @click.prevent="emit()">
           Delete
         </PrimaryButton>
         <SecondaryButton :to="to">Cancel</SecondaryButton>
@@ -27,7 +23,6 @@ export default {
     PrimaryButton,
     SecondaryButton,
   },
-  emits: ["click"],
   props: {
     to: {
       type: String,
@@ -38,6 +33,7 @@ export default {
       required: true,
     },
   },
+  emits: ["click"],
   methods: {
     emit() {
       this.$emit("click");

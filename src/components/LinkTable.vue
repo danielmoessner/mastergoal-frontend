@@ -33,7 +33,7 @@
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">
-        <tr v-for="link in links" v-bind:key="link.id">
+        <tr v-for="link in links" :key="link.id">
           <td class="px-6 py-4">
             {{ link.mastergoal.name }}
           </td>
@@ -45,7 +45,7 @@
           <td class="px-1 whitespace-no-wrap">
             <div class="flex items-center justify-end">
               <navigation-button
-                v-bind:link="'/g/list/links/' + link.id"
+                :link="'/g/list/links/' + link.id"
                 text="Open"
               ></navigation-button>
             </div>

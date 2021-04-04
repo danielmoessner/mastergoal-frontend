@@ -3,8 +3,8 @@
     <div class="w-64 mb-64 mt-12">
       <mastergoal-logo class="rounded-lg mb-8"></mastergoal-logo>
       <alert-box
-        v-bind:message="alert.message"
-        v-bind:type="alert.type"
+        :message="alert.message"
+        :type="alert.type"
       ></alert-box>
       <dynamic-form
         :fields="$store.getters['users/signUpFormFields']"

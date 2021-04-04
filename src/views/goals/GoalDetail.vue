@@ -3,20 +3,20 @@
     <goals-goal-breadcrumb :goal="goal"></goals-goal-breadcrumb>
     <detail-grid>
       <goal-item
-        v-bind:goal="masterGoal"
         v-for="masterGoal in masterGoals"
-        v-bind:key="masterGoal.id"
+        :key="masterGoal.id"
+        :goal="masterGoal"
         type="Mastergoal"
       ></goal-item>
 
       <DetailBox :heading="goal.name">
-        <template v-slot:actions>
-          <Star @click="star()" :selected="goal.is_starred" />
-          <Archive @click="archive()" :selected="goal.is_archived" />
+        <template #actions>
+          <Star :selected="goal.is_starred" @click="star()" />
+          <Archive :selected="goal.is_archived" @click="archive()" />
           <Edit to="edit/" />
           <Delete to="delete/" />
         </template>
-        <template v-slot:infos>
+        <template #infos>
           <Info :info="`${goal.progress} %`">
             <svg
               class="w-5 h-5"
@@ -46,10 +46,7 @@
             </svg>
           </Info>
         </template>
-        <template
-          v-if="goal.why || goal.impact || goal.addition"
-          v-slot:content
-        >
+        <template v-if="goal.why || goal.impact || goal.addition" #content>
           <Descriptive
             :data="[
               ['Why', goal.why],
@@ -60,19 +57,19 @@
         </template>
       </DetailBox>
       <monitor-item
-        v-bind:monitor="monitor"
         v-for="monitor in monitors"
-        v-bind:key="monitor.url"
+        :key="monitor.url"
+        :monitor="monitor"
       ></monitor-item>
       <strategy-item
-        v-bind:strategy="strategy"
         v-for="strategy in strategies"
-        v-bind:key="strategy.url"
+        :key="strategy.url"
+        :strategy="strategy"
       ></strategy-item>
       <goal-item
-        v-bind:goal="subGoal"
         v-for="subGoal in subGoals"
-        v-bind:key="subGoal.id"
+        :key="subGoal.id"
+        :goal="subGoal"
         type="Subgoal"
       ></goal-item>
     </detail-grid>
@@ -80,19 +77,12 @@
 </template>
 
 <script>
-import GeneralBox from "../../components/Box/General.vue";
 import GoalItem from "../../components/GoalItem.vue";
 import MonitorItem from "../../components/MonitorItem.vue";
 import StrategyItem from "../../components/StrategyItem.vue";
-import HeadingOne from "../../components/HeadingOne.vue";
-import PropertyText from "../../components/PropertyText.vue";
-import PropertyShort from "../../components/PropertyShort.vue";
-import HrefFormButton from "../../components/HrefFormButton.vue";
 import DetailGrid from "../../components/DetailGrid.vue";
 import GoalsGoalBreadcrumb from "../../components/GoalsGoalBreadcrumb.vue";
 import BackendBox from "../../components/BackendBox.vue";
-import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
-import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import Star from "../../components/Action/Star.vue";
 import Archive from "../../components/Action/Archive.vue";
 import Delete from "../../components/Action/Delete.vue";
@@ -110,19 +100,12 @@ export default {
     Delete,
     Archive,
     Descriptive,
-    BreadcrumbDivider,
-    BreadcrumbLink,
     BackendBox,
     GoalsGoalBreadcrumb,
     DetailGrid,
-    PropertyShort,
-    GeneralBox,
     GoalItem,
     MonitorItem,
-    PropertyText,
     StrategyItem,
-    HeadingOne,
-    HrefFormButton,
   },
   computed: {
     goal() {

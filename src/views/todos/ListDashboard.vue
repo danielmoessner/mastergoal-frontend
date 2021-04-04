@@ -3,27 +3,27 @@
     <breadcrumb-navigation>
       <breadcrumb-link link="/t/list" text="List"></breadcrumb-link>
     </breadcrumb-navigation>
-    <general-box v-bind:overflow="false">
+    <general-box :overflow="false">
       <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
         <overview-item
           name="Normal-Todos"
           link="/t/list/normal-todos"
-          v-bind:iconPaths="normalIconPaths"
+          :icon-paths="normalIconPaths"
         ></overview-item>
         <overview-item
           name="Never-Ending-Todos"
           link="/t/list/never-ending-todos"
-          v-bind:iconPaths="neverEndingIconPaths"
+          :icon-paths="neverEndingIconPaths"
         ></overview-item>
         <overview-item
           name="Repetitive-Todos"
           link="/t/list/repetitive-todos"
-          v-bind:iconPaths="repetitiveIconPaths"
+          :icon-paths="repetitiveIconPaths"
         ></overview-item>
         <overview-item
           name="Pipeline-Todos"
           link="/t/list/pipeline-todos"
-          v-bind:iconPaths="pipelineIconPaths"
+          :icon-paths="pipelineIconPaths"
         ></overview-item>
       </div>
     </general-box>

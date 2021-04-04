@@ -2,16 +2,16 @@
   <backend-box v-if="monitor">
     <goals-monitor-breadcrumb :monitor="monitor"></goals-monitor-breadcrumb>
     <detail-grid>
-      <goal-item v-bind:goal="goal" type="Goal"></goal-item>
+      <goal-item :goal="goal" type="Goal"></goal-item>
       <Detail :heading="monitor.name">
-        <template v-slot:actions>
-          <Up @click="up()" :selected="false" />
-          <Down @click="down()" :selected="false" />
-          <Archive @click="archive()" :selected="monitor.is_archived" />
+        <template #actions>
+          <Up :selected="false" @click="up()" />
+          <Down :selected="false" @click="down()" />
+          <Archive :selected="monitor.is_archived" @click="archive()" />
           <Edit to="edit/" />
           <Delete to="delete/" />
         </template>
-        <template v-slot:infos>
+        <template #infos>
           <Info :info="`${monitor.progress} %`">
             <svg
               class="w-5 h-5"
@@ -39,7 +39,7 @@
             </svg>
           </Info>
         </template>
-        <template v-if="monitor.notes" v-slot:content>
+        <template v-if="monitor.notes" #content>
           <Descriptive :data="[['Notes', monitor.notes]]" />
         </template>
       </Detail>
@@ -52,8 +52,6 @@ import GoalsMonitorBreadcrumb from "../../components/GoalsMonitorBreadcrumb.vue"
 import GoalItem from "../../components/GoalItem.vue";
 import DetailGrid from "../../components/DetailGrid.vue";
 import BackendBox from "../../components/BackendBox.vue";
-import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
-import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import Detail from "../../components/Box/Detail.vue";
 import Up from "../../components/Action/Up.vue";
 import Down from "../../components/Action/Down.vue";
@@ -68,8 +66,6 @@ export default {
     Descriptive,
     Info,
     Detail,
-    BreadcrumbDivider,
-    BreadcrumbLink,
     GoalsMonitorBreadcrumb,
     BackendBox,
     DetailGrid,

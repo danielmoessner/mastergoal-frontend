@@ -4,7 +4,7 @@
       <breadcrumb-divider></breadcrumb-divider>
       <breadcrumb-link
         text="Edit"
-        v-bind:link="'/g/list/goals/' + goal.id + '/edit/'"
+        :link="'/g/list/goals/' + goal.id + '/edit/'"
       ></breadcrumb-link>
     </goals-goal-breadcrumb>
     <general-box class="col-span-2 md:col-span-3 xl:col-span-4">
@@ -22,7 +22,6 @@
 <script>
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
-import DetailGrid from "../../components/DetailGrid.vue";
 import GeneralBox from "../../components/Box/General.vue";
 import GoalsGoalBreadcrumb from "../../components/GoalsGoalBreadcrumb.vue";
 import DynamicForm from "../../components/DynamicForm.vue";
@@ -35,7 +34,6 @@ export default {
     GeneralBox,
     BreadcrumbDivider,
     BreadcrumbLink,
-    DetailGrid,
     DynamicForm,
   },
   computed: {
