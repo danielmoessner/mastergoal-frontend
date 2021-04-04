@@ -12,7 +12,7 @@
           <Delete to="delete/" />
         </template>
         <template #infos>
-          <Info :info="`${monitor.progress} %`">
+          <Info abbr="Progress" :info="`${monitor.progress} %`">
             <svg
               class="w-5 h-5"
               xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +26,7 @@
               />
             </svg>
           </Info>
-          <Info :info="`${monitor.step} of ${monitor.steps}`">
+          <Info abbr="Steps" :info="`${monitor.step} of ${monitor.steps}`">
             <svg
               class="w-5 h-5"
               xmlns="http://www.w3.org/2000/svg"

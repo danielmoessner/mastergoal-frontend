@@ -153,7 +153,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios
         .put(context.state.api.changePassword, data)
-        .then((response) => {
+        .then(() => {
           resolve();
         })
         .catch((error) => reject(error.response.data));
@@ -168,25 +168,25 @@ const getters = {
   token(state) {
     return state.token;
   },
-  user(state, getters) {
+  user(state) {
     return state.user;
   },
-  generalFormFields(state, getters) {
+  generalFormFields(state) {
     return state.generalFields;
   },
-  userFormFields(state, getters) {
+  userFormFields(state) {
     return state.userFields;
   },
-  passwordFormFields(state, getters) {
+  passwordFormFields(state) {
     return state.passwordChangeFields;
   },
-  loginFormFields(state, getters) {
+  loginFormFields(state) {
     return state.userFields.concat(state.passwordField);
   },
-  signUpFormFields(state, getters) {
+  signUpFormFields(state) {
     return state.userFields.concat(state.passwordField);
   },
-  headersToken(state, getters) {
+  headersToken(state) {
     if (state.token !== null) return `Token ${state.token}`;
     return "";
   },

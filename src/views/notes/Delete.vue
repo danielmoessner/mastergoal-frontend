@@ -7,45 +7,27 @@
         :link="'/n/' + $route.params.id + '/delete/'"
       ></breadcrumb-link>
     </notes-note-breadcrumb>
-    <detail-grid>
-      <general-box class="col-span-2 md:col-span-3" :overflow="false">
-        <div class="flex-col flex justify-start items-start">
-          <p class="mb-4">Are you sure you want to delete '{{ note.name }}'?</p>
-          <div class="flex items-end w-full justify-end">
-            <navigation-button
-              class="pt-2 pb-2"
-              :link="'/n/' + $route.params.id + '/'"
-              text="Cancel"
-            ></navigation-button>
-            <submit-button
-              class="ml-2"
-              text="Yes, delete"
-              @click.prevent="deleteNote"
-            ></submit-button>
-          </div>
-        </div>
-      </general-box>
-    </detail-grid>
+    <delete-box
+      :object="note.name"
+      :to="`/n/${note.id}/`"
+      @click="deleteNote"
+    />
   </backend-box>
 </template>
 
 <script>
 import NotesNoteBreadcrumb from "../../components/NotesNoteBreadcrumb.vue";
 import BackendBox from "../../components/BackendBox.vue";
-import DetailGrid from "../../components/DetailGrid.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
-import GeneralBox from "../../components/Box/General.vue";
-import SubmitButton from "../../components/SubmitButton.vue";
+import DeleteBox from "../../components/Box/Delete.vue";
 
 export default {
   components: {
-    SubmitButton,
+    DeleteBox,
     NotesNoteBreadcrumb,
-    GeneralBox,
     BreadcrumbDivider,
     BreadcrumbLink,
-    DetailGrid,
     BackendBox,
   },
   computed: {

@@ -5,7 +5,5 @@
 </template>
 
 <script>
-export default {
-  name: "DetailGrid",
-};
+export default {};
 </script>

@@ -17,7 +17,7 @@
           <Delete to="delete/" />
         </template>
         <template #infos>
-          <Info :info="`${goal.progress} %`">
+          <Info abbr="Progress" :info="`${goal.progress} %`">
             <svg
               class="w-5 h-5"
               xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,7 @@
               />
             </svg>
           </Info>
-          <Info v-if="goal.deadline" :info="goal.deadline">
+          <Info v-if="goal.deadline" abbr="Deadline" :info="goal.deadline">
             <svg
               class="w-5 h-5"
               xmlns="http://www.w3.org/2000/svg"
