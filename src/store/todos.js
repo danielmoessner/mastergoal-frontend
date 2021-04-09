@@ -149,25 +149,25 @@ const getters = {
   /*
   // Todos
   */
-  todos: (state, getters) => {
+  todos: (state) => {
     return state.todos;
   },
-  normalTodos: (state, getters) => {
+  normalTodos: (state) => {
     return state.todos.filter((todo) => todo.type === "NORMAL");
   },
-  pipelineTodos: (state, getters) => {
+  pipelineTodos: (state) => {
     return state.todos.filter((todo) => todo.type === "PIPELINE");
   },
-  neverEndingTodos: (state, getters) => {
+  neverEndingTodos: (state) => {
     return state.todos.filter((todo) => todo.type === "NEVER_ENDING");
   },
-  repetitiveTodos: (state, getters) => {
+  repetitiveTodos: (state) => {
     return state.todos.filter((todo) => todo.type === "REPETITIVE");
   },
-  todo: (state, getters) => (id) => {
+  todo: (state) => (id) => {
     return state.todos.find((todo) => todo.id.toString() === id);
   },
-  todosThisWeek: (state, getters) => {
+  todosThisWeek: (state) => {
     const now = moment(state.time);
     return state.todos.filter((todo) => {
       const activate = moment(todo.activate);
@@ -186,19 +186,19 @@ const getters = {
       return (relevantThisWeek && unCompleted) || completedThisWeek;
     });
   },
-  todoDefaultFields: (state, getters) => {
+  todoDefaultFields: (state) => {
     return state.todoFields;
   },
-  normalTodoFields: (state, getters) => {
+  normalTodoFields: (state) => {
     return state.todoFields.concat(state.normalTodoFields);
   },
-  neverEndingTodoFields: (state, getters) => {
+  neverEndingTodoFields: (state) => {
     return state.todoFields.concat(state.neverEndingTodoFields);
   },
-  repetitiveTodoFields: (state, getters) => {
+  repetitiveTodoFields: (state) => {
     return state.todoFields.concat(state.repetitiveTodoFields);
   },
-  pipelineTodoFields: (state, getters) => {
+  pipelineTodoFields: (state) => {
     const pipelineTodoFields = state.pipelineTodoFields;
     pipelineTodoFields[0].children = state.todos.map((todo) => {
       return {
@@ -226,7 +226,7 @@ const getters = {
         return [];
     }
   },
-  todoListUrl: (state, getters) => (todo) => {
+  todoListUrl: () => (todo) => {
     const defaultUrl = "#";
     if (!todo || !todo.type) return defaultUrl;
     switch (todo.type) {
@@ -248,19 +248,19 @@ const getters = {
   /*
   // Other
   */
-  week: (state, getters) => {
+  week: (state) => {
     return moment(state.time).isoWeek();
   },
-  year: (state, getters) => {
+  year: (state) => {
     return moment(state.time).isoWeekYear();
   },
-  time: (state, getters) => {
+  time: (state) => {
     return moment(state.time);
   },
-  timeActivate: (state, getters) => {
+  timeActivate: (state) => {
     return moment(state.time).startOf("isoWeek");
   },
-  timeDeadline: (state, getters) => {
+  timeDeadline: (state) => {
     return moment(state.time).endOf("isoWeek");
   },
 };
@@ -340,7 +340,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios
         .delete(url)
-        .then((response) => {
+        .then(() => {
           context.commit("removeTodo", url);
           resolve();
         })

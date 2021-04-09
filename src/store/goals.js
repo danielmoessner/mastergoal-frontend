@@ -249,10 +249,10 @@ const getters = {
   },
   goal: (state) => (identifier) => {
     return state.goals.find(
-      (item) => item.id.toString() === identifier || item.url === identifier
+      (item) => item.id.toString() === identifier || item.url === identifier,
     );
   },
-  goalFormFields: (state, getters) => {
+  goalFormFields: (state) => {
     return state.goalFields.filter((field) => !field.readOnly);
   },
   goalCreateFormFields: (state, getters) => {
@@ -345,7 +345,7 @@ const getters = {
     });
     fields
       .filter(
-        (field) => field.name === "master_goal" || field.name === "sub_goal"
+        (field) => field.name === "master_goal" || field.name === "sub_goal",
       )
       .forEach((field) => (field.children = goals));
     return fields;
@@ -394,7 +394,7 @@ const mutations = {
   },
   changeStrategy(state, strategy) {
     let index = state.strategies.findIndex(
-      (strategyItem) => strategyItem.url === strategy.url
+      (strategyItem) => strategyItem.url === strategy.url,
     );
     if (index !== -1) {
       state.strategies.splice(index, 1, strategy);
@@ -402,7 +402,7 @@ const mutations = {
   },
   removeStrategy(state, url) {
     let index = state.strategies.findIndex(
-      (strategyItem) => strategyItem.url === url
+      (strategyItem) => strategyItem.url === url,
     );
     if (index !== -1) {
       state.strategies.splice(index, 1);
@@ -422,7 +422,7 @@ const mutations = {
   },
   changeMonitor(state, monitor) {
     let index = state.monitors.findIndex(
-      (monitorItem) => monitorItem.url === monitor.url
+      (monitorItem) => monitorItem.url === monitor.url,
     );
     if (index !== -1) {
       state.monitors.splice(index, 1, monitor);
@@ -430,7 +430,7 @@ const mutations = {
   },
   removeMonitor(state, url) {
     let index = state.monitors.findIndex(
-      (monitorItem) => monitorItem.url === url
+      (monitorItem) => monitorItem.url === url,
     );
     if (index !== -1) {
       state.monitors.splice(index, 1);
@@ -503,7 +503,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios
         .delete(url)
-        .then((response) => {
+        .then(() => {
           commit("removeGoal", url);
           resolve();
         })
@@ -550,7 +550,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios
         .delete(url)
-        .then((response) => {
+        .then(() => {
           commit("removeLink", url);
           resolve();
         })
@@ -597,7 +597,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios
         .delete(url)
-        .then((response) => {
+        .then(() => {
           commit("removeMonitor", url);
           resolve();
         })
@@ -644,7 +644,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios
         .delete(url)
-        .then((response) => {
+        .then(() => {
           commit("removeStrategy", url);
           resolve();
         })

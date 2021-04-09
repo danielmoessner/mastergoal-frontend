@@ -1,8 +1,11 @@
-import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import eslintPlugin from "vite-plugin-eslint";
+import eslint from "@rollup/plugin-eslint";
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [eslintPlugin(), vue()],
-});
+const config = {
+  plugins: [
+    { ...eslint({ include: "src/**/*.+(js|jsx|ts|tsx)" }), enforce: "pre" },
+    vue(),
+  ],
+};
+
+export default config;
