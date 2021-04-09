@@ -1,5 +1,5 @@
 <template>
-  <backend-box v-if="link">
+  <backend-box v-if="link && subgoal && mastergoal">
     <goals-link-breadcrumb :link="link"></goals-link-breadcrumb>
     <detail-grid>
       <goal-item
