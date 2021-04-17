@@ -329,6 +329,15 @@ const getters = {
   /*
   // Links
   */
+  linkFromGoals: (state) => (firstGoal, secondGoal) => {
+    return state.links.find((item) => {
+      return (
+        (item.master_goal === firstGoal.url &&
+          item.sub_goal === secondGoal.url) ||
+        (item.master_goal === secondGoal.url && item.sub_goal === firstGoal.url)
+      );
+    });
+  },
   links: (state) => {
     return state.links;
   },

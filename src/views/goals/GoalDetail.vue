@@ -6,7 +6,7 @@
         v-for="masterGoal in masterGoals"
         :key="masterGoal.id"
         :goal="masterGoal"
-        type="Mastergoal"
+        :other-goal="goal"
       ></goal-item>
 
       <DetailBox :heading="goal.name">
@@ -70,7 +70,7 @@
         v-for="subGoal in subGoals"
         :key="subGoal.id"
         :goal="subGoal"
-        type="Subgoal"
+        :other-goal="goal"
       ></goal-item>
     </detail-grid>
   </backend-box>
