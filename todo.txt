@@ -1,19 +1,20 @@
-- notes editor austauschen zu quill vllt
+## NEXT
 - notes namen einfacher (erste zeile)
-
-- baum struktur in javascript schöner vllt? plugin?
-- edit und delete buttons schöner bei notes
 - archived vereinfachen vllt mit button bei notes?
+- edit und delete buttons schöner bei notes
 - todo settings formular oder gleich ganz weg?
   - hier müsste man denke ich show old todos oder so dieses setting einbinden
+- user app in folder
 - goal settings formular oder gleich ganz weg?
+
+## BACKLOG
+- notes editor austauschen zu quill vllt
+- baum struktur in javascript schöner vllt? plugin?
+- die kleinen items schöner / anders (vllt faellt mir wieder ein welche genau haha)
+
+## FUTURE
 - philosophieren welche funktionen noch cool wären:
   - personal life plan
   - visionboard
   - achievements
 - goals app mit hero on a mission verbinden?
-
-- link detail
-- user app in folder
-
-- die kleinen items schöner / anders
