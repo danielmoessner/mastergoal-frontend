@@ -1,36 +1,39 @@
 <template>
-  <div
-    class="shadow bg-white flex flex-col justify-between rounded-lg overflow-hidden text-gray-700"
-  >
-    <div>
-      <div
-        class="pl-4 pr-4 pt-4 mb-1 text-right flex justify-between items-center"
+  <Item bg="bg-gray-50">
+    <Left>
+      <div class="text-gray-100 relative">
+        <StrategySvg />
+      </div>
+    </Left>
+    <Body>
+      <router-link
+        :to="`/g/list/strategies/${strategy.id}/`"
+        class="text-gray-900 font-medium hover:text-gray-600"
       >
-        <div class="block text-xs uppercase font-bold leading-tight">
-          {{ type }}
-        </div>
-      </div>
-      <div class="px-4 mb-4">
-        <div class="truncate leading-tight">{{ strategy.name }}</div>
-      </div>
-    </div>
-    <div>
-      <navigation-button
-        text="Open"
-        class="w-full flex-shrink-0 rounded-tl-none rounded-tr-none"
-        :link="'/g/list/strategies/' + strategy.id"
-      ></navigation-button>
-    </div>
-  </div>
+        {{ strategy.name }}
+      </router-link>
+    </Body>
+    <HrefMenu
+      :last="true"
+      :to="`/g/list/strategies/${strategy.id}/`"
+    ></HrefMenu>
+  </Item>
 </template>
 
 <script>
-import NavigationButton from "../components/NavigationButton.vue";
+import StrategySvg from "../components/Svg/Strategy.vue";
+import Body from "./Item/Body.vue";
+import Left from "./Item/Left.vue";
+import HrefMenu from "./Item/HrefMenu.vue";
+import Item from "./Item/Index.vue";
 
 export default {
-  name: "StrategyItem",
   components: {
-    NavigationButton,
+    StrategySvg,
+    Item,
+    Body,
+    HrefMenu,
+    Left,
   },
   props: {
     strategy: {
