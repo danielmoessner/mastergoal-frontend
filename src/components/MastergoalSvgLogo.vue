@@ -50,9 +50,3 @@
     <path d="M252.3 367.6h7.425v74.284H252.3z" fill="#474f59" />
   </svg>
 </template>
-
-<script>
-export default {
-  name: "MastergoalSvgLogo",
-};
-</script>

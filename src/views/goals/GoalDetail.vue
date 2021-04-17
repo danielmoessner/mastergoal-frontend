@@ -1,6 +1,6 @@
 <template>
   <backend-box v-if="goal">
-    <goals-goal-breadcrumb :goal="goal"></goals-goal-breadcrumb>
+    <goals-goal-breadcrumb :item="goal"></goals-goal-breadcrumb>
     <detail-grid>
       <goal-item
         v-for="masterGoal in masterGoals"

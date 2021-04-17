@@ -1,6 +1,6 @@
 <template>
   <backend-box v-if="link && subgoal && mastergoal">
-    <goals-link-breadcrumb :link="link"></goals-link-breadcrumb>
+    <goals-goal-breadcrumb :item="link"></goals-goal-breadcrumb>
     <detail-grid>
       <goal-item
         v-if="mastergoal"
@@ -39,7 +39,7 @@
 import GoalItem from "../../components/GoalItem.vue";
 import DetailGrid from "../../components/DetailGrid.vue";
 import BackendBox from "../../components/BackendBox.vue";
-import GoalsLinkBreadcrumb from "../../components/GoalsLinkBreadcrumb.vue";
+import GoalsGoalBreadcrumb from "../../components/GoalsGoalBreadcrumb.vue";
 import DetailBox from "../../components/Box/Detail.vue";
 import Archive from "../../components/Action/Archive.vue";
 import Delete from "../../components/Action/Delete.vue";
@@ -49,7 +49,7 @@ import Info from "../../components/Info.vue";
 export default {
   components: {
     DetailBox,
-    GoalsLinkBreadcrumb,
+    GoalsGoalBreadcrumb,
     BackendBox,
     Archive,
     Delete,

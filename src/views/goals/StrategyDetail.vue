@@ -1,6 +1,6 @@
 <template>
   <backend-box v-if="strategy">
-    <goals-strategy-breadcrumb :strategy="strategy"></goals-strategy-breadcrumb>
+    <goals-goal-breadcrumb :item="strategy" />
     <detail-grid>
       <goal-item :goal="goal"></goal-item>
       <DetailBox :heading="strategy.name">
@@ -22,7 +22,7 @@
 import GoalItem from "../../components/GoalItem.vue";
 import DetailGrid from "../../components/DetailGrid.vue";
 import BackendBox from "../../components/BackendBox.vue";
-import GoalsStrategyBreadcrumb from "../../components/GoalsStrategyBreadcrumb.vue";
+import GoalsGoalBreadcrumb from "../../components/GoalsGoalBreadcrumb.vue";
 import Star from "../../components/Action/Star.vue";
 import Archive from "../../components/Action/Archive.vue";
 import Delete from "../../components/Action/Delete.vue";
@@ -38,7 +38,7 @@ export default {
     Edit,
     DetailBox,
     Descriptive,
-    GoalsStrategyBreadcrumb,
+    GoalsGoalBreadcrumb,
     DetailGrid,
     BackendBox,
     GoalItem,

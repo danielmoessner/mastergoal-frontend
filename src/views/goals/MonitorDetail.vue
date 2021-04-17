@@ -1,6 +1,6 @@
 <template>
   <backend-box v-if="monitor">
-    <goals-monitor-breadcrumb :monitor="monitor"></goals-monitor-breadcrumb>
+    <GoalsGoalBreadcrumb :item="monitor" />
     <detail-grid>
       <goal-item :goal="goal" type="Goal"></goal-item>
       <Detail :heading="monitor.name">
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import GoalsMonitorBreadcrumb from "../../components/GoalsMonitorBreadcrumb.vue";
+import GoalsGoalBreadcrumb from "../../components/GoalsGoalBreadcrumb.vue";
 import GoalItem from "../../components/GoalItem.vue";
 import DetailGrid from "../../components/DetailGrid.vue";
 import BackendBox from "../../components/BackendBox.vue";
@@ -66,7 +66,7 @@ export default {
     Descriptive,
     Info,
     Detail,
-    GoalsMonitorBreadcrumb,
+    GoalsGoalBreadcrumb,
     BackendBox,
     DetailGrid,
     GoalItem,
