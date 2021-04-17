@@ -20,9 +20,7 @@
       <p class="text-gray-500">{{ goal.progress }} %</p>
     </Body>
 
-    <HrefMenu :last="hrefMenuLast" :to="`/g/list/goals/${goal.id}/`"></HrefMenu>
-
-    <Menu v-if="link">
+    <Menu v-if="link" :last="true">
       <router-link
         :to="`/g/list/links/${link.id}/`"
         class="block px-2 py-1 hover:bg-gray-100 text-gray-500 hover:text-gray-700 cursor-pointer rounded text-sm"
@@ -30,6 +28,8 @@
         Show Link
       </router-link>
     </Menu>
+
+    <HrefMenu :to="`/g/list/goals/${goal.id}/`"></HrefMenu>
   </Item>
 </template>
 
@@ -69,9 +69,6 @@ export default {
     return {};
   },
   computed: {
-    hrefMenuLast() {
-      return this.otherGoal ? false : true;
-    },
     link() {
       if (this.otherGoal) {
         return this.$store.getters["goals/linkFromGoals"](

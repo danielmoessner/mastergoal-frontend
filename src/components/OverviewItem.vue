@@ -6,18 +6,9 @@
     <div
       class="bg-gray-300 rounded-full w-10 h-10 mr-3 flex items-center justify-center"
     >
-      <!-- eslint-disable -->
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        class="w-6 h-6"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        v-html="iconPaths"
-      ></svg>
-      <!-- eslint-enable -->
+      <slot></slot>
     </div>
-    <div class="">{{ name }}</div>
+    <div>{{ name }}</div>
   </router-link>
 </template>
 
@@ -26,10 +17,6 @@ export default {
   name: "OverviewItem",
   props: {
     name: {
-      required: true,
-      type: String,
-    },
-    iconPaths: {
       required: true,
       type: String,
     },
