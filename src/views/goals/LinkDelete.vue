@@ -1,15 +1,12 @@
 <template>
-  <backend-box v-if="link">
-    <goals-link-breadcrumb :link="link">
+  <backend-box v-if="link && mastergoal && subgoal">
+    <goals-goal-breadcrumb :item="link">
       <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        :link="'/g/list/links/' + link.id + '/delete/'"
-        text="Delete"
-      ></breadcrumb-link>
-    </goals-link-breadcrumb>
+      <breadcrumb-link text="Delete"></breadcrumb-link>
+    </goals-goal-breadcrumb>
     <delete-box
       :object="`${mastergoal.name} -> ${subgoal.name}`"
-      :to="`/g/list/goals/${goal.id}/`"
+      :to="`/g/list/goals/${mastergoal.id}/`"
       @click="deleteGoal"
     />
   </backend-box>
@@ -19,12 +16,12 @@
 import BackendBox from "../../components/BackendBox.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
-import GoalsLinkBreadcrumb from "../../components/GoalsLinkBreadcrumb.vue";
+import GoalsGoalBreadcrumb from "../../components/GoalsGoalBreadcrumb.vue";
 import DeleteBox from "../../components/Box/Delete.vue";
 
 export default {
   components: {
-    GoalsLinkBreadcrumb,
+    GoalsGoalBreadcrumb,
     DeleteBox,
     BackendBox,
     BreadcrumbLink,
@@ -34,9 +31,16 @@ export default {
     link() {
       return this.$store.getters["goals/link"](this.$route.params.id);
     },
+    mastergoal() {
+      return this.$store.getters["goals/goal"](this.link.master_goal);
+    },
+    subgoal() {
+      return this.$store.getters["goals/goal"](this.link.sub_goal);
+    },
   },
   mounted() {
     this.$store.dispatch("goals/fetchLinks");
+    this.$store.dispatch("goals/fetchGoals");
   },
   methods: {
     deleteLink() {

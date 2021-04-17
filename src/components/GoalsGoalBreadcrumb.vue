@@ -11,7 +11,7 @@
       ></breadcrumb-link>
       <breadcrumb-divider />
     </div>
-    <breadcrumb-link :text="name"></breadcrumb-link>
+    <breadcrumb-link :text="name" :link="link"></breadcrumb-link>
     <slot></slot>
   </breadcrumb-navigation>
 </template>
@@ -45,6 +45,19 @@ export default {
         return this.getLinkMastergoals(this.item);
 
       return [];
+    },
+    link() {
+      if (this.$slots.default) {
+        if (this.item.url.includes("goals"))
+          return `/g/list/goals/${this.item.id}/`;
+        if (this.item.url.includes("strategies"))
+          return `/g/list/strategies/${this.item.id}/`;
+        if (this.item.url.includes("monitors"))
+          return `/g/list/monitors/${this.item.id}/`;
+        if (this.item.url.includes("links"))
+          return `/g/list/links/${this.item.id}/`;
+      }
+      return "";
     },
     name() {
       return this.item.name || "Link";

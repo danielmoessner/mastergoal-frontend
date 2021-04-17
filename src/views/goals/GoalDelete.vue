@@ -1,11 +1,8 @@
 <template>
   <backend-box v-if="goal">
-    <goals-goal-breadcrumb :goal="goal">
+    <goals-goal-breadcrumb :item="goal">
       <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        :link="'/g/list/goals/' + goal.id + '/delete/'"
-        text="Delete"
-      ></breadcrumb-link>
+      <breadcrumb-link text="Delete"></breadcrumb-link>
     </goals-goal-breadcrumb>
     <delete-box
       :object="goal.name"

@@ -1,12 +1,9 @@
 <template>
   <backend-box v-if="strategy">
-    <goals-strategy-breadcrumb :strategy="strategy">
+    <goals-goal-breadcrumb :item="strategy">
       <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        :link="'/g/list/strategies/' + strategy.id + '/delete/'"
-        text="Delete"
-      ></breadcrumb-link>
-    </goals-strategy-breadcrumb>
+      <breadcrumb-link text="Delete"></breadcrumb-link>
+    </goals-goal-breadcrumb>
     <delete-box
       :object="strategy.name"
       :to="`/g/list/strategies/${strategy.id}/`"
@@ -19,7 +16,7 @@
 import BackendBox from "../../components/BackendBox.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
-import GoalsStrategyBreadcrumb from "../../components/GoalsStrategyBreadcrumb.vue";
+import GoalsGoalBreadcrumb from "../../components/GoalsGoalBreadcrumb.vue";
 import DeleteBox from "../../components/Box/Delete.vue";
 
 export default {
@@ -28,7 +25,7 @@ export default {
     BackendBox,
     BreadcrumbLink,
     BreadcrumbDivider,
-    GoalsStrategyBreadcrumb,
+    GoalsGoalBreadcrumb,
   },
   computed: {
     strategy() {

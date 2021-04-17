@@ -1,11 +1,8 @@
 <template>
   <backend-box v-if="goal">
-    <goals-goal-breadcrumb :goal="goal">
+    <goals-goal-breadcrumb :item="goal">
       <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        text="Edit"
-        :link="'/g/list/goals/' + goal.id + '/edit/'"
-      ></breadcrumb-link>
+      <breadcrumb-link text="Edit"></breadcrumb-link>
     </goals-goal-breadcrumb>
     <general-box class="col-span-2 md:col-span-3 xl:col-span-4">
       <dynamic-form

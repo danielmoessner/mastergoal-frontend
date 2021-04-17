@@ -59,7 +59,7 @@ export default {
     },
     fields() {
       return this.$store.getters["todos/todoFormFields"](
-        this.$route.params.type
+        this.$route.params.type,
       ).filter((field) => field.create);
     },
   },

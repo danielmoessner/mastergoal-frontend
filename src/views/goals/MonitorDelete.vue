@@ -1,12 +1,9 @@
 <template>
   <backend-box v-if="monitor">
-    <goals-monitor-breadcrumb :monitor="monitor">
+    <goals-goal-breadcrumb :item="monitor">
       <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        :link="'/g/list/monitors/' + monitor.id + '/delete/'"
-        text="Delete"
-      ></breadcrumb-link>
-    </goals-monitor-breadcrumb>
+      <breadcrumb-link text="Delete"></breadcrumb-link>
+    </goals-goal-breadcrumb>
     <delete-box
       :object="monitor.name"
       :to="`/g/list/monitors/${monitor.id}/`"
@@ -19,13 +16,13 @@
 import BackendBox from "../../components/BackendBox.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
-import GoalsMonitorBreadcrumb from "../../components/GoalsMonitorBreadcrumb.vue";
+import GoalsGoalBreadcrumb from "../../components/GoalsGoalBreadcrumb.vue";
 import DeleteBox from "../../components/Box/Delete.vue";
 
 export default {
   components: {
     DeleteBox,
-    GoalsMonitorBreadcrumb,
+    GoalsGoalBreadcrumb,
     BackendBox,
     BreadcrumbLink,
     BreadcrumbDivider,

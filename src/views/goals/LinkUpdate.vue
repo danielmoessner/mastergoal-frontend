@@ -1,20 +1,9 @@
 <template>
   <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link text="List" link="/g/list"></breadcrumb-link>
+    <goals-goal-breadcrumb :item="link">
       <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link text="links" link="/g/list/links"></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        :text="linkName"
-        :link="'/g/list/links/' + link.id"
-      ></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        text="Edit"
-        :link="'/g/list/links/' + link.id + '/edit/'"
-      ></breadcrumb-link>
-    </breadcrumb-navigation>
+      <breadcrumb-link text="Edit"></breadcrumb-link>
+    </goals-goal-breadcrumb>
     <general-box
       :overflow="false"
       class="col-span-2 lg:col-span-3 xl:col-span-3"
@@ -32,18 +21,18 @@
 
 <script>
 import BackendBox from "../../components/BackendBox.vue";
-import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import DynamicForm from "../../components/DynamicForm.vue";
 import GeneralBox from "../../components/Box/General.vue";
+import GoalsGoalBreadcrumb from "../../components/GoalsGoalBreadcrumb.vue";
 
 export default {
   name: "GoalsLinkEdit",
   components: {
     GeneralBox,
+    GoalsGoalBreadcrumb,
     BackendBox,
-    BreadcrumbNavigation,
     BreadcrumbDivider,
     BreadcrumbLink,
     DynamicForm,

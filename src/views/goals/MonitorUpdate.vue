@@ -1,23 +1,9 @@
 <template>
   <backend-box v-if="monitor">
-    <breadcrumb-navigation>
-      <breadcrumb-link text="List" link="/g/list"></breadcrumb-link>
+    <goals-goal-breadcrumb :item="monitor">
       <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        text="monitors"
-        link="/g/list/monitors"
-      ></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        :text="monitor.name"
-        :link="'/g/list/monitors/' + monitor.id"
-      ></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
-        text="Edit"
-        :link="'/g/list/monitors/' + monitor.id + '/edit/'"
-      ></breadcrumb-link>
-    </breadcrumb-navigation>
+      <breadcrumb-link text="Edit"></breadcrumb-link>
+    </goals-goal-breadcrumb>
     <general-box
       :overflow="false"
       class="col-span-2 lg:col-span-3 xl:col-span-3"
@@ -35,9 +21,9 @@
 
 <script>
 import BackendBox from "../../components/BackendBox.vue";
-import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
+import GoalsGoalBreadcrumb from "../../components/GoalsGoalBreadcrumb.vue";
 import GeneralBox from "../../components/Box/General.vue";
 import DynamicForm from "../../components/DynamicForm.vue";
 
@@ -46,7 +32,7 @@ export default {
     DynamicForm,
     GeneralBox,
     BackendBox,
-    BreadcrumbNavigation,
+    GoalsGoalBreadcrumb,
     BreadcrumbDivider,
     BreadcrumbLink,
   },
