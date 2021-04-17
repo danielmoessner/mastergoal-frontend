@@ -81,11 +81,6 @@
             svg-class="transform rotate-90"
             :icon="goalsTreeIcon"
           ></navigation-button>
-          <navigation-button
-            link="/g/list"
-            text="List"
-            :icon="listIcon"
-          ></navigation-button>
           <navigation-button link="/g/add" text="Add" :icon="addIcon">
           </navigation-button>
           <navigation-heading heading="Notes"></navigation-heading>
