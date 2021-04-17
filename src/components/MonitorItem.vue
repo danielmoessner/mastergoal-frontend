@@ -1,46 +1,43 @@
 <template>
-  <div
-    class="shadow bg-white flex flex-col justify-between rounded-lg overflow-hidden text-gray-700"
-  >
-    <div>
+  <Item bg="bg-gray-50">
+    <Left>
       <div
-        class="pl-4 pr-4 pt-4 mb-1 text-right flex justify-between items-center"
-      >
-        <div class="block text-xs uppercase font-bold leading-tight">
-          {{ type }}
-        </div>
-        <div class="text-sm text-gray-600 block leading-tight font-light">
-          {{ monitor.progress }} %
-        </div>
+        class="absolute z-0 bottom-0 left-0 right-0 bg-gray-600"
+        :style="{ height: `${monitor.progress}%` }"
+      ></div>
+      <div class="text-gray-100 relative">
+        <MonitorSvg />
       </div>
+    </Left>
 
-      <div class="px-4 mb-4">
-        <div class="truncate leading-tight">{{ monitor.name }}</div>
-      </div>
-    </div>
-    <div>
-      <div class="h-1 bg-gray-400">
-        <div
-          class="bg-blue-900 h-1"
-          :style="{ width: monitor.progress + '%' }"
-        ></div>
-      </div>
-      <navigation-button
-        text="Open"
-        class="w-full flex-shrink-0 rounded-tl-none rounded-tr-none"
-        :link="'/g/list/monitors/' + monitor.id"
-      ></navigation-button>
-    </div>
-  </div>
+    <Body>
+      <router-link
+        :to="`/g/list/goals/${monitor.id}/`"
+        class="text-gray-900 font-medium hover:text-gray-600"
+      >
+        {{ monitor.name }}
+      </router-link>
+      <p class="text-gray-500">{{ monitor.progress }} %</p>
+    </Body>
+
+    <HrefMenu :last="true" :to="`/g/list/monitors/${monitor.id}/`"></HrefMenu>
+  </Item>
 </template>
 
 <script>
-import NavigationButton from "../components/NavigationButton.vue";
+import MonitorSvg from "../components/Svg/Monitor.vue";
+import Body from "./Item/Body.vue";
+import Left from "./Item/Left.vue";
+import HrefMenu from "./Item/HrefMenu.vue";
+import Item from "./Item/Index.vue";
 
 export default {
-  name: "MonitorItem",
   components: {
-    NavigationButton,
+    MonitorSvg,
+    Item,
+    Body,
+    HrefMenu,
+    Left,
   },
   props: {
     monitor: {
