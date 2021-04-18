@@ -2,12 +2,12 @@
 
 
 ## BACKLOG
-- ordering and meta of all models 
+
 
 ## FUTURE
-- baum struktur in javascript schöner vllt? plugin?
 - philosophieren welche funktionen noch cool wären:
   - personal life plan
   - visionboard
   - achievements
 - goals app mit hero on a mission verbinden?
+- baum struktur in javascript schöner vllt? plugin?
