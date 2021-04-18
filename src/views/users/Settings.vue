@@ -8,12 +8,6 @@
         <overview-item name="User settings" link="/u/settings/user-settings">
           <UserSvg />
         </overview-item>
-        <overview-item
-          name="General settings"
-          link="/u/settings/general-settings"
-        >
-          <GeneralSvg />
-        </overview-item>
         <overview-item name="Todo settings" link="/u/settings/todo-settings">
           <TodoSvg />
         </overview-item>
@@ -26,15 +20,14 @@
 </template>
 
 <script>
-import BackendBox from "../components/BackendBox.vue";
-import GeneralBox from "../components/Box/General.vue";
-import BreadcrumbNavigation from "../components/BreadcrumbNavigation.vue";
-import BreadcrumbLink from "../components/BreadcrumbLink.vue";
-import OverviewItem from "../components/OverviewItem.vue";
-import UserSvg from "../components/Svg/User.vue";
-import TodoSvg from "../components/Svg/NormalTodo.vue";
-import GoalSvg from "../components/Svg/Goal.vue";
-import GeneralSvg from "../components/Svg/General.vue";
+import BackendBox from "../../components/BackendBox.vue";
+import GeneralBox from "../../components/Box/General.vue";
+import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
+import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
+import OverviewItem from "../../components/OverviewItem.vue";
+import UserSvg from "../../components/Svg/User.vue";
+import TodoSvg from "../../components/Svg/NormalTodo.vue";
+import GoalSvg from "../../components/Svg/Goal.vue";
 
 export default {
   name: "UsersSettings",
@@ -43,7 +36,6 @@ export default {
     UserSvg,
     TodoSvg,
     GoalSvg,
-    GeneralSvg,
     BackendBox,
     GeneralBox,
     BreadcrumbLink,

@@ -31,12 +31,12 @@
 </template>
 
 <script>
-import BackendBox from "../components/BackendBox.vue";
-import BreadcrumbNavigation from "../components/BreadcrumbNavigation.vue";
-import BreadcrumbLink from "../components/BreadcrumbLink.vue";
-import BreadcrumbDivider from "../components/BreadcrumbDivider.vue";
-import GeneralBox from "../components/Box/General.vue";
-import DynamicForm from "../components/DynamicForm.vue";
+import BackendBox from "../../components/BackendBox.vue";
+import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
+import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
+import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
+import GeneralBox from "../../components/Box/General.vue";
+import DynamicForm from "../../components/DynamicForm.vue";
 
 export default {
   name: "UsersSettingsUser",

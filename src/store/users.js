@@ -60,7 +60,7 @@ const state = () => ({
       as: "input",
     },
   ],
-  generalFields: [
+  goalFields: [
     {
       name: "show_archived_objects",
       as: "input",
@@ -69,6 +69,17 @@ const state = () => ({
       read_only: false,
       create: false,
       label: "Show archived objects",
+    },
+  ],
+  todoFields: [
+    {
+      name: "show_old_todos",
+      as: "input",
+      type: "checkbox",
+      required: false,
+      read_only: false,
+      create: false,
+      label: "Show old todos",
     },
   ],
 });
@@ -171,8 +182,11 @@ const getters = {
   user(state) {
     return state.user;
   },
-  generalFormFields(state) {
-    return state.generalFields;
+  goalFormFields(state) {
+    return state.goalFields;
+  },
+  todoFormFields(state) {
+    return state.todoFields;
   },
   userFormFields(state) {
     return state.userFields;

@@ -1,10 +1,9 @@
-import SettingsPage from "../views/UsersSettings.vue";
-import SettingsGeneral from "../views/UsersSettingsGeneral.vue";
-import SettingsTodo from "../views/UsersSettingsTodo.vue";
-import SettingsGoal from "../views/UsersSettingsGoal.vue";
-import SettingsUser from "../views/UsersSettingsUser.vue";
-import SignIn from "../views/UsersSignIn.vue";
-import SignUp from "../views/UsersSignUp.vue";
+import Settings from "../views/users/Settings.vue";
+import SettingsTodo from "../views/users/SettingsTodo.vue";
+import SettingsGoal from "../views/users/SettingsGoal.vue";
+import SettingsUser from "../views/users/SettingsUser.vue";
+import SignIn from "../views/users/SignIn.vue";
+import SignUp from "../views/users/SignUp.vue";
 
 export default [
   {
@@ -26,14 +25,7 @@ export default [
    */
   {
     path: "/u/settings/",
-    component: SettingsPage,
-    meta: {
-      requiresAuthenticationTrue: true,
-    },
-  },
-  {
-    path: "/u/settings/general-settings/",
-    component: SettingsGeneral,
+    component: Settings,
     meta: {
       requiresAuthenticationTrue: true,
     },
