@@ -1,12 +1,12 @@
 <template>
-  <backend-box v-if="note">
-    <notes-note-breadcrumb :note="note">
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
+  <BackendBox v-if="note">
+    <NotesNoteBreadcrumb :note="note">
+      <BreadcrumbDivider></BreadcrumbDivider>
+      <BreadcrumbLink
         text="Edit"
         :link="'/n/' + $route.params.id + '/edit/'"
-      ></breadcrumb-link>
-    </notes-note-breadcrumb>
+      ></BreadcrumbLink>
+    </NotesNoteBreadcrumb>
     <div class="bg-white relative">
       <QuillEditor
         v-model:content="note.content"
@@ -19,7 +19,7 @@
         {{ isSaved ? "Saved" : "Not saved.." }}
       </div>
     </div>
-  </backend-box>
+  </BackendBox>
 </template>
 
 <script>

@@ -1,18 +1,14 @@
 <template>
-  <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link link="/g/goals" text="Goals"></breadcrumb-link>
-    </breadcrumb-navigation>
+  <BackendBox>
+    <BreadcrumbNavigation>
+      <BreadcrumbLink link="/g/goals" text="Goals"></BreadcrumbLink>
+    </BreadcrumbNavigation>
     <div
       class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-2 xl:grid-cols-3"
     >
-      <goal-item
-        v-for="goal in goals"
-        :key="goal.id"
-        :goal="goal"
-      ></goal-item>
+      <GoalItem v-for="goal in goals" :key="goal.id" :goal="goal"></GoalItem>
     </div>
-  </backend-box>
+  </BackendBox>
 </template>
 
 <script>

@@ -1,13 +1,13 @@
 <template>
-  <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link link="/n/dashboard" text="Dashboard"></breadcrumb-link>
-    </breadcrumb-navigation>
+  <BackendBox>
+    <BreadcrumbNavigation>
+      <BreadcrumbLink link="/n/dashboard" text="Dashboard"></BreadcrumbLink>
+    </BreadcrumbNavigation>
     <div class="space-y-2 mb-4">
-      <note-item v-for="note in notes" :key="note.url" :note="note"></note-item>
+      <NoteItem v-for="note in notes" :key="note.url" :note="note"></NoteItem>
     </div>
     <NoteAddBox />
-  </backend-box>
+  </BackendBox>
 </template>
 
 <script>

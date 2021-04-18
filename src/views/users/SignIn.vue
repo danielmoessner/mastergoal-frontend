@@ -1,19 +1,19 @@
 <template>
   <div class="w-full min-h-screen flex items-center justify-center">
     <div class="w-64 mb-64 mt-12">
-      <mastergoal-logo class="rounded-lg mb-8"></mastergoal-logo>
-      <alert-box :message="alert.message" :type="alert.type"></alert-box>
-      <dynamic-form
+      <MastergoalLogo class="rounded-lg mb-8"></MastergoalLogo>
+      <AlertBox :message="alert.message" :type="alert.type"></AlertBox>
+      <DynamicForm
         :fields="$store.getters['users/loginFormFields']"
         action="users/login"
         submit="Login"
         success=""
       />
-      <navigation-button
+      <NavigationButton
         class="mt-10"
         link="/signup"
         text="Sign up instead"
-      ></navigation-button>
+      ></NavigationButton>
     </div>
   </div>
 </template>

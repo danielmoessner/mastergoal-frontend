@@ -1,25 +1,25 @@
 <template>
-  <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link link="/g/add" text="Add"></breadcrumb-link>
-    </breadcrumb-navigation>
-    <general-box>
+  <BackendBox>
+    <BreadcrumbNavigation>
+      <BreadcrumbLink link="/g/add" text="Add"></BreadcrumbLink>
+    </BreadcrumbNavigation>
+    <GeneralBox>
       <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
-        <overview-item name="Goal" link="/g/add/goal">
+        <OverviewItem name="Goal" link="/g/add/goal">
           <GoalSvg />
-        </overview-item>
-        <overview-item name="Monitor" link="/g/add/monitor">
+        </OverviewItem>
+        <OverviewItem name="Monitor" link="/g/add/monitor">
           <MonitorSvg />
-        </overview-item>
-        <overview-item name="Strategy" link="/g/add/strategy">
+        </OverviewItem>
+        <OverviewItem name="Strategy" link="/g/add/strategy">
           <StrategySvg />
-        </overview-item>
-        <overview-item name="Link" link="/g/add/link">
+        </OverviewItem>
+        <OverviewItem name="Link" link="/g/add/link">
           <LinkSvg />
-        </overview-item>
+        </OverviewItem>
       </div>
-    </general-box>
-  </backend-box>
+    </GeneralBox>
+  </BackendBox>
 </template>
 
 <script>

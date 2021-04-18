@@ -4,7 +4,7 @@
       <h1 class="text-3xl font-blue-900 tracking-tight font-bold">
         404 - Not Found
       </h1>
-      <navigation-button text="Back to home" link="/"></navigation-button>
+      <NavigationButton text="Back to home" link="/"></NavigationButton>
     </div>
   </div>
 </template>

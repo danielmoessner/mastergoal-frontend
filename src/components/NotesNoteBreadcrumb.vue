@@ -1,13 +1,13 @@
 <template>
-  <breadcrumb-navigation>
-    <breadcrumb-link text="Dasboard" link="/n/dashboard"></breadcrumb-link>
-    <breadcrumb-divider></breadcrumb-divider>
-    <breadcrumb-link
+  <BreadcrumbNavigation>
+    <BreadcrumbLink text="Dasboard" link="/n/dashboard"></BreadcrumbLink>
+    <BreadcrumbDivider></BreadcrumbDivider>
+    <BreadcrumbLink
       :text="note.name"
       :link="'/n/' + $route.params.id + '/'"
-    ></breadcrumb-link>
+    ></BreadcrumbLink>
     <slot></slot>
-  </breadcrumb-navigation>
+  </BreadcrumbNavigation>
 </template>
 
 <script>

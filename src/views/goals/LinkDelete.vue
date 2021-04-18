@@ -1,15 +1,15 @@
 <template>
-  <backend-box v-if="link && mastergoal && subgoal">
-    <goals-goal-breadcrumb :item="link">
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link text="Delete"></breadcrumb-link>
-    </goals-goal-breadcrumb>
-    <delete-box
+  <BackendBox v-if="link && mastergoal && subgoal">
+    <GoalsGoalBreadcrumb :item="link">
+      <BreadcrumbDivider></BreadcrumbDivider>
+      <BreadcrumbLink text="Delete"></BreadcrumbLink>
+    </GoalsGoalBreadcrumb>
+    <DeleteBox
       :object="`${mastergoal.name} -> ${subgoal.name}`"
       :to="`/g/list/goals/${mastergoal.id}/`"
       @click="deleteGoal"
     />
-  </backend-box>
+  </BackendBox>
 </template>
 
 <script>

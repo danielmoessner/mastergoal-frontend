@@ -1,22 +1,22 @@
 <template>
-  <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link link="/t/add" text="Add"></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
+  <BackendBox>
+    <BreadcrumbNavigation>
+      <BreadcrumbLink link="/t/add" text="Add"></BreadcrumbLink>
+      <BreadcrumbDivider></BreadcrumbDivider>
+      <BreadcrumbLink
         :link="`/t/add/${$route.params.type}`"
         :text="breadcrumbText"
-      ></breadcrumb-link>
-    </breadcrumb-navigation>
-    <general-box :overflow="false">
-      <dynamic-form
+      ></BreadcrumbLink>
+    </BreadcrumbNavigation>
+    <GeneralBox :overflow="false">
+      <DynamicForm
         :action="action"
         :fields="fields"
         success="Todo added"
         submit="Add"
       />
-    </general-box>
-  </backend-box>
+    </GeneralBox>
+  </BackendBox>
 </template>
 
 <script>

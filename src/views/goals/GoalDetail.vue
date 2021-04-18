@@ -1,13 +1,13 @@
 <template>
-  <backend-box v-if="goal">
-    <goals-goal-breadcrumb :item="goal"></goals-goal-breadcrumb>
-    <detail-grid>
-      <goal-item
+  <BackendBox v-if="goal">
+    <GoalsGoalBreadcrumb :item="goal"></GoalsGoalBreadcrumb>
+    <DetailGrid>
+      <GoalItem
         v-for="masterGoal in masterGoals"
         :key="masterGoal.id"
         :goal="masterGoal"
         :other-goal="goal"
-      ></goal-item>
+      ></GoalItem>
 
       <DetailBox :heading="goal.name">
         <template #actions>
@@ -56,24 +56,24 @@
           />
         </template>
       </DetailBox>
-      <monitor-item
+      <MonitorItem
         v-for="monitor in monitors"
         :key="monitor.url"
         :monitor="monitor"
-      ></monitor-item>
-      <strategy-item
+      ></MonitorItem>
+      <StrategyItem
         v-for="strategy in strategies"
         :key="strategy.url"
         :strategy="strategy"
-      ></strategy-item>
-      <goal-item
+      ></StrategyItem>
+      <GoalItem
         v-for="subGoal in subGoals"
         :key="subGoal.id"
         :goal="subGoal"
         :other-goal="goal"
-      ></goal-item>
-    </detail-grid>
-  </backend-box>
+      ></GoalItem>
+    </DetailGrid>
+  </BackendBox>
 </template>
 
 <script>

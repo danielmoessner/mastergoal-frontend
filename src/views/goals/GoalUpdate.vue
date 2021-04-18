@@ -1,19 +1,19 @@
 <template>
-  <backend-box v-if="goal">
-    <goals-goal-breadcrumb :item="goal">
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link text="Edit"></breadcrumb-link>
-    </goals-goal-breadcrumb>
-    <general-box class="col-span-2 md:col-span-3 xl:col-span-4">
-      <dynamic-form
+  <BackendBox v-if="goal">
+    <GoalsGoalBreadcrumb :item="goal">
+      <BreadcrumbDivider></BreadcrumbDivider>
+      <BreadcrumbLink text="Edit"></BreadcrumbLink>
+    </GoalsGoalBreadcrumb>
+    <GeneralBox class="col-span-2 md:col-span-3 xl:col-span-4">
+      <DynamicForm
         action="goals/patchGoal"
         success="Goal saved"
         submit="Save"
         :initial="goal"
         :fields="$store.getters['goals/goalFormFields']"
       />
-    </general-box>
-  </backend-box>
+    </GeneralBox>
+  </BackendBox>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
-  <backend-box v-if="note">
-    <notes-note-breadcrumb :note="note"> </notes-note-breadcrumb>
-    <detail-grid>
+  <BackendBox v-if="note">
+    <NotesNoteBreadcrumb :note="note"> </NotesNoteBreadcrumb>
+    <DetailGrid>
       <DetailBox :heading="note.name">
         <template #actions>
           <Edit to="edit/" />
@@ -12,8 +12,8 @@
           <article class="prose break-words" v-html="note.content"></article>
         </template>
       </DetailBox>
-    </detail-grid>
-  </backend-box>
+    </DetailGrid>
+  </BackendBox>
 </template>
 
 <script>

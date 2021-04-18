@@ -1,22 +1,22 @@
 <template>
-  <backend-box v-if="monitor">
-    <goals-goal-breadcrumb :item="monitor">
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link text="Edit"></breadcrumb-link>
-    </goals-goal-breadcrumb>
-    <general-box
+  <BackendBox v-if="monitor">
+    <GoalsGoalBreadcrumb :item="monitor">
+      <BreadcrumbDivider></BreadcrumbDivider>
+      <BreadcrumbLink text="Edit"></BreadcrumbLink>
+    </GoalsGoalBreadcrumb>
+    <GeneralBox
       :overflow="false"
       class="col-span-2 lg:col-span-3 xl:col-span-3"
     >
-      <dynamic-form
+      <DynamicForm
         action="goals/patchMonitor"
         success="Monitor saved"
         submit="Save"
         :initial="monitor"
         :fields="$store.getters['goals/monitorFormFields']"
       />
-    </general-box>
-  </backend-box>
+    </GeneralBox>
+  </BackendBox>
 </template>
 
 <script>

@@ -1,22 +1,22 @@
 <template>
-  <backend-box v-if="strategy">
-    <goals-goal-breadcrumb :item="strategy">
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link text="Delete"></breadcrumb-link>
-    </goals-goal-breadcrumb>
-    <general-box
+  <BackendBox v-if="strategy">
+    <GoalsGoalBreadcrumb :item="strategy">
+      <BreadcrumbDivider></BreadcrumbDivider>
+      <BreadcrumbLink text="Delete"></BreadcrumbLink>
+    </GoalsGoalBreadcrumb>
+    <GeneralBox
       :overflow="false"
       class="col-span-2 lg:col-span-3 xl:col-span-3"
     >
-      <dynamic-form
+      <DynamicForm
         action="goals/patchStrategy"
         success="Strategy saved"
         submit="Save"
         :initial="strategy"
         :fields="$store.getters['goals/strategyFormFields']"
       />
-    </general-box>
-  </backend-box>
+    </GeneralBox>
+  </BackendBox>
 </template>
 
 <script>

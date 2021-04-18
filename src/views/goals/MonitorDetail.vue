@@ -1,8 +1,8 @@
 <template>
-  <backend-box v-if="monitor">
+  <BackendBox v-if="monitor">
     <GoalsGoalBreadcrumb :item="monitor" />
-    <detail-grid>
-      <goal-item :goal="goal" type="Goal"></goal-item>
+    <DetailGrid>
+      <GoalItem :goal="goal" type="Goal"></GoalItem>
       <Detail :heading="monitor.name">
         <template #actions>
           <Up :selected="false" @click="up()" />
@@ -43,8 +43,8 @@
           <Descriptive :data="[['Notes', monitor.notes]]" />
         </template>
       </Detail>
-    </detail-grid>
-  </backend-box>
+    </DetailGrid>
+  </BackendBox>
 </template>
 
 <script>

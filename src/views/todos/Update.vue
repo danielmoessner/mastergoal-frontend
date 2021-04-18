@@ -1,25 +1,25 @@
 <template>
-  <backend-box v-if="todo">
-    <todos-todo-breadcrumb :todo="todo" :todo-list-url="todoListUrl">
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
+  <BackendBox v-if="todo">
+    <TodosTodoBreadcrumb :todo="todo" :todo-list-url="todoListUrl">
+      <BreadcrumbDivider></BreadcrumbDivider>
+      <BreadcrumbLink
         text="Edit"
         :link="`/t/list/todos/${todo.id}/edit/`"
-      ></breadcrumb-link>
-    </todos-todo-breadcrumb>
-    <general-box
+      ></BreadcrumbLink>
+    </TodosTodoBreadcrumb>
+    <GeneralBox
       :overflow="false"
       class="col-span-2 md:col-span-3 xl:col-span-4"
     >
-      <dynamic-form
+      <DynamicForm
         :fields="$store.getters['todos/todoFormFields'](todo.type)"
         :initial="todo"
         submit="Save"
         success="Todo changed"
         action="todos/patchTodo"
       />
-    </general-box>
-  </backend-box>
+    </GeneralBox>
+  </BackendBox>
 </template>
 
 <script>

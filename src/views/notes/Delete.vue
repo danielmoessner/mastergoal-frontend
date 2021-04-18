@@ -1,18 +1,14 @@
 <template>
-  <backend-box v-if="note">
-    <notes-note-breadcrumb :note="note">
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
+  <BackendBox v-if="note">
+    <NotesNoteBreadcrumb :note="note">
+      <BreadcrumbDivider></BreadcrumbDivider>
+      <BreadcrumbLink
         text="Delete"
         :link="'/n/' + $route.params.id + '/delete/'"
-      ></breadcrumb-link>
-    </notes-note-breadcrumb>
-    <delete-box
-      :object="note.name"
-      :to="`/n/${note.id}/`"
-      @click="deleteNote"
-    />
-  </backend-box>
+      ></BreadcrumbLink>
+    </NotesNoteBreadcrumb>
+    <DeleteBox :object="note.name" :to="`/n/${note.id}/`" @click="deleteNote" />
+  </BackendBox>
 </template>
 
 <script>

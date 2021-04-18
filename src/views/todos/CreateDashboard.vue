@@ -1,25 +1,25 @@
 <template>
-  <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link link="/t/add" text="Add"></breadcrumb-link>
-    </breadcrumb-navigation>
-    <general-box :overflow="false">
+  <BackendBox>
+    <BreadcrumbNavigation>
+      <BreadcrumbLink link="/t/add" text="Add"></BreadcrumbLink>
+    </BreadcrumbNavigation>
+    <GeneralBox :overflow="false">
       <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
-        <overview-item name="Normal-Todo" link="/t/add/normal-todo">
+        <OverviewItem name="Normal-Todo" link="/t/add/normal-todo">
           <NormalTodoSvg />
-        </overview-item>
-        <overview-item name="Never-Ending-Todo" link="/t/add/never-ending-todo">
+        </OverviewItem>
+        <OverviewItem name="Never-Ending-Todo" link="/t/add/never-ending-todo">
           <NeverEndingTodoSvg />
-        </overview-item>
-        <overview-item name="Repetitive-Todo" link="/t/add/repetitive-todo">
+        </OverviewItem>
+        <OverviewItem name="Repetitive-Todo" link="/t/add/repetitive-todo">
           <RepetitiveTodoSvg />
-        </overview-item>
-        <overview-item name="Pipeline-Todo" link="/t/add/pipeline-todo"
+        </OverviewItem>
+        <OverviewItem name="Pipeline-Todo" link="/t/add/pipeline-todo"
           ><PipelineTodoSvg />
-        </overview-item>
+        </OverviewItem>
       </div>
-    </general-box>
-  </backend-box>
+    </GeneralBox>
+  </BackendBox>
 </template>
 
 <script>

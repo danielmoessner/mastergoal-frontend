@@ -1,6 +1,6 @@
 <template>
   <div class="w-full md:min-h-screen sticky top-0">
-    <mastergoal-logo @click="toggle">
+    <MastergoalLogo @click="toggle">
       <svg
         v-if="!open"
         xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,7 @@
           d="M6 18L18 6M6 6l12 12"
         />
       </svg>
-    </mastergoal-logo>
+    </MastergoalLogo>
     <div
       ref="navigation"
       class="overflow-hidden transition-all ease-in-out duration-300 relative z-0 rounded-lg bg-white md:mb-0 md:bg-transparent md:h-auto"
@@ -41,66 +41,66 @@
       <div class="w-full p-4 md:flex">
         <ul class="flex flex-col w-full space-y-1">
           <li v-show="false" class="my-px">
-            <navigation-button
+            <NavigationButton
               link="/#/"
               text="Overview"
               :notifications="3"
               :icon="overviewIcon"
-            ></navigation-button>
+            ></NavigationButton>
           </li>
-          <navigation-heading heading="Todos"></navigation-heading>
-          <navigation-button
+          <NavigationHeading heading="Todos"></NavigationHeading>
+          <NavigationButton
             link="/t/dashboard"
             text="Dashboard"
             :icon="todosDashboardIcon"
-          ></navigation-button>
-          <navigation-button
+          ></NavigationButton>
+          <NavigationButton
             link="/t/list"
             text="List"
             :icon="listIcon"
-          ></navigation-button>
-          <navigation-button
+          ></NavigationButton>
+          <NavigationButton
             link="/t/add"
             text="Add"
             :icon="addIcon"
-          ></navigation-button>
-          <navigation-heading heading="Goals"></navigation-heading>
-          <navigation-button
+          ></NavigationButton>
+          <NavigationHeading heading="Goals"></NavigationHeading>
+          <NavigationButton
             link="/g/goals"
             text="Goals"
             :icon="goalsDashboardIcon"
-          ></navigation-button>
-          <navigation-button
+          ></NavigationButton>
+          <NavigationButton
             link="/g/starred"
             text="Starred"
             :icon="goalsStarredIcon"
-          ></navigation-button>
-          <navigation-button
+          ></NavigationButton>
+          <NavigationButton
             link="/g/tree"
             text="Tree"
             svg-class="transform rotate-90"
             :icon="goalsTreeIcon"
-          ></navigation-button>
-          <navigation-button link="/g/add" text="Add" :icon="addIcon">
-          </navigation-button>
-          <navigation-heading heading="Notes"></navigation-heading>
-          <navigation-button
+          ></NavigationButton>
+          <NavigationButton link="/g/add" text="Add" :icon="addIcon">
+          </NavigationButton>
+          <NavigationHeading heading="Notes"></NavigationHeading>
+          <NavigationButton
             link="/n/dashboard/"
             text="Dashboard"
             :icon="notesDashboardIcon"
-          ></navigation-button>
-          <navigation-heading heading="User"></navigation-heading>
-          <navigation-button
+          ></NavigationButton>
+          <NavigationHeading heading="User"></NavigationHeading>
+          <NavigationButton
             link="/u/settings"
             text="Settings"
             :icon="settingsIcon"
-          ></navigation-button>
-          <navigation-button
+          ></NavigationButton>
+          <NavigationButton
             link="/#/"
             text="Logout"
             :icon="logoutIcon"
             @click.prevent="signout"
-          ></navigation-button>
+          ></NavigationButton>
         </ul>
       </div>
     </div>

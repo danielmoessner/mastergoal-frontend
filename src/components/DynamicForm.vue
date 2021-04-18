@@ -15,7 +15,7 @@
         :key="name"
         :class="{ hidden: type === 'hidden' }"
       >
-        <dynamic-input
+        <DynamicInput
           v-model="data[name]"
           :label="label"
           :name="name"

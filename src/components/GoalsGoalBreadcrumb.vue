@@ -1,19 +1,19 @@
 <template>
-  <breadcrumb-navigation>
+  <BreadcrumbNavigation>
     <div
       v-for="mastergoal in mastergoals"
       :key="mastergoal.url"
       class="flex flex-row items-center"
     >
-      <breadcrumb-link
+      <BreadcrumbLink
         :text="mastergoal.name"
         :link="`/g/list/goals/${mastergoal.id}/`"
-      ></breadcrumb-link>
-      <breadcrumb-divider />
+      ></BreadcrumbLink>
+      <BreadcrumbDivider />
     </div>
-    <breadcrumb-link :text="name" :link="link"></breadcrumb-link>
+    <BreadcrumbLink :text="name" :link="link"></BreadcrumbLink>
     <slot></slot>
-  </breadcrumb-navigation>
+  </BreadcrumbNavigation>
 </template>
 
 <script>

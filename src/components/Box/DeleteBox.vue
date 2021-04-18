@@ -1,5 +1,5 @@
 <template>
-  <general-box>
+  <GeneralBox>
     <div class="flex-col flex justify-start items-start">
       <p class="mb-4">Are you sure you want to delete '{{ object }}'?</p>
       <div class="flex space-x-2">
@@ -9,7 +9,7 @@
         <SecondaryButton :to="to">Cancel</SecondaryButton>
       </div>
     </div>
-  </general-box>
+  </GeneralBox>
 </template>
 
 <script>

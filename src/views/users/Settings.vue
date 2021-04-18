@@ -1,22 +1,22 @@
 <template>
-  <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link link="/u/settings" text="Settings"></breadcrumb-link>
-    </breadcrumb-navigation>
-    <general-box :overflow="false">
+  <BackendBox>
+    <BreadcrumbNavigation>
+      <BreadcrumbLink link="/u/settings" text="Settings"></BreadcrumbLink>
+    </BreadcrumbNavigation>
+    <GeneralBox :overflow="false">
       <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
-        <overview-item name="User settings" link="/u/settings/user-settings">
+        <OverviewItem name="User settings" link="/u/settings/user-settings">
           <UserSvg />
-        </overview-item>
-        <overview-item name="Todo settings" link="/u/settings/todo-settings">
+        </OverviewItem>
+        <OverviewItem name="Todo settings" link="/u/settings/todo-settings">
           <TodoSvg />
-        </overview-item>
-        <overview-item name="Goal settings" link="/u/settings/goal-settings">
+        </OverviewItem>
+        <OverviewItem name="Goal settings" link="/u/settings/goal-settings">
           <GoalSvg />
-        </overview-item>
+        </OverviewItem>
       </div>
-    </general-box>
-  </backend-box>
+    </GeneralBox>
+  </BackendBox>
 </template>
 
 <script>

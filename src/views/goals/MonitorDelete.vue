@@ -1,15 +1,15 @@
 <template>
-  <backend-box v-if="monitor">
-    <goals-goal-breadcrumb :item="monitor">
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link text="Delete"></breadcrumb-link>
-    </goals-goal-breadcrumb>
-    <delete-box
+  <BackendBox v-if="monitor">
+    <GoalsGoalBreadcrumb :item="monitor">
+      <BreadcrumbDivider></BreadcrumbDivider>
+      <BreadcrumbLink text="Delete"></BreadcrumbLink>
+    </GoalsGoalBreadcrumb>
+    <DeleteBox
       :object="monitor.name"
       :to="`/g/list/monitors/${monitor.id}/`"
       @click="deleteMonitor()"
     />
-  </backend-box>
+  </BackendBox>
 </template>
 
 <script>

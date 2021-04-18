@@ -1,22 +1,22 @@
 <template>
-  <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link text="Settings" link="/u/settings"></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link text="Goals"></breadcrumb-link>
-    </breadcrumb-navigation>
+  <BackendBox>
+    <BreadcrumbNavigation>
+      <BreadcrumbLink text="Settings" link="/u/settings"></BreadcrumbLink>
+      <BreadcrumbDivider></BreadcrumbDivider>
+      <BreadcrumbLink text="Goals"></BreadcrumbLink>
+    </BreadcrumbNavigation>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <general-box :overflow="false">
-        <dynamic-form
+      <GeneralBox :overflow="false">
+        <DynamicForm
           :fields="$store.getters['users/goalFormFields']"
           :initial="$store.getters['users/user']"
           submit="Save"
           success="Settings saved"
           action="users/patchUser"
         />
-      </general-box>
+      </GeneralBox>
     </div>
-  </backend-box>
+  </BackendBox>
 </template>
 
 <script>

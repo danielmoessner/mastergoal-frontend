@@ -50,7 +50,7 @@
         {{ text }}
       </option>
     </select>
-    <editor
+    <Editor
       v-if="useTinymce"
       :id="name"
       v-model="content"

@@ -8,6 +8,13 @@ module.exports = {
   rules: {
     "no-unused-vars": "warn",
     "vue/no-unused-components": "warn",
+    "vue/component-name-in-template-casing": [
+      "error",
+      "PascalCase",
+      {
+        ignores: [],
+      },
+    ],
     "prettier/prettier": [
       "error",
       {

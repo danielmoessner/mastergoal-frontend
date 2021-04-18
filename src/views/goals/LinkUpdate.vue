@@ -1,22 +1,22 @@
 <template>
-  <backend-box>
-    <goals-goal-breadcrumb :item="link">
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link text="Edit"></breadcrumb-link>
-    </goals-goal-breadcrumb>
-    <general-box
+  <BackendBox>
+    <GoalsGoalBreadcrumb :item="link">
+      <BreadcrumbDivider></BreadcrumbDivider>
+      <BreadcrumbLink text="Edit"></BreadcrumbLink>
+    </GoalsGoalBreadcrumb>
+    <GeneralBox
       :overflow="false"
       class="col-span-2 lg:col-span-3 xl:col-span-3"
     >
-      <dynamic-form
+      <DynamicForm
         action="goals/patchLink"
         success="Link saved"
         submit="Save"
         :initial="link"
         :fields="$store.getters['goals/linkFormFields']"
       />
-    </general-box>
-  </backend-box>
+    </GeneralBox>
+  </BackendBox>
 </template>
 
 <script>

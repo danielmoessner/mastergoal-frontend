@@ -1,18 +1,14 @@
 <template>
-  <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link text="Tree" link="/g/tree"></breadcrumb-link>
-    </breadcrumb-navigation>
+  <BackendBox>
+    <BreadcrumbNavigation>
+      <BreadcrumbLink text="Tree" link="/g/tree"></BreadcrumbLink>
+    </BreadcrumbNavigation>
     <div class="grid gap-4 grid-cols-1 lg:grid-cols-1 xl:grid-cols-1">
-      <general-box :overflow="false">
-        <tree-item
-          v-for="item in tree"
-          :key="item.url"
-          :item="item"
-        ></tree-item>
-      </general-box>
+      <GeneralBox :overflow="false">
+        <TreeItem v-for="item in tree" :key="item.url" :item="item"></TreeItem>
+      </GeneralBox>
     </div>
-  </backend-box>
+  </BackendBox>
 </template>
 
 <script>

@@ -1,33 +1,33 @@
 <template>
-  <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link text="Settings" link="/u/settings"></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
+  <BackendBox>
+    <BreadcrumbNavigation>
+      <BreadcrumbLink text="Settings" link="/u/settings"></BreadcrumbLink>
+      <BreadcrumbDivider></BreadcrumbDivider>
+      <BreadcrumbLink
         text="User"
         link="/u/settings/user-settings"
-      ></breadcrumb-link>
-    </breadcrumb-navigation>
+      ></BreadcrumbLink>
+    </BreadcrumbNavigation>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <general-box :overflow="false">
-        <dynamic-form
+      <GeneralBox :overflow="false">
+        <DynamicForm
           :fields="$store.getters['users/userFormFields']"
           :initial="$store.getters['users/user']"
           submit="Save"
           success="E-Mail saved"
           action="users/patchUser"
         />
-      </general-box>
-      <general-box :overflow="false">
-        <dynamic-form
+      </GeneralBox>
+      <GeneralBox :overflow="false">
+        <DynamicForm
           :fields="$store.getters['users/passwordFormFields']"
           submit="Save"
           success="New Password Saved"
           action="users/changeUserPassword"
         />
-      </general-box>
+      </GeneralBox>
     </div>
-  </backend-box>
+  </BackendBox>
 </template>
 
 <script>

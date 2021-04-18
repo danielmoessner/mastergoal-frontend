@@ -1,17 +1,17 @@
 <template>
-  <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link link="/t/list" text="List"></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
+  <BackendBox>
+    <BreadcrumbNavigation>
+      <BreadcrumbLink link="/t/list" text="List"></BreadcrumbLink>
+      <BreadcrumbDivider></BreadcrumbDivider>
+      <BreadcrumbLink
         :link="`/t/list/${$route.params.type}`"
         :text="breadcrumbText"
-      ></breadcrumb-link>
-    </breadcrumb-navigation>
+      ></BreadcrumbLink>
+    </BreadcrumbNavigation>
     <div class="">
       <Todo v-for="todo in todos" :key="todo.url" verbose :todo="todo" />
     </div>
-  </backend-box>
+  </BackendBox>
 </template>
 
 <script>

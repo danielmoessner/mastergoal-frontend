@@ -1,8 +1,8 @@
 <template>
-  <breadcrumb-navigation>
-    <breadcrumb-link text="Dashboard" link="/t/dashboard/"></breadcrumb-link>
+  <BreadcrumbNavigation>
+    <BreadcrumbLink text="Dashboard" link="/t/dashboard/"></BreadcrumbLink>
     <slot></slot>
-  </breadcrumb-navigation>
+  </BreadcrumbNavigation>
 </template>
 
 <script>

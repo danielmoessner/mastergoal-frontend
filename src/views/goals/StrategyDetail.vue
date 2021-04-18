@@ -1,8 +1,8 @@
 <template>
-  <backend-box v-if="strategy">
-    <goals-goal-breadcrumb :item="strategy" />
-    <detail-grid>
-      <goal-item :goal="goal"></goal-item>
+  <BackendBox v-if="strategy">
+    <GoalsGoalBreadcrumb :item="strategy" />
+    <DetailGrid>
+      <GoalItem :goal="goal"></GoalItem>
       <DetailBox :heading="strategy.name">
         <template #actions>
           <Star :selected="strategy.is_starred" @click="star()" />
@@ -14,8 +14,8 @@
           <Descriptive :data="[['Description', strategy.description]]" />
         </template>
       </DetailBox>
-    </detail-grid>
-  </backend-box>
+    </DetailGrid>
+  </BackendBox>
 </template>
 
 <script>

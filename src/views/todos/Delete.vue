@@ -1,13 +1,13 @@
 <template>
-  <backend-box v-if="todo">
-    <todos-todo-breadcrumb :todo="todo" :todo-list-url="todoListUrl">
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link
+  <BackendBox v-if="todo">
+    <TodosTodoBreadcrumb :todo="todo" :todo-list-url="todoListUrl">
+      <BreadcrumbDivider></BreadcrumbDivider>
+      <BreadcrumbLink
         :link="'/t/list/todos/' + todo.id + '/delete/'"
         text="Delete"
-      ></breadcrumb-link>
-    </todos-todo-breadcrumb>
-    <general-box>
+      ></BreadcrumbLink>
+    </TodosTodoBreadcrumb>
+    <GeneralBox>
       <div class="flex-col flex justify-start items-start">
         <p class="mb-4">Are you sure you want to delete '{{ todo.name }}'?</p>
         <div class="flex space-x-2">
@@ -17,8 +17,8 @@
           <SecondaryButton to="/t/dashboard/">Cancel</SecondaryButton>
         </div>
       </div>
-    </general-box>
-  </backend-box>
+    </GeneralBox>
+  </BackendBox>
 </template>
 
 <script>

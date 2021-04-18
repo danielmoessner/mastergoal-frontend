@@ -1,9 +1,5 @@
 ## NEXT
-- todo settings formular oder gleich ganz weg?
-  - hier müsste man denke ich show old todos oder so dieses setting einbinden
-- user app in folder
-- goal settings formular oder gleich ganz weg?
-- github deploy structure aufsetzen aufm server
+
 
 ## BACKLOG
 - ordering and meta of all models 

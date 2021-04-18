@@ -1,9 +1,9 @@
 <template>
-  <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link text="Dashboard" link="/t/dashboard"></breadcrumb-link>
-    </breadcrumb-navigation>
-    <controls :content="controls">
+  <BackendBox>
+    <BreadcrumbNavigation>
+      <BreadcrumbLink text="Dashboard" link="/t/dashboard"></BreadcrumbLink>
+    </BreadcrumbNavigation>
+    <Controls :content="controls">
       <div class="p-4 flex-1"></div>
       <button
         type="button"
@@ -45,16 +45,12 @@
           />
         </svg>
       </button>
-    </controls>
+    </Controls>
     <div>
-      <todo-item
-        v-for="todo in todosThisWeek"
-        :key="todo.url"
-        :todo="todo"
-      />
+      <TodoItem v-for="todo in todosThisWeek" :key="todo.url" :todo="todo" />
     </div>
-    <add-todo-form />
-  </backend-box>
+    <AddTodoForm />
+  </BackendBox>
 </template>
 
 <script>

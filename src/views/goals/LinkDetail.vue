@@ -1,12 +1,12 @@
 <template>
-  <backend-box v-if="link && subgoal && mastergoal">
-    <goals-goal-breadcrumb :item="link"></goals-goal-breadcrumb>
-    <detail-grid>
-      <goal-item
+  <BackendBox v-if="link && subgoal && mastergoal">
+    <GoalsGoalBreadcrumb :item="link"></GoalsGoalBreadcrumb>
+    <DetailGrid>
+      <GoalItem
         v-if="mastergoal"
         :goal="mastergoal"
         type="Mastergoal"
-      ></goal-item>
+      ></GoalItem>
       <DetailBox :heading="`${mastergoal.name} -> ${subgoal.name}`">
         <template #actions>
           <Archive :selected="link.is_archived" @click="archive()" />
@@ -30,9 +30,9 @@
           </Info>
         </template>
       </DetailBox>
-      <goal-item v-if="subgoal" :goal="subgoal" type="Subgoal"></goal-item>
-    </detail-grid>
-  </backend-box>
+      <GoalItem v-if="subgoal" :goal="subgoal" type="Subgoal"></GoalItem>
+    </DetailGrid>
+  </BackendBox>
 </template>
 
 <script>

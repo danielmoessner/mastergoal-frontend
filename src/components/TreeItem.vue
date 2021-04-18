@@ -32,7 +32,7 @@
           </div>
         </div>
       </div>
-      <navigation-button :link="url" text="Open"></navigation-button>
+      <NavigationButton :link="url" text="Open"></NavigationButton>
     </div>
     <tree-item
       v-for="monitor in item.monitors"

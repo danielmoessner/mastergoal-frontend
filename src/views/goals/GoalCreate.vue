@@ -1,19 +1,19 @@
 <template>
-  <backend-box>
-    <breadcrumb-navigation>
-      <breadcrumb-link link="/g/add" text="Add"></breadcrumb-link>
-      <breadcrumb-divider></breadcrumb-divider>
-      <breadcrumb-link link="/g/add/goal" text="Goal"></breadcrumb-link>
-    </breadcrumb-navigation>
-    <general-box :overflow="false">
-      <dynamic-form
+  <BackendBox>
+    <BreadcrumbNavigation>
+      <BreadcrumbLink link="/g/add" text="Add"></BreadcrumbLink>
+      <BreadcrumbDivider></BreadcrumbDivider>
+      <BreadcrumbLink link="/g/add/goal" text="Goal"></BreadcrumbLink>
+    </BreadcrumbNavigation>
+    <GeneralBox :overflow="false">
+      <DynamicForm
         action="goals/createGoal"
         success="Goal added"
         submit="Create"
         :fields="$store.getters['goals/goalCreateFormFields']"
       />
-    </general-box>
-  </backend-box>
+    </GeneralBox>
+  </BackendBox>
 </template>
 
 <script>
