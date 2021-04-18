@@ -6,11 +6,7 @@
     <div class="space-y-2 mb-4">
       <note-item v-for="note in notes" :key="note.url" :note="note"></note-item>
     </div>
-    <navigation-button
-      link="/n/add/"
-      text="Add a note"
-      :icon="addIcon"
-    ></navigation-button>
+    <NoteAddBox />
   </backend-box>
 </template>
 
@@ -19,13 +15,12 @@ import BackendBox from "../../components/BackendBox.vue";
 import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import NoteItem from "../../components/NoteItem.vue";
-import NavigationButton from "../../components/NavigationButton.vue";
 import { mapGetters } from "vuex";
+import NoteAddBox from "../../components/NoteAddBox.vue";
 
 export default {
-  name: "NotesDashboard",
   components: {
-    NavigationButton,
+    NoteAddBox,
     BackendBox,
     NoteItem,
     BreadcrumbNavigation,

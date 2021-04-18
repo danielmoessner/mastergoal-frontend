@@ -9,7 +9,7 @@
         </template>
         <template v-if="note.content" #content>
           <!-- eslint-disable-next-line vue/no-v-html -->
-          <article class="prose" v-html="note.content"></article>
+          <article class="prose break-words" v-html="note.content"></article>
         </template>
       </DetailBox>
     </detail-grid>

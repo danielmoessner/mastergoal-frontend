@@ -1,18 +1,15 @@
 ## NEXT
-- notes namen einfacher (erste zeile)
-- archived vereinfachen vllt mit button bei notes?
-- edit und delete buttons schöner bei notes
 - todo settings formular oder gleich ganz weg?
   - hier müsste man denke ich show old todos oder so dieses setting einbinden
 - user app in folder
 - goal settings formular oder gleich ganz weg?
+- github deploy structure aufsetzen aufm server
 
 ## BACKLOG
-- notes editor austauschen zu quill vllt
-- baum struktur in javascript schöner vllt? plugin?
-- die kleinen items schöner / anders (vllt faellt mir wieder ein welche genau haha)
+- ordering and meta of all models 
 
 ## FUTURE
+- baum struktur in javascript schöner vllt? plugin?
 - philosophieren welche funktionen noch cool wären:
   - personal life plan
   - visionboard

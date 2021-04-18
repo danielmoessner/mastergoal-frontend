@@ -7,38 +7,43 @@
         :link="'/n/' + $route.params.id + '/edit/'"
       ></breadcrumb-link>
     </notes-note-breadcrumb>
-    <detail-grid>
-      <general-box class="col-span-2 md:col-span-6">
-        <dynamic-form
-          :fields="$store.getters['notes/noteFormFields']"
-          :initial="note"
-          action="notes/patchNote"
-          success="Note updated"
-          submit="Save"
-        />
-      </general-box>
-    </detail-grid>
+    <div class="bg-white relative">
+      <QuillEditor
+        v-model:content="note.content"
+        content-type="html"
+        theme="snow"
+        toolbar="full"
+        @textChange="textChanged"
+      />
+      <div class="text-sm text-gray-700 absolute right-0 bottom-0 px-2 py-1">
+        {{ isSaved ? "Saved" : "Not saved.." }}
+      </div>
+    </div>
   </backend-box>
 </template>
 
 <script>
 import BackendBox from "../../components/BackendBox.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
-import GeneralBox from "../../components/Box/General.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
-import DetailGrid from "../../components/DetailGrid.vue";
-import DynamicForm from "../../components/DynamicForm.vue";
 import NotesNoteBreadcrumb from "../../components/NotesNoteBreadcrumb.vue";
+import { QuillEditor } from "@vueup/vue-quill";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
 export default {
   components: {
-    DetailGrid,
-    DynamicForm,
-    GeneralBox,
+    QuillEditor,
     BackendBox,
     BreadcrumbLink,
     BreadcrumbDivider,
     NotesNoteBreadcrumb,
+  },
+  data() {
+    return {
+      isSaved: true,
+      interval: null,
+      contentSet: false,
+    };
   },
   computed: {
     note() {
@@ -47,6 +52,22 @@ export default {
   },
   mounted() {
     this.$store.dispatch("notes/fetchNotes");
+    this.interval = setInterval(this.checkSave, 5000);
+  },
+  beforeUnmount() {
+    clearInterval(this.interval);
+  },
+  methods: {
+    textChanged() {
+      this.isSaved = false;
+    },
+    checkSave() {
+      if (!this.isSaved) this.save();
+    },
+    save() {
+      this.$store.dispatch("notes/patchNote", this.note);
+      this.isSaved = true;
+    },
   },
 };
 </script>

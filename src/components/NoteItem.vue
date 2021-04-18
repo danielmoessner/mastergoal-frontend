@@ -1,22 +1,28 @@
 <template>
-  <div class="bg-white rounded-lg shadow">
-    <div class="flex items-stretch justify-between">
-      <div class="w-full py-3 px-4 truncate">{{ note.name }}</div>
-      <navigation-button
-        text="Open"
-        :link="'/n/' + note.id + '/'"
-      ></navigation-button>
-    </div>
-  </div>
+  <Item>
+    <Body>
+      <router-link
+        :to="`/n/${note.id}/`"
+        class="text-gray-900 font-medium hover:text-gray-600"
+      >
+        {{ note.name }}
+      </router-link>
+    </Body>
+
+    <HrefMenu :to="`/n/${note.id}/`"></HrefMenu>
+  </Item>
 </template>
 
 <script>
-import NavigationButton from "../components/NavigationButton.vue";
+import Body from "./Item/Body.vue";
+import HrefMenu from "./Item/HrefMenu.vue";
+import Item from "./Item/Index.vue";
 
 export default {
-  name: "NoteItem",
   components: {
-    NavigationButton,
+    Item,
+    Body,
+    HrefMenu,
   },
   props: {
     note: {
