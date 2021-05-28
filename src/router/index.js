@@ -5,6 +5,7 @@ import usersRoutes from "./users.js";
 import todosRoutes from "./todos.js";
 import goalsRoutes from "./goals.js";
 import notesRoutes from "./notes.js";
+import storyRoutes from "./story.js";
 
 const routes = [
   {
@@ -18,6 +19,7 @@ const routes = [
   ...usersRoutes,
   ...goalsRoutes,
   ...notesRoutes,
+  ...storyRoutes,
   { path: "/:pathMatch(.*)*", name: "not-found", component: Error404 },
 ];
 
