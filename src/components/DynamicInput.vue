@@ -50,23 +50,33 @@
         {{ text }}
       </option>
     </select>
-    <Editor
-      v-if="useTinymce"
-      :id="name"
-      v-model="content"
-      :name="name"
-      :placeholder="placeholder"
-      api-key="no-api-key"
-    />
+    <div
+      v-if="useTinymce && (content || content === '')"
+      class="mt-1 bg-white border rounded-md border-gray-300 shadow-sm"
+      :class="{ 'ring ring-gray-200 ring-opacity-50': editorFocus }"
+    >
+      <QuillEditor
+        :id="name"
+        v-model:content="content"
+        :name="name"
+        theme="bubble"
+        toolbar="essential"
+        content-type="html"
+        @textChange="emitTinymce"
+        @blur="editorFocus = false"
+        @focus="editorFocus = true"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import Editor from "@tinymce/tinymce-vue";
+import { QuillEditor } from "@vueup/vue-quill";
+import "@vueup/vue-quill/dist/vue-quill.bubble.css";
 
 export default {
   components: {
-    Editor,
+    QuillEditor,
   },
   props: {
     name: {
@@ -109,7 +119,9 @@ export default {
   emits: ["update:modelValue"],
   data() {
     return {
-      content: "",
+      content: null,
+      editorFocus: false,
+      ready: false,
     };
   },
   computed: {
@@ -135,17 +147,12 @@ export default {
     },
   },
   watch: {
-    content: function (newVal) {
-      this.emitTinymce(newVal);
-    },
-    modelValue: function (newVal) {
-      this.content = newVal;
+    modelValue(newValue) {
+      this.content = newValue;
     },
   },
   mounted() {
-    // if (this.type === "tinymce") {
-    //   this.content = this.modelValue;
-    // }
+    this.content = this.modelValue;
   },
   methods: {
     emit(event) {
@@ -154,8 +161,8 @@ export default {
     emitCheckbox(event) {
       this.$emit("update:modelValue", event.target.checked);
     },
-    emitTinymce(newVal) {
-      this.$emit("update:modelValue", newVal);
+    emitTinymce() {
+      this.$emit("update:modelValue", this.content);
     },
   },
 };

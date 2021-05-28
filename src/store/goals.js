@@ -280,7 +280,6 @@ const getters = {
   // Strategies
   */
   strategies: (state) => {
-    console.log(state.strategies);
     return state.strategies;
   },
   starredStrategies: (state) => {

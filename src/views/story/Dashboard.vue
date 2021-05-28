@@ -3,48 +3,24 @@
     <BreadcrumbNavigation>
       <BreadcrumbLink link="/s/dashboard" text="Dashboard"></BreadcrumbLink>
     </BreadcrumbNavigation>
-    <div v-if="story.what_is" class="space-y-10">
-      <div>
-        <h2 class="text-lg font-medium text-gray-700">What Is:</h2>
-        <div class="bg-white relative">
-          <QuillEditor
-            v-model:content="story.what_is"
-            content-type="html"
-            theme="snow"
-            toolbar="full"
-            @textChange="textChanged"
-          />
-          <div
-            class="text-sm text-gray-700 absolute right-0 bottom-0 px-2 py-1"
-          >
-            {{ isSaved ? "Saved" : "Not saved.." }}
+    <GeneralBox>
+      <DynamicForm
+        action="story/postStory"
+        success="Story saved"
+        submit="Save"
+        :initial="story"
+        :fields="$store.getters['story/storyFormFields']"
+      />
+    </GeneralBox>
+    <div class="space-y-4 mt-10">
+      <Item v-for="storyItem in stories" :key="storyItem.url" bg="bg-gray-50">
+        <Body>
+          <div class="font-medium">
+            {{ new Date(storyItem.updated).toLocaleDateString("de-DE") }}
           </div>
-        </div>
-      </div>
-      <div>
-        <h2 class="text-lg font-medium text-gray-700">What Should Be:</h2>
-        <div class="bg-white relative">
-          <QuillEditor
-            v-model:content="story.what_should_be"
-            content-type="html"
-            theme="snow"
-            toolbar="full"
-            @textChange="textChanged"
-          />
-          <div
-            class="text-sm text-gray-700 absolute right-0 bottom-0 px-2 py-1"
-          >
-            {{ isSaved ? "Saved" : "Not saved.." }}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <h2 class="font-bold text-lg text-gray-800">Older Versions:</h2>
-      <div v-for="storyItem in stories" :key="storyItem.url">
-        {{ storyItem.created }}
-        <router-link :to="`/s/${storyItem.id}/`">See</router-link>
-      </div>
+        </Body>
+        <HrefMenu :to="`/s/${storyItem.id}/`" />
+      </Item>
     </div>
   </BackendBox>
 </template>
@@ -54,12 +30,19 @@ import BackendBox from "../../components/BackendBox.vue";
 import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import { mapGetters } from "vuex";
-import { QuillEditor } from "@vueup/vue-quill";
-import "@vueup/vue-quill/dist/vue-quill.snow.css";
+import DynamicForm from "../../components/DynamicForm.vue";
+import GeneralBox from "../../components/Box/General.vue";
+import Item from "../../components/Item/Index.vue";
+import HrefMenu from "../../components/Item/HrefMenu.vue";
+import Body from "../../components/Item/Body.vue";
 
 export default {
   components: {
-    QuillEditor,
+    Item,
+    HrefMenu,
+    Body,
+    GeneralBox,
+    DynamicForm,
     BackendBox,
     BreadcrumbNavigation,
     BreadcrumbLink,

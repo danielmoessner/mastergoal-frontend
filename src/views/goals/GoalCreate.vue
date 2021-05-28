@@ -5,7 +5,7 @@
       <BreadcrumbDivider></BreadcrumbDivider>
       <BreadcrumbLink link="/g/add/goal" text="Goal"></BreadcrumbLink>
     </BreadcrumbNavigation>
-    <GeneralBox :overflow="false">
+    <GeneralBox>
       <DynamicForm
         action="goals/createGoal"
         success="Goal added"

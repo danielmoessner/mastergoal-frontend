@@ -2,27 +2,22 @@
   <BackendBox v-if="story">
     <BreadcrumbNavigation>
       <BreadcrumbLink link="/s/dashboard" text="Dashboard"></BreadcrumbLink>
+      <BreadcrumbDivider></BreadcrumbDivider>
+      <BreadcrumbLink
+        :link="`/s/${$route.params.id}/`"
+        :text="getDate(story.updated)"
+      ></BreadcrumbLink>
     </BreadcrumbNavigation>
-    <div class="space-y-10">
-      <div>
-        <h2 class="text-lg font-medium text-gray-700">What Is:</h2>
+    <GeneralBox>
+      <article class="prose">
+        <h1>What Is:</h1>
         <!-- eslint-disable vue/no-v-html -->
-        <article
-          class="bg-white relative prose"
-          v-html="story.what_is"
-        ></article>
+        <div v-html="story.what_is"></div>
+        <h1>What Should Be:</h1>
+        <div v-html="story.what_should_be"></div>
         <!-- eslint-enable vue/no-v-html -->
-      </div>
-      <div>
-        <h2 class="text-lg font-medium text-gray-700">What Should Be:</h2>
-        <!-- eslint-disable vue/no-v-html -->
-        <article
-          class="bg-white relative prose"
-          v-html="story.what_should_be"
-        ></article>
-        <!-- eslint-enable vue/no-v-html -->
-      </div>
-    </div>
+      </article>
+    </GeneralBox>
   </BackendBox>
 </template>
 
@@ -30,12 +25,16 @@
 import BackendBox from "../../components/BackendBox.vue";
 import BreadcrumbNavigation from "../../components/BreadcrumbNavigation.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
+import GeneralBox from "../../components/Box/General.vue";
+import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 
 export default {
   components: {
     BackendBox,
+    GeneralBox,
     BreadcrumbLink,
     BreadcrumbNavigation,
+    BreadcrumbDivider,
   },
   computed: {
     story() {
@@ -44,6 +43,11 @@ export default {
   },
   mounted() {
     this.$store.dispatch("story/fetchStories");
+  },
+  methods: {
+    getDate(date) {
+      return new Date(date).toLocaleString("de-DE");
+    },
   },
 };
 </script>

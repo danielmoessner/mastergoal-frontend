@@ -37,11 +37,10 @@ const getters = {
     return state.stories.find((story) => story.id.toString() === id);
   },
   latestStory: (state) => {
-    if (state.stories.length > 0)
-      return state.stories[state.stories.length - 1];
+    if (state.stories.length > 0) return state.stories[0];
     return {
-      what_is: "",
-      what_should_be: "",
+      what_is: "&nbsp;",
+      what_should_be: "&nbsp;",
     };
   },
   storyFormFields: (state) => {
