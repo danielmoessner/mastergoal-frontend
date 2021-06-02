@@ -59,7 +59,7 @@ const mutations = {
     if (index !== -1) {
       state.stories.splice(index, 1, story);
     } else {
-      state.stories.push(story);
+      state.stories.unshift(story);
     }
   },
   // removeStory(state, url) {
