@@ -63,6 +63,11 @@ const actions = {
         .then((response) => context.commit("setNotes", response.data));
     }
   },
+  fetchNote(context, id) {
+    return axios
+      .get(`${context.state.api.notes}${id}/`)
+      .then((response) => response.data);
+  },
   createNote({ state, commit }, data) {
     return new Promise((resolve, reject) => {
       axios

@@ -43,15 +43,13 @@ export default {
       isSaved: true,
       interval: null,
       contentSet: false,
+      note: null,
     };
   },
-  computed: {
-    note() {
-      return this.$store.getters["notes/note"](this.$route.params.id);
-    },
-  },
   mounted() {
-    this.$store.dispatch("notes/fetchNotes");
+    this.$store
+      .dispatch("notes/fetchNote", this.$route.params.id)
+      .then((note) => (this.note = note));
     this.interval = setInterval(this.checkSave, 5000);
   },
   beforeUnmount() {

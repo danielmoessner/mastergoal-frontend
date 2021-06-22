@@ -33,13 +33,15 @@ export default {
     DetailGrid,
     BackendBox,
   },
-  computed: {
-    note() {
-      return this.$store.getters["notes/note"](this.$route.params.id);
-    },
+  data() {
+    return {
+      note: null,
+    };
   },
   mounted() {
-    this.$store.dispatch("notes/fetchNotes");
+    this.$store
+      .dispatch("notes/fetchNote", this.$route.params.id)
+      .then((note) => (this.note = note));
   },
 };
 </script>

@@ -29,12 +29,6 @@ export default {
   components: {
     Item,
   },
-  props: {
-    note: {
-      type: Object,
-      required: true,
-    },
-  },
   data() {
     return {
       name: "",
