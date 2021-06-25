@@ -10,6 +10,7 @@
     "fix": "eslint --fix --ext .vue .; exit 0;"
   },
   "dependencies": {
+    "@heroicons/vue": "^1.0.1",
     "@rollup/plugin-eslint": "^8.0.1",
     "@tailwindcss/forms": "^0.3.2",
     "@tailwindcss/typography": "^0.4.0",

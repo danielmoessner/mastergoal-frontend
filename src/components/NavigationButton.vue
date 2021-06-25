@@ -3,23 +3,8 @@
     :to="completeLink"
     class="flex flex-row items-center py-2 px-2 rounded-lg text-gray-600 hover:bg-gray-300 hover:text-gray-700 transition ease-in-out duration-100"
   >
-    <div
-      v-if="icon"
-      class="flex items-center justify-center text-lg text-gray-400 mr-3"
-    >
-      <!-- eslint-disable -->
-      <svg
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        class="h-6 w-6"
-        :class="svgClass"
-        v-html="icon"
-      ></svg>
-      <!-- eslint-enable -->
+    <div class="flex items-center justify-center text-lg text-gray-400 mr-3">
+      <slot></slot>
     </div>
     <span class="">{{ text }}</span>
     <span
@@ -46,15 +31,6 @@ export default {
       type: Number,
       default: 0,
       required: false,
-    },
-    icon: {
-      type: String,
-      required: false,
-      default: "",
-    },
-    svgClass: {
-      type: String,
-      default: "",
     },
   },
   computed: {

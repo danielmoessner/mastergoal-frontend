@@ -23,6 +23,7 @@
           :required="required"
           :children="children"
           :placeholder="placeholder"
+          @update:modelValue="showSuccess = false"
         />
         <p
           v-if="errors[name]"
@@ -33,9 +34,19 @@
       </div>
       <div class="pt-1 flex items-center">
         <Button is="button" type="submit">{{ submit }}</Button>
-        <p v-if="showSuccess" class="ml-4 text-green-700">
-          {{ success }}
-        </p>
+        <transition
+          enter-active-class="transition duration-200 opacity-0"
+          enter-class="opacity-0"
+          enter-to-class="opacity-100"
+          leave-class="opacity-100"
+          leave-to-class="opacity-0"
+          leave-active-class="transition duration-150"
+          tag="div"
+        >
+          <p v-if="showSuccess" class="ml-4 text-green-700">
+            {{ success }}
+          </p>
+        </transition>
       </div>
     </div>
   </form>
@@ -102,6 +113,7 @@ export default {
           this.nonFieldErrors = [];
           if (this.initial === null) {
             this.data = {};
+            setTimeout(() => (this.showSuccess = false), 2000);
           }
           this.showSuccess = true;
         })
