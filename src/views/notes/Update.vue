@@ -1,24 +1,21 @@
 <template>
-  <BackendBox v-if="note">
-    <NotesNoteBreadcrumb :note="note">
+  <BackendBox v-if="note && storeNote">
+    <NotesNoteBreadcrumb :note="storeNote">
       <BreadcrumbDivider></BreadcrumbDivider>
       <BreadcrumbLink
         text="Edit"
         :link="'/n/' + $route.params.id + '/edit/'"
       ></BreadcrumbLink>
     </NotesNoteBreadcrumb>
-    <div class="bg-white relative">
-      <QuillEditor
-        v-model:content="note.content"
-        content-type="html"
-        theme="snow"
-        toolbar="full"
-        @textChange="textChanged"
+    <GeneralBox class="col-span-2 md:col-span-3 xl:col-span-4">
+      <DynamicForm
+        action="notes/patchNote"
+        success="Note saved"
+        submit="Save"
+        :initial="note"
+        :fields="$store.getters['notes/noteFormFields']"
       />
-      <div class="text-sm text-gray-700 absolute right-0 bottom-0 px-2 py-1">
-        {{ isSaved ? "Saved" : "Not saved.." }}
-      </div>
-    </div>
+    </GeneralBox>
   </BackendBox>
 </template>
 
@@ -27,12 +24,13 @@ import BackendBox from "../../components/BackendBox.vue";
 import BreadcrumbLink from "../../components/BreadcrumbLink.vue";
 import BreadcrumbDivider from "../../components/BreadcrumbDivider.vue";
 import NotesNoteBreadcrumb from "../../components/NotesNoteBreadcrumb.vue";
-import { QuillEditor } from "@vueup/vue-quill";
-import "@vueup/vue-quill/dist/vue-quill.snow.css";
+import DynamicForm from "../../components/DynamicForm.vue";
+import GeneralBox from "../../components/Box/General.vue";
 
 export default {
   components: {
-    QuillEditor,
+    GeneralBox,
+    DynamicForm,
     BackendBox,
     BreadcrumbLink,
     BreadcrumbDivider,
@@ -40,32 +38,19 @@ export default {
   },
   data() {
     return {
-      isSaved: true,
-      interval: null,
-      contentSet: false,
       note: null,
     };
+  },
+  computed: {
+    storeNote() {
+      return this.$store.getters["notes/note"](this.$route.params.id);
+    },
   },
   mounted() {
     this.$store
       .dispatch("notes/fetchNote", this.$route.params.id)
       .then((note) => (this.note = note));
-    this.interval = setInterval(this.checkSave, 5000);
-  },
-  beforeUnmount() {
-    clearInterval(this.interval);
-  },
-  methods: {
-    textChanged() {
-      this.isSaved = false;
-    },
-    checkSave() {
-      if (!this.isSaved) this.save();
-    },
-    save() {
-      this.$store.dispatch("notes/patchNote", this.note);
-      this.isSaved = true;
-    },
+    this.$store.dispatch("notes/fetchNotes");
   },
 };
 </script>

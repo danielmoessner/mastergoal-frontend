@@ -7,10 +7,7 @@
         :link="`/t/list/todos/${todo.id}/edit/`"
       ></BreadcrumbLink>
     </TodosTodoBreadcrumb>
-    <GeneralBox
-      :overflow="false"
-      class="col-span-2 md:col-span-3 xl:col-span-4"
-    >
+    <GeneralBox class="col-span-2 md:col-span-3 xl:col-span-4">
       <DynamicForm
         :fields="$store.getters['todos/todoFormFields'](todo.type)"
         :initial="todo"

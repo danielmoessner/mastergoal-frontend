@@ -164,7 +164,6 @@ const getters = {
       const start1 = name1.substring(0, 2);
       const start2 = name2.substring(0, 2);
       const number = compare(nameOrder, start1, start2);
-      console.log(number, name1, name2);
       if (number !== 0) return number;
       if (name1 < name2) return -1;
       if (name1 > name2) return 1;

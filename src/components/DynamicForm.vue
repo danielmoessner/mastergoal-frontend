@@ -58,7 +58,7 @@ export default {
     initial: {
       type: Object,
       default() {
-        return {};
+        return null;
       },
       required: false,
     },
@@ -100,12 +100,9 @@ export default {
         .then(() => {
           this.errors = {};
           this.nonFieldErrors = [];
-          if (
-            !Object.keys(this.data)
-              .map((key) => this.initial[key] === this.data[key])
-              .every((val) => val)
-          )
+          if (this.initial === null) {
             this.data = {};
+          }
           this.showSuccess = true;
         })
         .catch((errors) => {
