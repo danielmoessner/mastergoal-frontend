@@ -47,9 +47,16 @@
       </button>
     </Controls>
     <div>
-      <TodoItem v-for="todo in todosThisWeek" :key="todo.url" :todo="todo" />
+      <transition-group>
+        <TodoItem
+          v-for="todo in todosThisWeek"
+          :key="todo.url"
+          class="transition ease duration-500"
+          :todo="todo"
+        />
+        <AddTodoForm key="add-todo-form" class="transition ease duration-500" />
+      </transition-group>
     </div>
-    <AddTodoForm />
   </BackendBox>
 </template>
 

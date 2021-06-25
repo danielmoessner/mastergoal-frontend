@@ -150,7 +150,40 @@ const getters = {
   // Todos
   */
   todos: (state) => {
-    return state.todos;
+    const compare = (order, item1, item2) => {
+      const index1 = order.indexOf(item1);
+      const index2 = order.indexOf(item2);
+      if (index1 === -1 && index2 !== -1) return 1;
+      if (index1 !== -1 && index2 === -1) return -1;
+      return index1 - index2;
+    };
+
+    const nameOrder = ["mo", "di", "mi", "do", "fr", "sa", "so"];
+
+    const compareByName = (name1, name2) => {
+      const start1 = name1.substring(0, 2);
+      const start2 = name2.substring(0, 2);
+      const number = compare(nameOrder, start1, start2);
+      console.log(number, name1, name2);
+      if (number !== 0) return number;
+      if (name1 < name2) return -1;
+      if (name1 > name2) return 1;
+      return 0;
+    };
+
+    const statusOrder = ["ACTIVE", "DONE", "FAILED"];
+
+    const compareByStatus = (todo1, todo2) => {
+      const number = compare(statusOrder, todo1.status, todo2.status);
+      if (number === 0) {
+        const name1 = todo1.name.toLowerCase();
+        const name2 = todo2.name.toLowerCase();
+        return compareByName(name1, name2);
+      }
+      return number;
+    };
+
+    return state.todos.sort(compareByStatus);
   },
   normalTodos: (state) => {
     return state.todos.filter((todo) => todo.type === "NORMAL");
@@ -167,9 +200,9 @@ const getters = {
   todo: (state) => (id) => {
     return state.todos.find((todo) => todo.id.toString() === id);
   },
-  todosThisWeek: (state) => {
+  todosThisWeek: (state, getters) => {
     const now = moment(state.time);
-    return state.todos.filter((todo) => {
+    return getters.todos.filter((todo) => {
       const activate = moment(todo.activate);
       // const deadline = moment(todo.deadline);
       // const relevantThisWeek =
