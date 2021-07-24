@@ -62,6 +62,10 @@
           <NavigationButton link="/s/dashboard" text="Dashboard">
             <NewspaperIcon class="w-6 h-6" />
           </NavigationButton>
+          <NavigationHeading heading="Achievements"></NavigationHeading>
+          <NavigationButton link="/a/dashboard" text="Dashboard">
+            <CakeIcon class="w-6 h-6" />
+          </NavigationButton>
           <NavigationHeading heading="Goals"></NavigationHeading>
           <NavigationButton link="/g/goals" text="Goals">
             <TrendingUpIcon class="w-6 h-6" />
@@ -106,6 +110,7 @@ import {
   DocumentTextIcon,
   StarIcon,
   ShareIcon,
+  CakeIcon,
   TrendingUpIcon,
 } from "@heroicons/vue/outline";
 
@@ -119,6 +124,7 @@ export default {
     NewspaperIcon,
     PlusCircleIcon,
     ViewListIcon,
+    CakeIcon,
     ShareIcon,
     LogoutIcon,
     CogIcon,
