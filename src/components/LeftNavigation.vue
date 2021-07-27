@@ -40,14 +40,6 @@
     >
       <div class="w-full p-4 md:flex">
         <ul class="flex flex-col w-full space-y-1">
-          <li v-show="false" class="my-px">
-            <NavigationButton
-              link="/#/"
-              text="Overview"
-              :notifications="3"
-              :icon="overviewIcon"
-            ></NavigationButton>
-          </li>
           <NavigationHeading heading="Todos"></NavigationHeading>
           <NavigationButton link="/t/dashboard" text="Dashboard">
             <ViewGridIcon class="w-6 h-6" />

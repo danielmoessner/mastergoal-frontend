@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import BreadcrumbNavigation from "../components/BreadcrumbNavigation.vue";
-import BreadcrumbLink from "../components/BreadcrumbLink.vue";
-import BreadcrumbDivider from "../components/BreadcrumbDivider.vue";
+import BreadcrumbNavigation from "../BreadcrumbNavigation.vue";
+import BreadcrumbLink from "../BreadcrumbLink.vue";
+import BreadcrumbDivider from "../BreadcrumbDivider.vue";
 
 export default {
   components: {
@@ -22,7 +22,7 @@ export default {
     BreadcrumbLink,
   },
   props: {
-    note: {
+    achievement: {
       type: [Boolean, Object],
       required: true,
     },

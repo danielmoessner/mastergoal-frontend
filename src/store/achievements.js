@@ -27,7 +27,7 @@ const state = () => ({
       readOnly: false,
     },
     {
-      type: "text",
+      type: "textarea",
       label: "Description",
       name: "description",
       create: true,
