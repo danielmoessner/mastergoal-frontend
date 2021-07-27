@@ -6,6 +6,7 @@ import { users } from "./users";
 import { notes } from "./notes";
 import { goals } from "./goals";
 import { story } from "./story";
+import { achievements } from "./achievements";
 
 export default createStore({
   modules: {
@@ -15,5 +16,6 @@ export default createStore({
     notes,
     goals,
     story,
+    achievements,
   },
 });
