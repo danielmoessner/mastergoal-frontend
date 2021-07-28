@@ -3,15 +3,21 @@
     <BreadcrumbNavigation>
       <BreadcrumbLink link="/a/dashboard" text="Dashboard"></BreadcrumbLink>
     </BreadcrumbNavigation>
-    <div>Dashboard Achievements</div>
-    <router-link to="/a/create/">add achievement</router-link>
-    <router-link
-      v-for="a in achievements"
-      :key="a.url"
-      :to="`/a/${a.id}/update/`"
-    >
-      {{ a.title }}
+    <div class="mb-8">Dashboard Achievements</div>
+    <router-link class="mb-4 block" to="/a/create/">
+      add achievement
     </router-link>
+    <div class="grid gap-6 grid-cols-2 bg-white">
+      <div v-for="achievement in achievements" :key="achievement.url">
+        <h2>{{ achievement.title }}</h2>
+        <time>{{ achievement.date }}</time>
+        <p>
+          {{ achievement.description }}
+        </p>
+        <router-link :to="`/a/${achievement.id}/update/`"> update </router-link>
+        <router-link :to="`/a/${achievement.id}/delete/`"> delete </router-link>
+      </div>
+    </div>
   </BackendBox>
 </template>
 

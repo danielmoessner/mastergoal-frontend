@@ -23,10 +23,8 @@ export default {
   components: {
     GoalsGoalBreadcrumb,
     BackendBox,
-
     BreadcrumbLink,
     BreadcrumbDivider,
-
     DeleteBox,
   },
   computed: {

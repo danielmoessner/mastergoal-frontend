@@ -1,10 +1,10 @@
 <template>
   <BreadcrumbNavigation>
-    <BreadcrumbLink text="Dasboard" link="/a/dashboard"></BreadcrumbLink>
+    <BreadcrumbLink text="Dasboard" link="/a/dashboard/"></BreadcrumbLink>
     <BreadcrumbDivider></BreadcrumbDivider>
     <BreadcrumbLink
       :text="achievement.title"
-      :link="'/a/' + $route.params.id + '/'"
+      link="/a/dashboard/"
     ></BreadcrumbLink>
     <slot></slot>
   </BreadcrumbNavigation>
