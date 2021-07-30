@@ -5,6 +5,7 @@ export default [
   {
     path: "/s/dashboard/",
     component: Dashboard,
+    name: "story-dashboard",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -12,6 +13,7 @@ export default [
   {
     path: "/s/:id/",
     component: Detail,
+    name: "story-detail",
     meta: {
       requiresAuthenticationTrue: true,
     },

@@ -1,7 +1,7 @@
 <template>
   <BackendBox>
     <BreadcrumbNavigation>
-      <BreadcrumbLink link="/n/dashboard" text="Dashboard"></BreadcrumbLink>
+      <BreadcrumbLink link="/n/" text="Dashboard"></BreadcrumbLink>
     </BreadcrumbNavigation>
     <div class="space-y-2 mb-4">
       <NoteItem v-for="note in notes" :key="note.url" :note="note"></NoteItem>

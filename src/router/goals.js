@@ -31,6 +31,7 @@ export default [
   {
     path: "/g/goals/",
     component: Dashboard,
+    name: "goals-dashboard",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -38,6 +39,7 @@ export default [
   {
     path: "/g/starred/",
     component: Star,
+    name: "goals-star",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -45,6 +47,7 @@ export default [
   {
     path: "/g/tree/",
     component: Tree,
+    name: "goals-tree",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -55,6 +58,7 @@ export default [
   {
     path: "/g/add/",
     component: Add,
+    name: "goals-add",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -62,6 +66,7 @@ export default [
   {
     path: "/g/add/goal/",
     component: GoalCreate,
+    name: "goals-goal-create",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -69,6 +74,7 @@ export default [
   {
     path: "/g/add/link/",
     component: LinkCreate,
+    name: "goals-link-create",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -76,6 +82,7 @@ export default [
   {
     path: "/g/add/monitor/",
     component: MonitorCreate,
+    name: "goals-monitor-create",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -83,6 +90,7 @@ export default [
   {
     path: "/g/add/strategy/",
     component: StrategyCreate,
+    name: "goals-strategy-create",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -93,6 +101,7 @@ export default [
   {
     path: "/g/list/goals/:id/",
     component: GoalDetail,
+    name: "goals-goal-detail",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -100,6 +109,7 @@ export default [
   {
     path: "/g/list/monitors/:id/",
     component: MonitorDetail,
+    name: "goals-monitor-detail",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -107,6 +117,7 @@ export default [
   {
     path: "/g/list/links/:id/",
     component: LinkDetail,
+    name: "goals-link-detail",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -114,6 +125,7 @@ export default [
   {
     path: "/g/list/strategies/:id/",
     component: StrategyDetail,
+    name: "goals-strategy-detail",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -124,6 +136,7 @@ export default [
   {
     path: "/g/list/goals/:id/edit/",
     component: GoalUpdate,
+    name: "goals-goal-update",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -131,6 +144,7 @@ export default [
   {
     path: "/g/list/strategies/:id/edit/",
     component: StrategyUpdate,
+    name: "goals-strategy-update",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -138,6 +152,7 @@ export default [
   {
     path: "/g/list/monitors/:id/edit/",
     component: MonitorUpdate,
+    name: "goals-monitor-update",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -145,6 +160,7 @@ export default [
   {
     path: "/g/list/links/:id/edit/",
     component: LinkUpdate,
+    name: "goals-link-update",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -155,6 +171,7 @@ export default [
   {
     path: "/g/list/goals/:id/delete/",
     component: GoalDelete,
+    name: "goals-goal-delete",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -162,6 +179,7 @@ export default [
   {
     path: "/g/list/monitors/:id/delete/",
     component: MonitorDelete,
+    name: "goals-monitor-delete",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -169,6 +187,7 @@ export default [
   {
     path: "/g/list/strategies/:id/delete/",
     component: StrategyDelete,
+    name: "goals-strategy-delete",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -176,6 +195,7 @@ export default [
   {
     path: "/g/list/links/:id/delete/",
     component: LinkDelete,
+    name: "goals-link-delete",
     meta: {
       requiresAuthenticationTrue: true,
     },

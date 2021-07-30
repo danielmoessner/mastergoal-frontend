@@ -55,7 +55,7 @@
             <NewspaperIcon class="w-6 h-6" />
           </NavigationButton>
           <NavigationHeading heading="Achievements"></NavigationHeading>
-          <NavigationButton link="/a/dashboard" text="Dashboard">
+          <NavigationButton link="/a/" text="Dashboard">
             <CakeIcon class="w-6 h-6" />
           </NavigationButton>
           <NavigationHeading heading="Goals"></NavigationHeading>
@@ -72,7 +72,7 @@
             <PlusCircleIcon class="w-6 h-6" />
           </NavigationButton>
           <NavigationHeading heading="Notes"></NavigationHeading>
-          <NavigationButton link="/n/dashboard/" text="Dashboard">
+          <NavigationButton link="/n/" text="Dashboard">
             <DocumentTextIcon class="w-6 h-6" />
           </NavigationButton>
           <NavigationHeading heading="User"></NavigationHeading>

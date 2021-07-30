@@ -9,7 +9,7 @@
     </AchievementBreadcrumb>
     <DeleteBox
       :object="achievement.title"
-      to="/a/dashboard/"
+      to="/a/"
       @click="deleteAchievement"
     />
   </BackendBox>
@@ -44,7 +44,7 @@ export default {
     deleteAchievement() {
       this.$store
         .dispatch("achievements/deleteAchievement", this.achievement.url)
-        .then(() => this.$router.push("/a/dashboard/"));
+        .then(() => this.$router.push("/a/"));
     },
   },
 };

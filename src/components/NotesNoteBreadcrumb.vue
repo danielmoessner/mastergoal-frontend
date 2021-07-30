@@ -1,6 +1,6 @@
 <template>
   <BreadcrumbNavigation>
-    <BreadcrumbLink text="Dasboard" link="/n/dashboard"></BreadcrumbLink>
+    <BreadcrumbLink text="Dasboard" link="/n/"></BreadcrumbLink>
     <BreadcrumbDivider></BreadcrumbDivider>
     <BreadcrumbLink
       :text="note.name"

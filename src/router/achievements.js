@@ -8,8 +8,9 @@ export default [
   // Main Pages 
   */
   {
-    path: "/a/dashboard/",
+    path: "/a/",
     component: Dashboard,
+    name: "achievements-dashboard",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -20,6 +21,7 @@ export default [
   {
     path: "/a/create/",
     component: Create,
+    name: "achievements-create",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -30,6 +32,7 @@ export default [
   {
     path: "/a/:id/update/",
     component: Update,
+    name: "achievements-update",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -40,6 +43,7 @@ export default [
   {
     path: "/a/:id/delete/",
     component: Delete,
+    name: "achievements-delete",
     meta: {
       requiresAuthenticationTrue: true,
     },

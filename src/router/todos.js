@@ -10,6 +10,7 @@ export default [
   {
     path: "/t/dashboard/",
     component: Dashboard,
+    name: "todos-dashboard",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -20,12 +21,14 @@ export default [
   {
     path: "/t/add/",
     component: CreateDashboard,
+    name: "todos-create-dashboard",
     meta: {
       requiresAuthenticationTrue: true,
     },
   },
   {
     path: "/t/add/:type/",
+    name: "todos-create-type",
     component: Create,
     meta: {
       requiresAuthenticationTrue: true,
@@ -37,6 +40,7 @@ export default [
   {
     path: "/t/list/",
     component: ListDashboard,
+    name: "todos-list-dashboard",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -44,6 +48,7 @@ export default [
   {
     path: "/t/list/:type/",
     component: List,
+    name: "todos-list-type",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -54,6 +59,7 @@ export default [
   {
     path: "/t/list/todos/:id/edit/",
     component: Update,
+    name: "todos-update",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -64,6 +70,7 @@ export default [
   {
     path: "/t/list/todos/:id/delete/",
     component: Delete,
+    name: "todos-delete",
     meta: {
       requiresAuthenticationTrue: true,
     },

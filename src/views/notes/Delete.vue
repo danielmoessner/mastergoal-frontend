@@ -38,7 +38,7 @@ export default {
     deleteNote() {
       this.$store
         .dispatch("notes/deleteNote", this.note.url)
-        .then(() => this.$router.push("/n/dashboard/"));
+        .then(() => this.$router.push("/n/"));
     },
   },
 };

@@ -10,8 +10,9 @@
     <span
       v-if="notifications > 0"
       class="flex items-center justify-center text-sm text-gray-500 font-semibold bg-gray-200 h-6 px-2 rounded-full ml-auto"
-      >{{ notifications }}</span
     >
+      {{ notifications }}
+    </span>
   </router-link>
 </template>
 
@@ -43,7 +44,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.router-link-exact-active {
+.router-link-active {
   @apply bg-gray-300;
 }
 </style>

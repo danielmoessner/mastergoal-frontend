@@ -1,7 +1,7 @@
 <template>
   <BackendBox>
     <BreadcrumbNavigation>
-      <BreadcrumbLink link="/a/dashboard" text="Dashboard"></BreadcrumbLink>
+      <BreadcrumbLink link="/a/" text="Dashboard"></BreadcrumbLink>
       <BreadcrumbDivider></BreadcrumbDivider>
       <BreadcrumbLink link="/a/create" text="Add Achievement"></BreadcrumbLink>
     </BreadcrumbNavigation>

@@ -9,6 +9,7 @@ export default [
   {
     path: "/signup/",
     component: SignUp,
+    name: "users-signup",
     meta: {
       requiresAuthenticationFalse: true,
     },
@@ -16,6 +17,7 @@ export default [
   {
     path: "/signin/",
     component: SignIn,
+    name: "users-signin",
     meta: {
       requiresAuthenticationFalse: true,
     },
@@ -26,6 +28,7 @@ export default [
   {
     path: "/u/settings/",
     component: Settings,
+    name: "users-settings",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -33,6 +36,7 @@ export default [
   {
     path: "/u/settings/todo-settings/",
     component: SettingsTodo,
+    name: "users-settings-todos",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -40,6 +44,7 @@ export default [
   {
     path: "/u/settings/goal-settings/",
     component: SettingsGoal,
+    name: "users-settings-goals",
     meta: {
       requiresAuthenticationTrue: true,
     },
@@ -47,6 +52,7 @@ export default [
   {
     path: "/u/settings/user-settings/",
     component: SettingsUser,
+    name: "users-settings-user",
     meta: {
       requiresAuthenticationTrue: true,
     },
