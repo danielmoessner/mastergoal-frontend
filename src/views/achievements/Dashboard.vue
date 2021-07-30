@@ -22,7 +22,7 @@
           </div>
         </template>
         <template #content>
-          <div class="text-base text-gray-800">
+          <div class="text-base text-gray-800 whitespace-pre-wrap">
             {{ achievement.description }}
           </div>
         </template>
