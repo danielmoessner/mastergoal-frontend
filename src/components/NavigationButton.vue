@@ -1,15 +1,17 @@
 <template>
   <router-link
     :to="completeLink"
-    class="flex flex-row items-center py-2 px-2 rounded-lg text-gray-600 hover:bg-gray-300 hover:text-gray-700 transition ease-in-out duration-100"
+    class="flex flex-row items-center px-2 py-2 text-gray-600 transition duration-100 ease-in-out rounded-lg hover:bg-gray-300 hover:text-gray-700"
   >
-    <div class="flex items-center justify-center text-lg text-gray-400 mr-3">
+    <div class="flex items-center justify-center mr-3 text-lg text-gray-400">
       <slot></slot>
     </div>
+
     <span class="">{{ text }}</span>
+
     <span
       v-if="notifications > 0"
-      class="flex items-center justify-center text-sm text-gray-500 font-semibold bg-gray-200 h-6 px-2 rounded-full ml-auto"
+      class="flex items-center justify-center h-6 px-2 ml-auto text-sm font-semibold text-gray-500 bg-gray-200 rounded-full"
     >
       {{ notifications }}
     </span>

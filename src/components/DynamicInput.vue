@@ -62,7 +62,7 @@
         theme="bubble"
         toolbar="essential"
         content-type="html"
-        @textChange="emitTinymce"
+        @text-change="emitTinymce"
         @blur="editorFocus = false"
         @focus="editorFocus = true"
       />

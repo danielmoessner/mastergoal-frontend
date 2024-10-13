@@ -2,10 +2,7 @@
   <BreadcrumbNavigation>
     <BreadcrumbLink text="Dasboard" link="/a/"></BreadcrumbLink>
     <BreadcrumbDivider></BreadcrumbDivider>
-    <BreadcrumbLink
-      :text="achievement.title"
-      link="/a/"
-    ></BreadcrumbLink>
+    <BreadcrumbLink :text="achievement.title" link="/a/"></BreadcrumbLink>
     <slot></slot>
   </BreadcrumbNavigation>
 </template>

@@ -4,10 +4,10 @@
       <BreadcrumbLink text="Dashboard" link="/t/dashboard"></BreadcrumbLink>
     </BreadcrumbNavigation>
     <Controls :content="controls">
-      <div class="p-4 flex-1"></div>
+      <div class="flex-1 p-4"></div>
       <button
         type="button"
-        class="p-4 flex items-center justify-center cursor-pointer hover:bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-inset"
+        class="flex items-center justify-center p-4 text-gray-700 cursor-pointer hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-inset"
         @click="() => $store.dispatch('todos/changeTimeToPreviousWeek')"
       >
         <svg
@@ -27,7 +27,7 @@
       </button>
       <button
         type="button"
-        class="rounded-r-lg p-4 flex items-center justify-center cursor-pointer hover:bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-inset"
+        class="flex items-center justify-center p-4 text-gray-700 rounded-r-lg cursor-pointer hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-inset"
         @click="() => $store.dispatch('todos/changeTimeToNextWeek')"
       >
         <svg
@@ -51,10 +51,10 @@
         <TodoItem
           v-for="todo in todosThisWeek"
           :key="todo.url"
-          class="transition ease duration-500"
+          class="transition duration-500 ease"
           :todo="todo"
         />
-        <AddTodoForm key="add-todo-form" class="transition ease duration-500" />
+        <AddTodoForm key="add-todo-form" class="transition duration-500 ease" />
       </transition-group>
     </div>
   </BackendBox>
@@ -91,8 +91,9 @@ export default {
     },
     done() {
       const all = this.todosThisWeek.length;
-      const done = this.todosThisWeek.filter((todo) => todo.status === "DONE")
-        .length;
+      const done = this.todosThisWeek.filter(
+        (todo) => todo.status === "DONE",
+      ).length;
       if (all === 0) {
         return "N/A";
       }

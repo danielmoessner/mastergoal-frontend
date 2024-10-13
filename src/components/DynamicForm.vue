@@ -5,11 +5,12 @@
         <p
           v-for="(error, index) in nonFieldErrors"
           :key="index"
-          class="text-red-700 text-sm leading-tight mt-2"
+          class="mt-2 text-sm leading-tight text-red-700"
         >
           {{ error }}
         </p>
       </div>
+
       <div
         v-for="{ name, label, children, type, required, placeholder } in fields"
         :key="name"
@@ -23,8 +24,9 @@
           :required="required"
           :children="children"
           :placeholder="placeholder"
-          @update:modelValue="showSuccess = false"
+          @update:model-value="showSuccess = false"
         />
+
         <p
           v-if="errors[name]"
           class="text-red-700 text-sm leading-tight ml-1.5 mt-1"
@@ -32,8 +34,10 @@
           {{ errors[name][0] }}
         </p>
       </div>
-      <div class="pt-1 flex items-center">
+
+      <div class="flex items-center pt-1">
         <Button is="button" type="submit">{{ submit }}</Button>
+
         <transition
           enter-active-class="transition duration-200 opacity-0"
           enter-class="opacity-0"
@@ -43,9 +47,7 @@
           leave-active-class="transition duration-150"
           tag="div"
         >
-          <p v-if="showSuccess" class="ml-4 text-green-700">
-            {{ success }}
-          </p>
+          <p v-if="showSuccess" class="ml-4 text-green-700">{{ success }}</p>
         </transition>
       </div>
     </div>

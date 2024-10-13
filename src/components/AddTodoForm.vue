@@ -27,9 +27,9 @@
               type="checkbox"
               class="rounded w-5 h-5 border-gray-300 text-gray-500 shadow-sm focus:border-gray-300 focus:ring focus:ring-gray-300 focus:ring-opacity-50 cursor-pointer"
             />
-            <span class="ml-2 cursor-pointer text-gray-800"
-              >Without Deadline</span
-            >
+            <span class="ml-2 cursor-pointer text-gray-800">
+              Without Deadline
+            </span>
           </label>
         </div>
         <div>

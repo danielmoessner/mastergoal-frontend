@@ -1,11 +1,11 @@
 import vue from "@vitejs/plugin-vue";
-import eslint from "@rollup/plugin-eslint";
 
 const config = {
-  plugins: [
-    { ...eslint({ include: "src/**/*.+(js|jsx|ts|tsx)" }), enforce: "pre" },
-    vue(),
-  ],
+  plugins: [vue()],
+  // port 3000
+  server: {
+    port: 3000,
+  },
 };
 
 export default config;

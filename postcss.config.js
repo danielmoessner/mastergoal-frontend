@@ -1,9 +1,10 @@
-const cssnano = require("cssnano");
-// const autoprefixer = require("autoprefixer");
+import cssnano from "cssnano";
+// import autoprefixer from "autoprefixer";
+import tailwindcss from "tailwindcss";
 
-module.exports = ({ env }) => ({
+export default ({ env }) => ({
   plugins: [
-    require("tailwindcss"),
+    tailwindcss,
     // env === "production" ? autoprefixer() : null,
     env === "production"
       ? cssnano({

@@ -1,7 +1,7 @@
 const { colors } = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  purge: ["./src/**/*.*"],
+  content: ["./src/**/*.*"],
   theme: {
     extend: {
       colors: {
@@ -20,8 +20,4 @@ module.exports = {
     backgroundColor: ({ after }) => after(["odd", "even", "active"]),
   },
   plugins: [require("@tailwindcss/typography"), require("@tailwindcss/forms")],
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
 };

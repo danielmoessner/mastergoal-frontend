@@ -4,7 +4,7 @@
       <BreadcrumbLink link="/t/add" text="Add"></BreadcrumbLink>
     </BreadcrumbNavigation>
     <GeneralBox :overflow="false">
-      <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
         <OverviewItem name="Normal-Todo" link="/t/add/normal-todo">
           <NormalTodoSvg />
         </OverviewItem>
@@ -14,8 +14,8 @@
         <OverviewItem name="Repetitive-Todo" link="/t/add/repetitive-todo">
           <RepetitiveTodoSvg />
         </OverviewItem>
-        <OverviewItem name="Pipeline-Todo" link="/t/add/pipeline-todo"
-          ><PipelineTodoSvg />
+        <OverviewItem name="Pipeline-Todo" link="/t/add/pipeline-todo">
+          <PipelineTodoSvg />
         </OverviewItem>
       </div>
     </GeneralBox>

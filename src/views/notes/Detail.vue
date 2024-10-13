@@ -1,6 +1,6 @@
 <template>
   <BackendBox v-if="note">
-    <NotesNoteBreadcrumb :note="note"> </NotesNoteBreadcrumb>
+    <NotesNoteBreadcrumb :note="note"></NotesNoteBreadcrumb>
     <DetailGrid>
       <DetailBox :heading="note.name">
         <template #actions>

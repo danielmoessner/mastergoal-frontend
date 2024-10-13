@@ -11,5 +11,4 @@ export default {
       clearAlert: "alert/clear",
     }),
   },
-
 };

@@ -1,10 +1,10 @@
 <template>
   <div class="border rounded-lg mb-2 last:mb-0 w-full bg-white relative">
     <div class="flex flex-row h-12">
-      <Input :todo="todo" @setDone="setStatus('DONE')" />
+      <Input :todo="todo" @set-done="setStatus('DONE')" />
       <Body :todo="todo" />
       <Info v-if="verbose" :todo="todo" />
-      <Menu :todo="todo" @setFailed="setStatus('FAILED')" />
+      <Menu :todo="todo" @set-failed="setStatus('FAILED')" />
     </div>
   </div>
 </template>
