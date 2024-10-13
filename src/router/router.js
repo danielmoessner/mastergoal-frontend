@@ -1,19 +1,17 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import store from "@/store/store.js";
-import Error404 from "@/views/GeneralError404.vue";
-import usersRoutes from "@/router/users.js";
-import todosRoutes from "@/router/todos.js";
-import goalsRoutes from "@/router/goals.js";
-import notesRoutes from "@/router/notes.js";
+import { createRouter, createWebHistory } from 'vue-router';
+import store from '@/store/store.js';
+import Error404 from '@/views/GeneralError404.vue';
+import usersRoutes from '@/router/users.js';
+import todosRoutes from '@/router/todos.js';
+import goalsRoutes from '@/router/goals.js';
+import notesRoutes from '@/router/notes.js';
 
-store.dispatch("autoLogin");
-
-Vue.use(VueRouter);
+// Dispatch autoLogin action
+store.dispatch('autoLogin');
 
 const routes = [
   {
-    path: "/",
+    path: '/',
     meta: {
       requiresAuthenticationTrue: false,
       forceRedirect: true,
@@ -24,18 +22,21 @@ const routes = [
   ...goalsRoutes,
   ...notesRoutes,
   {
-    path: "*",
+    path: '/:pathMatch(.*)*',
     component: Error404,
   },
 ];
 
-const router = new VueRouter({ mode: "history", routes });
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+});
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuthenticationTrue)) {
     if (!store.getters.isAuthenticated) {
       next({
-        path: "/signin/",
+        path: '/signin/',
         query: { redirect: to.fullPath },
       });
     }
@@ -43,18 +44,18 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuthenticationFalse)) {
     if (store.getters.isAuthenticated) {
       next({
-        path: "/t/dashboard/",
+        path: '/t/dashboard/',
       });
     }
   }
   if (to.matched.some((record) => record.meta.forceRedirect)) {
     if (store.getters.isAuthenticated) {
       next({
-        path: "/t/dashboard/",
+        path: '/t/dashboard/',
       });
     } else {
       next({
-        path: "/signin/",
+        path: '/signin/',
       });
     }
   }

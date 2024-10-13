@@ -1,31 +1,32 @@
 <template>
-  <div class="w-full min-h-screen flex items-center justify-center">
-    <div class="w-64 mb-64 mt-12">
-      <mastergoal-logo class="rounded-lg mb-8"></mastergoal-logo>
+  <div class="flex items-center justify-center w-full min-h-screen">
+    <div class="w-64 mt-12 mb-64">
+      <mastergoal-logo class="mb-8 rounded-lg"></mastergoal-logo>
       <alert-box
         v-bind:message="alert.message"
         v-bind:type="alert.type"
       ></alert-box>
-      <FormulateForm
+      <FormKit
+      type="form"
         class="mb-12"
         v-on:submit="submit"
         v-bind:name="formName"
         v-model="formData"
       >
-        <FormulateInput
+        <FormKit
           type="text"
-          name="email"
+          name="username"
           label="E-Mail"
           validation="required"
         />
-        <FormulateInput
+        <FormKit
           type="password"
           name="password"
           label="Password"
           validation="required"
         />
-        <FormulateInput type="submit" value="Login" />
-      </FormulateForm>
+        <FormKit type="submit" value="Login" />
+      </FormKit>
       <navigation-button
         link="/signup"
         text="Sign up instead"

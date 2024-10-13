@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="icon" type="image/png" href="/favicon.png" sizes="512x512" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Goals</title>
+  <script>
+    if (window.location.hostname === 'localhost') {
+      document.title = `LOCAL: ${document.title}`;
+    }
+  </script>
+</head>
+
+<body>
+  <noscript>
+    <strong>This page only works with javascript enabled.</strong>
+  </noscript>
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

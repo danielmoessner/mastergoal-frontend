@@ -1,11 +1,11 @@
 <template>
   <router-link
     v-bind:to="completeLink"
-    class="flex flex-row items-center py-3 px-4 rounded-lg text-gray-600 bg-white hover:bg-gray-100 hover:text-gray-700 transition ease-in-out duration-100"
+    class="flex flex-row items-center px-4 py-3 text-gray-600 transition duration-100 ease-in-out bg-white rounded-lg hover:bg-gray-100 hover:text-gray-700"
   >
     <div
       v-if="icon"
-      class="flex items-center justify-center text-lg text-gray-400 mr-3"
+      class="flex items-center justify-center mr-3 text-lg text-gray-400"
     >
       <svg
         fill="none"
@@ -14,17 +14,17 @@
         stroke-width="2"
         viewBox="0 0 24 24"
         stroke="currentColor"
-        class="h-6 w-6"
+        class="w-6 h-6"
         v-bind:class="svgClass"
         v-html="icon"
       >
-        <slot></slot>
+        
       </svg>
     </div>
     <span class="" v-html="text"></span>
     <span
       v-if="notifications > 0"
-      class="flex items-center justify-center text-sm text-gray-500 font-semibold bg-gray-200 h-6 px-2 rounded-full ml-auto"
+      class="flex items-center justify-center h-6 px-2 ml-auto text-sm font-semibold text-gray-500 bg-gray-200 rounded-full"
       v-html="notifications"
     ></span>
   </router-link>

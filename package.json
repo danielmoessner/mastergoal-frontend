@@ -3,34 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint ./src"
   },
   "dependencies": {
     "@braid/vue-formulate": "^2.4.3",
-    "@tailwindcss/typography": "^0.2.0",
+    "@formkit/themes": "^1.6.7",
+    "@formkit/vue": "^1.6.7",
+    "@tailwindcss/typography": "^0.5.15",
+    "@vitejs/plugin-vue": "^5.1.4",
     "axios": "^0.20.0",
-    "core-js": "^3.6.5",
-    "postcss-nested": "^5.0.0",
-    "tailwindcss": "^1.8.10",
-    "vue": "^2.6.11",
-    "vue-router": "^3.4.3",
-    "vue-style-loader": "^4.1.2",
+    "postcss-nested": "^6.2.0",
+    "tailwindcss": "^3.4.13",
+    "vite": "^5.4.8",
+    "vue": "^3.5.12",
+    "vue-router": "^4.4.5",
     "vue2-editor": "^2.10.2",
-    "vuex": "^3.5.1"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "autoprefixer": "^10.0.0",
-    "babel-eslint": "^10.1.0",
-    "cssnano": "^4.1.10",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "postcss": "^8.0.5",
-    "vue-template-compiler": "^2.6.11"
+    "vuex": "^4.1.0"
   },
   "eslintConfig": {
     "root": true,

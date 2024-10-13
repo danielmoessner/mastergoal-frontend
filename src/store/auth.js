@@ -46,7 +46,8 @@ const actions = {
         router.push(getters.mainView);
       })
       .catch((error) => {
-        this._vm.$formulate.handle(error.response.data, data.formName);
+        alert(error.response.data);
+        // this._vm.$formulate.handle(error.response.data, data.formName);
       });
   },
   signout({ commit }) {

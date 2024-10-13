@@ -1,33 +1,31 @@
 @import "tailwindcss/base";
-
 @import "tailwindcss/components";
-
 @import "tailwindcss/utilities";
 
 /*
 Overwrite base styles
 */
 hr {
-  @apply .mt-2;
-  @apply .mb-2;
+  @apply mt-2;
+  @apply mb-2;
 }
 
 /*
 Vue Formulate Change the default look of general errors
 */
 .formulate-form-errors {
-  @apply .mb-3;
+  @apply mb-3;
 }
 .formulate-form-error {
-  @apply .text-red-700;
-  @apply .text-sm;
+  @apply text-red-700;
+  @apply text-sm;
 }
 .formulate-input-element--checkbox {
-  @apply .inline-block;
+  @apply inline-block;
   line-height: 12px;
 }
 .formulate-input-element-decorator {
-  @apply .hidden;
+  @apply hidden;
 }
 
 /*
